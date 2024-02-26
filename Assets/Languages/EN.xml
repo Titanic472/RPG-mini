@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texts>
+	<Return>Return</Return>
+	<Shop>Shop</Shop>
+	<Music>Music</Music>
+	<Hardcore>Hardcore Mode</Hardcore>
+	<Lang>Language: English</Lang>
+	<Inventory>Inventory</Inventory>
+	<Fight>Fight</Fight>
+	<HP>HP</HP>
+	<Profile>Profile</Profile>
+	<Loading>Loading</Loading>
+	<Mana>Mana</Mana>
+	<Level>Level</Level>
+	<Experience>Experience</Experience>
+	<Damage>Damage</Damage>
+	<Speed>Speed</Speed>
+	<Accuracy>Accuracy</Accuracy>
+	<Evasion>Agility</Evasion>
+	<Defence>Defence</Defence>
+	<Lvl>Lvl</Lvl>
+	<Stats>Stats</Stats>
+	<Skills>Skills</Skills>
+	<Abilities>Abilities</Abilities>
+	<EvasionMain>Base skill, allows player to avoid Enemy attacks. Avoid chance depends on agility level and some skill tree upgrades\n\nCurrent Agility: {0}</EvasionMain>
+	<AccuracyMain>Base skill, increases critical strike chance. Critical strike chance depends on Accuracy level and some skill tree upgrades\n\nCurrent Accuracy: {0}</AccuracyMain>
+	<Practice_Plus_Description>Ancient art of magic. Allows player to use spells and increases maximum mana</Practice_Plus_Description>
+	<Skill_Points>Skill Points</Skill_Points>
+	<Skill_Points_5>Skill Points</Skill_Points_5>
+	<Skill_Point>Skill Point</Skill_Point>
+	<Practice_Plus>Practice Plus</Practice_Plus>
+	<Fully_Upgraded>Fully Upgraded!</Fully_Upgraded>
+	<Additional_Health>Additional Health</Additional_Health>
+	<HP_5_Description>Increases maximum health amount by 5</HP_5_Description>
+	<Mana_Regeneration_Description>Increases mana regeneration by {0}/move</Mana_Regeneration_Description>
+	<Mana_Regeneration>Mana Regeneration</Mana_Regeneration>
+	<Beginner_Spell_Description>Your first magic spell. Enemy will be poisoned for 5 turns.\nUses 50 mana\nCooldown: 8 Turns</Beginner_Spell_Description>
+	<Beginner_Spell>Beginner Spell</Beginner_Spell>
+	<Universal_Set>Universal Set</Universal_Set>
+	<Universal_Set_Description>Everything you need in one upgrade! Increases amount of Accuracy and Agility points by {0}</Universal_Set_Description>
+	<Even_More_Mana>Even More Mana</Even_More_Mana>
+	<Even_More_Mana_Description>Adds {0}% to your maximum mana</Even_More_Mana_Description>
+	<Weapon_Ability_Chance>Weapon Ability Chance</Weapon_Ability_Chance>
+	<Weapon_Ability_Chance_Description>Increases Weapon Ability chance by {0}%</Weapon_Ability_Chance_Description>
+	<More_Mana>More Mana</More_Mana>
+	<More_Mana_Description>More mana makes you stronger. Adds 10 mana</More_Mana_Description>
+	<Now_Not_A_Beginner>Now Not A Beginner?</Now_Not_A_Beginner>
+	<Now_Not_A_Beginner_Description>Your knowledge increases your power. Keep practicing</Now_Not_A_Beginner_Description>
+	<Beginner_Damage>Beginner Damage</Beginner_Damage>
+	<Beginner_Damage_Description>Beginner Spell deals Player's base damage ignoring defence with {0}% chance</Beginner_Damage_Description>
+	<Beginner_Mana>Beginner Mana</Beginner_Mana>
+	<Beginner_Mana_Description>Reduces Beginner Spell mana cost to {0}</Beginner_Mana_Description>
+	<Beginner_Cooldown>Beginner Cooldown</Beginner_Cooldown>
+	<Beginner_Cooldown_Description>Reduces Beginner Spell cooldown to {0} turns</Beginner_Cooldown_Description>
+	<Deadlier_Poison>Deadlier Poison</Deadlier_Poison>
+	<Deadlier_Poison_Description>Makes Beginner Spell Poison stronger, now it lasts for 10 turns</Deadlier_Poison_Description>
+	<Mana_Overdrain>Mana Overdrain</Mana_Overdrain>
+	<Mana_Overdrain_Description>Allows you to use spells that cost more mana than you have, but you won't be able to use magic items for 1 move per 10% of maximum mana over your maximum mana</Mana_Overdrain_Description>
+	<Mana_Overdrain_Percent>Mana Overdrain Percent</Mana_Overdrain_Percent>
+	<Mana_Overdrain_Percent_Description>Now you won't be able to use magic items for 1 move per {0}% of maximum mana over your maximum mana</Mana_Overdrain_Percent_Description>
+	<More_Effects>More Effects</More_Effects>
+	<More_Effects_Description>Beginner Spell gains ability to weaken Enemy for 5 turns</More_Effects_Description>
+	<Perfect_Accuracy>Perfect Accuracy</Perfect_Accuracy>
+	<Perfect_Accuracy_Description>Beginner Spell will ignore Enemy's avoid chance hitting with 100% chance</Perfect_Accuracy_Description>
+	<HP_10_Description>Increases maximum health amount by 10</HP_10_Description>
+	<Mana_Overdrain_Potion>Overdrained Potions</Mana_Overdrain_Potion>
+	<Mana_Overdrain_Potion_Description>Mana potions will decrease Mana Overdrain time by {0} turns per every potion used</Mana_Overdrain_Potion_Description>
+	<Additional_Slot>Additional Slot</Additional_Slot>
+	<Additional_Slot_Description>Unlocks additional active skill slot. More active skills - more fun</Additional_Slot_Description>
+	<Damage_Resistance>Damage Resistance</Damage_Resistance>
+	<Damage_Resistance_Description>Increases your Damage Resistance by {0}%. Permanent Armor!</Damage_Resistance_Description>
+	<Chaos>Chaos</Chaos>
+	<Chaos_Description>Deals 1% of Enemy's health with Player's base damage. Can't be avoided. \nUses 250 Mana\nCooldown: 7 Turns</Chaos_Description>
+	<Chaos_Damage>Chaos Damage</Chaos_Damage>
+	<Chaos_Damage_Description>Increases Chaos damage to {0}% of Enemy's health</Chaos_Damage_Description>
+	<HP_15_Description>Increases maximum health amount by 15</HP_15_Description>
+	<Unlocked>Unlocked</Unlocked>
+	<Stronger_Weakness>Stronger Weakness</Stronger_Weakness>
+	<Stronger_Weakness_Description>Beginner Spell now weakens Enemy for 8 turns instead of 5</Stronger_Weakness_Description>
+	<Cheaper_Spells>Cheaper Spells</Cheaper_Spells>
+	<Cheaper_Spells_Description>Reduses mana usage by {0}%. Less mana usage - more spells</Cheaper_Spells_Description>
+	<Chaos_Cooldown>Chaos Cooldown</Chaos_Cooldown>
+	<Chaos_Cooldown_Description>Reduces Chaos cooldown to {0} turns</Chaos_Cooldown_Description>
+	<Chaos_Mana>Chaos Mana</Chaos_Mana>
+	<Chaos_Mana_Description>Reduces Chaos mana cost to {0}</Chaos_Mana_Description>
+	<Skilled_Tree_Chance>Skilled Tree Chance</Skilled_Tree_Chance>
+	<Skilled_Tree_Chance_Description>Increases Skilled Tree spawn chance by 1%. People say that Skilled Tree can give you something more powerful than Experience</Skilled_Tree_Chance_Description>
+	<A_Lot_Of_Mana>A Lot Of Mana</A_Lot_Of_Mana>
+	<A_Lot_Of_Mana_Description>Even more mana for even more spells. Increases maximum mana amount by 20</A_Lot_Of_Mana_Description>
+	<Faster_Attacks>Faster Attacks</Faster_Attacks>
+	<Faster_Attacks_Description>Increases your attack speed by 0.1(stamina bar fills faster)</Faster_Attacks_Description>
+	<Chaos_Effect>Chaos Effect</Chaos_Effect>
+	<Chaos_Effect_Description>Now instead of dealing percent of enemy health damage Chaos applies debuff for 1-5 turns that gives you 0.5% damage to Enemy's health per debuff turn, but also Enemy has 9% avoid chance per debuff turn. Works only with Physical attacks!</Chaos_Effect_Description>
+	<Vampirism_Heal>Vampirism Heal</Vampirism_Heal>
+	<Vampirism_Heal_Description>Increases healing amount to {0}% of damage done</Vampirism_Heal_Description>
+	<Vampirism>Vampirism</Vampirism>
+	<Vampirism_Description>Deals 200% of Player's base damage, restores 10% of the damage done to Player's health. \nUses 150 Mana\nCooldown: 6 Turns</Vampirism_Description>
+	<Vampirism_Damage>Vampirism Damage</Vampirism_Damage>
+	<Vampirism_Damage_Description>Increases Vampirism damage to {0}% of Player's base damage</Vampirism_Damage_Description>
+	<Chaos_Effect_Avoid_Chance>Chaos Effect Avoid Chance</Chaos_Effect_Avoid_Chance>
+	<Chaos_Effect_Avoid_Chance_Description>Decreases Enemy's avoid chance per debuff turn to {0}%</Chaos_Effect_Avoid_Chance_Description>
+	<Chaos_Effect_Damage>Chaos Effect Damage</Chaos_Effect_Damage>
+	<Chaos_Effect_Damage_Description>Increases damage to Enemy's health per debuff turn to {0}% of Enemy's health</Chaos_Effect_Damage_Description>
+	<Chaos_Effect_Duration>Chaos Effect Duration</Chaos_Effect_Duration>
+	<Chaos_Effect_Duration_Description>Increases Chaos debuff duration to {0} turns</Chaos_Effect_Duration_Description>
+	<Vampirism_Mana>Vampirism Mana</Vampirism_Mana>
+	<Vampirism_Mana_Description>Reduces Vampirism mana cost to {0}</Vampirism_Mana_Description>
+	<Ultimate_Unlock>Ultimate Unlock</Ultimate_Unlock>
+	<Ultimate_Unlock_Description>Unlocks last tier of upgrades, some of them allow you to upgrade active skills to even better Ultimate level</Ultimate_Unlock_Description>
+	<Vampirism_Effect_Heal>Vampirism Effect Heal</Vampirism_Effect_Heal>
+	<Vampirism_Effect_Heal_Description>Increases healing power of Vampirism, after using vampirism you will restore {0}% of the damage done by debuffs</Vampirism_Effect_Heal_Description>
+	<HP_20_Description>Increases maximum health amount by 20</HP_20_Description>
+	<Chaos_Ultimate_Percent>Chaos Ultimate Percent</Chaos_Ultimate_Percent>
+	<Chaos_Ultimate_Percent_Description>Chaos debuff now deals damage based on maximum health insted of current, but it can also be used against you!</Chaos_Ultimate_Percent_Description>
+	<Chaos_Ultimate_Random_Debuff>Chaos Ultimate Random Debuff</Chaos_Ultimate_Random_Debuff>
+	<Chaos_Ultimate_Random_Debuff_Description>Chaos, additionally to Chaos debuff, applies random debuff with random duration, sometimes</Chaos_Ultimate_Random_Debuff_Description>
+	<Ultimate_Vampirism>Ultimate Vampirism</Ultimate_Vampirism>
+	<Ultimate_Vampirism_Description>Vampirism makes the enemy bleed for 5 turns. Healing effect from debuffs is doubled</Ultimate_Vampirism_Description>
+	<Ultimate_Beginner>Ultimate Beginner</Ultimate_Beginner>
+	<Ultimate_Beginner_Description></Ultimate_Beginner_Description>
+	<Health_Regeneration>Health Regeneration</Health_Regeneration>
+	<Health_Regeneration_Description>Increases base health regeneration for {0}. Slightly overpriced permanent healing!</Health_Regeneration_Description>
+	<Avoid_Chance>Avoid Chance</Avoid_Chance>
+	<Avoid_Chance_Description>Increases maximum avoid chance by {0}%\nYour current maximum avoid chance: {1}%</Avoid_Chance_Description>
+	<Evasion_Point>Evasion Point</Evasion_Point>
+	<Evasion_Points>Evasion Points</Evasion_Points>
+	<Evasion_Points_5>Evasion Points</Evasion_Points_5>
+	<More_Evasion>More Evasion</More_Evasion>
+	<More_Evasion_Description>Extra 3 agility points for a good price</More_Evasion_Description>
+	<Precise_Hit_Unlock>Precise Hit Unlock</Precise_Hit_Unlock>
+	<Precise_Hit_Unlock_Description>Most Precise Attack, hits the Enemy always</Precise_Hit_Unlock_Description>
+	<Precise_Damage>Precise Damage</Precise_Damage>
+	<Precise_Damage_Description>Precise Hit now deals +{0}% Damage</Precise_Damage_Description>
+	<Precise_Cooldown>Precise Cooldown</Precise_Cooldown>
+	<Precise_Cooldown_Description>Reduces Precise Hit cooldown to {0} turns</Precise_Cooldown_Description>
+	<Parrying_Unlock>Parrying Unlock</Parrying_Unlock>
+	<Parrying_Unlock_Description>Parrying allows you to avoid avery Enemy attack. Parry chance increases by 1% Every time you take damage</Parrying_Unlock_Description>
+	<Parrying_Chance>Parrying Chance</Parrying_Chance>
+	<Parrying_Chance_Description>Parrying chance increases every time you take damage by {0}%</Parrying_Chance_Description>
+	<Painful_Parrying>Painful Parrying</Painful_Parrying>
+	<Painful_Parrying_Description>Parrying chance increases every time you take damage by {0}% of damage taken</Painful_Parrying_Description>
+	<Precise_Enchants>Precise Enchants</Precise_Enchants>
+	<Precise_Enchants_Description>Precise Hit now have {0}% chance to trigger weapon enchant</Precise_Enchants_Description>
+	<Accuracy_Point>Accuracy Point</Accuracy_Point>
+	<Accuracy_Points>Accuracy Points</Accuracy_Points>
+	<Accuracy_Points_5>Accuracy Points</Accuracy_Points_5>
+	<Max_Critical_Strike_Chance>Max Critical Strike Chance</Max_Critical_Strike_Chance>
+	<Max_Critical_Strike_Chance_Description>Increases maximum critical strike chance by {0}%\nYour current maximum critical strike chance: {1}%</Max_Critical_Strike_Chance_Description>
+	<Block_Unlock>Block Unlock</Block_Unlock>
+	<Block_Unlock_Description>Blocks incoming Enemy attack with 65% chance</Block_Unlock_Description>
+	<Strike_Back>Strike Back</Strike_Back>
+	<Strike_Back_Description>Block returns {0}% of damage</Strike_Back_Description>
+	<More_Accuracy>More Accuracy</More_Accuracy>
+	<More_Accuracy_Description>Extra 3 accuracy points for a good price</More_Accuracy_Description>
+	<Block_Chance>Block Chance</Block_Chance>
+	<Block_Chance_Description>Increases Block Chance to {0}%</Block_Chance_Description>
+	<More_Health>More Health</More_Health>
+	<More_Health_Description>Increases your maximum health by {0}%</More_Health_Description>
+	<Brutality_Streak_Unlock>Brutality Streak Unlock</Brutality_Streak_Unlock>
+	<Brutality_Streak_Unlock_Description>Every successful attack icrease your damage by 1%. If Enemy blocks attack all extra damage will be lost.\nEnemy always have 8% avoid chance</Brutality_Streak_Unlock_Description>
+	<Energy_Saving>Energy Saving</Energy_Saving>
+	<Energy_Saving_Description>Every successful attack saves more energy, increasing your damage by {0}%</Energy_Saving_Description>
+	<Brutality_Streak_Mob_Avoid_Chance>Brutality Streak Enemy Avoid Chance</Brutality_Streak_Mob_Avoid_Chance>
+	<Brutality_Streak_Mob_Avoid_Chance_Description>Permanent Enemy avoid chance decreased to {0}%</Brutality_Streak_Mob_Avoid_Chance_Description>
+	<Block_Cooldown>Block Cooldown</Block_Cooldown>
+	<Block_Cooldown_Description>Reduces Block cooldown to {0} turns</Block_Cooldown_Description>
+	<This_Is_Sam>This Is Sam</This_Is_Sam>
+	<Active_Skill_0>Precise Hit</Active_Skill_0>
+	<Active_Skill_0_Description>Most Precise Attack, hits the Enemy always. Also Adds {0}% damage to normal attack and triggers weapon enchantment with {2}% chance.\nCooldown: {1} Turns</Active_Skill_0_Description>
+	<Active_Skill_1></Active_Skill_1>
+	<Active_Skill_1_Description></Active_Skill_1_Description>
+	<Active_Skill_2></Active_Skill_2>
+	<Active_Skill_2_Description></Active_Skill_2_Description>
+	<Active_Skill_3>Block</Active_Skill_3>
+	<Active_Skill_3_Description>Allows you to Block Every attack during move with {1}% chance. If blocked attack, returns {0}% of damage.\nCooldown: {2} Turns</Active_Skill_3_Description>
+	<Active_Skill_4></Active_Skill_4>
+	<Active_Skill_4_Description></Active_Skill_4_Description>
+	<Active_Skill_5></Active_Skill_5>
+	<Active_Skill_5_Description></Active_Skill_5_Description>
+	<Active_Skill_6>Beginner Spell</Active_Skill_6>
+	<Active_Skill_6_Description>Applies Poison for {0} turns{4}. Have {1}% chance to deal {5}base damage ignoring defence.{5}\nCooldown: {2} Turns\nUses {3} Mana</Active_Skill_6_Description>
+	<Active_Skill_6_Description_Weakness>, also weakens Enemy for {0} turns</Active_Skill_6_Description_Weakness>
+	<Active_Skill_6_Description_No_Evasion>\nAlways Hits Enemy!</Active_Skill_6_Description_No_Evasion>
+	<Active_Skill_7>Chaos</Active_Skill_7>
+	<Active_Skill_7_Description>Adds {0}% of Enemy's health to Player's base damage. \nCooldown: {2} Turns\nUses {3} Mana</Active_Skill_7_Description>
+	<Active_Skill_7_Description_Effect>Destabilizes Enemy for {0} turns. Deals {0}% of Enemy{4} health and adds {1}% avoid chance for each turn of effect duration.{5}\nCooldown: {2} Turns\nUses {3} Mana</Active_Skill_7_Description_Effect>
+	<Active_Skill_7_Description_Ultimate>\nApplies Random Debuff</Active_Skill_7_Description_Ultimate>
+	<Active_Skill_8>Vampirism</Active_Skill_8>
+	<Active_Skill_8_Description>Deals {0}% of base damage, regenerates {1}% of damage dealt.{4}{5}\nCooldown: {2} Turns\nUses {3} Mana</Active_Skill_8_Description>
+	<Active_Skill_8_Description_Effect>\nAlso heals {0}% of damage dealt by debuffs.</Active_Skill_8_Description_Effect>
+	<Active_Skill_8_Description_Ultimate>\nEnemy bleeds, giving you life energy.</Active_Skill_8_Description_Ultimate>
+	<Unlock_At_Skill_Tree>\n\n\n\nUnlock At Skill Tree</Unlock_At_Skill_Tree>
+	<Active_Skills_Default>\n\n\n\n   Click Skill Button For More\n  Information</Active_Skills_Default>
+	<Use>Use</Use>
+	<Max> Max</Max>
+	<Remove>Remove</Remove>
+	<Stick>Stick</Stick>
+	<Stick_Description>Best for hitting nettle</Stick_Description>
+	<Nettle_Band>Nettle Band</Nettle_Band>
+	<Nettle_Band_Description>It's definely not a good idea to put it on your head, but who will stop you?</Nettle_Band_Description>
+	<Rat_Slippers>Rat Slippers</Rat_Slippers>
+	<Rat_Slippers_Description>Very comfortable stinky slippers made from your enemies</Rat_Slippers_Description>
+	<Slimy_Chestplate>Slimy Chestplate</Slimy_Chestplate>
+	<Slimy_Chestplate_Description>Your best frieng in this cruel world</Slimy_Chestplate_Description>
+	<Decayed_Broadsword>Decayed Broadsword</Decayed_Broadsword>
+	<Decayed_Broadsword_Description>A bit of junk on a stick, but do you have a choise?</Decayed_Broadsword_Description>
+	<Old_Torn_Hood>Old Torn Hood</Old_Torn_Hood>
+	<Old_Torn_Hood_Description>It was once worn by an assassin, but has been forgotten ever since. Though ripped and dirty, may prove useful</Old_Torn_Hood_Description>
+	<Cope_Vest>Cope Vest</Cope_Vest>
+	<Cope_Vest_Description>More of a coping mechanism than an actual armor, but still gives some protection. Apparently it was built in somebody's garage</Cope_Vest_Description>
+	<Well_Worn_Jeans>Well Worn Jeans</Well_Worn_Jeans>
+	<Well_Worn_Jeans_Description>A classic kind of pants that everybody knows. It has more holes than actual fabric, but you need any kind of protection you can find</Well_Worn_Jeans_Description>
+	<Equip>Equip</Equip>
+	<Take_off>Take off</Take_off>
+	<Upgrade>Upgrade</Upgrade>
+	<Sell>Sell</Sell>
+	<Healing_Potion>Healing Potion</Healing_Potion>
+	<Healing_Potion_Description>Heals half of your max health. Allows you to live a bit longer</Healing_Potion_Description>
+	<Mana_Potion>Mana Potion</Mana_Potion>
+	<Mana_Potion_Description>Concetrated mana, restores half of your max mana</Mana_Potion_Description>
+	<Health_Regeneration_Potion>Health Regeneration Potion</Health_Regeneration_Potion>
+	<Health_Regeneration_Potion_Description>Like health potion restores your health, but it lasts for some time and heals more</Health_Regeneration_Potion_Description>
+	<Mana_Regeneration_Potion>Mana Regeneration Potion</Mana_Regeneration_Potion>
+	<Mana_Regeneration_Potion_Description>Slowly regenerates your mana</Mana_Regeneration_Potion_Description>
+	<Ironskin_Potion>Ironskin Potion</Ironskin_Potion>
+	<Ironskin_Potion_Description>Increases your defence for a short time</Ironskin_Potion_Description>
+	<Nettle>Nettle</Nettle>
+	<Slime>Slime</Slime>
+	<Rat>Rat</Rat>
+	<Milk>Milk</Milk>
+	<Skilled_Tree>Skilled Tree</Skilled_Tree>
+	<Avoided>Avoided</Avoided>
+	<Parried>Parried</Parried>
+	<You_Died>You Died</You_Died>
+	<Quit>Rage Quit</Quit>
+	<Respawn>Respawn</Respawn>
+	<Battle_Ended>Battle Ended</Battle_Ended>
+	<Attack>Attack</Attack>
+	<Potions>Potions</Potions>
+	<Items>Items</Items>
+	<Run_Away>Run Away</Run_Away>
+	<Blocked>Blocked</Blocked>
+	<Double>Double</Double>
+	<Back_to_Game>Back to Game</Back_to_Game>
+	<Save_and_Quit>Save and Quit</Save_and_Quit>
+	<Fullscreen>Fullscreen</Fullscreen>
+	<Windowed>Windowed</Windowed>
+	<Scimitar>Scimitar</Scimitar>
+	<Scimitar_Description>Your dad's scimitar stolen by Milk. Now it's your again</Scimitar_Description>
+</texts>
