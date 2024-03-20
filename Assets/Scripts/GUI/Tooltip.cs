@@ -13,7 +13,7 @@ public class Tooltip : MonoBehaviour, IPointerExitHandler
     private RectTransform TitleRectTransform;
     public Camera MainCamera;
 
-    private void Start(){
+    private void Awake(){
         DescriptionRectTransform = Description.GetComponent<RectTransform>();
         TitleRectTransform = Title.GetComponent<RectTransform>();
         TooltipRectTransform = tooltip.GetComponent<RectTransform>();
@@ -26,15 +26,15 @@ public class Tooltip : MonoBehaviour, IPointerExitHandler
 
         TitleRectTransform.sizeDelta = new Vector2(Math.Min(Title.GetComponent<Text>().preferredWidth, 250), Title.GetComponent<Text>().preferredHeight);
         DescriptionRectTransform.sizeDelta = new Vector2(Math.Min(Description.GetComponent<Text>().preferredWidth, 250), Description.GetComponent<Text>().preferredHeight);
-        TooltipRectTransform.sizeDelta = new Vector2(Math.Max(DescriptionRectTransform.rect.size.x, TitleRectTransform.rect.size.x)+8, DescriptionRectTransform.rect.size.y + TitleRectTransform.rect.size.y+8);
+        TooltipRectTransform.sizeDelta = new Vector2(Math.Max(DescriptionRectTransform.rect.size.x, TitleRectTransform.rect.size.x)+8, DescriptionRectTransform.rect.size.y + TitleRectTransform.rect.size.y+4);
         tooltip.SetActive(true);
-        Vector2 MousePos = MainCamera.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+        Vector2 MousePos = MainCamera.ScreenToWorldPoint(new Vector2(Input.mousePosition.x + TooltipRectTransform.rect.size.x*0.25f*DirectionModifier, Input.mousePosition.y - TooltipRectTransform.rect.height*0.25f));
         
         if (FollowCursor){
             //Description.transform.position = Title.transform.position - new Vector3(0, DescriptionRectTransform.rect.height*0.5f, 0);
             //Title.transform.position = new Vector3(MousePos.x + Offset.x,MousePos.y + Offset.y, 0);
-            tooltip.transform.position = new Vector3(MousePos.x + Offset.x,MousePos.y + Offset.y, 0);
-            //tooltip.transform.position = tooltip.transform.position - new Vector3(TooltipRectTransform.rect.size.y/2*DirectionModifier, TooltipRectTransform.rect.size.y/2, 0);
+            tooltip.transform.position = new Vector3(MousePos.x + Offset.x, MousePos.y + Offset.y, 0);
+            //tooltip.transform.position = tooltip.transform.position - new Vector3(TooltipRectTransform.rect.size.x/2*DirectionModifier, TooltipRectTransform.rect.size.y/2, 0);
         }
         /*LayoutRebuilder.ForceRebuildLayoutImmediate(DescriptionRectTransform);
         LayoutRebuilder.ForceRebuildLayoutImmediate(TitleRectTransform);

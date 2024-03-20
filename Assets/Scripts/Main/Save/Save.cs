@@ -1383,11 +1383,11 @@ public class Save : MonoBehaviour
         Player.Skills["BaseHealthRegen"] = Data.intPlayer[20];
         Player.Skills["BaseManaRegen"] = Data.intPlayer[21];
         Player.Skills["WeaponSkillChance"] = Data.intPlayer[22];
-        Player.Inventory_Consumables["Healing Potion"] = Data.intPlayer[23];
-        Player.Inventory_Consumables["Mana Potion"] = Data.intPlayer[25];
-        Player.Inventory_Consumables["Health Regeneration Potion"] = Data.intPlayer[26];
-        Player.Inventory_Consumables["Mana Regeneration Potion"] = Data.intPlayer[27];
-        Player.Inventory_Consumables["Ironskin Potion"] = Data.intPlayer[28];
+        Player.Inventory_Consumables["Healing_Potion"] = Data.intPlayer[23];
+        Player.Inventory_Consumables["Mana_Potion"] = Data.intPlayer[25];
+        Player.Inventory_Consumables["Health_Regeneration_Potion"] = Data.intPlayer[26];
+        Player.Inventory_Consumables["Mana_Regeneration_Potion"] = Data.intPlayer[27];
+        Player.Inventory_Consumables["Ironskin_Potion"] = Data.intPlayer[28];
         for(int i = 29; i<79; ++i){
             for(int j = 0; j<10; ++j){
                 for(int k = 0; k<5; ++k)Player.StatusEffects[j,k] = Data.intPlayer[i];

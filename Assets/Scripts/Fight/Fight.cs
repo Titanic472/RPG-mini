@@ -121,15 +121,15 @@ public class Fight : MonoBehaviour
                 }
                 break;
             case 2:
-                --player.Inventory_Consumables["Health Regeneration Potion"];
+                --player.Inventory_Consumables["Health_Regeneration_Potion"];
                 EffectsManager.Add(0, 5, player);
                 break;
             case 3:
-                --player.Inventory_Consumables["Mana Regeneration Potion"];
+                --player.Inventory_Consumables["Mana_Regeneration_Potion"];
                 EffectsManager.Add(1, 5, player);
                 break;
             case 4:
-                --player.Inventory_Consumables["Ironskin Potion"];
+                --player.Inventory_Consumables["Ironskin_Potion"];
                 EffectsManager.Add(2, 8, player);
                 EffectsManager.TriggerEffects(0, player);
                 break;

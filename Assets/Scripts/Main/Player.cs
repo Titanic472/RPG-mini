@@ -285,7 +285,7 @@ public class Player : Entity
 
     public void ManaRestore(){
         if(!Overdrained){
-            if(Mana != MaxMana) --Inventory_Consumables["Mana Potion"];
+            if(Mana != MaxMana) --Inventory_Consumables["Mana_Potion"];
             if(Mana < MaxMana/2){
                 Mana+=MaxMana/2; 
             }
