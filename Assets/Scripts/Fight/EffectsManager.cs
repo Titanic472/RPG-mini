@@ -12,6 +12,52 @@ public class EffectsManager : MonoBehaviour
     public Skills SkillManager;
     int LastBuffsDefence;
 
+    public string GetDescription(int SlotId, Entity Target){
+        int Duration = Target.StatusEffects[SlotId, 1];
+        switch(Target.StatusEffects[SlotId, 0]){
+            case 0:
+                return string.Format(Language_Changer.Instance.GetText("Id_0_Description", "Effects"), Duration, Duration*5+"%");
+            case 1:
+                return string.Format(Language_Changer.Instance.GetText("Id_1_Description", "Effects"), Duration, Duration*5+"%");
+            case 2:
+                return string.Format(Language_Changer.Instance.GetText("Id_2_Description", "Effects"), Duration, Duration + 5);
+            case 4:
+                return string.Format(Language_Changer.Instance.GetText("Id_4_Description", "Effects"), Duration, Duration*2);
+            case 5:
+                return string.Format(Language_Changer.Instance.GetText("Id_5_Description", "Effects"), Duration, Duration+"%");
+            case 7:
+                string Max = "";
+                float DamagePercent;
+                int EffectAvoidChance;
+                    switch(Player.Instance.SkillManager.CH_Effect_Damage){
+                        case 1:
+                            DamagePercent = 1f;
+                            break;
+                        case 2:
+                            DamagePercent = 1.5f;
+                            break;
+                        default:
+                            DamagePercent = 0.5f;
+                            break;
+                    }
+                switch(Player.Instance.SkillManager.CH_Effect_EVChance){
+                    case 1:
+                        EffectAvoidChance = 7;
+                        break;
+                    case 2:
+                        EffectAvoidChance = 5;
+                        break;
+                    default:
+                        EffectAvoidChance = 9;
+                        break;
+                    }    
+                    if(Player.Instance.SkillManager.CH_Ultimate_HPPercent) Max = Language_Changer.Instance.GetText("Max");
+                return string.Format(Language_Changer.Instance.GetText("Id_7_Description", "Effects"), Duration, DamagePercent*Duration, EffectAvoidChance*Duration, Max);
+            default:
+                return string.Format(Language_Changer.Instance.GetText("Id_" + Target.StatusEffects[SlotId, 0] + "_Description", "Effects"), Duration);
+        }
+    }
+
     public void Add(int ID, int Duration, Entity Target){
         int Type, Type2, IsStackable;
         GetInformation(ID, out Type, out Type2, out IsStackable);
@@ -38,8 +84,8 @@ public class EffectsManager : MonoBehaviour
         }
     }
 
-    public void Remove(int SlotID, Entity Target){
-        for(int i = 0; i<5;++i) Target.StatusEffects[SlotID, i] = -1;
+    public void Remove(int SlotId, Entity Target){
+        for(int i = 0; i<5;++i) Target.StatusEffects[SlotId, i] = -1;
         Reorganise(Target);
     }
 

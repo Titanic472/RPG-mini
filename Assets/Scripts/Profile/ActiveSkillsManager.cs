@@ -76,282 +76,286 @@ public class ActiveSkillsManager : MonoBehaviour
     }
     
     public void GetDescription(int ID){
-        int a, b, c, d;
-        string e = "", f = "", g = ""; 
-        float h;
+        string Damage, UltimateDescription = "", ManaUsage, Cooldown;
         switch(ID){
             case 0:
+                string WeaponSkillChance;
                 switch(SkillManager.PH_Damage){
                     case 1:
-                        a = 25;
+                        Damage = "25";
                         break;
                     case 2:
-                        a = 40;
+                        Damage = "40";
                         break;
                     case 3:
-                        a = 60;
+                        Damage = "60";
                         break;
                     default:
-                        a = 10;
+                        Damage = "10";
                         break;
                 }
                 switch(SkillManager.PH_Cooldown){
                     case 1:
-                        b = 5;
+                        Cooldown = "5";
                         break;
                     case 2:
-                        b = 6;
+                        Cooldown = "6";
                         break;
                     case 3:
-                        b = 7;
+                        Cooldown = "7";
                         break;
                     default:
-                        b = 8;
+                        Cooldown = "8";
                         break;
                 }
                 switch(SkillManager.PH_WeaponSkillChance){
                     case 1:
-                        c = 50;
+                        WeaponSkillChance = "50";
                         break;
                     case 2:
-                        c = 100;
+                        WeaponSkillChance = "100";
                         break;
                     default:
-                        c = 0;
+                        WeaponSkillChance = "0";
                         break;
                 }
-                Information.text = string.Format(Language_Changer.Instance.GetText("Active_Skill_" + ID + "_Description"), a, b, c);
+                Information.text = string.Format(Language_Changer.Instance.GetText("Active_Skill_" + ID + "_Description"), Damage, Cooldown, WeaponSkillChance);
                 break;
             case 3:
+            string ReturnDamage, Chance;
                 switch(SkillManager.BL_ReturnDamage){
                     case 1:
-                        a = 25;
+                        ReturnDamage = "25";
                         break;
                     case 2:
-                        a = 35;
+                        ReturnDamage = "35";
                         break;
                     case 3:
-                        a = 50;
+                        ReturnDamage = "50";
                         break;
                     default:
-                        a = 20;
+                        ReturnDamage = "20";
                         break;
                 }
                 switch(SkillManager.BL_Chance){
                     case 1:
-                        b = 70;
+                        Chance = "70";
                         break;
                     case 2:
-                        b = 80;
+                        Chance = "80";
                         break;
                     case 3:
-                        b = 95;
+                        Chance = "95";
                         break;
                     default:
-                        b = 65;
+                        Chance = "65";
                         break;
                 }
                 switch(SkillManager.BL_Cooldown){
                     case 1:
-                        c = 5;
+                        Cooldown = "5";
                         break;
                     case 2:
-                        c = 4;
+                        Cooldown = "4";
                         break;
                     default:
-                        c = 6;
+                        Cooldown = "6";
                         break;
                 }
-                Information.text = string.Format(Language_Changer.Instance.GetText("Active_Skill_" + ID + "_Description"), a, b, c);
+                Information.text = string.Format(Language_Changer.Instance.GetText("Active_Skill_" + ID + "_Description"), ReturnDamage, Chance, Cooldown);
                 break;
             case 6:
-                if(SkillManager.BS_NoEvasion) f = Language_Changer.Instance.GetText("Active_Skill_6_Description_No_Evasion");
-                if(SkillManager.BS_Poison_AddDuration) a = 10;
-                else a = 5;
+                string NoEvasion = "", PoisonDuration, DamageChance, Weakness = "";
+                if(SkillManager.BS_NoEvasion) NoEvasion = Language_Changer.Instance.GetText("Active_Skill_6_Description_No_Evasion");
+                if(SkillManager.BS_Poison_AddDuration) PoisonDuration = "10";
+                else PoisonDuration = "5";
                 if(SkillManager.BS_UnlockWeakness){
-                    if(SkillManager.BS_Weakness_AddDuration) e = string.Format(Language_Changer.Instance.GetText("Active_Skill_6_Description_Weakness"), 8);
-                    else e = string.Format(Language_Changer.Instance.GetText("Active_Skill_6_Description_Weakness"), 5);
+                    if(SkillManager.BS_Weakness_AddDuration) Weakness = string.Format(Language_Changer.Instance.GetText("Active_Skill_6_Description_Weakness"), 8);
+                    else Weakness = string.Format(Language_Changer.Instance.GetText("Active_Skill_6_Description_Weakness"), 5);
                 }
                 switch(SkillManager.BS_Damage){
                     case 1:
-                        b = 20;
+                        DamageChance = "20";
                         break;
                     case 2:
-                        b = 30;
+                        DamageChance = "30";
                         break;
                     case 3:
-                        b = 50;
+                        DamageChance = "50";
                         break;
                     default:
-                        b = 0;
+                        DamageChance = "0";
                         break;
                 }
                 switch(SkillManager.BS_Mana){
                     case 1:
-                        d = 40;
+                        ManaUsage = "40";
                         break;
                     case 2:
-                        d = 30;
+                        ManaUsage = "30";
                         break;
                     default:
-                        d = 50;
+                        ManaUsage = "50";
                         break;
                 }
                 switch(SkillManager.BS_Cooldown){
                     case 1:
-                        c = 7;
+                        Cooldown = "7";
                         break;
                     case 2:
-                        c = 6;
+                        Cooldown = "6";
                         break;
                     case 3:
-                        c = 5;
+                        Cooldown = "5";
                         break;
                     default:
-                        c = 8;
+                        Cooldown = "8";
                         break;
                 }
                 if(SkillManager.BS_Ultimate){
-                    b = 100;
-                    g = Language_Changer.Instance.GetText("Double") + " ";
+                    DamageChance = "100";
+                    UltimateDescription = Language_Changer.Instance.GetText("Double") + " ";
                 }
-                Information.text = string.Format(Language_Changer.Instance.GetText("Active_Skill_6_Description"), a, b, c, d, e, f, g);
+                Information.text = string.Format(Language_Changer.Instance.GetText("Active_Skill_6_Description"), PoisonDuration, DamageChance, Cooldown, ManaUsage, Weakness, NoEvasion, UltimateDescription);
                 break;
             case 7:
                 switch(SkillManager.CH_Mana){
                     case 1:
-                        d = 220;
+                        ManaUsage = "220";
                         break;
                     case 2:
-                        d = 180;
+                        ManaUsage = "180";
                         break;
                     case 3:
-                        d = 150;
+                        ManaUsage = "150";
                         break;
                     default:
-                        d = 250;
+                        ManaUsage = "250";
                         break;
                 }
                 switch(SkillManager.CH_Cooldown){
                     case 1:
-                        c = 6;
+                        Cooldown = "6";
                         break;
                     case 2:
-                        c = 5;
+                        Cooldown = "5";
                         break;
                     default:
-                        c = 7;
+                        Cooldown = "7";
                         break;
                 }
                 if(!SkillManager.CH_Effect){
+                    string HealthPercent;
                     switch(SkillManager.CH_Damage){
                         case 1:
-                            a = 2;
+                            HealthPercent = "2";
                             break;
                         case 2:
-                            a = 5;
+                            HealthPercent = "5";
                             break;
                         default:
-                            a = 1;
+                            HealthPercent = "1";
                             break;
                     }
-                    Information.text = string.Format(Language_Changer.Instance.GetText("Active Skill 7 Description"), a, c, d);
+                    Information.text = string.Format(Language_Changer.Instance.GetText("Active Skill 7 Description"), HealthPercent, Cooldown, ManaUsage);
                 }
                 else{
+                    string EffectDuration, Max = "", EffectAvoidChance, DamagePercent;
                     switch(SkillManager.CH_Effect_Damage){
                         case 1:
-                            h = 1f;
+                            DamagePercent = "1";
                             break;
                         case 2:
-                            h = 1.5f;
+                            DamagePercent = "1.5";
                             break;
                         default:
-                            h = 0.5f;
+                            DamagePercent = "0.5";
                             break;
                     }
                     switch(SkillManager.CH_Effect_EVChance){
                         case 1:
-                            b = 7;
+                            EffectAvoidChance = "7";
                             break;
                         case 2:
-                            b = 5;
+                            EffectAvoidChance = "5";
                             break;
                         default:
-                            b = 9;
+                            EffectAvoidChance = "9";
                             break;
                     }
                     switch(SkillManager.CH_Effect_Duration){
                         case 1:
-                            g = "2-6";
+                            EffectDuration = "2-6";
                             break;
                         case 2:
-                            g = "4-8";
+                            EffectDuration = "4-8";
                             break;
                         default:
-                            g = "1-5";
+                            EffectDuration = "1-5";
                             break;
                     }
-                    if(SkillManager.CH_Ultimate_HPPercent) e = Language_Changer.Instance.GetText("Max");
-                    if(SkillManager.CH_Ultimate_RandomDebuff) f = Language_Changer.Instance.GetText("Active_Skill_7_Description_Ultimate");
-                    Information.text = string.Format(Language_Changer.Instance.GetText("Active_Skill_7_Description_Effect"), h, b, c, d, e, f, g);
+                    if(SkillManager.CH_Ultimate_HPPercent) Max = Language_Changer.Instance.GetText("Max");
+                    if(SkillManager.CH_Ultimate_RandomDebuff) UltimateDescription = Language_Changer.Instance.GetText("Active_Skill_7_Description_Ultimate");
+                    Information.text = string.Format(Language_Changer.Instance.GetText("Active_Skill_7_Description_Effect"), DamagePercent, EffectAvoidChance, Cooldown, ManaUsage, Max, UltimateDescription, EffectDuration);
                 }
                 break;
             case 8:
+                string Heal, EffectHeal = "";
                 switch(SkillManager.V_Mana){
                     case 1:
-                        d = 130;
+                        ManaUsage = "130";
                         break;
                     case 2:
-                        d = 100;
+                        ManaUsage = "100";
                         break;
                     default:
-                        d = 150;
+                        ManaUsage = "150";
                         break;
                 }
                 switch(SkillManager.V_Heal){
                     case 1:
-                        b = 15;
+                        Heal = "15";
                         break;
                     case 2:
-                        b = 20;
+                        Heal = "20";
                         break;
                     case 3:
-                        b = 30;
+                        Heal = "30";
                         break;
                     default:
-                        b = 10;
+                        Heal = "10";
                         break;
                 }
                 switch(SkillManager.V_EffectHeal){
                     case 1:
-                        e = string.Format(Language_Changer.Instance.GetText("Active_Skill_8_Description_Effect"), 2);
+                        EffectHeal = string.Format(Language_Changer.Instance.GetText("Active_Skill_8_Description_Effect"), 2);
                         break;
                     case 2:
-                        e = string.Format(Language_Changer.Instance.GetText("Active_Skill_8_Description_Effect"), 5);
+                        EffectHeal = string.Format(Language_Changer.Instance.GetText("Active_Skill_8_Description_Effect"), 5);
                         break;
                     default:
                         break;
                 }
                 switch(SkillManager.V_Damage){
                     case 1:
-                        a = 300;
+                        Damage = "300";
                         break;
                     case 2:
-                        a = 400;
+                        Damage = "400";
                         break;
                     case 3:
-                        a = 600;
+                        Damage = "600";
                         break;
                     default:
-                        a = 200;
+                        Damage = "200";
                         break;
                 }
-                c = 6;
+                Cooldown = "6";
                 if(SkillManager.V_Ultimate){
-                    f = Language_Changer.Instance.GetText("Active_Skill_8_Description_Ultimate");
-                    e = string.Format(Language_Changer.Instance.GetText("Active_Skill_8_Description_Effect"), 10);    
+                    UltimateDescription = Language_Changer.Instance.GetText("Active_Skill_8_Description_Ultimate");
+                    EffectHeal = string.Format(Language_Changer.Instance.GetText("Active_Skill_8_Description_Effect"), 10);    
                 }
-                Information.text = string.Format(Language_Changer.Instance.GetText("Active_Skill_8_Description"), a, b, c, d, e, f);
+                Information.text = string.Format(Language_Changer.Instance.GetText("Active_Skill_8_Description"), Damage, Heal, Cooldown, ManaUsage, EffectHeal, UltimateDescription);
                 break;
             default:
                 Information.text = "Something Went Wrong, Please Report This";

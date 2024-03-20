@@ -486,19 +486,19 @@ public class InventoryManager : MonoBehaviour
     public void Potion_Use(){
         game.Fight.InBattle = false;
         switch(Potion){
-            case "Healing Potion":
+            case "Healing_Potion":
                 player.Heal();
                 break;
-            case "Mana Potion":
+            case "Mana_Potion":
                 player.ManaRestore();
                 break;
-            case "Health Regeneration Potion":
+            case "Health_Regeneration_Potion":
                 game.Fight.PlayerPotionUse(2);
                 break;
-            case "Mana Regeneration Potion":
+            case "Mana_Regeneration_Potion":
                 game.Fight.PlayerPotionUse(3);
                 break;
-            case "Ironskin Potion":
+            case "Ironskin_Potion":
                 game.Fight.PlayerPotionUse(4);
                 break;
             default:

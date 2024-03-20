@@ -268,7 +268,7 @@ public class Player : Entity
     }
 
     public void Heal(float Modifier = 1f){
-        if(Health != MaxHealth) --Inventory_Consumables["Healing Potion"];
+        if(Health != MaxHealth) --Inventory_Consumables["Healing_Potion"];
         CollectedData[0] = CollectedData[0]+((float)Health/(float)MaxHealth-CollectedData[0])/++CollectedData[1];
         if(!Fight.InBattle){
             if(Fight.EffectsManager.GetEffect(10, this))Modifier*=0.8f;

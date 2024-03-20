@@ -12,6 +12,7 @@ public class Mob : Entity
     public int[] XPReward = new int[25];
     public int MinCoins, MaxCoins, LevelHPBoost, Damage, Evasion, Accuracy, MaxDefence, MinDefence, MaxAvoidChance, MaxCritChance;
     public float DamageResistance, XPLevelModifier, LevelDamage, LevelMaxDefence, LevelMinDefence, LevelAccuracy, LevelEvasion, ActiveSkillsAddDamage;
+    public string Name;
     
     public void Mob_Load(){
         if(Level<0) Level = 0; 

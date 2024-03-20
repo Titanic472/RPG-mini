@@ -7,12 +7,12 @@ using TMPro;
 
 public class Language_Changer : MonoBehaviour
 {
-    public TextMeshProUGUI Return1, Return2, Return3, Return4, Return5, Return6, Shop, Music, Hardcore, Lang, Lang2, Inventory, Fight, Profile, Stats, Skills, Abilities, Sam, Use, Unequip, Equip, YouDied, Quit, Respawn, BattleEnded, Attack, Potions, Items, RunAway, BackToGame, SaveAndQuit;
+    public TextMeshProUGUI Return1, Return2, Return3, Return4, Return5, Return6, Shop, Music, Hardcore, Lang, Lang2, Inventory, Fight, Profile, Stats, Skills, Abilities, Sam, Use, Unequip, Equip, YouDied, Quit, Respawn, BattleEnded, Attack, Potions, Items, RunAway, BackToGame, SaveAndQuit, PassiveSkillsTitle;
     private int i = 0;
 	public static Language_Changer Instance;
 	private string Language = "EN";
 	private XmlDocument XmlDoc;
-
+	private string CurrentBranch = "";
 
     void Start(){
 		Instance = this;
@@ -40,17 +40,19 @@ public class Language_Changer : MonoBehaviour
 		LanguageUpdate();
     }
 
-	private void LoadLanguage(){
-		string FilePath = "Assets/Languages/" + Language + ".xml";
+	private void LoadLanguage(string Branch = "Common"){
+		string FilePath = "Assets/Languages/" + Language + "/" + Branch + ".xml";
 
         if (File.Exists(FilePath)){
             XmlDoc = new XmlDocument();
             XmlDoc.Load(FilePath);
+			CurrentBranch = Branch;
         }
-        else Debug.LogError("XML file not found: " + FilePath + "\nWell, problems... Again");
+        else Debug.LogError("XML file not found: " + FilePath + "\nWell, problems... Again\n" + "Branch: " + Branch);
 	}
 
-	public string GetText(string Key){
+	public string GetText(string Key, string Branch = "Common"){
+		if(CurrentBranch!=Branch) LoadLanguage(Branch);
 		Key = Key.Replace(' ', '_');
         if (XmlDoc != null){
             XmlNode node = XmlDoc.SelectSingleNode("/texts/" + Key);
@@ -94,6 +96,7 @@ public class Language_Changer : MonoBehaviour
 		BattleEnded.text = GetText("Battle_Ended");
 		BackToGame.text = GetText("Back_to_Game");
 		SaveAndQuit.text = GetText("Save_and_Quit");
+		PassiveSkillsTitle.text = GetText("Passive_Skills");
 		Player.Instance.HealthBar.Reset();
      	Player.Instance.ManaBar.Reset();
      /*Return1.text = Text_Storage["Return"];
@@ -324,7 +327,7 @@ public class Language_Changer : MonoBehaviour
      Text_Storage["Unlock At Skill Tree"] = "\n\n\n\nUnlock At Skill Tree";
      Text_Storage["Active Skills Default"] = "\n\n\n\n        Click Skill Button For More\n                      Information";
      Text_Storage["Use"] = "Use";
-     Text_Storage["Max"] = " Max";
+     Text_Storage["Max"] = "Max";
      Text_Storage["Remove"] = "Remove";
      Text_Storage["Stick"] = "Stick";
 	 Text_Storage["Stick Description"] = "Best for hitting nettle";

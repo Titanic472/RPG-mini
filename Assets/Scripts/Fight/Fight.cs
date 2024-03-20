@@ -12,11 +12,12 @@ public class Fight : MonoBehaviour
     public Player player;
     public Game Game;
     public InventoryManager InventoryManager;
-    public GameObject mob, MainMenu, BlueSlime, BrownSlime, PinkSlime, Rat, Nettle, Milk, SkilledTree;
+    public GameObject mob, MainMenu, EffectDescription, BlueSlime, BrownSlime, PinkSlime, Rat, Nettle, Milk, SkilledTree;
     public Mob MobScript;
     public Skills SkillManager;
     public HealthBar MobHealth;
-    public TextMeshProUGUI MobText;
+    public Tooltip Tooltip;
+    public TextMeshProUGUI MobText, MobDescriptionTitle, MobDescription, MobStats, MobStats2, MobStatsTitle, PassiveSkillsStats;
     public GameObject[] Buttons = new GameObject[16], PotionSlots = new GameObject[5], PlayerEffectImages = new GameObject[10], MobEffectImages = new GameObject[10], GameObjects = new GameObject[4];
     public GameObject EndBattleWindow, CoinsText, Mob_MapSprite, BG, ModeSwitch;
     public SlimyArmor SlimyArmor;
@@ -36,19 +37,19 @@ public class Fight : MonoBehaviour
     public void PotionSlots_Reload(){
         for(int i = 0; i<5; ++i) PotionSlots[i].SetActive(false);
         int Slot = 0;
-        if(player.Inventory_Consumables["Healing Potion"]>0){
+        if(player.Inventory_Consumables["Healing_Potion"]>0){
             PotionSlotActivate(ref Slot, 0);
         }
-        if(player.Inventory_Consumables["Mana Potion"]>0){
+        if(player.Inventory_Consumables["Mana_Potion"]>0){
             PotionSlotActivate(ref Slot, 1);
         }
-        if(player.Inventory_Consumables["Health Regeneration Potion"]>0){
+        if(player.Inventory_Consumables["Health_Regeneration_Potion"]>0){
             PotionSlotActivate(ref Slot, 2);
         }
-        if(player.Inventory_Consumables["Mana Regeneration Potion"]>0){
+        if(player.Inventory_Consumables["Mana_Regeneration_Potion"]>0){
             PotionSlotActivate(ref Slot, 3);
         }
-        if(player.Inventory_Consumables["Ironskin Potion"]>0){
+        if(player.Inventory_Consumables["Ironskin_Potion"]>0){
             PotionSlotActivate(ref Slot, 4);
         }
     }
@@ -235,6 +236,9 @@ public class Fight : MonoBehaviour
         Mob_Create(MinLevel, MaxLevel, Location, MobID, AllowSkilledTree);
         PotionSlots_Reload();
         ReloadEffectImages();
+        ReloadFightDescription();
+        ReloadFightDescription("MobDescription");
+        ReloadFightDescription("PassiveSkillsStats");
         ActiveSkills.ReloadActiveSkills();
         player.SpeedEnergy = 0;
         player.SpeedEnergyAdd();
@@ -257,14 +261,13 @@ public class Fight : MonoBehaviour
     }
 
     public void Mob_Create(int MinLevel, int MaxLevel, int Location, int MobID, bool AllowSkilledTree){
-        string Name = "";
         bool SkilledTreeCreated = false;
         if(AllowSkilledTree || MobID == 96){
             int Chance = UnityEngine.Random.Range(0, 100);
             if(Chance<=player.game.SkilledTreeChance || MobID == 96){
             mob = Instantiate(SkilledTree, new Vector3(transform.position.x + 4.7f, transform.position.y - 0.8f, 90f), Quaternion.identity, transform);
             MobScript = mob.GetComponent<SkilledTree>();
-            Name = Language_Changer.Instance.GetText("Skilled_Tree");
+            MobScript.Name = "Skilled_Tree";
             SkilledTreeCreated = true;
             }
         }
@@ -275,37 +278,37 @@ public class Fight : MonoBehaviour
                         case 0:
                             mob = Instantiate(Rat, new Vector3(transform.position.x + 4.7f, transform.position.y - 0.9f, 90f), Quaternion.identity, transform);
                             MobScript = mob.GetComponent<Rat>();
-                            Name = Language_Changer.Instance.GetText("Rat");
+                            MobScript.Name = "Rat";
                             break;
                         case 1:
                             mob = Instantiate(Rat, new Vector3(transform.position.x + 4.7f, transform.position.y - 0.9f, 90f), Quaternion.identity, transform);
                             MobScript = mob.GetComponent<Rat>();
-                            Name = Language_Changer.Instance.GetText("Rat");
+                            MobScript.Name = "Rat";
                             break;
                         case 2:
                             mob = Instantiate(BlueSlime, new Vector3(transform.position.x + 4.7f, transform.position.y - 1.24f, 90f), Quaternion.identity, transform);
                             MobScript = mob.GetComponent<BlueSlime>();
-                            Name = Language_Changer.Instance.GetText("Slime");
+                            MobScript.Name = "Slime";
                             break;
                         case 3:
                             mob = Instantiate(PinkSlime, new Vector3(transform.position.x + 4.7f, transform.position.y - 1.24f, 90f), Quaternion.identity, transform);
                             MobScript = mob.GetComponent<PinkSlime>();
-                            Name = Language_Changer.Instance.GetText("Slime");
+                            MobScript.Name = "Slime";
                             break;
                         case 4:
                             mob = Instantiate(BrownSlime, new Vector3(transform.position.x + 4.7f, transform.position.y - 1.24f, 90f), Quaternion.identity, transform);
                             MobScript = mob.GetComponent<BrownSlime>();
-                            Name = Language_Changer.Instance.GetText("Slime");
+                            MobScript.Name = "Slime";
                             break;
                         case 5:
                             mob = Instantiate(Nettle, new Vector3(transform.position.x + 4.4f, transform.position.y - 0.8f, 90f), Quaternion.identity, transform);
                             MobScript = mob.GetComponent<Nettle>();
-                            Name = Language_Changer.Instance.GetText("Nettle");
+                            MobScript.Name = "Nettle";
                             break;
                         case 6:
                             mob = Instantiate(Milk, new Vector3(transform.position.x + 4.2f, transform.position.y - 0.9f, 90f), Quaternion.identity, transform);
                             MobScript = mob.GetComponent<Milk>();
-                            Name = Language_Changer.Instance.GetText("Milk");
+                            MobScript.Name = "Milk";
                             break;
                         default:
                             break;
@@ -321,8 +324,8 @@ public class Fight : MonoBehaviour
         MobScript.Fight = this;
         MobScript.Mob_Load();
         MobScript.SelfSprite = mob;
-        if(Name == Language_Changer.Instance.GetText("Milk") || Name == Language_Changer.Instance.GetText("Skilled_Tree")) MobText.text = Name;
-        else MobText.text = Name + " " +  Language_Changer.Instance.GetText("Lvl") + " " + MobScript.Level; 
+        if(MobScript.Name == "Milk" || MobScript.Name == "Skilled_Tree") MobText.text = Language_Changer.Instance.GetText(MobScript.Name, "Mobs");
+        else MobText.text = Language_Changer.Instance.GetText(MobScript.Name, "Mobs") + " " +  Language_Changer.Instance.GetText("Lvl") + " " + MobScript.Level; 
     }
     
     public void Clear(){
@@ -372,6 +375,8 @@ public class Fight : MonoBehaviour
             if(MobScript.Health==0) return;
         }
         else EffectsManager.TriggerEffects(4, MobScript);
+        ReloadFightDescription();
+        ReloadFightDescription("PassiveSkillsStats");
         if(player.SpeedEnergy<1)NextTurn();
         else ButtonsActivate(true);
     }
@@ -408,6 +413,8 @@ public class Fight : MonoBehaviour
         MobScript.DamageTaken = 0;
         MobScript.DamageBlockedByBuffs = 0;
         player.SpeedEnergyAdd();
+        ReloadFightDescription();
+        ReloadFightDescription("PassiveSkillsStats");
     }
 
     public void TriggerVampirism(){
@@ -458,5 +465,44 @@ public class Fight : MonoBehaviour
         EndBattleWindow.transform.Find("Experience").GetComponent<TextMeshProUGUI>().text = "XP: " + XPAmount;
         EndBattleWindow.SetActive(true);
         SlimyArmor.Experience_Add(10);
+    }
+
+    public void ReloadFightDescription(string Description = "MobStats"){
+        switch(Description){
+            case "MobStats":
+                MobStatsTitle.text = Language_Changer.Instance.GetText(MobScript.Name, "Mobs");
+                MobStats.text = "";
+                MobStats.text += "<sprite=\"Stats\" name=\"Damage\"> " + MobScript.Damage + "\n";
+                MobStats.text += "<sprite=\"Stats\" name=\"Defence\"> " + MobScript.MinDefence + "-" + MobScript.MaxDefence + "\n";
+                MobStats.text += "<sprite=\"Stats\" name=\"DamageResistance\"> " + MobScript.DamageResistance;
+                MobStats2.text = "";
+                MobStats2.text += "<sprite=\"Stats\" name=\"Accuracy\"> " + MobScript.Accuracy + "\n";
+                MobStats2.text += "<sprite=\"Stats\" name=\"Evasion\"> " + MobScript.Evasion + "\n";
+                break;
+            case "MobDescription":
+                MobDescriptionTitle.text = Language_Changer.Instance.GetText(MobScript.Name, "Mobs");
+                MobDescription.text = Language_Changer.Instance.GetText(MobScript.Name + "_Description", "Mobs");
+                break;
+            case "PassiveSkillsStats":
+                PassiveSkillsStats.text = "<sprite=\"PassiveSkills\" name=\"BrutalityStreak\"> " + (player.BrutalityStreak_AddDamageAll*100).ToString("0.00") + "%\n";
+                PassiveSkillsStats.text += "<sprite=\"PassiveSkills\" name=\"Parry\"> " + player.Parrying_ChanceAll.ToString("0.00") + "%\n";
+                PassiveSkillsStats.text += "<sprite=\"PassiveSkills\" name=\"ManaOverdrain\"> " + player.ManaOverdrain.MovesLeft;
+                break;
+            default:
+                Debug.Log("Invalid Description:" + Description);
+                break;
+        }
+    }
+
+    public void CreateEffectTooltip(int EffectSlotId){
+        Entity Target;
+        int DirectionModifier = 1;
+        if(EffectSlotId/10==1){
+            Target = MobScript;
+            DirectionModifier = -1;
+        }
+        else Target = player;
+        EffectSlotId = EffectSlotId%10;
+        Tooltip.SetTextAndResize(Language_Changer.Instance.GetText("Id_" + Target.StatusEffects[EffectSlotId, 0], "Effects"), EffectsManager.GetDescription(EffectSlotId, Target), DirectionModifier);
     }
 }
