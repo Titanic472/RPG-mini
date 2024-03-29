@@ -14,6 +14,7 @@ public class Game : MonoBehaviour
     public TextMeshProUGUI Information_Profile, FullscreenText, FullscreenText1;
     public Toggle FullscreenToggle, FullscreenToggle1;
     public bool[] BossesDefeated = new bool[10];
+    public GameObject[] Items = new GameObject[15];
     public Sprite[] Item_Sprites = new Sprite[9], Potion_Sprites = new Sprite[5], Effects_Sprites = new Sprite[11];
     public Dictionary<string, int> Container = new Dictionary<string, int>();
     public Dictionary<string, string> ContText = new Dictionary<string, string>();

@@ -193,6 +193,11 @@ public class Player : Entity
         (SelfSprite, SelfSprite2) = (SelfSprite2, SelfSprite);
     }
 
+    public void UpdateAllStats(){
+        UpdateModifiers();
+        UpdateStats();
+    }
+    
     public void UpdateModifiers(){
      HealthModifier = BaseHealthModifier * ((Ring1["HealthModifier"] + Ring2["HealthModifier"])/2f*0.01f);
      ManaModifier = BaseManaModifier * ((Ring1["ManaModifier"] + Ring2["ManaModifier"])/2f*0.01f);

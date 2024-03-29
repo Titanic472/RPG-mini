@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Item : MonoBehaviour
+public class Item : MonoBehaviour
 {
     public string Name, Type;
     public int Id = -1, Tier = 0, Level = 0, Amount = 0, EnchantmentId = -1;
     public int[] UpgradePrice = new int[15], Price = new int[15], LevelPriceAdd = new int[15];
+    public float LevelPriceModifier = 1f;
     public int EnergyUsage = 1, UpgradeEnergyUsage, MinDefence, UpgradeMinDefence, MaxDefence, UpgradeMaxDefence, Accuracy, UpgradeAccuracy, Evasion, UpgradeEvasion, Mana, UpgradeMana, ManaUsage, UpgradeManaUsage, DamageReduction, UpgradeDamageReduction, Damage, UpgradeDamage, Health, UpgradeHealth, ManaRegen, UpgradeManaRegen, HealthRegen, UpgradeHealthRegen, ManaCost, UpgradeManaCost, ShieldingLevel;
-    public float LevelPriceModifier = 1f, DamageModifier = 1f, UpgradeDamageModifier = 1f, DefenceModifier = 1f, UpgradeDefenceModifier = 1f, ExperienceModifier = 1f, UpgradeExperienceModifier = 1f, HealthModifier = 1f, UpgradeHealthModifier = 1f, SpeedModifier = 1f, UpgradeSpeedModifier = 1f, ManaModifier = 1f, UpgradeManaModifier = 1f, DamageResistance = 1f, UpgradeDamageResistance = 1f;
+    public float DamageModifier = 1f, UpgradeDamageModifier, DefenceModifier = 1f, UpgradeDefenceModifier, ExperienceModifier = 1f, UpgradeExperienceModifier, HealthModifier = 1f, UpgradeHealthModifier, SpeedModifier = 1f, UpgradeSpeedModifier, ManaModifier = 1f, UpgradeManaModifier, DamageResistance = 1f, UpgradeDamageResistance;
     public bool Is2Handed = false;
     int StatsCount = 0;
 
@@ -19,8 +20,9 @@ public abstract class Item : MonoBehaviour
 
     public virtual void LevelSet(int LevelToSet){//Used only after loading inventory
         UpgradePrice = Price;
+        for(int i = 1; i<15; ++i)Price[i] = Price[i]/3;
         for(int i = 1; i<15; ++i){
-            UpgradePrice[i] += Convert.ToInt32(LevelPriceAdd[i] * LevelPriceModifier);
+            UpgradePrice[i] = Convert.ToInt32((UpgradePrice[i] + LevelPriceAdd[i]) * LevelPriceModifier);
             if(UpgradePrice[i]>=1000){
                 UpgradePrice[i+1] = UpgradePrice[i]/1000;
                 UpgradePrice[i] = UpgradePrice[i]%1000;
@@ -68,7 +70,7 @@ public abstract class Item : MonoBehaviour
 
         if(Tier*5<Level){//Calculate upgrade price for next level if level limit not reached
             for(int i = 1; i<15; ++i){
-                UpgradePrice[i] += Convert.ToInt32(LevelPriceAdd[i] * LevelPriceModifier);
+                UpgradePrice[i] = Convert.ToInt32((UpgradePrice[i] + LevelPriceAdd[i]) * LevelPriceModifier);
                 if(UpgradePrice[i]>=1000){
                     UpgradePrice[i+1] = UpgradePrice[i]/1000;
                     UpgradePrice[i] = UpgradePrice[i]%1000;
@@ -76,6 +78,7 @@ public abstract class Item : MonoBehaviour
                 if(UpgradePrice[0]<i && UpgradePrice[i]>0) Price[0] = i;
             }
         }
+        Player.Instance.UpdateAllStats();
     }
 
     public virtual string GetUpgradePrice(){
@@ -167,4 +170,17 @@ public abstract class Item : MonoBehaviour
     public virtual void OnCrit(){}
 
     public virtual void OnAvoid(){}
+
+    public virtual void Save(ref int Index1, ref int Index2, ref int Index3){
+        Index1 = Id;
+        if(Type == "Potion" || Type == "Consumable")Index2 = Amount;
+        else Index2 = Level;
+        Index3 = EnchantmentId;
+    }
+
+    public virtual void Load(int Index2, int Index3){
+        if(Type == "Potion" || Type == "Consumable")Amount = Index2;
+        else Level = Index2;
+        EnchantmentId = Index3;
+    }
 }
