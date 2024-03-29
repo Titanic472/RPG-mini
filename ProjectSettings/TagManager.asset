@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Collectable
+  - Location Changer
+  - Enemy
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Triggering Layer
+  - Water
+  - UI
+  - Blocking Layer
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: ground
+    uniqueID: 3111984695
+    locked: 0
+  - name: collectibles
+    uniqueID: 471959591
+    locked: 0
+  - name: entities
+    uniqueID: 208302057
+    locked: 0
+  - name: background
+    uniqueID: 2913989709
+    locked: 0
+  - name: items
+    uniqueID: 1433227217
+    locked: 0
+  - name: buttons
+    uniqueID: 2121964337
+    locked: 0
+  - name: FightEntities
+    uniqueID: 3190086461
+    locked: 0

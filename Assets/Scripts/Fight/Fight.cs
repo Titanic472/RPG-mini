@@ -174,6 +174,8 @@ public class Fight : MonoBehaviour
         player.BrutalityStreak_MobAvoidChance = 0;
         player.BrutalityStreak_AddDamage = 0;
         EffectsManager.TriggerEffects(0, player);
+        player.LeftHandWeapon.GetComponent<Item>().ShieldingLevel = 0;
+        ShieldingLevel.GetComponent<Image>().sprite = InventoryManager.Empty;
         if(SkillManager.BrutalityStreak_Unlock){
         switch(SkillManager.BrutalityStreak_AvoidChance){
             case 1:
