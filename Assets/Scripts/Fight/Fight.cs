@@ -19,7 +19,7 @@ public class Fight : MonoBehaviour
     public Tooltip Tooltip;
     public TextMeshProUGUI MobText, MobDescriptionTitle, MobDescription, MobStats, MobStats2, MobStatsTitle, PassiveSkillsStats;
     public GameObject[] Buttons = new GameObject[16], PotionSlots = new GameObject[5], PlayerEffectImages = new GameObject[10], MobEffectImages = new GameObject[10], GameObjects = new GameObject[4];
-    public GameObject EndBattleWindow, CoinsText, Mob_MapSprite, BG, ModeSwitch;
+    public GameObject EndBattleWindow, CoinsText, Mob_MapSprite, BG, ModeSwitch, ShieldingLevel;
     public SlimyArmor SlimyArmor;
     public EffectsManager EffectsManager;
     public int[] Potions = new int[5];
@@ -29,6 +29,7 @@ public class Fight : MonoBehaviour
     public static Fight Instance = null;
     public bool IsVampirismActive = false;
     public float VampirsmHealPerc;
+    public Sprite[] ShieldingLevelImages = new Sprite[3];
 
     void Awake(){
         Instance = this;
@@ -504,5 +505,10 @@ public class Fight : MonoBehaviour
         else Target = player;
         EffectSlotId = EffectSlotId%10;
         Tooltip.SetTextAndResize(Language_Changer.Instance.GetText("Id_" + Target.StatusEffects[EffectSlotId, 0], "Effects"), EffectsManager.GetDescription(EffectSlotId, Target), DirectionModifier);
+    }
+
+    public void ReloadShieldingLevelImage(){
+        if(player.LeftHandWeapon.GetComponent<Item>().ShieldingLevel!=0)ShieldingLevel.GetComponent<Image>().sprite = ShieldingLevelImages[player.LeftHandWeapon.GetComponent<Item>().ShieldingLevel-1];
+        else ShieldingLevel.GetComponent<Image>().sprite = InventoryManager.Empty;
     }
 }

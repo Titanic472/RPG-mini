@@ -31,6 +31,7 @@ public class Player : Entity
     public Dictionary<string, int> Ring1 = new Dictionary<string, int>();
     public Dictionary<string, int> Ring2 = new Dictionary<string, int>();
     public Dictionary<string, int> Inventory_Consumables = new Dictionary<string, int>();
+    public GameObject Hat, Chestplate, Boots, LeftHandWeapon, RightHandWeapon, Trinket1, Trinket2;
     public static Player Instance;
 
 
@@ -199,7 +200,7 @@ public class Player : Entity
      DamageModifier = (Ring1["DamageModifier"] + Ring2["DamageModifier"])/2f*0.01f;
      DefenceModifier = (Ring1["DefenceModifier"] + Ring2["DefenceModifier"])/2f*0.01f;
      ExperienceModifier = (Ring1["ExperienceModifier"] + Ring2["ExperienceModifier"])/2f*0.01f;
-     SpeedModifier = (Ring1["SpeedModifier"] + Ring2["SpeedModifier"])/2f*0.01f;
+     SpeedModifier = Ring1["SpeedModifier"] * Ring2["SpeedModifier"];
      DamageResistance = BaseDamageResistance + Ring1["DamageResistance"]*0.01f + Ring2["DamageResistance"]*0.01f + Head["DamageResistance"]*0.01f + Chest["DamageResistance"]*0.01f + Legs["DamageResistance"]*0.01f;
     }
 
@@ -351,6 +352,11 @@ public class Player : Entity
         StartCoroutine(ManaBar.Mana_update());
     }
 
+    public void MoneyRemove(int[] Amount){
+        for(int i = 1; i<15;++i)Money[i]-=Amount[i];
+        Money_Reorganise(1);
+    }
+
     public void MoneyManager(string key, int Amount = 0, int Modifier = 1){
         if(key == "Add"){
             Money[Modifier] += Amount;
@@ -483,15 +489,15 @@ public class Player : Entity
     public void List_Reorganise(ref int[] List, int Modifier, int MaxModifier = 0, int MaxAllowedModifier = 14){
         if(List[Modifier]>0 && List[0]<Modifier)List[0] = Modifier;
         if(Modifier==MaxAllowedModifier)return;
-        while(List[Modifier] >=1000){
-            ++List[Modifier + 1];
-            List[Modifier] -= 1000;
+        if(List[Modifier] >=1000){
+            List[Modifier + 1] = Convert.ToInt32(List[Modifier]/1000);
+            List[Modifier] = List[Modifier]%1000;
             if(Modifier+1>List[0]) List[0] = Modifier+1;
         }
         if(List[0]>Modifier && List[Modifier+1]>=1000) List_Reorganise(ref List, Modifier+1, MaxModifier, MaxAllowedModifier);
-        while(List[Modifier] < 0){
-            --List[Modifier + 1];
-            List[Modifier] += 1000;
+        if(List[Modifier] < 0){
+            List[Modifier + 1] -= Convert.ToInt32((List[Modifier]+1)/1000+1);
+            List[Modifier] += 1000*Convert.ToInt32((List[Modifier]+1)/1000+1);
         }
         if(List[0]>Modifier && List[Modifier + 1]<=0) List_Reorganise(ref List, Modifier+1, MaxModifier, MaxAllowedModifier);
         if(List[Modifier] > 0 && Modifier>List[0]) List[0] = Modifier;
@@ -586,13 +592,22 @@ public class Player : Entity
         Amount = Convert.ToInt32(Math.Floor(Amount*BuffsDamageTakenModifier));
         Amount = Convert.ToInt32(Math.Floor(Amount-Amount*DamageResistance));
         if(AllowArmor){
-            int Defence = UnityEngine.Random.Range(MinDefence, MaxDefence+1);
-            Amount -= Defence;
             if(Amount > 0){
                 Amount -= BuffsDefence;
                 if(Amount >= 0)DamageBlockedByBuffs += BuffsDefence;
                 else DamageBlockedByBuffs += BuffsDefence+Amount;
-            }
+            }//Uncomment
+            /*
+            RightHand.OnReceiveDamage(Amount);//For Special Weapons
+            LeftHand.OnReceiveDamage(Amount);//Shield
+            Hat.OnReceiveDamage(Amount);
+            Chestplate.OnReceiveDamage(Amount);
+            Boots.OnReceiveDamage(Amount);
+            Ring1.OnReceiveDamage(Amount);
+            Ring2.OnReceiveDamage(Amount);
+            */
+            int Defence = UnityEngine.Random.Range(MinDefence, MaxDefence+1);
+            Amount -= Defence;
         }
         Amount -= DamageReduction;
         if(Amount<0){
