@@ -10,7 +10,7 @@ public class Item : MonoBehaviour
     public int[] UpgradePrice = new int[15], Price = new int[15], LevelPriceAdd = new int[15];
     public float LevelPriceModifier = 1f;
     public int EnergyUsage = 1, UpgradeEnergyUsage, MinDefence, UpgradeMinDefence, MaxDefence, UpgradeMaxDefence, Accuracy, UpgradeAccuracy, Evasion, UpgradeEvasion, Mana, UpgradeMana, ManaUsage, UpgradeManaUsage, DamageReduction, UpgradeDamageReduction, Damage, UpgradeDamage, Health, UpgradeHealth, ManaRegen, UpgradeManaRegen, HealthRegen, UpgradeHealthRegen, ManaCost, UpgradeManaCost, ShieldingLevel;
-    public float DamageModifier = 1f, UpgradeDamageModifier, DefenceModifier = 1f, UpgradeDefenceModifier, ExperienceModifier = 1f, UpgradeExperienceModifier, HealthModifier = 1f, UpgradeHealthModifier, SpeedModifier = 1f, UpgradeSpeedModifier, ManaModifier = 1f, UpgradeManaModifier, DamageResistance = 1f, UpgradeDamageResistance;
+    public float DamageModifier = 1f, UpgradeDamageModifier, DefenceModifier = 1f, UpgradeDefenceModifier, ExperienceModifier = 1f, UpgradeExperienceModifier, HealthModifier = 1f, UpgradeHealthModifier, SpeedModifier = 1f, UpgradeSpeedModifier, ManaModifier = 1f, UpgradeManaModifier, DamageResistance, UpgradeDamageResistance;
     public bool Is2Handed = false;
     int StatsCount = 0;
 
@@ -81,6 +81,14 @@ public class Item : MonoBehaviour
         Player.Instance.UpdateAllStats();
     }
 
+    public bool CanUpgrade(){
+        if(Player.Instance.Money[0]>UpgradePrice[0])return true;
+        for(int i = Player.Instance.Money[0]; i>0; --i){
+            if(Player.Instance.Money[i]>UgradePrice[i]) return true;
+            else if(Player.Instance.Money[i]<UgradePrice[i])return false;
+        }
+    }
+
     public virtual string GetUpgradePrice(){
         string PriceText = Price[Price[0]] + "";
         if(Price[0]>1){
@@ -104,6 +112,7 @@ public class Item : MonoBehaviour
     }
 
     public virtual void GetStats(ref string Stats1, ref string Stats2, bool UpgradeInformation = false){
+        if(Level >= Tier*5)UpgradeInformation = false;
         StatsCount = 0;
         Stats1 = "";
         Stats2 = "";
@@ -180,7 +189,7 @@ public class Item : MonoBehaviour
 
     public virtual void Load(int Index2, int Index3){
         if(Type == "Potion" || Type == "Consumable")Amount = Index2;
-        else Level = Index2;
+        else LevelSet(Index2);
         EnchantmentId = Index3;
     }
 }

@@ -71,57 +71,57 @@ public class Skills : MonoBehaviour
     //adding stats from skill tree
     public void Skilltree_Evasion(){
         player.Skills["BaseEvasion"] = EvasionMain + Convert.ToInt32(EV_1_ACC_1_1_Magic_Tier1) + Convert.ToInt32(EV_1_ACC_1_2_Magic_Tier2) + Convert.ToInt32(EV_2_ACC_2_1_Magic_Tier2)*2 + Convert.ToInt32(EV_2_ACC_2_2_Magic_Tier3)*2 + Convert.ToInt32(EV_1_ACC_1_3_Magic_Tier3) + Convert.ToInt32(EV_2_ACC_2_3_Magic_Tier4)*2 + Convert.ToInt32(EV_2_ACC_2_4_Magic_Tier4)*2 + Convert.ToInt32(EV_5_ACC_5_1_Magic_Tier5)*5 + Convert.ToInt32(EV_5_ACC_5_2_Magic_Tier5)*5 + Convert.ToInt32(EV_3_1_Evasion_Tier1)*3 + Convert.ToInt32(EV_1_ACC_1_1_Evasion_Tier1) + Convert.ToInt32(EV_2_ACC_2_1_Evasion_Tier2)*2 + Convert.ToInt32(EV_3_2_Evasion_Tier2)*3 + Convert.ToInt32(EV_1_ACC_1_2_Evasion_Tier2) + Convert.ToInt32(EV_1_ACC_1_1_Accuracy_Tier1) + Convert.ToInt32(EV_1_ACC_1_2_Accuracy_Tier2) + Convert.ToInt32(EV_2_ACC_2_1_Accuracy_Tier2)*2;
-         player.Evasion_reload();
+        player.UpdateAllStats();
     }
 
     public void Skilltree_Accuracy(){
         player.Skills["BaseAccuracy"] = AccuracyMain + Convert.ToInt32(EV_1_ACC_1_1_Magic_Tier1) + Convert.ToInt32(EV_1_ACC_1_2_Magic_Tier2) + Convert.ToInt32(EV_2_ACC_2_1_Magic_Tier2)*2 + Convert.ToInt32(EV_2_ACC_2_2_Magic_Tier3)*2 + Convert.ToInt32(EV_1_ACC_1_3_Magic_Tier3) + Convert.ToInt32(EV_2_ACC_2_3_Magic_Tier4)*2 + Convert.ToInt32(EV_2_ACC_2_4_Magic_Tier4)*2 + Convert.ToInt32(EV_5_ACC_5_1_Magic_Tier5)*5 + Convert.ToInt32(EV_5_ACC_5_2_Magic_Tier5)*5 + Convert.ToInt32(EV_1_ACC_1_1_Evasion_Tier1) + Convert.ToInt32(EV_2_ACC_2_1_Evasion_Tier2)*2 + Convert.ToInt32(EV_1_ACC_1_2_Evasion_Tier2) + Convert.ToInt32(ACC_3_1_Accuracy_Tier1)*3 + Convert.ToInt32(EV_1_ACC_1_1_Accuracy_Tier1) + Convert.ToInt32(ACC_3_2_Accuracy_Tier2)*3 + Convert.ToInt32(ACC_3_3_Accuracy_Tier2)*3 + Convert.ToInt32(EV_1_ACC_1_2_Accuracy_Tier2) + Convert.ToInt32(EV_2_ACC_2_1_Accuracy_Tier2)*2;
-         player.Accuracy_reload();
+        player.UpdateAllStats();
     }
 
     public void Skilltree_Mana(){
         player.Skills["BaseMana"] = Practice_Plus*10 + Convert.ToInt32(Mana_10_1_Magic_Tier1)*10 + Convert.ToInt32(Mana_10_2_Magic_Tier1)*10 + Convert.ToInt32(Mana_10_3_Magic_Tier2)*10 + Convert.ToInt32(Mana_10_4_Magic_Tier2)*10 + Convert.ToInt32(Mana_10_5_Magic_Tier2)*10 + Convert.ToInt32(Mana_10_6_Magic_Tier3)*10 + Convert.ToInt32(Mana_20_1_Magic_Tier3)*20 + Convert.ToInt32(Mana_20_2_Magic_Tier3)*20 + Convert.ToInt32(Mana_20_3_Magic_Tier4)*20 + Convert.ToInt32(Mana_20_4_Magic_Tier4)*20 + Convert.ToInt32(Mana_10_7_Magic_Tier5)*10 + Convert.ToInt32(Mana_20_5_Magic_Tier5)*20 + Convert.ToInt32(Mana_20_6_Magic_Tier5)*20 + Convert.ToInt32(Mana_20_7_Magic_Tier5)*20 + Convert.ToInt32(Mana_20_8_Magic_Tier5)*20 + Convert.ToInt32(Mana_20_9_Magic_Tier5)*20;
-        player.Mana_reload();
+        player.UpdateAllStats();
     }
 
     public void Skilltree_Health(){
         player.Skills["BaseHealth"] = Convert.ToInt32(HP_5_1_Magic_Tier1)*5 + Convert.ToInt32(HP_5_2_Magic_Tier2)*5 + Convert.ToInt32(HP_10_1_Magic_Tier2)*10 + Convert.ToInt32(HP_15_1_Magic_Tier3)*15 + Convert.ToInt32(HP_5_3_Magic_Tier3)*5 + Convert.ToInt32(HP_5_4_Magic_Tier3)*5 + Convert.ToInt32(HP_10_2_Magic_Tier4)*10 + Convert.ToInt32(HP_15_2_Magic_Tier4)*15 + Convert.ToInt32(HP_20_1_Magic_Tier5)*20 + Convert.ToInt32(HP_20_2_Magic_Tier5)*20 + Convert.ToInt32(HP_5_1_Evasion_Tier1)*5 + Convert.ToInt32(HP_5_2_Evasion_Tier2)*5 + Convert.ToInt32(HP_10_1_Evasion_Tier2)*10 + Convert.ToInt32(HP_5_1_Accuracy_Tier1)*5 + Convert.ToInt32(HP_5_2_Accuracy_Tier1)*5 + Convert.ToInt32(HP_5_3_Accuracy_Tier1)*5 + Convert.ToInt32(HP_10_1_Accuracy_Tier2)*10 + Convert.ToInt32(HP_10_2_Accuracy_Tier2)*10 + Convert.ToInt32(HP_10_3_Accuracy_Tier2)*10;
-        player.Health_reload();
+        player.UpdateAllStats();
     }
 
     public void Skilltree_HealthRegen(){
         player.Skills["BaseHealthRegen"] = Convert.ToInt32(HPRegen_20_1_Magic_Tier5)*20 + Convert.ToInt32(HPRegen_20_2_Magic_Tier5)*20 + Convert.ToInt32(HPRegen_10_1_Magic_Tier5)*10;
-        player.HealthRegen_reload();
+        player.UpdateAllStats();
     }
 
     public void Skilltree_ManaRegen(){
         player.Skills["BaseManaRegen"] = Convert.ToInt32(MR_1_1_Magic_Tier1) + Convert.ToInt32(MR_1_MCost_2Perc_Magic_Tier1) + Convert.ToInt32(MR_1_2_Magic_Tier2) + Convert.ToInt32(MR_1_3_Magic_Tier2) + Convert.ToInt32(MR_2_1_Magic_Tier3)*2 + Convert.ToInt32(MR_1_4_Magic_Tier3) + Convert.ToInt32(MR_1_5_Magic_Tier3) + Convert.ToInt32(MR_2_2_Magic_Tier4)*2 + Convert.ToInt32(MR_2_3_Magic_Tier4)*2 + Convert.ToInt32(MR_2_4_Magic_Tier5)*2 + Convert.ToInt32(MR_2_5_Magic_Tier5)*2 + Convert.ToInt32(MR_2_6_Magic_Tier5)*2 + Convert.ToInt32(MR_2_7_Magic_Tier5)*2;
-        player.ManaRegen_reload();
+        player.UpdateAllStats();
     }
 
     public void Skilltree_ManaModifier(){
         player.BaseManaModifier = 1f + Convert.ToInt32(M_1Perc_1_Magic_Tier1)*0.01f + Convert.ToInt32(M_2Perc_1_Magic_Tier4)*0.02f + Convert.ToInt32(Mana_2Perc_2_Magic_Tier5)*0.02f;
-        player.ManaModifier_reload();
+        player.UpdateAllStats();
     }
 
     public void Skilltree_ManaCost(){
         player.BaseManaCost = 1f - Convert.ToInt32(MR_1_MCost_2Perc_Magic_Tier1)*0.02f - Convert.ToInt32(MCost_1Perc_1_Magic_Tier3)*0.01f - Convert.ToInt32(MCost_2Perc_1_Magic_Tier4)*0.02f - Convert.ToInt32(MCost_2Perc_2_Magic_Tier5)*0.02f - Convert.ToInt32(MCost_2Perc_3_Magic_Tier5)*0.02f - Convert.ToInt32(MCost_1Perc_2_Magic_Tier5)*0.01f;
-        player.ManaCost_reload();
+        player.UpdateAllStats();
     }
 
     public void Skilltree_HealthModifier(){
         player.BaseHealthModifier = 1f + Convert.ToInt32(HP_1Perc_1_Accuracy_Tier1)*0.01f + Convert.ToInt32(HP_1Perc_2_Accuracy_Tier2)*0.01f;
-        player.HealthModifier_reload();
+        player.UpdateAllStats();
     }
 
     public void Skilltree_AttackSpeed(){
         player.BaseAttackSpeed = Convert.ToInt32(AtkSpeed_1_1_Magic_Tier3)*0.1f + Convert.ToInt32(AtkSpeed_1_1_Evasion_Tier1)*0.1f + Convert.ToInt32(AtkSpeed_1_2_Evasion_Tier2)*0.1f;
-        player.AttackSpeed_reload();
+        player.UpdateAllStats();
     }
 
     public void Skilltree_DamageResistance(){
         player.BaseDamageResistance = DevTools.Instance.Resistance + Convert.ToInt32(DMG_Resistance_1_1_Magic_Tier3)*0.01f + Convert.ToInt32(DMG_Resistance_2_1_Magic_Tier5)*0.02f + Convert.ToInt32(DMG_Resistance_2_2_Magic_Tier5)*0.02f + Convert.ToInt32(DMG_Resistance_1_1_Evasion_Tier1)*0.01f + Convert.ToInt32(DMG_Resistance_1_2_Evasion_Tier2)*0.01f;
-        player.DamageResistance_reload();
+        player.UpdateAllStats();
     }
 
     public void Skilltree_WeaponSkillChance(){

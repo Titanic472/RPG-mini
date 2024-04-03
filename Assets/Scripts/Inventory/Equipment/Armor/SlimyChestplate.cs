@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlimyChestplate : Item
+public class SlimyChestplate : Chestplate
 
 {
     int XP = 0, NewLevelXP = 100;

@@ -13,7 +13,7 @@ public class Collectible : MonoBehaviour
                 Player.Instance.Inventory_Consumables[Name] += Amount;
                 break;
             case "Item":
-                if(Player.Instance.Inventory_Items[87]==-1){
+                if(Player.Instance.Inventory[87]==-1){
                     Fight.Instance.InventoryManager.Inventory_Add(ID, 1, -1);
                 }
                 break;

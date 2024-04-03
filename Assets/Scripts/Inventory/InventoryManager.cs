@@ -10,7 +10,7 @@ public class InventoryManager : MonoBehaviour
 {   
     public Player player;
     public Game game;
-    public GameObject[] ItemSlots = new GameObject[30], PotionSlots = new GameObject[5];
+    public GameObject[] ItemSlots = new GameObject[45];
     public Sprite Empty, HeadSlotEmpty, ChestSlotEmpty, LegsSlotEmpty, LeftHandSlotEmpty, RightHandSlotEmpty, Ring1SlotEmpty, Ring2SlotEmpty;
     public GameObject InformationBackground;
     public int InvokeID;
@@ -20,7 +20,7 @@ public class InventoryManager : MonoBehaviour
     public string Potion, ChooseType, InventorySlot; 
 
     public void Item_Sell(){
-        if(player.Inventory_Items[InvokeID*3] == 3) game.SlimyArmor.Chestplate_Sell();
+        if(player.Inventory[InvokeID*3] == 3) game.SlimyArmor.Chestplate_Sell();
         else player.MoneyManager("Add", game.Container["Price"]/3, game.Container["PriceModifier"]);
         Inventory_Remove(InvokeID);
         InformationBackground.SetActive(false);
@@ -74,12 +74,12 @@ public class InventoryManager : MonoBehaviour
     }
 
     public void Item_Equip(string Slot, bool Unequip = true){
-        if(game.Container["Is2Handed"] == 1 && player.Inventory_Items[57]!=-1 || game.Container["ID"]==-1) return;
+        if(game.Container["Is2Handed"] == 1 && player.Inventory[57]!=-1 || game.Container["ID"]==-1) return;
         //Debug.Log(game.Container["Level"]);
         if(Unequip){
-            player.Inventory_Items[InvokeID*3] = -1;
-            player.Inventory_Items[InvokeID*3+1] = -1;
-            player.Inventory_Items[InvokeID*3+2] = -1;
+            player.Inventory[InvokeID*3] = -1;
+            player.Inventory[InvokeID*3+1] = -1;
+            player.Inventory[InvokeID*3+2] = -1;
             Inventory_Reorganise();
             if(Unequip)Item_Unequip(Slot);
             InformationBackground.SetActive(false);
@@ -216,13 +216,13 @@ public class InventoryManager : MonoBehaviour
                 break;
         }
         player.UpdateModifiers();
-        player.UpdateStats();
+        player.UpdateAllStats();
         player.HealthBar.Reset();
         player.ManaBar.Reset();
     }
 
     public void Item_Unequip(string Slot){
-        if(player.Inventory_Items[87]==-1){
+        if(player.Inventory[87]==-1){
             switch(Slot){
                 case "Head":
                     Inventory_Add(player.Head["ID"],player.Head["Level"],-1);
@@ -355,18 +355,18 @@ public class InventoryManager : MonoBehaviour
                     break;
         }
         player.UpdateModifiers();
-        player.UpdateStats();
+        player.UpdateAllStats();
         player.HealthBar.Reset();
         player.ManaBar.Reset();
         }
     }
 
     public void Inventory_Add(int ID, int Level, int EnchantId){
-        for(int i = 0; i<30; ++i){
-            if(player.Inventory_Items[i*3]==-1){
-                player.Inventory_Items[i*3] = ID;
-                player.Inventory_Items[i*3+1] = Level;
-                player.Inventory_Items[i*3+2] = EnchantId;
+        for(int i = 0; i<45; ++i){
+            if(player.Inventory[i*3]==-1){
+                player.Inventory[i*3] = ID;
+                player.Inventory[i*3+1] = Level;
+                player.Inventory[i*3+2] = EnchantId;
                 Inventory_ReloadAll();
                 return;
             }
@@ -374,40 +374,35 @@ public class InventoryManager : MonoBehaviour
     }
 
     public void Inventory_Reorganise(){
-        for(int i = 0; i<29; ++i){
-            if(player.Inventory_Items[i*3]==-1){
-                if(player.Inventory_Items[i*3+3]==-1) break;
-                player.Inventory_Items[i*3] = player.Inventory_Items[i*3+3];
-                player.Inventory_Items[i*3+3] = -1;
-                player.Inventory_Items[i*3+1] = player.Inventory_Items[i*3+4];
-                player.Inventory_Items[i*3+4] = -1;
-                player.Inventory_Items[i*3+2] = player.Inventory_Items[i*3+5];
-                player.Inventory_Items[i*3+5] = -1;
+        for(int i = 0; i<44; ++i){
+            if(player.Inventory[i*3]==-1){
+                if(player.Inventory[i*3+3]==-1) break;
+                player.Inventory[i*3] = player.Inventory[i*3+3];
+                player.Inventory[i*3+3] = -1;
+                player.Inventory[i*3+1] = player.Inventory[i*3+4];
+                player.Inventory[i*3+4] = -1;
+                player.Inventory[i*3+2] = player.Inventory[i*3+5];
+                player.Inventory[i*3+5] = -1;
             }
         }
         Inventory_ReloadAll();
     }
 
     public void Inventory_ReloadAll(){
-        for(int i = 0; i<30; ++i) ItemSlots[i].GetComponent<InventorySlot_Items>().SlotInformation_Update();
-        for(int i = 0; i<5; ++i) PotionSlots[i].GetComponent<InventorySlot_Potions>().SlotInformation_Update();
+        for(int i = 0; i<45; ++i) ItemSlots[i].GetComponent<InventorySlot_Items>().SlotInformation_Update();
     }
 
     public void Inventory_Remove(int SlotID){
-        player.Inventory_Items[SlotID*3] = -1;
-        player.Inventory_Items[SlotID*3+1] = -1;
-        player.Inventory_Items[SlotID*3+2] = -1;
+        player.Inventory[SlotID] = null;
         Inventory_Reorganise();
     }
     
     public void ButtonsActivate(string key){
         if(key == "Item"){
         Use.SetActive(false);
-        if(game.Container["ID"]!=3){//game.Container[""]
-            if(player.Inventory_Items[InvokeID*3+1]>=game.Container["Tier"]*5)UpgradeButton.SetActive(false);
+        if(game.Container["ID"]!=3){
+            if(player.Inventory[InvokeID*3+1]>=game.Container["Tier"]*5)UpgradeButton.SetActive(false);
             else {UpgradeButton.SetActive(true);
-            //Debug.Log(Convert.ToInt32(game.Container["Price"]*(game.Container["UpgradeModifier"]/100000f+0.001f)));
-            //Debug.Log(player.Money[game.Container["PriceModifier"]+1]);
             UpgradeButton.transform.Find("text").GetComponent<TextMeshProUGUI>().text = Language_Changer.Instance.GetText("Upgrade") + "\n" + Convert.ToInt32(game.Container["Price"]*(game.Container["UpgradeModifier"]/100f+1));
             if(Convert.ToInt32(game.Container["Price"]*(game.Container["UpgradeModifier"]/100f+1))<=player.Money[game.Container["PriceModifier"]]+player.Money[game.Container["PriceModifier"]+1]*1000 || player.Money[0]>game.Container["PriceModifier"]+1) UpgradeButton.GetComponent<Button>().interactable = true;
             else UpgradeButton.GetComponent<Button>().interactable = false;
@@ -433,83 +428,19 @@ public class InventoryManager : MonoBehaviour
         player.MoneyManager("Remove", Convert.ToInt32(game.Container["Price"]*(game.Container["UpgradeModifier"]/100f+1)), game.Container["PriceModifier"]);
         game.Upgrade(game.Container["Level"], game.Container["Level"]+1);
         if(!Equipped){
-            ++player.Inventory_Items[InvokeID*3+1];
+            ++player.Inventory[InvokeID*3+1];
             Inventory_ReloadAll();
             ItemSlots[InvokeID].GetComponent<InventorySlot_Items>().OnClick();
         }
     }
 
     public void EquippedUpgrade(string Slot){
-        switch(Slot){
-            case "Head":
-                game.GetItemById(player.Head["ID"], player.Head["Level"]);
-                Upgrade(true);
-                Item_Equip("Head", false);
-                break;
-            case "Chest":
-                game.GetItemById(player.Chest["ID"], player.Chest["Level"]);
-                if(player.Chest["ID"]!=3)Upgrade(true);
-                Item_Equip("Chest", false);
-                break;
-            case "Legs":
-                game.GetItemById(player.Legs["ID"], player.Legs["Level"]);
-                Upgrade(true);
-                Item_Equip("Legs", false);
-                break;
-            case "LeftHand":
-                game.Container["EnchantId"] = player.LeftHand["EnchantId"];
-                game.GetItemById(player.LeftHand["ID"], player.LeftHand["Level"]);
-                Upgrade(true);
-                Item_Equip("LeftHand", false);
-                break;
-            case "RightHand":
-                game.Container["EnchantId"] = player.RightHand["EnchantId"];
-                game.GetItemById(player.RightHand["ID"], player.RightHand["Level"]);
-                Upgrade(true);
-                Item_Equip("RightHand", false);
-                break;
-            case "Ring1":
-                game.GetItemById(player.Ring1["ID"], player.Ring1["Level"]);
-                Upgrade(true);
-                Item_Equip("Ring1", false);
-                break;
-            case "Ring2":
-                game.GetItemById(player.Ring2["ID"], player.Ring2["Level"]);
-                Upgrade(true);
-                Item_Equip("Ring2", false);
-                break;
-            default:
-                break;
-        }
-    }
-
-    public void Potion_Use(){
-        game.Fight.InBattle = false;
-        switch(Potion){
-            case "Healing_Potion":
-                player.Heal();
-                break;
-            case "Mana_Potion":
-                player.ManaRestore();
-                break;
-            case "Health_Regeneration_Potion":
-                game.Fight.PlayerPotionUse(2);
-                break;
-            case "Mana_Regeneration_Potion":
-                game.Fight.PlayerPotionUse(3);
-                break;
-            case "Ironskin_Potion":
-                game.Fight.PlayerPotionUse(4);
-                break;
-            default:
-                break;   
-        }
-        Inventory_ReloadAll();
-        ButtonsActivate("Potion");
+        Item CurrentSlot = GetProfileSlot(Slot);
+        CurrentSlot.Upgrade();
     }
 
     public void HideSprites(string Type = ""){
-        for(int i = 0; i<30; ++i){
+        for(int i = 0; i<45; ++i){
             if(InvokeID%5<3){
                 if(i%5>=3) ItemSlots[i].transform.Find("Image").gameObject.SetActive(false);
             }
@@ -518,124 +449,46 @@ public class InventoryManager : MonoBehaviour
     }
 
     public void HideSprites2(){
-        for(int i = 0; i<30; ++i){
+        for(int i = 0; i<45; ++i){
             if((i%15>=6 && i%15<=8)||(i%15>=11 && i%15<=13)) ItemSlots[i].transform.Find("Image").gameObject.SetActive(false);
         }
     }
 
     public void ShowSprites(){
-        for(int i = 0; i<30; ++i)ItemSlots[i].transform.Find("Image").gameObject.SetActive(true);
+        for(int i = 0; i<45; ++i)ItemSlots[i].transform.Find("Image").gameObject.SetActive(true);
     }
 
-    public void GetStats(bool IsProfile = false){
-        switch(game.ContText["Type"]){
-            case "Hat":
-                if(IsProfile)GetStats_Armor(DescriptionStatsProfile, DescriptionStatsProfile2);
-                else GetStats_Armor(DescriptionStats, DescriptionStats2);
-                break;
-            case "Chestplate":
-                if(IsProfile)GetStats_Armor(DescriptionStatsProfile, DescriptionStatsProfile2);
-                else GetStats_Armor(DescriptionStats, DescriptionStats2);
-                break;
-            case "Boots":
-                if(IsProfile)GetStats_Armor(DescriptionStatsProfile, DescriptionStatsProfile2);
-                else GetStats_Armor(DescriptionStats, DescriptionStats2);
-                break;
-            case "Weapon":
-                if(IsProfile)GetStats_Text(DescriptionStatsProfile, DescriptionStatsProfile2, "Damage", "Accuracy", "Evasion");
-                else GetStats_Text(DescriptionStats, DescriptionStats2, "Damage", "Accuracy", "Evasion");
-                break;
-            case "Ring":
-                if(IsProfile)GetStats_Text(DescriptionStatsProfile, DescriptionStatsProfile2, "Damage", "Accuracy", "Evasion", "Health", "HealthRegen");
-                else GetStats_Text(DescriptionStats, DescriptionStats2, "Damage", "Accuracy", "Evasion", "Health", "HealthRegen");
-                break;
-        }
-    }
-
-    public void GetStats_Armor(TextMeshProUGUI Description1, TextMeshProUGUI Description2){
-        bool Upgradable = true;
-        int Upgrades = 1;
-        if(Convert.ToInt32((game.Container["Level"]+1)%(6-game.Container["Tier"])) == 0) ++Upgrades;
-        if(game.Container["Level"]>=game.Container["Tier"]*5 || game.Container["ID"]==3)Upgradable = false;
-        
-        if(Upgradable) {
-            Description1.text = "<sprite=\"Stats\" name=\"Defence\">" + game.Container["MinDefence"] + "-" + game.Container["MaxDefence"] + "<sprite=\"Stats\" name=\"Arrow\">" + (game.Container["MinDefence"] + game.Container["UpgradeMinDefence"]*Upgrades) + "-" + (game.Container["MaxDefence"] + game.Container["UpgradeMaxDefence"]*Upgrades) + "\n<sprite=\"Stats\" name=\"Accuracy\">" + game.Container["Accuracy"] + "<sprite=\"Stats\" name=\"Arrow\">" + (game.Container["Accuracy"] + game.Container["UpgradeAccuracy"]*Upgrades) + "\n<sprite=\"Stats\" name=\"Evasion\">" + game.Container["Evasion"] + "<sprite=\"Stats\" name=\"Arrow\">" + (game.Container["Evasion"] + game.Container["UpgradeEvasion"]*Upgrades);
-            Description2.text = "<sprite=\"Stats\" name=\"Mana\">" + game.Container["Mana"] + "<sprite=\"Stats\" name=\"Arrow\">" + (game.Container["Mana"] + game.Container["UpgradeMana"]*Upgrades) + "\n<sprite=\"Stats\" name=\"DamageResistance\">" + game.Container["DamageResistance"] + "%" + "<sprite=\"Stats\" name=\"Arrow\">" + (game.Container["DamageResistance"] + game.Container["UpgradeDamageResistance"]*Upgrades) + "%";
-        }
-        else {
-            Description1.text = "<sprite=\"Stats\" name=\"Defence\">" + game.Container["MinDefence"] + "-" + game.Container["MaxDefence"] + "\n<sprite=\"Stats\" name=\"Accuracy\">" + game.Container["Accuracy"] + "\n<sprite=\"Stats\" name=\"Evasion\">" + game.Container["Evasion"];
-            Description2.text = "<sprite=\"Stats\" name=\"Mana\">" + game.Container["Mana"] + "\n<sprite=\"Stats\" name=\"DamageResistance\">" + game.Container["DamageResistance"] + "%";
-        }
-    }
-
-    public void GetStats_Text(TextMeshProUGUI Description1, TextMeshProUGUI Description2, string Stats1Name1, string Stats1Name2 = "", string Stats1Name3 = "", string Stats2Name1 = "", string Stats2Name2 = "", string Stats2Name3 = ""){
-        bool Upgradable = true;
-        int Upgrades = 1;
-        if(Convert.ToInt32((game.Container["Level"]+1)%(6-game.Container["Tier"])) == 0) ++Upgrades;
-        if(game.Container["Level"]>=game.Container["Tier"]*5 || game.Container["ID"]==3)Upgradable = false;
-        if(Upgradable){
-            Description1.text = "<sprite=\"Stats\" name=\"" + Stats1Name1 + "\">" + game.Container[Stats1Name1] + "<sprite=\"Stats\" name=\"Arrow\">" + (game.Container[Stats1Name1] + game.Container["Upgrade" + Stats1Name1]*Upgrades);
-            if(Stats1Name2!="") Description1.text += "\n<sprite=\"Stats\" name=\"" + Stats1Name2 + "\">" + game.Container[Stats1Name2] + "<sprite=\"Stats\" name=\"Arrow\">" + (game.Container[Stats1Name2] + game.Container["Upgrade" + Stats1Name2]*Upgrades);
-            if(Stats1Name3!="") Description1.text += "\n<sprite=\"Stats\" name=\"" + Stats1Name3 + "\">" + game.Container[Stats1Name3] + "<sprite=\"Stats\" name=\"Arrow\">" + (game.Container[Stats1Name3] + game.Container["Upgrade" + Stats1Name3]*Upgrades);
-            if(Stats2Name1!="") Description2.text = "<sprite=\"Stats\" name=\"" + Stats2Name1 + "\">" + game.Container[Stats2Name1] + "<sprite=\"Stats\" name=\"Arrow\">" + (game.Container[Stats2Name1] + game.Container["Upgrade" + Stats2Name1]*Upgrades);
-            else Description2.text = "";
-            if(Stats2Name2!="") Description2.text += "\n<sprite=\"Stats\" name=\"" + Stats2Name2 + "\">" + game.Container[Stats2Name2] + "<sprite=\"Stats\" name=\"Arrow\">" + (game.Container[Stats2Name2] + game.Container["Upgrade" + Stats2Name2]*Upgrades);
-            if(Stats2Name3!="") Description2.text += "\n<sprite=\"Stats\" name=\"" + Stats2Name3 + "\">" + game.Container[Stats2Name3] + "<sprite=\"Stats\" name=\"Arrow\">" + (game.Container[Stats2Name3] + game.Container["Upgrade" + Stats2Name3]*Upgrades);
-        }
-        else {
-            Description1.text = "<sprite=\"Stats\" name=\"" + Stats1Name1 + "\">" + game.Container[Stats1Name1];
-            if(Stats1Name2!="") Description1.text += "\n<sprite=\"Stats\" name=\"" + Stats1Name2 + "\">" + game.Container[Stats1Name2];
-            if(Stats1Name3!="") Description1.text += "\n<sprite=\"Stats\" name=\"" + Stats1Name3 + "\">" + game.Container[Stats1Name3];
-            if(Stats2Name1!="") Description2.text = "<sprite=\"Stats\" name=\"" + Stats2Name1 + "\">" + game.Container[Stats2Name1];
-            else Description2.text = "";
-            if(Stats2Name2!="") Description2.text += "\n<sprite=\"Stats\" name=\"" + Stats2Name2 + "\">" + game.Container[Stats2Name2];
-            if(Stats2Name3!="") Description2.text += "\n<sprite=\"Stats\" name=\"" + Stats2Name3 + "\">" + game.Container[Stats2Name3];
-        }
-    }
-
-    public void GetDescription(string Key){
-        InventorySlot = Key;
+    public void GetDescription(string Slot){
+        InventorySlot = Slot;
         UpgradeButtonProfile.SetActive(true);
-        switch(Key){
-            case "Head":
-                game.GetItemById(player.Head["ID"], player.Head["Level"]);
-                if(player.Head["Level"]>=game.Container["Tier"]*5)UpgradeButtonProfile.SetActive(false);
-                break;
-            case "Chest":
-                game.GetItemById(player.Chest["ID"], player.Chest["Level"]);
-                if(player.Chest["Level"]>=game.Container["Tier"]*5 || player.Chest["ID"] == 3)UpgradeButtonProfile.SetActive(false);
-                break;
-            case "Legs":
-                game.GetItemById(player.Legs["ID"], player.Legs["Level"]);
-                if(player.Legs["Level"]>=game.Container["Tier"]*5)UpgradeButtonProfile.SetActive(false);
-                break;
-            case "LeftHand":
-                game.Container["EnchantId"] = player.LeftHand["EnchantId"];
-                game.GetItemById(player.LeftHand["ID"], player.LeftHand["Level"]);
-                if(player.LeftHand["Level"]>=game.Container["Tier"]*5)UpgradeButtonProfile.SetActive(false);
-                break;
-            case "RightHand":
-                game.Container["EnchantId"] = player.RightHand["EnchantId"];
-                game.GetItemById(player.RightHand["ID"], player.RightHand["Level"]);
-                if(player.RightHand["Level"]>=game.Container["Tier"]*5)UpgradeButtonProfile.SetActive(false);
-                break;
-            case "Ring1":
-                game.GetItemById(player.Ring1["ID"], player.Ring1["Level"]);
-                if(player.Ring1["Level"]>=game.Container["Tier"]*5)UpgradeButtonProfile.SetActive(false);
-                break;
-            case "Ring2":
-                game.GetItemById(player.Ring2["ID"], player.Ring2["Level"]);
-                if(player.Ring2["Level"]>=game.Container["Tier"]*5)UpgradeButtonProfile.SetActive(false);
-                break;
-            default:
-                break;
-        }
-        UpgradeButtonProfile.transform.Find("text").GetComponent<TextMeshProUGUI>().text = Language_Changer.Instance.GetText("Upgrade") + "\n" + Convert.ToInt32(game.Container["Price"]*(game.Container["UpgradeModifier"]/100f+1)) + player.TextFormat(game.Container["PriceModifier"]);
-        if(Convert.ToInt32(game.Container["Price"]*(game.Container["UpgradeModifier"]/100f+1))<=player.Money[game.Container["PriceModifier"]]+player.Money[game.Container["PriceModifier"]+1]*1000 || player.Money[0]>game.Container["PriceModifier"]+1) UpgradeButtonProfile.GetComponent<Button>().interactable = true;
+        Item CurrentSlot = GetProfileSlot(Slot);      
+        if(CurrentSlot.Level>=CurrentSlot.Tier*5) UpgradeButtonProfile.SetActive(false);
+
+        UpgradeButtonProfile.transform.Find("text").GetComponent<TextMeshProUGUI>().text = Language_Changer.Instance.GetText("Upgrade") + "\n" + CurrentSlot.GetUpgradePrice();
+        if(CurrentSlot.CanUpgrade()) UpgradeButtonProfile.GetComponent<Button>().interactable = true;
         else UpgradeButtonProfile.GetComponent<Button>().interactable = false;
-        TitleProfile.text = game.ContText["Name"];
-        DescriptionProfile.text = game.ContText["Description"];
-        GetStats(true);
+        TitleProfile.text = Language_Changer.Instance.GetText(CurrentSlot.Name, "Items");
+        DescriptionProfile.text = CurrentSlot.GetDescription();
+        player.Inventory[SlotId].GetComponent<Item>().GetStats(ref DescriptionStatsProfile.text, ref DescriptionStatsProfile2.text, true);
+    }
+
+    public Item GetProfileSlot(string Slot){
+        switch(Slot){
+            case "Hat":
+                return player.Hat.GetComponent<Item>();
+            case "Chestplate":
+                return player.Chestplate.GetComponent<Item>();
+            case "Boots":
+                return player.Boots.GetComponent<Item>();
+            case "LeftHand":
+                return player.LeftHand.GetComponent<Item>();
+            case "RightHand":
+                return player.RightHand.GetComponent<Item>();
+            case "Trinket1":
+                return player.Trinket1.GetComponent<Item>();
+            case "Trinket2":
+                return player.Trinket2.GetComponent<Item>();
+        }
     }
 
     public void UnequipButton_Use(){

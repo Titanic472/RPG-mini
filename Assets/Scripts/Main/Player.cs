@@ -16,22 +16,14 @@ public class Player : Entity
     public SpeedEnergy speedEnergy;
     public ManaOverdrain ManaOverdrain;
     public GameObject SelfSprite2;
-    public int LevelHPBoost, RightHandDamage, LeftHandDamage, BaseDamage, MaxDefence, MinDefence, SkillPoints, MaxAvoidChance, MaxCritChance, DamageReduction, MaxSpeedEnergy, BrutalityStreak_MobAvoidChance, Parrying_Chance, Parrying_DamagePercent;//Damage Reduction - shield
+    public int LevelHPBoost, BaseDamage, SkillPoints, MaxAvoidChance, MaxCritChance, DamageReduction, MaxSpeedEnergy, BrutalityStreak_MobAvoidChance, Parrying_Chance, Parrying_DamagePercent;//Damage Reduction - shield
     public int[] Money = new int[15], Experience = new int[25], NewLevelXP = new int[25]; //0 - max id
-    public int[] Inventory_Items = new int[90];//0 - id, 1 - lvl, 2 - enchants
+    public GameObject[] Inventory = new GameObject[45];
     public float[] CollectedData = new float[2];
     public float HealthModifier, ManaModifier, DamageModifier, DefenceModifier, ExperienceModifier, SpeedModifier, BaseHealthModifier, BaseManaModifier, BaseManaCost, ManaCost, BaseAttackSpeed, AttackSpeed, DamageResistance, BaseDamageResistance, PriceModifier, SpeedEnergy, BrutalityStreak_AddDamage, BrutalityStreak_AddDamageAll, Parrying_RemovePercent, Parrying_ChanceAll;
     public bool BlockActive = false, Overdrained = false;
     public Dictionary<string, int> Skills = new Dictionary<string, int>();
-    public Dictionary<string, int> Head = new Dictionary<string, int>();
-    public Dictionary<string, int> Chest = new Dictionary<string, int>();
-    public Dictionary<string, int> Legs = new Dictionary<string, int>();
-    public Dictionary<string, int> LeftHand = new Dictionary<string, int>();
-    public Dictionary<string, int> RightHand = new Dictionary<string, int>();
-    public Dictionary<string, int> Ring1 = new Dictionary<string, int>();
-    public Dictionary<string, int> Ring2 = new Dictionary<string, int>();
-    public Dictionary<string, int> Inventory_Consumables = new Dictionary<string, int>();
-    public GameObject Hat, Chestplate, Boots, LeftHandWeapon, RightHandWeapon, Trinket1, Trinket2;
+    public GameObject Hat, Chestplate, Boots, LeftHand, RightHand, Trinket1, Trinket2;
     public static Player Instance;
 
 
@@ -55,14 +47,10 @@ public class Player : Entity
      MaxMana = 0;
      Level = 0;
      LevelHPBoost = 5;
-     RightHandDamage = 1;
-     LeftHandDamage = 1;
      BaseDamage = 1;
      Experience[0] = 1;
      NewLevelXP[0] = 1;
      NewLevelXP[1] = 100;
-     MaxDefence = 0;
-     MinDefence = 0;
      BaseAttackSpeed = 0;
      AttackSpeed = 1.0f;
      SkillPoints = 1;
@@ -77,7 +65,6 @@ public class Player : Entity
      BuffsDamageTakenModifier = 1;
      Parrying_RemovePercent = 1;
 
-     for(int i = 0; i<90; ++i)Inventory_Items[i] = -1;
      for(int i = 0; i<10; ++i) for(int j = 0; j<5;++j) StatusEffects[i, j] = -1;
 
      Skills.Add("Mana", 0);
@@ -90,103 +77,6 @@ public class Player : Entity
      Skills.Add("BaseHealthRegen", 0);
      Skills.Add("BaseManaRegen", 0);
      Skills.Add("WeaponSkillChance", 5);
-     
-     Head.Add("ID", -1);
-     Head.Add("Level", 0);
-     Head.Add("Tier", 0);
-     Head.Add("MinDefence", 0);
-     Head.Add("MaxDefence", 0);
-     Head.Add("Accuracy", 0);
-     Head.Add("Evasion", 0);
-     Head.Add("Mana", 0);
-     Head.Add("DamageResistance", 0);
-
-     Chest.Add("ID", -1);
-     Chest.Add("Level", 0);
-     Chest.Add("Tier", 0);
-     Chest.Add("MinDefence", 0);
-     Chest.Add("MaxDefence", 0);
-     Chest.Add("Accuracy", 0);
-     Chest.Add("Evasion", 0);
-     Chest.Add("Mana", 0);
-     Chest.Add("DamageResistance", 0);
-
-     Legs.Add("ID", -1);
-     Legs.Add("Level", 0);
-     Legs.Add("Tier", 0);
-     Legs.Add("MinDefence", 0);
-     Legs.Add("MaxDefence", 0);
-     Legs.Add("Accuracy", 0);
-     Legs.Add("Evasion", 0);
-     Legs.Add("Mana", 0);
-     Legs.Add("DamageResistance", 0);
-     
-     RightHand.Add("Damage", 0);
-     RightHand.Add("Speed", 1);
-     RightHand.Add("ID", -1);
-     RightHand.Add("Level", 0);
-     RightHand.Add("Tier", 0);
-     RightHand.Add("Is2Handed", 0);
-     RightHand.Add("Accuracy", 0);
-     RightHand.Add("Evasion", 0);
-     RightHand.Add("ManaUsage", 0);
-     RightHand.Add("EnchantId", -1);
-
-     LeftHand.Add("Damage", 0);
-     LeftHand.Add("DamageReduction", 0);
-     LeftHand.Add("Speed", 1);
-     LeftHand.Add("ID", -1);
-     LeftHand.Add("Level", 0);
-     LeftHand.Add("Tier", 0);
-     LeftHand.Add("IsActive", 1);
-     LeftHand.Add("Accuracy", 0);
-     LeftHand.Add("Evasion", 0);
-     LeftHand.Add("ManaUsage", 0);
-     LeftHand.Add("EnchantId", -1);
-
-     Ring1.Add("AdditionalDamage", 0);
-     Ring1.Add("DamageModifier", 100);
-     Ring1.Add("DefenceModifier", 100);
-     Ring1.Add("ExperienceModifier", 100);
-     Ring1.Add("ID", -1);
-     Ring1.Add("Level", 0);
-     Ring1.Add("Tier", 0);
-     Ring1.Add("Health", 0);
-     Ring1.Add("HealthModifier", 100);
-     Ring1.Add("SpeedModifier", 100);
-     Ring1.Add("Accuracy", 0);
-     Ring1.Add("Evasion", 0);
-     Ring1.Add("Mana", 0);
-     Ring1.Add("ManaModifier", 100);
-     Ring1.Add("ManaRegen", 0);
-     Ring1.Add("HealthRegen", 0);
-     Ring1.Add("ManaCost", 100);
-     Ring1.Add("DamageResistance", 0);
-
-     Ring2.Add("AdditionalDamage", 0);
-     Ring2.Add("DamageModifier", 100);
-     Ring2.Add("DefenceModifier", 100);
-     Ring2.Add("ExperienceModifier", 100);
-     Ring2.Add("ID", -1);
-     Ring2.Add("Level", 0);
-     Ring2.Add("Tier", 0);
-     Ring2.Add("Health", 0);
-     Ring2.Add("HealthModifier", 100);
-     Ring2.Add("SpeedModifier", 100);
-     Ring2.Add("Accuracy", 0);
-     Ring2.Add("Evasion", 0);
-     Ring2.Add("Mana", 0);
-     Ring2.Add("ManaModifier", 100);
-     Ring2.Add("ManaRegen", 0);
-     Ring2.Add("HealthRegen", 0);
-     Ring2.Add("ManaCost", 100);
-     Ring2.Add("DamageResistance", 0);
-
-     Inventory_Consumables.Add("Healing_Potion", 1);
-     Inventory_Consumables.Add("Mana_Potion", 0);
-     Inventory_Consumables.Add("Health_Regeneration_Potion", 0);
-     Inventory_Consumables.Add("Mana_Regeneration_Potion", 0);
-     Inventory_Consumables.Add("Ironskin_Potion", 0);
     }
 
     public void SpriteSwap(){
@@ -194,83 +84,24 @@ public class Player : Entity
     }
 
     public void UpdateAllStats(){
-        UpdateModifiers();
-        UpdateStats();
-    }
-    
-    public void UpdateModifiers(){
-     HealthModifier = BaseHealthModifier * ((Ring1["HealthModifier"] + Ring2["HealthModifier"])/2f*0.01f);
-     ManaModifier = BaseManaModifier * ((Ring1["ManaModifier"] + Ring2["ManaModifier"])/2f*0.01f);
-     ManaCost = BaseManaCost * ((Ring1["ManaCost"] + Ring2["ManaCost"])/2f*0.01f);
-     DamageModifier = (Ring1["DamageModifier"] + Ring2["DamageModifier"])/2f*0.01f;
-     DefenceModifier = (Ring1["DefenceModifier"] + Ring2["DefenceModifier"])/2f*0.01f;
-     ExperienceModifier = (Ring1["ExperienceModifier"] + Ring2["ExperienceModifier"])/2f*0.01f;
-     SpeedModifier = Ring1["SpeedModifier"] * Ring2["SpeedModifier"];
-     DamageResistance = BaseDamageResistance + Ring1["DamageResistance"]*0.01f + Ring2["DamageResistance"]*0.01f + Head["DamageResistance"]*0.01f + Chest["DamageResistance"]*0.01f + Legs["DamageResistance"]*0.01f;
-    }
-
-    public void UpdateStats(){
-     Skills["Mana"] = Ring1["Mana"] + Ring2["Mana"] + Chest["Mana"] + Head["Mana"] + Legs["Mana"];
-     Skills["Evasion"] = Skills["BaseEvasion"] + Ring1["Evasion"] + Ring2["Evasion"] + Chest["Evasion"] + Head["Evasion"] + Legs["Evasion"] + LeftHand["Evasion"] + RightHand["Evasion"];
-     Skills["Accuracy"] = Skills["BaseAccuracy"] + Ring1["Accuracy"] + Ring2["Accuracy"] + Chest["Accuracy"] + Head["Accuracy"] + Legs["Accuracy"] + LeftHand["Accuracy"] + RightHand["Accuracy"];
-     ManaRegen = Skills["BaseManaRegen"] + Ring1["ManaRegen"] + Ring2["ManaRegen"];
-     HealthRegen = Skills["BaseHealthRegen"] + Ring1["HealthRegen"] + Ring2["HealthRegen"];
-     MaxHealth = DevTools.Instance.Health + Convert.ToInt32(Math.Ceiling(HealthModifier*(20f+Level*LevelHPBoost+Skills["BaseHealth"])));
-     MaxMana = Convert.ToInt32(Math.Ceiling(ManaModifier*(Skills["Mana"] + Skills["BaseMana"])));
-     AttackSpeed = (BaseAttackSpeed+1)*SpeedModifier;
-     RightHandDamage = Convert.ToInt32(Math.Ceiling(DamageModifier*(BaseDamage+RightHand["Damage"]+Ring1["AdditionalDamage"] + Ring2["AdditionalDamage"])));
-     LeftHandDamage = Convert.ToInt32(Math.Ceiling(DamageModifier*(BaseDamage+LeftHand["Damage"]+Ring1["AdditionalDamage"] + Ring2["AdditionalDamage"])));
-     MinDefence = Convert.ToInt32(Math.Ceiling(DefenceModifier*(Head["MinDefence"] + Legs["MinDefence"] + Chest["MinDefence"])));
-     MaxDefence = Convert.ToInt32(Math.Ceiling(DefenceModifier*(Head["MaxDefence"] + Legs["MaxDefence"] + Chest["MaxDefence"])));
-    }
-
-    public void Evasion_reload(){
-        Skills["Evasion"] = Skills["BaseEvasion"] + Ring1["Evasion"] + Ring2["Evasion"] + Chest["Evasion"] + Head["Evasion"] + Legs["Evasion"] + LeftHand["Evasion"] + RightHand["Evasion"];
-    }
-
-    public void Accuracy_reload(){
-        Skills["Accuracy"] = Skills["BaseAccuracy"] + Ring1["Accuracy"] + Ring2["Accuracy"] + Chest["Accuracy"] + Head["Accuracy"] + Legs["Accuracy"] + LeftHand["Accuracy"] + RightHand["Accuracy"];
-    }
-
-    public void Mana_reload(){
-        Skills["Mana"] = Ring1["Mana"] + Ring2["Mana"] + Chest["Mana"] + Head["Mana"] + Legs["Mana"];
+        //Modifiers
+        HealthModifier = BaseHealthModifier * Hat.GetComponent<Item>().HealthModifier*Chestplate.GetComponent<Item>().HealthModifier*Boots.GetComponent<Item>().HealthModifier*LeftHand.GetComponent<Item>().HealthModifier*RightHand.GetComponent<Item>().HealthModifier*Trinket1.GetComponent<Item>().HealthModifier*Trinket2.GetComponent<Item>().HealthModifier;
+        ManaModifier = BaseManaModifier * Hat.GetComponent<Item>().ManaModifier*Chestplate.GetComponent<Item>().ManaModifier*Boots.GetComponent<Item>().ManaModifier*LeftHand.GetComponent<Item>().ManaModifier*RightHand.GetComponent<Item>().ManaModifier*Trinket1.GetComponent<Item>().ManaModifier*Trinket2.GetComponent<Item>().ManaModifier;
+        ManaCost = BaseManaCost * Hat.GetComponent<Item>().ManaCost*Chestplate.GetComponent<Item>().ManaCost*Boots.GetComponent<Item>().ManaCost*LeftHand.GetComponent<Item>().ManaCost*RightHand.GetComponent<Item>().ManaCost*Trinket1.GetComponent<Item>().ManaCost*Trinket2.GetComponent<Item>().ManaCost;
+        DamageModifier = Hat.GetComponent<Item>().DamageModifier * Chestplate.GetComponent<Item>().DamageModifier * Boots.GetComponent<Item>().DamageModifier * LeftHand.GetComponent<Item>().DamageModifier * RightHand.GetComponent<Item>().DamageModifier * Trinket1.GetComponent<Item>().DamageModifier * Trinket2.GetComponent<Item>().DamageModifier;
+        DefenceModifier = Hat.GetComponent<Item>().DefenceModifier * Chestplate.GetComponent<Item>().DefenceModifier * Boots.GetComponent<Item>().DefenceModifier * LeftHand.GetComponent<Item>().DefenceModifier * RightHand.GetComponent<Item>().DefenceModifier * Trinket1.GetComponent<Item>().DefenceModifier * Trinket2.GetComponent<Item>().DefenceModifier;
+        ExperienceModifier = Hat.GetComponent<Item>().ExperienceModifier * Chestplate.GetComponent<Item>().ExperienceModifier * Boots.GetComponent<Item>().ExperienceModifier * LeftHand.GetComponent<Item>().ExperienceModifier * RightHand.GetComponent<Item>().ExperienceModifier * Trinket1.GetComponent<Item>().ExperienceModifier * Trinket2.GetComponent<Item>().ExperienceModifier;
+        SpeedModifier = Hat.GetComponent<Item>().SpeedModifier * Chestplate.GetComponent<Item>().SpeedModifier * Boots.GetComponent<Item>().SpeedModifier * LeftHand.GetComponent<Item>().SpeedModifier * RightHand.GetComponent<Item>().SpeedModifier * Trinket1.GetComponent<Item>().SpeedModifier * Trinket2.GetComponent<Item>().SpeedModifier;
+        //Other Stats
+        DamageResistance = BaseDamageResistance + Hat.GetComponent<Item>().DamageResistance + Chestplate.GetComponent<Item>().DamageResistance + Boots.GetComponent<Item>().DamageResistance + LeftHand.GetComponent<Item>().DamageResistance + RightHand.GetComponent<Item>().DamageResistance + Trinket1.GetComponent<Item>().DamageResistance + Trinket2.GetComponent<Item>().DamageResistance;
+        Skills["Mana"] = Hat.GetComponent<Item>().Mana + Chestplate.GetComponent<Item>().Mana + Boots.GetComponent<Item>().Mana + LeftHand.GetComponent<Item>().Mana + RightHand.GetComponent<Item>().Mana + Trinket1.GetComponent<Item>().Mana + Trinket2.GetComponent<Item>().Mana;
+        Skills["Evasion"] = Skills["BaseEvasion"] + Hat.GetComponent<Item>().Evasion + Chestplate.GetComponent<Item>().Evasion + Boots.GetComponent<Item>().Evasion + LeftHand.GetComponent<Item>().Evasion + RightHand.GetComponent<Item>().Evasion + Trinket1.GetComponent<Item>().Evasion + Trinket2.GetComponent<Item>().Evasion;
+        Skills["Accuracy"] = Skills["BaseAccuracy"] + Hat.GetComponent<Item>().Accuracy + Chestplate.GetComponent<Item>().Accuracy + Boots.GetComponent<Item>().Accuracy + LeftHand.GetComponent<Item>().Accuracy + RightHand.GetComponent<Item>().Accuracy + Trinket1.GetComponent<Item>().Accuracy + Trinket2.GetComponent<Item>().Accuracy;
+        ManaRegen = Skills["BaseManaRegen"] + Hat.GetComponent<Item>().ManaRegen + Chestplate.GetComponent<Item>().ManaRegen + Boots.GetComponent<Item>().ManaRegen + LeftHand.GetComponent<Item>().ManaRegen + RightHand.GetComponent<Item>().ManaRegen + Trinket1.GetComponent<Item>().ManaRegen + Trinket2.GetComponent<Item>().ManaRegen;
+        HealthRegen = Skills["BaseHealthRegen"] + Hat.GetComponent<Item>().HealthRegen + Chestplate.GetComponent<Item>().HealthRegen + Boots.GetComponent<Item>().HealthRegen + LeftHand.GetComponent<Item>().HealthRegen + RightHand.GetComponent<Item>().HealthRegen + Trinket1.GetComponent<Item>().HealthRegen + Trinket2.GetComponent<Item>().HealthRegen;
+        MaxHealth = DevTools.Instance.Health + Convert.ToInt32(Math.Ceiling(HealthModifier*(20f+Level*LevelHPBoost+Skills["BaseHealth"])));
         MaxMana = Convert.ToInt32(Math.Ceiling(ManaModifier*(Skills["Mana"] + Skills["BaseMana"])));
-        StartCoroutine(ManaBar.Mana_update());
-    }
-
-    public void Health_reload(){
-        MaxHealth = Convert.ToInt32(Math.Ceiling(HealthModifier*(20f+Level*LevelHPBoost+Skills["BaseHealth"])));
-        StartCoroutine(HealthBar.HP_update());
-    }
-
-    public void HealthRegen_reload(){
-        HealthRegen = Skills["BaseHealthRegen"] + Ring1["HealthRegen"] + Ring2["HealthRegen"];
-    }
-
-    public void ManaRegen_reload(){
-        ManaRegen = Skills["BaseManaRegen"] + Ring1["ManaRegen"] + Ring2["ManaRegen"];
-    }
-
-    public void ManaModifier_reload(){
-        ManaModifier = BaseManaModifier * Ring1["ManaModifier"]*0.01f * Ring2["ManaModifier"]*0.01f;
-        Mana_reload();
-    }
-
-    public void ManaCost_reload(){
-        ManaCost = BaseManaCost * Ring1["ManaCost"]*0.01f * Ring2["ManaCost"]*0.01f;
-    }
-
-    public void HealthModifier_reload(){
-        HealthModifier = BaseHealthModifier * Ring1["HealthModifier"]*0.01f * Ring2["HealthModifier"]*0.01f;
-        Health_reload();
-    }
-
-    public void AttackSpeed_reload(){
         AttackSpeed = (BaseAttackSpeed+1)*SpeedModifier;
-    }
-
-    public void DamageResistance_reload(){
-        DamageResistance = BaseDamageResistance + Ring1["DamageResistance"]*0.01f + Ring2["DamageResistance"]*0.01f;
     }
 
     public void Heal(float Modifier = 1f){
@@ -474,7 +305,7 @@ public class Player : Entity
         BaseDamage += 1;
         SkillPoints += 2;
         ++Level;
-        UpdateStats();
+        UpdateAllStats();
         Health = MaxHealth;
         StartCoroutine(HealthBar.HP_update());
         for(int i = 1; i<25; ++i)Experience[i] -= NewLevelXP[i];
@@ -601,18 +432,14 @@ public class Player : Entity
                 Amount -= BuffsDefence;
                 if(Amount >= 0)DamageBlockedByBuffs += BuffsDefence;
                 else DamageBlockedByBuffs += BuffsDefence+Amount;
-            }//Uncomment
-            /*
-            RightHand.OnReceiveDamage(Amount);//For Special Weapons
-            LeftHand.OnReceiveDamage(Amount);//Shield
-            Hat.OnReceiveDamage(Amount);
-            Chestplate.OnReceiveDamage(Amount);
-            Boots.OnReceiveDamage(Amount);
-            Ring1.OnReceiveDamage(Amount);
-            Ring2.OnReceiveDamage(Amount);
-            */
-            int Defence = UnityEngine.Random.Range(MinDefence, MaxDefence+1);
-            Amount -= Defence;
+            }
+            RightHand.GetComponent<Item>().OnReceiveDamage(ref Amount);//For Special Weapons
+            LeftHand.GetComponent<Item>().OnReceiveDamage(ref Amount);//Shield
+            Hat.GetComponent<Item>().OnReceiveDamage(ref Amount);
+            Chestplate.GetComponent<Item>().OnReceiveDamage(ref Amount);
+            Boots.GetComponent<Item>().OnReceiveDamage(ref Amount);
+            Trinket1.GetComponent<Item>().OnReceiveDamage(ref Amount);
+            Trinket2.GetComponent<Item>().OnReceiveDamage(ref Amount);
         }
         Amount -= DamageReduction;
         if(Amount<0){
@@ -630,34 +457,6 @@ public class Player : Entity
             await Task.Delay(1000);
             game.EndGame();
         }
-    }
-
-    public void LeftHandAttack(bool Avoided){
-        if(!Avoided){
-            int AttackDamage = LeftHandDamage;
-            AttackDamage = Convert.ToInt32(Math.Ceiling(AttackDamage*BuffsDamageModifier));
-            AttackDamage += Convert.ToInt32(AttackDamage*BrutalityStreak_AddDamageAll);
-            BrutalityStreak_AddDamageAll+=BrutalityStreak_AddDamage;
-            bool IsCrit = Crit();
-            AttackDamage += AttackDamage*Convert.ToInt32(IsCrit);
-            mob.GetDamage(AttackDamage, true, IsCrit);
-        }
-        else BrutalityStreak_AddDamageAll = 0;
-        SpeedEnergyRemove(LeftHand["Speed"]);
-    }
-
-    public void RightHandAttack(bool Avoided){
-        if(!Avoided){
-            int AttackDamage = RightHandDamage;
-            AttackDamage = Convert.ToInt32(Math.Ceiling(AttackDamage*BuffsDamageModifier));
-            AttackDamage += Convert.ToInt32(AttackDamage*BrutalityStreak_AddDamageAll);
-            BrutalityStreak_AddDamageAll+=BrutalityStreak_AddDamage;
-            bool IsCrit = Crit();
-            AttackDamage += AttackDamage*Convert.ToInt32(IsCrit);
-            mob.GetDamage(AttackDamage, true, IsCrit);
-        }
-        else BrutalityStreak_AddDamageAll = 0;
-        SpeedEnergyRemove(RightHand["Speed"]);
     }
 
     public bool Parry(){

@@ -15,7 +15,7 @@ public class DevTools : MonoBehaviour
         switch(Id){
             case 0:
                 Health += 9999;
-                Player.Instance.UpdateStats();
+                Player.Instance.UpdateAllStats();
                 Player.Instance.Health = Player.Instance.MaxHealth;
                 StartCoroutine(Player.Instance.HealthBar.HP_update());
                 break;
@@ -26,7 +26,7 @@ public class DevTools : MonoBehaviour
                 break;
             case 2:
                 Player.Instance.BaseDamage += 999;
-                Player.Instance.UpdateStats();
+                Player.Instance.UpdateAllStats();
                 break;
             case 3:
                 Player.Instance.MoneyManager("Add", 999, 5);

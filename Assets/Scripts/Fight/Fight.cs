@@ -55,7 +55,7 @@ public class Fight : MonoBehaviour
         }
     }
 
-    public void PotionSlotActivate(ref int Slot, int PotionID){
+    public void PotionSlotActivate(ref int Slot, int PotionID){//Todo
             PotionSlots[Slot].SetActive(true);
             PotionSlots[Slot].transform.Find("Image").GetComponent<Image>().sprite = Game.Potion_Sprites[PotionID];
             Potions[Slot] = PotionID;
@@ -85,62 +85,15 @@ public class Fight : MonoBehaviour
         }
     }
 
-    public async void PlayerPotionUse(int ID){
-        if(InBattle)ID = Potions[ID];
+    public async void PlayerPotionUse(GameObject Potion){
         if(InBattle && (MobScript.Health==0 || player.Health == 0)) return;
         if(InBattle) ButtonsActivate(false);
-        switch(ID){
-            case 0:
-                if(player.Health == player.MaxHealth){
-                    player.SpeedEnergy+=1;
-                    break;
-                }
-                float Modifier = 1;
-                if(EffectsManager.GetEffect(10, player)){
-                    if(player.Health > player.MaxHealth/2)MobScript.TriggerHeal(Convert.ToInt32((float)(player.MaxHealth-player.Health)*0.2f));
-                    else MobScript.TriggerHeal(Convert.ToInt32((float)player.MaxHealth*0.1f));
-                    Modifier=0.8f;
-                }
-                if(EffectsManager.GetEffect(9, player))Modifier*=0.5f;
-                if(player.MaxHealth - player.Health > Convert.ToInt32((float)player.MaxHealth/2*Modifier)) player.SelfSprite.GetComponent<F_Text_Creator>().CreateText_Green(Convert.ToInt32((float)player.MaxHealth/2*Modifier) + "");
-                else player.SelfSprite.GetComponent<F_Text_Creator>().CreateText_Green(player.MaxHealth - player.Health + "");
-                player.Heal(Modifier);
-                if(player.SpeedEnergy<2){
-                    if(InBattle)PotionSlots_Reload();
-                    await Task.Delay(350);
-                }
-                break;
-            case 1:
-                if(player.Mana == player.MaxMana){
-                    player.SpeedEnergy+=1;
-                    break;
-                }
-                player.ManaRestore();
-                if(player.SpeedEnergy<2){
-                    if(InBattle)PotionSlots_Reload();
-                    await Task.Delay(350);
-                }
-                break;
-            case 2:
-                --player.Inventory_Consumables["Health_Regeneration_Potion"];
-                EffectsManager.Add(0, 5, player);
-                break;
-            case 3:
-                --player.Inventory_Consumables["Mana_Regeneration_Potion"];
-                EffectsManager.Add(1, 5, player);
-                break;
-            case 4:
-                --player.Inventory_Consumables["Ironskin_Potion"];
-                EffectsManager.Add(2, 8, player);
-                EffectsManager.TriggerEffects(0, player);
-                break;
-            default:
-                break;
-        }
+        Item PotionScript = Potion.GetComponent<Item>();
+        PotionScript.Use();
+        if(PotionScript.Amount==0)
         if(InBattle){
             PotionSlots_Reload();
             ReloadEffectImages();
-            player.SpeedEnergyRemove(1);
             await Task.Delay(100);
             if(player.SpeedEnergy<1)NextTurn();
             else ButtonsActivate(true);
@@ -174,7 +127,7 @@ public class Fight : MonoBehaviour
         player.BrutalityStreak_MobAvoidChance = 0;
         player.BrutalityStreak_AddDamage = 0;
         EffectsManager.TriggerEffects(0, player);
-        player.LeftHandWeapon.GetComponent<Item>().ShieldingLevel = 0;
+        player.LeftHand.GetComponent<Item>().ShieldingLevel = 0;
         ShieldingLevel.GetComponent<Image>().sprite = InventoryManager.Empty;
         if(SkillManager.BrutalityStreak_Unlock){
         switch(SkillManager.BrutalityStreak_AvoidChance){
@@ -510,7 +463,7 @@ public class Fight : MonoBehaviour
     }
 
     public void ReloadShieldingLevelImage(){
-        if(player.LeftHandWeapon.GetComponent<Item>().ShieldingLevel!=0)ShieldingLevel.GetComponent<Image>().sprite = ShieldingLevelImages[player.LeftHandWeapon.GetComponent<Item>().ShieldingLevel-1];
+        if(player.LeftHand.GetComponent<Item>().ShieldingLevel!=0)ShieldingLevel.GetComponent<Image>().sprite = ShieldingLevelImages[player.LeftHand.GetComponent<Item>().ShieldingLevel-1];
         else ShieldingLevel.GetComponent<Image>().sprite = InventoryManager.Empty;
     }
 }

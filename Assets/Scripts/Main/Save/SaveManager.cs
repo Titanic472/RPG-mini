@@ -52,7 +52,7 @@ public class SaveManager : MonoBehaviour
         InventoryManager.Item_Equip("Ring1", false);
         Game.GetItemById(Data.intPlayerItems[14], Data.intPlayerItems[15]);
         InventoryManager.Item_Equip("Ring2", false);
-        Save.Player.UpdateStats();
+        Save.Player.UpdateAllStats();
         StartCoroutine(Save.Player.ExperienceBar.XP_update(false));
         StartCoroutine(Save.Player.HealthBar.HP_update());
         StartCoroutine(Save.Player.ManaBar.Mana_update());

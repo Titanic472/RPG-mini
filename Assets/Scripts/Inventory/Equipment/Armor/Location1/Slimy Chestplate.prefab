@@ -110,7 +110,7 @@ Animator:
   m_GameObject: {fileID: 8302558305877591354}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 99f9016ed2209d348a4a2292ad3f9870, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -183,6 +183,6 @@ MonoBehaviour:
   UpgradeSpeedModifier: 0
   ManaModifier: 1
   UpgradeManaModifier: 0
-  DamageResistance: 1
+  DamageResistance: 0
   UpgradeDamageResistance: 0
   Is2Handed: 0

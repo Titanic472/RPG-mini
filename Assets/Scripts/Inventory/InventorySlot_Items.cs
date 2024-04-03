@@ -16,24 +16,24 @@ public class InventorySlot_Items : MonoBehaviour
 
     public void SlotInformation_Update()
     {
-     if(Player.Instance.Inventory_Items[ID*3]>=0) transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Language_Changer.Instance.GetText("Lvl") + ": " + Player.Instance.Inventory_Items[ID*3+1];
+     if(Player.Instance.Inventory[ID*3]>=0) transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Language_Changer.Instance.GetText("Lvl") + ": " + Player.Instance.Inventory[ID*3+1];
      else transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = "";
-     if(Player.Instance.Inventory_Items[ID*3]==3){
+     if(Player.Instance.Inventory[ID*3]==3){
         transform.Find("Image").GetComponent<Animator>().runtimeAnimatorController = InventoryManager.SlimyChestplate;
         transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Language_Changer.Instance.GetText("Lvl") + ": " + game.SlimyArmor.Chestplate["Level"];
      }
      else transform.Find("Image").GetComponent<Animator>().runtimeAnimatorController = null;
-     if(Player.Instance.Inventory_Items[ID*3]>=0)transform.Find("Image").GetComponent<SpriteRenderer>().sprite = game.Item_Sprites[Player.Instance.Inventory_Items[ID*3]];
+     if(Player.Instance.Inventory[ID*3]>=0)transform.Find("Image").GetComponent<SpriteRenderer>().sprite = game.Item_Sprites[Player.Instance.Inventory[ID*3]];
      else transform.Find("Image").GetComponent<SpriteRenderer>().sprite = InventoryManager.Empty;
      
     }
 
     public void OnClick(){
         InventoryManager.Choose.SetActive(false);
-        if(Player.Instance.Inventory_Items[ID*3]==-1) return;
+        if(Player.Instance.Inventory[ID*3]==-1) return;
         InventoryManager.InvokeID = ID;
-        game.GetItemById(Player.Instance.Inventory_Items[ID*3], Player.Instance.Inventory_Items[ID*3+1]);
-        game.Container["EnchantId"] = Player.Instance.Inventory_Items[ID*3+2];
+        game.GetItemById(Player.Instance.Inventory[ID*3], Player.Instance.Inventory[ID*3+1]);
+        game.Container["EnchantId"] = Player.Instance.Inventory[ID*3+2];
         InventoryManager.Title.text = game.ContText["Name"];
         InventoryManager.Description.text = game.ContText["Description"];
         InventoryManager.GetStats();

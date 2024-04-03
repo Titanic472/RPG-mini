@@ -7,7 +7,7 @@ using TMPro;
 
 public class Language_Changer : MonoBehaviour
 {
-    public TextMeshProUGUI Return1, Return2, Return3, Return4, Return5, Return6, Shop, Music, Hardcore, Lang, Lang2, Inventory, Fight, Profile, Stats, Skills, Abilities, Sam, Use, Unequip, Equip, YouDied, Quit, Respawn, BattleEnded, Attack, Potions, Items, RunAway, BackToGame, SaveAndQuit, PassiveSkillsTitle;
+    public TextMeshProUGUI Return1, Return2, Return3, Return4, Return5, Return6, Shop, Music, Hardcore, Lang, Lang2, Inventory, Fight, Profile, Stats, Skills, Abilities, Sam, Use, Unequip, Equip, YouDied, Quit, Respawn, BattleEnded, BackToGame, SaveAndQuit, PassiveSkillsTitle;
     private int i = 0;
 	public static Language_Changer Instance;
 	private string Language = "EN";

@@ -183,6 +183,6 @@ MonoBehaviour:
   UpgradeSpeedModifier: 0
   ManaModifier: 1
   UpgradeManaModifier: 0
-  DamageResistance: 1
+  DamageResistance: 0
   UpgradeDamageResistance: 0
   Is2Handed: 0
