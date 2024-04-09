@@ -11,9 +11,11 @@ public class Shop_Items : MonoBehaviour
     public GameObject SelledItem;
 
     void Awake(){
+        SelledItem = Instantiate(Game.Instance.Items[SelledItem.GetComponent<Item>().Id], transform);
         Item CurrentSlotScript = SelledItem.GetComponent<Item>();
-        gameObject.transform.Find("Level_Text").GetComponent<Text>().text = CurrentSlotScript.GetSellPrice();
+        CurrentSlotScript.transform.position = transform.position;
         CurrentSlotScript.UpgradePrice = CurrentSlotScript.Price;
+        gameObject.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = CurrentSlotScript.GetSellPrice();
     }
     public void OnClick(){
         if(SelledItem.GetComponent<Item>().CanUpgrade() && player.Inventory[44] == null){
