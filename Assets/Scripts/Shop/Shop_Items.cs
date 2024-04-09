@@ -8,13 +8,19 @@ public class Shop_Items : MonoBehaviour
 {
     public Player player;
     public InventoryManager InventoryManager;
-    public int Price, PriceModifier = 1, ID;
+    public GameObject SelledItem;
 
+    void Awake(){
+        Item CurrentSlotScript = SelledItem.GetComponent<Item>();
+        gameObject.transform.Find("Level_Text").GetComponent<Text>().text = CurrentSlotScript.GetSellPrice();
+        CurrentSlotScript.UpgradePrice = CurrentSlotScript.Price;
+    }
     public void OnClick(){
-        if((player.Money[PriceModifier]>=Price || player.Money[0]>PriceModifier) && player.Inventory[87]==-1){
+        if(SelledItem.GetComponent<Item>().CanUpgrade() && player.Inventory[44] == null){
             GetComponent<F_Text_Creator>().CreateText_Yellow("+1");
-            player.MoneyManager("Remove", Price, PriceModifier);
-            InventoryManager.Inventory_Add(ID, 1, -1);
+            
+            player.MoneyRemove(SelledItem.GetComponent<Item>().Price);
+            InventoryManager.Inventory_Add(SelledItem.GetComponent<Item>().Id, 1, -1);
         }
     }
 }

@@ -10,10 +10,12 @@ public class Collectible : MonoBehaviour
     public void OnCollide(){
         switch(Type){
             case "Potion":
-                Player.Instance.Inventory_Consumables[Name] += Amount;
+                if(Player.Instance.Inventory[44]==null || Fight.Instance.InventoryManager.SearchForItem(ID)!=-1){
+                    Fight.Instance.InventoryManager.Inventory_Add(ID, Amount, -1);
+                }
                 break;
             case "Item":
-                if(Player.Instance.Inventory[87]==-1){
+                if(Player.Instance.Inventory[44]==null){
                     Fight.Instance.InventoryManager.Inventory_Add(ID, 1, -1);
                 }
                 break;

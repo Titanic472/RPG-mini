@@ -17,12 +17,10 @@ public class Nettle : Mob
         Fight.EndBattle();
         int Chance = UnityEngine.Random.Range(0, 100);
         if(Chance<5){
-            Fight.EndBattleWindow.transform.Find("LootItem").GetComponent<SpriteRenderer>().sprite = player.game.Item_Sprites[1];
-            Fight.InventoryManager.Inventory_Add(1, 1, -1);
+            Fight.InventoryManager.Inventory_Add(1, 1, -1, true);
         }
         else if(Chance>=5 && Chance <10){
-            Fight.EndBattleWindow.transform.Find("LootItem").GetComponent<SpriteRenderer>().sprite = player.game.Item_Sprites[0];
-            Fight.InventoryManager.Inventory_Add(0, 1, -1);
+            Fight.InventoryManager.Inventory_Add(0, 1, -1, true);
         }
         else Fight.EndBattleWindow.transform.Find("LootItem").GetComponent<SpriteRenderer>().sprite = Fight.InventoryManager.Empty;
     }

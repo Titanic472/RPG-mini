@@ -1,5 +1,6 @@
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SaveManager : MonoBehaviour
 {
@@ -33,25 +34,40 @@ public class SaveManager : MonoBehaviour
         LoadData();
         Save.Data = Data;
         Save.LoadGame();
+        {
+            InventoryManager.InvokeID = 0;
+            int i = 0;
+            Save.Player.Inventory[0] = Instantiate(Game.Items[Data.intPlayerItems[i]]);
+            Save.Player.Inventory[0].GetComponent<Item>().Load(Data.intPlayerItems[i+1], Data.intPlayerItems[i+2]);
+            InventoryManager.Item_Equip("Hat");
+            i+=3;
+            Save.Player.Inventory[0] = Instantiate(Game.Items[Data.intPlayerItems[i]]);
+            Save.Player.Inventory[0].GetComponent<Item>().Load(Data.intPlayerItems[i+1], Data.intPlayerItems[i+2]);
+            InventoryManager.Item_Equip("Chestplate");
+            i+=3;
+            Save.Player.Inventory[0] = Instantiate(Game.Items[Data.intPlayerItems[i]]);
+            Save.Player.Inventory[0].GetComponent<Item>().Load(Data.intPlayerItems[i+1], Data.intPlayerItems[i+2]);
+            InventoryManager.Item_Equip("Boots");
+            i+=3;
+            Save.Player.Inventory[0] = Instantiate(Game.Items[Data.intPlayerItems[i]]);
+            Save.Player.Inventory[0].GetComponent<Item>().Load(Data.intPlayerItems[i+1], Data.intPlayerItems[i+2]);
+            InventoryManager.Item_Equip("RightHand");
+            i+=3;
+            Save.Player.Inventory[0] = Instantiate(Game.Items[Data.intPlayerItems[i]]);
+            Save.Player.Inventory[0].GetComponent<Item>().Load(Data.intPlayerItems[i+1], Data.intPlayerItems[i+2]);
+            InventoryManager.Item_Equip("LeftHand");
+            i+=3;
+            Save.Player.Inventory[0] = Instantiate(Game.Items[Data.intPlayerItems[i]]);
+            Save.Player.Inventory[0].GetComponent<Item>().Load(Data.intPlayerItems[i+1], Data.intPlayerItems[i+2]);
+            InventoryManager.Item_Equip("Trinket1");
+            i+=3;
+            Save.Player.Inventory[0] = Instantiate(Game.Items[Data.intPlayerItems[i]]);
+            Save.Player.Inventory[0].GetComponent<Item>().Load(Data.intPlayerItems[i+1], Data.intPlayerItems[i+2]);
+            InventoryManager.Item_Equip("Trinket2");
+        }
         Save.LoadPlayer();
         Save.LoadActiveSkills();
         Save.Player.ManaOverdrain.Check();
-        Game.GetItemById(Data.intPlayerItems[0], Data.intPlayerItems[1]);
-        InventoryManager.Item_Equip("Head", false);
-        Game.GetItemById(Data.intPlayerItems[2], Data.intPlayerItems[3]);
-        InventoryManager.Item_Equip("Chest", false);
-        Game.GetItemById(Data.intPlayerItems[4], Data.intPlayerItems[5]);
-        InventoryManager.Item_Equip("Legs", false);
-        Game.GetItemById(Data.intPlayerItems[6], Data.intPlayerItems[7]);
-        Game.Container["EnchantId"] = Data.intPlayerItems[8];
-        InventoryManager.Item_Equip("RightHand", false);
-        Game.GetItemById(Data.intPlayerItems[9], Data.intPlayerItems[10]);
-        Game.Container["EnchantId"] = Data.intPlayerItems[11];
-        InventoryManager.Item_Equip("LeftHand", false);
-        Game.GetItemById(Data.intPlayerItems[12], Data.intPlayerItems[13]);
-        InventoryManager.Item_Equip("Ring1", false);
-        Game.GetItemById(Data.intPlayerItems[14], Data.intPlayerItems[15]);
-        InventoryManager.Item_Equip("Ring2", false);
         Save.Player.UpdateAllStats();
         StartCoroutine(Save.Player.ExperienceBar.XP_update(false));
         StartCoroutine(Save.Player.HealthBar.HP_update());

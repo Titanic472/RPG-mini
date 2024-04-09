@@ -19,6 +19,12 @@ public class Item : MonoBehaviour
     public virtual void Use(){}
 
     public virtual void LevelSet(int LevelToSet){//Used only after loading inventory
+        CreateUpgradePrice();
+        Level = 1;
+        for(int i = 1; i<LevelToSet; ++i) Upgrade(false);
+    }
+
+    public void CreateUpgradePrice(){
         UpgradePrice = Price;
         for(int i = 1; i<15; ++i)Price[i] = Price[i]/3;
         for(int i = 1; i<15; ++i){
@@ -27,10 +33,8 @@ public class Item : MonoBehaviour
                 UpgradePrice[i+1] = UpgradePrice[i]/1000;
                 UpgradePrice[i] = UpgradePrice[i]%1000;
             }
-            if(UpgradePrice[0]<i && UpgradePrice[i]>0) Price[0] = i;
+            if(UpgradePrice[0]<i && UpgradePrice[i]>0) UpgradePrice[0] = i;
         }
-        Level = 1;
-        for(int i = 1; i<LevelToSet; ++i) Upgrade(false);
     }
 
     public virtual void Upgrade(bool UseMoney = true){
@@ -84,12 +88,32 @@ public class Item : MonoBehaviour
     public bool CanUpgrade(){
         if(Player.Instance.Money[0]>UpgradePrice[0])return true;
         for(int i = Player.Instance.Money[0]; i>0; --i){
-            if(Player.Instance.Money[i]>UgradePrice[i]) return true;
-            else if(Player.Instance.Money[i]<UgradePrice[i])return false;
+            if(Player.Instance.Money[i]>UpgradePrice[i]) return true;
+            else if(Player.Instance.Money[i]<UpgradePrice[i])return false;
         }
+        if(Player.Instance.Money[1]==UpgradePrice[1]) return true;
+        else return false;
     }
 
     public virtual string GetUpgradePrice(){
+        string PriceText = UpgradePrice[UpgradePrice[0]] + "";
+        if(UpgradePrice[0]>1){
+            if(UpgradePrice[UpgradePrice[0]-1]>=100 || UpgradePrice[UpgradePrice[0]-1]==0){
+                PriceText += ".";
+            }
+            else if(UpgradePrice[UpgradePrice[0]-1]>=10){
+                PriceText += ".0";
+            }
+            else{
+                PriceText += ".00";
+            }
+            PriceText += UpgradePrice[UpgradePrice[0]-1];
+        }
+        PriceText += Player.Instance.TextFormat(UpgradePrice[0]) + "<sprite=\"C-coin\" name=\"Coin\">";
+        return PriceText;
+    }
+
+    public virtual string GetSellPrice(){
         string PriceText = Price[Price[0]] + "";
         if(Price[0]>1){
             if(Price[Price[0]-1]>=100 || Price[Price[0]-1]==0){

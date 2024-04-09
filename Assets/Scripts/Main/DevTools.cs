@@ -22,7 +22,7 @@ public class DevTools : MonoBehaviour
             case 1:
                 Resistance = 100;
                 Player.Instance.BaseDamageResistance += 100;
-                Player.Instance.DamageResistance_reload();
+                Player.Instance.UpdateAllStats();
                 break;
             case 2:
                 Player.Instance.BaseDamage += 999;

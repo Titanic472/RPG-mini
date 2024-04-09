@@ -105,7 +105,6 @@ public class Player : Entity
     }
 
     public void Heal(float Modifier = 1f){
-        if(Health != MaxHealth) --Inventory_Consumables["Healing_Potion"];
         CollectedData[0] = CollectedData[0]+((float)Health/(float)MaxHealth-CollectedData[0])/++CollectedData[1];
         if(!Fight.InBattle){
             if(Fight.EffectsManager.GetEffect(10, this))Modifier*=0.8f;
@@ -122,7 +121,6 @@ public class Player : Entity
 
     public void ManaRestore(){
         if(!Overdrained){
-            if(Mana != MaxMana) --Inventory_Consumables["Mana_Potion"];
             if(Mana < MaxMana/2){
                 Mana+=MaxMana/2; 
             }
@@ -190,6 +188,11 @@ public class Player : Entity
 
     public void MoneyRemove(int[] Amount){
         for(int i = 1; i<15;++i)Money[i]-=Amount[i];
+        Money_Reorganise(1);
+    }
+
+    public void MoneyAdd(int[] Amount){
+        for(int i = 1; i<15;++i)Money[i]+=Amount[i];
         Money_Reorganise(1);
     }
 

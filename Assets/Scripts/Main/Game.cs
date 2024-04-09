@@ -9,7 +9,6 @@ using TMPro;
 public class Game : MonoBehaviour
 {
     public Fight Fight;
-    public SlimyArmor SlimyArmor;
     public Player player;
     public TextMeshProUGUI Information_Profile, FullscreenText, FullscreenText1;
     public Toggle FullscreenToggle, FullscreenToggle1;
@@ -48,7 +47,7 @@ public class Game : MonoBehaviour
         Information_Profile.text = Language_Changer.Instance.GetText("Level") + ": " + player.Level + "\n" + Language_Changer.Instance.GetText("Experience") + ": " + XPAmount + "/" + NewLevelXPAmount + "\n\n" + "<sprite=\"Stats\" name=\"Damage\"> " + player.BaseDamage + " + " + player.RightHand.GetComponent<Item>().Damage;
         if(player.LeftHand.GetComponent<Item>().Type=="Shield")Information_Profile.text += "<sprite=\"Stats\" name=\"Defence\"> " + player.LeftHand.GetComponent<Item>().DamageReduction;
         else Information_Profile.text += "/" + player.LeftHand.GetComponent<Item>().Damage;
-        Information_Profile.text += "\n" + "<sprite=\"Stats\" name=\"Speed\"> " + player.AttackSpeed + "\n"  + "<sprite=\"Stats\" name=\"Defence\"> " + (player.Hat.GetComponent<Item>().MinDefence + player.Chestplate.GetComponent<Item>().MinDefence + player.Boots.GetComponent<Item>().MinDefence) + "-" + (player.Hat.GetComponent<Item>().MaxDefence + player.Chestplate.GetComponent<Item>().MaxDefence + player.Boots.GetComponent<Item>().MaxDefence) + "\n" + "<sprite=\"Stats\" name=\"Accuracy\"> " + player.Skills["Accuracy"] + "\n" + "<sprite=\"Stats\" name=\"Evasion\"> " + player.Skills["Evasion"] + "\n" + "<sprite=\"Stats\" name=\"DamageResistance\"> " + player.DamageResistance + "%" + "\n" + "<sprite=\"Stats\" name=\"HealthRegen\"> " + player.HealthRegen;   
+        Information_Profile.text += "\n" + "<sprite=\"Stats\" name=\"Speed\"> " + player.AttackSpeed + "\n"  + "<sprite=\"Stats\" name=\"Defence\"> " + (player.Hat.GetComponent<Item>().MinDefence + player.Chestplate.GetComponent<Item>().MinDefence + player.Boots.GetComponent<Item>().MinDefence) + "-" + (player.Hat.GetComponent<Item>().MaxDefence + player.Chestplate.GetComponent<Item>().MaxDefence + player.Boots.GetComponent<Item>().MaxDefence) + "\n" + "<sprite=\"Stats\" name=\"Accuracy\"> " + player.Skills["Accuracy"] + "\n" + "<sprite=\"Stats\" name=\"Evasion\"> " + player.Skills["Evasion"] + "\n" + "<sprite=\"Stats\" name=\"DamageResistance\"> " + Convert.ToInt32(player.DamageResistance*100) + "%" + "\n" + "<sprite=\"Stats\" name=\"HealthRegen\"> " + player.HealthRegen;   
     }
 
     public void ChangeHardcore(){

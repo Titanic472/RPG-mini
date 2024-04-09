@@ -14,32 +14,32 @@ public class InventorySlot_Items : MonoBehaviour
         InventoryManager.ItemSlots[ID] = self;
     }
 
-    public void SlotInformation_Update()
-    {
-     if(Player.Instance.Inventory[ID*3]>=0) transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Language_Changer.Instance.GetText("Lvl") + ": " + Player.Instance.Inventory[ID*3+1];
-     else transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = "";
-     if(Player.Instance.Inventory[ID*3]==3){
-        transform.Find("Image").GetComponent<Animator>().runtimeAnimatorController = InventoryManager.SlimyChestplate;
-        transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Language_Changer.Instance.GetText("Lvl") + ": " + game.SlimyArmor.Chestplate["Level"];
-     }
-     else transform.Find("Image").GetComponent<Animator>().runtimeAnimatorController = null;
-     if(Player.Instance.Inventory[ID*3]>=0)transform.Find("Image").GetComponent<SpriteRenderer>().sprite = game.Item_Sprites[Player.Instance.Inventory[ID*3]];
-     else transform.Find("Image").GetComponent<SpriteRenderer>().sprite = InventoryManager.Empty;
-     
+    public void SlotInformation_Update(){
+        
+        if(Player.Instance.Inventory[ID]!=null){
+            Item CurrentSlotScript = Player.Instance.Inventory[ID].GetComponent<Item>();
+            if(CurrentSlotScript.Type!="Potion" &&  CurrentSlotScript.Type!="Consumable") transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Language_Changer.Instance.GetText("Lvl") + ": " + CurrentSlotScript.Level;
+            else transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = CurrentSlotScript.Amount + "";
+        }
+        else transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = "";
+        Player.Instance.Inventory[ID].transform.SetParent(transform);
+        Player.Instance.Inventory[ID].transform.position = transform.position;
     }
 
     public void OnClick(){
+        Item CurrentSlotScript = Player.Instance.Inventory[ID].GetComponent<Item>();
         InventoryManager.Choose.SetActive(false);
-        if(Player.Instance.Inventory[ID*3]==-1) return;
+        if(Player.Instance.Inventory[ID] == null) return;
         InventoryManager.InvokeID = ID;
-        game.GetItemById(Player.Instance.Inventory[ID*3], Player.Instance.Inventory[ID*3+1]);
-        game.Container["EnchantId"] = Player.Instance.Inventory[ID*3+2];
-        InventoryManager.Title.text = game.ContText["Name"];
-        InventoryManager.Description.text = game.ContText["Description"];
-        InventoryManager.GetStats();
+        InventoryManager.Title.text = Language_Changer.Instance.GetText(CurrentSlotScript.Name, "Items");
+        InventoryManager.Description.text = CurrentSlotScript.GetDescription();
+        string SlotText1 = "", SlotText2 = "";
+        CurrentSlotScript.GetStats(ref SlotText1, ref SlotText2, true);
+        InventoryManager.DescriptionStats.text = SlotText1;
+        InventoryManager.DescriptionStats2.text = SlotText2;
         if(ID%5<3)InventoryManager.InformationBackground.transform.position = new Vector3(0f, 1.4f, 89);
         else InventoryManager.InformationBackground.transform.position = new Vector3(-8f, 1.4f, 89);
-        InventoryManager.ButtonsActivate("Item");
+        InventoryManager.ButtonsActivate(CurrentSlotScript);
         InventoryManager.ShowSprites();
         InventoryManager.HideSprites();
         InventoryManager.InformationBackground.SetActive(true);

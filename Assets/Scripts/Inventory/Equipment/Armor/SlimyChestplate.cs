@@ -85,6 +85,6 @@ public class SlimyChestplate : Chestplate
 
     public override void Load(int Index2, int Index3){
         Level = Index2;
-        NewLevelXP = Index3;
+        XP = Index3;
     }
 }

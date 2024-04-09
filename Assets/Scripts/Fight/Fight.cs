@@ -20,7 +20,6 @@ public class Fight : MonoBehaviour
     public TextMeshProUGUI MobText, MobDescriptionTitle, MobDescription, MobStats, MobStats2, MobStatsTitle, PassiveSkillsStats;
     public GameObject[] Buttons = new GameObject[16], PotionSlots = new GameObject[5], PlayerEffectImages = new GameObject[10], MobEffectImages = new GameObject[10], GameObjects = new GameObject[4];
     public GameObject EndBattleWindow, CoinsText, Mob_MapSprite, BG, ModeSwitch, ShieldingLevel;
-    public SlimyArmor SlimyArmor;
     public EffectsManager EffectsManager;
     public int[] Potions = new int[5];
     public bool InBattle = false, AllEntitiesAlive;
@@ -38,28 +37,15 @@ public class Fight : MonoBehaviour
     public void PotionSlots_Reload(){
         for(int i = 0; i<5; ++i) PotionSlots[i].SetActive(false);
         int Slot = 0;
-        if(player.Inventory_Consumables["Healing_Potion"]>0){
-            PotionSlotActivate(ref Slot, 0);
+        for(int i = 0; i<45; ++i){
+            if(player.Inventory[i] == null) break;
+            if(player.Inventory[i].GetComponent<Item>().Type == "Potion"){
+                PotionSlots[Slot].SetActive(true);
+                PotionSlots[Slot].transform.Find("Image").GetComponent<Image>().sprite = player.Inventory[i].GetComponent<Image>().sprite;
+                Potions[Slot] = i;
+                ++Slot;
+            }
         }
-        if(player.Inventory_Consumables["Mana_Potion"]>0){
-            PotionSlotActivate(ref Slot, 1);
-        }
-        if(player.Inventory_Consumables["Health_Regeneration_Potion"]>0){
-            PotionSlotActivate(ref Slot, 2);
-        }
-        if(player.Inventory_Consumables["Mana_Regeneration_Potion"]>0){
-            PotionSlotActivate(ref Slot, 3);
-        }
-        if(player.Inventory_Consumables["Ironskin_Potion"]>0){
-            PotionSlotActivate(ref Slot, 4);
-        }
-    }
-
-    public void PotionSlotActivate(ref int Slot, int PotionID){//Todo
-            PotionSlots[Slot].SetActive(true);
-            PotionSlots[Slot].transform.Find("Image").GetComponent<Image>().sprite = Game.Potion_Sprites[PotionID];
-            Potions[Slot] = PotionID;
-            ++Slot;
     }
 
     public void ReloadEffectImages(){
@@ -90,7 +76,10 @@ public class Fight : MonoBehaviour
         if(InBattle) ButtonsActivate(false);
         Item PotionScript = Potion.GetComponent<Item>();
         PotionScript.Use();
-        if(PotionScript.Amount==0)
+        if(PotionScript.Amount==0){
+            Destroy(PotionScript.GetComponent<GameObject>());
+            InventoryManager.Inventory_Reorganise();
+        }
         if(InBattle){
             PotionSlots_Reload();
             ReloadEffectImages();
@@ -313,24 +302,18 @@ public class Fight : MonoBehaviour
     public void PlayerAttack(string Type){
         if(MobScript.Health==0 || player.Health == 0) return;
         ButtonsActivate(false);
-        bool Avoided = MobScript.Avoid();
-        if(Avoided)MobScript.GetComponent<F_Text_Creator>().CreateText_Red(Language_Changer.Instance.GetText("Avoided"));
         switch(Type){
             case "LeftHand":
-                player.LeftHandAttack(Avoided);
+                player.LeftHand.GetComponent<Item>().Use();
                 break;
             case "RightHand":
-                player.RightHandAttack(Avoided);
+                player.RightHand.GetComponent<Item>().Use();
                 break;
             default:
                 break;
         }
-        if(!Avoided){
-            EffectsManager.TriggerEffects(2, player);
-            EffectsManager.TriggerEffects(3, MobScript);
-            if(MobScript.Health==0) return;
-        }
-        else EffectsManager.TriggerEffects(4, MobScript);
+        if(MobScript.Health==0) return;
+
         ReloadFightDescription();
         ReloadFightDescription("PassiveSkillsStats");
         if(player.SpeedEnergy<1)NextTurn();
@@ -420,7 +403,6 @@ public class Fight : MonoBehaviour
         }
         EndBattleWindow.transform.Find("Experience").GetComponent<TextMeshProUGUI>().text = "XP: " + XPAmount;
         EndBattleWindow.SetActive(true);
-        SlimyArmor.Experience_Add(10);
     }
 
     public void ReloadFightDescription(string Description = "MobStats"){

@@ -6,7 +6,6 @@ public class Save : MonoBehaviour
 {
     public Data Data;
     public Player Player;
-    public SlimyArmor SlimyArmor;
     public Skills Skills;
     public ActiveSkillsManager ActiveSkillsManager;
     public Game Game;
@@ -72,35 +71,22 @@ public class Save : MonoBehaviour
         Data.floatPlayer[14] = Player.BrutalityStreak_AddDamageAll;
         Data.floatPlayer[15] = Player.Parrying_ChanceAll;
         //Equipment Items
-        Data.intPlayerItems[0] = Player.Head["ID"];
-        Data.intPlayerItems[1] = Player.Head["Level"];
-        Data.intPlayerItems[2] = Player.Chest["ID"];
-        Data.intPlayerItems[3] = Player.Chest["Level"];
-        Data.intPlayerItems[4] = Player.Legs["ID"];
-        Data.intPlayerItems[5] = Player.Legs["Level"];
-        Data.intPlayerItems[6] = Player.RightHand["ID"];
-        Data.intPlayerItems[7] = Player.RightHand["Level"];
-        Data.intPlayerItems[8] = Player.RightHand["EnchantId"];
-        Data.intPlayerItems[9] = Player.LeftHand["ID"];
-        Data.intPlayerItems[10] = Player.LeftHand["Level"];
-        Data.intPlayerItems[11] = Player.LeftHand["EnchantId"];
-        Data.intPlayerItems[12] = Player.Ring1["ID"];
-        Data.intPlayerItems[13] = Player.Ring1["Level"];
-        Data.intPlayerItems[14] = Player.Ring2["ID"];
-        Data.intPlayerItems[15] = Player.Ring2["Level"];
-        //SlimyArmor
-        Data.SlimyArmor[0] = SlimyArmor.Chestplate["Level"];
-        Data.SlimyArmor[1] = SlimyArmor.Chestplate["Tier"];
-        Data.SlimyArmor[2] = SlimyArmor.Chestplate["MinDefence"];
-        Data.SlimyArmor[3] = SlimyArmor.Chestplate["MaxDefence"];
-        Data.SlimyArmor[4] = SlimyArmor.Chestplate["Accuracy"];
-        Data.SlimyArmor[5] = SlimyArmor.Chestplate["Evasion"];
-        Data.SlimyArmor[6] = SlimyArmor.Chestplate["Mana"];
-        Data.SlimyArmor[7] = SlimyArmor.Chestplate["DamageResistance"];
-        Data.SlimyArmor[8] = SlimyArmor.Chestplate["XP"];
-        Data.SlimyArmor[9] = SlimyArmor.Chestplate["NewLevelXP"];
-        Data.boolSlimyArmor[0] = SlimyArmor.ChestplateOwned;
-        Data.boolSlimyArmor[1] = SlimyArmor.ChestplateEquipped;
+        {
+            int i = 0;
+            Player.Hat.GetComponent<Item>().Save(ref Data.intPlayerItems[i], ref Data.intPlayerItems[i+1], ref Data.intPlayerItems[i+2]);
+            i+=3;
+            Player.Chestplate.GetComponent<Item>().Save(ref Data.intPlayerItems[i], ref Data.intPlayerItems[i+1], ref Data.intPlayerItems[i+2]);
+            i+=3;
+            Player.Boots.GetComponent<Item>().Save(ref Data.intPlayerItems[i], ref Data.intPlayerItems[i+1], ref Data.intPlayerItems[i+2]);
+            i+=3;
+            Player.RightHand.GetComponent<Item>().Save(ref Data.intPlayerItems[i], ref Data.intPlayerItems[i+1], ref Data.intPlayerItems[i+2]);
+            i+=3;
+            Player.LeftHand.GetComponent<Item>().Save(ref Data.intPlayerItems[i], ref Data.intPlayerItems[i+1], ref Data.intPlayerItems[i+2]);
+            i+=3;
+            Player.Trinket1.GetComponent<Item>().Save(ref Data.intPlayerItems[i], ref Data.intPlayerItems[i+1], ref Data.intPlayerItems[i+2]);
+            i+=3;
+            Player.Trinket2.GetComponent<Item>().Save(ref Data.intPlayerItems[i], ref Data.intPlayerItems[i+1], ref Data.intPlayerItems[i+2]);
+        }
         //Debug.Log("Saved: Player");
     }
 
@@ -1416,19 +1402,6 @@ public class Save : MonoBehaviour
         Player.BaseDamageResistance = Data.floatPlayer[13];
         Player.BrutalityStreak_AddDamageAll = Data.floatPlayer[14];
         Player.Parrying_ChanceAll = Data.floatPlayer[15];
-        //SlimyArmor
-        SlimyArmor.Chestplate["Level"] = Data.SlimyArmor[0];
-        SlimyArmor.Chestplate["Tier"] = Data.SlimyArmor[1];
-        SlimyArmor.Chestplate["MinDefence"] = Data.SlimyArmor[2];
-        SlimyArmor.Chestplate["MaxDefence"] = Data.SlimyArmor[3];
-        SlimyArmor.Chestplate["Accuracy"] = Data.SlimyArmor[4];
-        SlimyArmor.Chestplate["Evasion"] = Data.SlimyArmor[5];
-        SlimyArmor.Chestplate["Mana"] = Data.SlimyArmor[6];
-        SlimyArmor.Chestplate["DamageResistance"] = Data.SlimyArmor[7];
-        SlimyArmor.Chestplate["XP"] = Data.SlimyArmor[8];
-        SlimyArmor.Chestplate["NewLevelXP"] = Data.SlimyArmor[9];
-        SlimyArmor.ChestplateOwned = Data.boolSlimyArmor[0];
-        SlimyArmor.ChestplateEquipped = Data.boolSlimyArmor[1];
         //Debug.Log("Loaded: Player");
     }
 

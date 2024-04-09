@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Sword : Item
 {
-    public override void Use(ref int DamageAmount){
+    public override void Use(){
         if(!Fight.Instance.MobScript.Avoid()){
             int AttackDamage = Convert.ToInt32(Math.Ceiling(Player.Instance.DamageModifier*(Player.Instance.BaseDamage + Damage + Player.Instance.Trinket1.GetComponent<Item>().Damage + Player.Instance.Trinket2.GetComponent<Item>().Damage + Player.Instance.Hat.GetComponent<Item>().Damage + Player.Instance.Chestplate.GetComponent<Item>().Damage + Player.Instance.Boots.GetComponent<Item>().Damage)));
             AttackDamage = Convert.ToInt32(Math.Ceiling(AttackDamage* + Player.Instance.BuffsDamageModifier));
@@ -14,8 +14,14 @@ public class Sword : Item
             bool IsCrit = Player.Instance.Crit();
             AttackDamage += AttackDamage*Convert.ToInt32(IsCrit);
             Fight.Instance.MobScript.GetDamage(AttackDamage, true, IsCrit);
+            Fight.Instance.EffectsManager.TriggerEffects(2, Player.Instance);
+            Fight.Instance.EffectsManager.TriggerEffects(3, Fight.Instance.MobScript);
         }
-        else Player.Instance.BrutalityStreak_AddDamageAll = 0;
+        else {
+            Player.Instance.BrutalityStreak_AddDamageAll = 0;
+            Fight.Instance.MobScript.GetComponent<F_Text_Creator>().CreateText_Red(Language_Changer.Instance.GetText("Avoided"));
+            Fight.Instance.EffectsManager.TriggerEffects(4, Fight.Instance.MobScript);
+        }
         Player.Instance.SpeedEnergyRemove(EnergyUsage);
     }
 }

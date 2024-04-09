@@ -32,8 +32,7 @@ public class Milk : Mob
 
     public override void LootGenerate(){
         if(!player.game.BossesDefeated[0]){
-            Fight.EndBattleWindow.transform.Find("LootItem").GetComponent<SpriteRenderer>().sprite = player.game.Item_Sprites[8];
-            Fight.InventoryManager.Inventory_Add(8, 1, -1);
+            Fight.InventoryManager.Inventory_Add(8, 1, -1, true);
             player.game.BossesDefeated[0] = true;
             player.speedEnergy.AddMoreSlots();
             ++player.MaxSpeedEnergy;
@@ -69,7 +68,6 @@ public class Milk : Mob
         if(Health==0){
             Fight.StopWatch.StopCounting();
             await Task.Delay(500);
-            Fight.SlimyArmor.Experience_Add(40);
             Fight.TriggerDeath();
         }
     }
