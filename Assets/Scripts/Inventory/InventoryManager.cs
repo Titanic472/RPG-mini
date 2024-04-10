@@ -15,7 +15,6 @@ public class InventoryManager : MonoBehaviour
     public GameObject HatSlotEmpty, ChestplateSlotEmpty, BootsSlotEmpty, LeftHandSlotEmpty, RightHandSlotEmpty, Trinket1SlotEmpty, Trinket2SlotEmpty, InformationBackground;
     public int InvokeID;
     public TextMeshProUGUI Title, Description, DescriptionStats, DescriptionStats2, TitleProfile, DescriptionProfile, DescriptionStatsProfile, DescriptionStatsProfile2;
-    public RuntimeAnimatorController SlimyChestplate;
     public GameObject UpgradeButton, UpgradeButtonProfile, UnequipButton, Sell, Equip, Use, Choose, HatSlot, ChestplateSlot, BootsSlot, LeftHandSlot, RightHandSlot, Trinket1Slot, Trinket2Slot;
     public string Potion, ChooseType, InventorySlot; 
 
@@ -84,7 +83,8 @@ public class InventoryManager : MonoBehaviour
 
         switch(Slot){
             case "Hat":
-                if(player.Hat != null) player.Inventory[GetFreeSlot()] = player.Hat;
+                if(player.Hat.GetComponent<Item>().Id != -1) player.Inventory[GetFreeSlot()] = player.Hat;
+                else Destroy(player.Hat);
                 player.Hat = player.Inventory[InvokeID];
                 player.Hat.transform.SetParent(HatSlot.transform);
                 player.Hat.transform.position = HatSlot.transform.position;
@@ -92,7 +92,8 @@ public class InventoryManager : MonoBehaviour
                 HatSlot.GetComponent<InventorySlot_Profile>().Equipped = true;
                 break;
             case "Chestplate":
-                if(player.Chestplate != null) player.Inventory[GetFreeSlot()] = player.Chestplate;
+                if(player.Chestplate.GetComponent<Item>().Id != -1) player.Inventory[GetFreeSlot()] = player.Chestplate;
+                else Destroy(player.Chestplate);
                 player.Chestplate = player.Inventory[InvokeID];
                 player.Chestplate.transform.SetParent(ChestplateSlot.transform);
                 player.Chestplate.transform.position = ChestplateSlot.transform.position;
@@ -100,7 +101,8 @@ public class InventoryManager : MonoBehaviour
                 ChestplateSlot.GetComponent<InventorySlot_Profile>().Equipped = true;
                 break;
             case "Boots":
-                if(player.Boots != null) player.Inventory[GetFreeSlot()] = player.Boots;
+                if(player.Boots.GetComponent<Item>().Id != -1) player.Inventory[GetFreeSlot()] = player.Boots;
+                else Destroy(player.Boots);
                 player.Boots = player.Inventory[InvokeID];
                 player.Boots.transform.SetParent(BootsSlot.transform);
                 player.Boots.transform.position = BootsSlot.transform.position;
@@ -108,7 +110,8 @@ public class InventoryManager : MonoBehaviour
                 BootsSlot.GetComponent<InventorySlot_Profile>().Equipped = true;
                 break;
             case "LeftHand":
-                if(player.LeftHand != null) player.Inventory[GetFreeSlot()] = player.LeftHand;
+                if(player.LeftHand.GetComponent<Item>().Id != -1) player.Inventory[GetFreeSlot()] = player.LeftHand;
+                else Destroy(player.LeftHand);
                 player.LeftHand = player.Inventory[InvokeID];
                 player.LeftHand.transform.SetParent(LeftHandSlot.transform);
                 player.LeftHand.transform.position = LeftHandSlot.transform.position;
@@ -116,7 +119,8 @@ public class InventoryManager : MonoBehaviour
                 LeftHandSlot.GetComponent<InventorySlot_Profile>().Equipped = true;
                 break;
             case "RightHand":
-                if(player.RightHand != null) player.Inventory[GetFreeSlot()] = player.RightHand;
+                if(player.RightHand.GetComponent<Item>().Id != -1) player.Inventory[GetFreeSlot()] = player.RightHand;
+                else Destroy(player.RightHand);
                 player.RightHand = player.Inventory[InvokeID];
                 player.RightHand.transform.SetParent(RightHandSlot.transform);
                 player.RightHand.transform.position = RightHandSlot.transform.position;
@@ -129,7 +133,8 @@ public class InventoryManager : MonoBehaviour
                 }
                 break;
             case "Trinket1":
-               if(player.Trinket1 != null) player.Inventory[GetFreeSlot()] = player.Trinket1;
+                if(player.Trinket1.GetComponent<Item>().Id != -1) player.Inventory[GetFreeSlot()] = player.Trinket1;
+                else Destroy(player.Trinket1);
                 player.Trinket1 = player.Inventory[InvokeID];
                 player.Trinket1.transform.SetParent(Trinket1Slot.transform);
                 player.Trinket1.transform.position = Trinket1Slot.transform.position;
@@ -137,7 +142,8 @@ public class InventoryManager : MonoBehaviour
                 Trinket1Slot.GetComponent<InventorySlot_Profile>().Equipped = true;
                 break;
             case "Trinket2":
-                if(player.Trinket2 != null) player.Inventory[GetFreeSlot()] = player.Trinket2;
+                if(player.Trinket2.GetComponent<Item>().Id != -1) player.Inventory[GetFreeSlot()] = player.Trinket2;
+                else Destroy(player.Trinket2);
                 player.Trinket2 = player.Inventory[InvokeID];
                 player.Trinket2.transform.SetParent(Trinket2Slot.transform);
                 player.Trinket2.transform.position = Trinket2Slot.transform.position;
@@ -158,37 +164,37 @@ public class InventoryManager : MonoBehaviour
     public void Item_Unequip(string Slot){
         if(player.Inventory[44]==null){
             switch(Slot){
-                case "atead":
+                case "Hat":
                     player.Inventory[GetFreeSlot()] = player.Hat;
-                    player.Hat = HatSlotEmpty;
+                    player.Hat = Instantiate(HatSlotEmpty, HatSlot.transform);
                     player.Hat.transform.position = HatSlot.transform.position;
                     HatSlot.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = "";
                     HatSlot.GetComponent<InventorySlot_Profile>().Equipped = false;
                     break;
                 case "Chestplate":
                     player.Inventory[GetFreeSlot()] = player.Chestplate;
-                    player.Chestplate = ChestplateSlotEmpty;
+                    player.Chestplate = Instantiate(ChestplateSlotEmpty, ChestplateSlot.transform);
                     player.Chestplate.transform.position = ChestplateSlot.transform.position;
                     ChestplateSlot.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = "";
                     ChestplateSlot.GetComponent<InventorySlot_Profile>().Equipped = false;
                     break;
                 case "Boots":
                     player.Inventory[GetFreeSlot()] = player.Boots;
-                    player.Boots = BootsSlotEmpty;
+                    player.Boots = Instantiate(BootsSlotEmpty, BootsSlot.transform);
                     player.Boots.transform.position = BootsSlot.transform.position;
                     BootsSlot.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = "";
                     BootsSlot.GetComponent<InventorySlot_Profile>().Equipped = false;
                     break;
                 case "LeftHand":
                     player.Inventory[GetFreeSlot()] = player.LeftHand;
-                    player.LeftHand = LeftHandSlotEmpty;
+                    player.LeftHand = Instantiate(LeftHandSlotEmpty, LeftHandSlot.transform);
                     player.LeftHand.transform.position = LeftHandSlot.transform.position;
                     LeftHandSlot.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = "";
                     LeftHandSlot.GetComponent<InventorySlot_Profile>().Equipped = false;
                     break;
                 case "RightHand":
                     player.Inventory[GetFreeSlot()] = player.RightHand;
-                    player.RightHand = RightHandSlotEmpty;
+                    player.RightHand = Instantiate(RightHandSlotEmpty, RightHandSlot.transform);
                     player.RightHand.transform.position = RightHandSlot.transform.position;
                     RightHandSlot.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = "";
                     RightHandSlot.GetComponent<InventorySlot_Profile>().Equipped = false;
@@ -196,14 +202,14 @@ public class InventoryManager : MonoBehaviour
                     break;
                 case "Trinket1":
                     player.Inventory[GetFreeSlot()] = player.Trinket1;
-                    player.Trinket1 = Trinket1SlotEmpty;
+                    player.Trinket1 = Instantiate(Trinket1SlotEmpty, Trinket1Slot.transform);
                     player.Trinket1.transform.position = Trinket1Slot.transform.position;
                     Trinket1Slot.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = "";
                     Trinket1Slot.GetComponent<InventorySlot_Profile>().Equipped = false;
                     break;
                 case "Trinket2":
                     player.Inventory[GetFreeSlot()] = player.Trinket2;
-                    player.Trinket2 = Trinket2SlotEmpty;
+                    player.Trinket2 = Instantiate(Trinket2SlotEmpty, Trinket2Slot.transform);
                     player.Trinket2.transform.position = Trinket2Slot.transform.position;
                     Trinket2Slot.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = "";
                     Trinket2Slot.GetComponent<InventorySlot_Profile>().Equipped = false;
@@ -223,8 +229,10 @@ public class InventoryManager : MonoBehaviour
         if(game.Items[Id].GetComponent<Item>().Type == "Potion" || game.Items[Id].GetComponent<Item>().Type == "Consumable") IsConsumable = true;
         if(IsConsumable){
             int FoundSlot = SearchForItem(Id);
-            if(FoundSlot != -1) player.Inventory[FoundSlot].GetComponent<Item>().Amount += Level;
-            return;
+            if(FoundSlot != -1) {
+                player.Inventory[FoundSlot].GetComponent<Item>().Amount += Level;
+                return;
+            }
         }
         int Slot = GetFreeSlot();
         if(Slot!=-1){
@@ -314,20 +322,20 @@ public class InventoryManager : MonoBehaviour
     public void HideSprites(string Type = ""){
         for(int i = 0; i<45; ++i){
             if(InvokeID%5<3){
-                if(i%5>=3) player.Inventory[i].SetActive(false);
+                if(i%5>=3) if(player.Inventory[i]!=null) player.Inventory[i].SetActive(false);
             }
-            else if(i%5<2) player.Inventory[i].SetActive(false);
+            else if(i%5<2) if(player.Inventory[i]!=null) player.Inventory[i].SetActive(false);
         }
     }
 
     public void HideSprites2(){
         for(int i = 0; i<45; ++i){
-            if((i%15>=6 && i%15<=8)||(i%15>=11 && i%15<=13)) player.Inventory[i].SetActive(false);
+            if((i%15>=6 && i%15<=8)||(i%15>=11 && i%15<=13)) if(player.Inventory[i]!=null) player.Inventory[i].SetActive(false);
         }
     }
 
     public void ShowSprites(){
-        for(int i = 0; i<45; ++i)player.Inventory[i].SetActive(true);
+        for(int i = 0; i<45; ++i)if(player.Inventory[i]!=null)player.Inventory[i].SetActive(true);
     }
 
     public void GetDescription(string Slot){

@@ -22,14 +22,16 @@ public class InventorySlot_Items : MonoBehaviour
             else transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = CurrentSlotScript.Amount + "";
         }
         else transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = "";
-        Player.Instance.Inventory[ID].transform.SetParent(transform);
-        Player.Instance.Inventory[ID].transform.position = transform.position;
+        if(Player.Instance.Inventory[ID] != null){
+            Player.Instance.Inventory[ID].transform.SetParent(transform);
+            Player.Instance.Inventory[ID].transform.position = transform.position;
+        }
     }
 
     public void OnClick(){
+        if(Player.Instance.Inventory[ID] == null) return;
         Item CurrentSlotScript = Player.Instance.Inventory[ID].GetComponent<Item>();
         InventoryManager.Choose.SetActive(false);
-        if(Player.Instance.Inventory[ID] == null) return;
         InventoryManager.InvokeID = ID;
         InventoryManager.Title.text = Language_Changer.Instance.GetText(CurrentSlotScript.Name, "Items");
         InventoryManager.Description.text = CurrentSlotScript.GetDescription();

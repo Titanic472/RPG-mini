@@ -12,8 +12,9 @@ public class Shop_Items : MonoBehaviour
 
     void Awake(){
         SelledItem = Instantiate(Game.Instance.Items[SelledItem.GetComponent<Item>().Id], transform);
+        SelledItem.SetActive(false);
         Item CurrentSlotScript = SelledItem.GetComponent<Item>();
-        CurrentSlotScript.transform.position = transform.position;
+        transform.Find("Image").GetComponent<Image>().sprite = SelledItem.GetComponent<SpriteRenderer>().sprite;
         CurrentSlotScript.UpgradePrice = CurrentSlotScript.Price;
         gameObject.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = CurrentSlotScript.GetSellPrice();
     }

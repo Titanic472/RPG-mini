@@ -49,9 +49,9 @@ public class Save : MonoBehaviour
             }
         }
         for(int i = 79; i<94; ++i)Data.intPlayer[i] = Player.Money[i-79];
-        // for(int i = 94; i<184; ++i)Data.intPlayer[i] = Player.Inventory[i-94];
+        for(int i = 94; i<229; i+=3) Player.Inventory[(i-94)/3].GetComponent<Item>().Save(ref Data.intPlayer[i], ref Data.intPlayer[i+1], ref Data.intPlayer[i+2]);
         //Overdrain
-        Data.intPlayer[184] = Player.ManaOverdrain.MovesLeft;
+        Data.intPlayer[229] = Player.ManaOverdrain.MovesLeft;
         Data.boolPlayer = Player.Overdrained;
         //float
         Data.floatPlayer[0] = Player.HealthModifier;
@@ -1380,9 +1380,12 @@ public class Save : MonoBehaviour
             }
         }
         for(int i = 79; i<94; ++i)Player.Money[i-79] = Data.intPlayer[i];
-        // for(int i = 94; i<184; ++i)Player.Inventory[i-94] = Data.intPlayer[i];
+        for(int i = 94; i<229; i+=3) {
+            Player.Inventory[(i-94)/3] = Instantiate(Game.Items[Data.intPlayer[i]]);
+            Player.Inventory[(i-94)/3].GetComponent<Item>().Load(Data.intPlayer[i+1], Data.intPlayer[i+2]);
+        }
         //Overdrain
-        Player.ManaOverdrain.MovesLeft = Data.intPlayer[184];
+        Player.ManaOverdrain.MovesLeft = Data.intPlayer[229];
         Player.Overdrained = Data.boolPlayer;
         //float
         //float

@@ -58,7 +58,7 @@ public class SlimyChestplate : Chestplate
             Accuracy += 7;
             Evasion += 10;
             Mana += 15;
-            DamageResistance += 1;
+            DamageResistance += 0.01f;
             NewLevelXP += 200;
             return;
         }
@@ -69,7 +69,7 @@ public class SlimyChestplate : Chestplate
             Accuracy += 15;
             Evasion += 15;
             Mana += 35;
-            DamageResistance += 2;
+            DamageResistance += 0.02f;
             NewLevelXP += 250;
             return;
         }

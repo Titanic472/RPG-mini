@@ -29,9 +29,9 @@ public class New_Game : MonoBehaviour
         if(i == 100){
             i = 0;
             text_g.SetActive(true);
-            Invoke("Load", 0.05f);
+            Invoke("Load", 0.025f);
         }
-        else Invoke("move",0.005f);
+        else Invoke("move",0.0025f);
     }
 
     public void move(){
@@ -47,8 +47,8 @@ public class New_Game : MonoBehaviour
         {   
             ++i;
             text.text = Language_Changer.Instance.GetText("Loading") + " " + i + "%";
-            if(i == 99) Invoke("Load",0.3f);
-            else Invoke("Load",0.02f);
+            if(i == 99) Invoke("Load",0.15f);
+            else Invoke("Load",0.008f);
         }   
         else mainmenu();
     }
