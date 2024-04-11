@@ -88,6 +88,7 @@ public class InventoryManager : MonoBehaviour
                 player.Hat = player.Inventory[InvokeID];
                 player.Hat.transform.SetParent(HatSlot.transform);
                 player.Hat.transform.position = HatSlot.transform.position;
+                player.Inventory[InvokeID] = null;
                 HatSlot.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Language_Changer.Instance.GetText("Lvl") + ": " + player.Hat.GetComponent<Item>().Level;
                 HatSlot.GetComponent<InventorySlot_Profile>().Equipped = true;
                 break;
@@ -97,6 +98,7 @@ public class InventoryManager : MonoBehaviour
                 player.Chestplate = player.Inventory[InvokeID];
                 player.Chestplate.transform.SetParent(ChestplateSlot.transform);
                 player.Chestplate.transform.position = ChestplateSlot.transform.position;
+                player.Inventory[InvokeID] = null;
                 ChestplateSlot.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Language_Changer.Instance.GetText("Lvl") + ": " + player.Chestplate.GetComponent<Item>().Level;
                 ChestplateSlot.GetComponent<InventorySlot_Profile>().Equipped = true;
                 break;
@@ -106,6 +108,7 @@ public class InventoryManager : MonoBehaviour
                 player.Boots = player.Inventory[InvokeID];
                 player.Boots.transform.SetParent(BootsSlot.transform);
                 player.Boots.transform.position = BootsSlot.transform.position;
+                player.Inventory[InvokeID] = null;
                 BootsSlot.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Language_Changer.Instance.GetText("Lvl") + ": " + player.Boots.GetComponent<Item>().Level;
                 BootsSlot.GetComponent<InventorySlot_Profile>().Equipped = true;
                 break;
@@ -115,6 +118,7 @@ public class InventoryManager : MonoBehaviour
                 player.LeftHand = player.Inventory[InvokeID];
                 player.LeftHand.transform.SetParent(LeftHandSlot.transform);
                 player.LeftHand.transform.position = LeftHandSlot.transform.position;
+                player.Inventory[InvokeID] = null;
                 LeftHandSlot.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Language_Changer.Instance.GetText("Lvl") + ": " + player.LeftHand.GetComponent<Item>().Level;
                 LeftHandSlot.GetComponent<InventorySlot_Profile>().Equipped = true;
                 break;
@@ -124,6 +128,7 @@ public class InventoryManager : MonoBehaviour
                 player.RightHand = player.Inventory[InvokeID];
                 player.RightHand.transform.SetParent(RightHandSlot.transform);
                 player.RightHand.transform.position = RightHandSlot.transform.position;
+                player.Inventory[InvokeID] = null;
                 RightHandSlot.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Language_Changer.Instance.GetText("Lvl") + ": " + player.RightHand.GetComponent<Item>().Level;
                 RightHandSlot.GetComponent<InventorySlot_Profile>().Equipped = true;
                 if(player.RightHand.GetComponent<Item>().Is2Handed){
@@ -138,6 +143,7 @@ public class InventoryManager : MonoBehaviour
                 player.Trinket1 = player.Inventory[InvokeID];
                 player.Trinket1.transform.SetParent(Trinket1Slot.transform);
                 player.Trinket1.transform.position = Trinket1Slot.transform.position;
+                player.Inventory[InvokeID] = null;
                 Trinket1Slot.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Language_Changer.Instance.GetText("Lvl") + ": " + player.Trinket1.GetComponent<Item>().Level;
                 Trinket1Slot.GetComponent<InventorySlot_Profile>().Equipped = true;
                 break;
@@ -147,6 +153,7 @@ public class InventoryManager : MonoBehaviour
                 player.Trinket2 = player.Inventory[InvokeID];
                 player.Trinket2.transform.SetParent(Trinket2Slot.transform);
                 player.Trinket2.transform.position = Trinket2Slot.transform.position;
+                player.Inventory[InvokeID] = null;
                 Trinket2Slot.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Language_Changer.Instance.GetText("Lvl") + ": " + player.Trinket2.GetComponent<Item>().Level;
                 Trinket2Slot.GetComponent<InventorySlot_Profile>().Equipped = true;
                 break;
@@ -298,7 +305,7 @@ public class InventoryManager : MonoBehaviour
             Equip.SetActive(true);
         }
         else{
-            if(CurrentSlot.Type=="Potion") Use.SetActive(true);
+            if(CurrentSlot.Type=="Potion" && CurrentSlot.CanBeUsedOutsideBattle) Use.SetActive(true);
             else Use.SetActive(false);
             Sell.SetActive(false);
             Equip.SetActive(false);
@@ -351,8 +358,8 @@ public class InventoryManager : MonoBehaviour
         DescriptionProfile.text = CurrentSlot.GetDescription();
         string SlotText1 = "", SlotText2 = "";
         CurrentSlot.GetStats(ref SlotText1, ref SlotText2, true);
-        DescriptionStats.text = SlotText1;
-        DescriptionStats2.text = SlotText2;
+        DescriptionStatsProfile.text = SlotText1;
+        DescriptionStatsProfile2.text = SlotText2;
     }
 
     public Item GetProfileSlot(string Slot){
@@ -384,5 +391,9 @@ public class InventoryManager : MonoBehaviour
     public void UpgradeButton_Use(){
         EquippedUpgrade(InventorySlot);
         GetDescription(InventorySlot);
+    }
+
+    public void Consumable_Use(){
+        player.Inventory[InvokeID].GetComponent<Item>().Use();
     }
 }

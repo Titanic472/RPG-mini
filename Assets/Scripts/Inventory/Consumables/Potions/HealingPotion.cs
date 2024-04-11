@@ -23,6 +23,13 @@ public class HealingPotion : Item
             Fight.Instance.PotionSlots_Reload();
         }
         Player.Instance.Heal(Modifier);
+        Player.Instance.RightHand.GetComponent<Item>().OnPotionUse();
+        Player.Instance.LeftHand.GetComponent<Item>().OnPotionUse();
+        Player.Instance.Hat.GetComponent<Item>().OnPotionUse();
+        Player.Instance.Chestplate.GetComponent<Item>().OnPotionUse();
+        Player.Instance.Boots.GetComponent<Item>().OnPotionUse();
+        Player.Instance.Trinket1.GetComponent<Item>().OnPotionUse();
+        Player.Instance.Trinket2.GetComponent<Item>().OnPotionUse();
         Player.Instance.SpeedEnergyRemove(EnergyUsage);
     }
 }

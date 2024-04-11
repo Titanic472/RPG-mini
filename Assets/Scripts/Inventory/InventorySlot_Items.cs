@@ -15,7 +15,6 @@ public class InventorySlot_Items : MonoBehaviour
     }
 
     public void SlotInformation_Update(){
-        
         if(Player.Instance.Inventory[ID]!=null){
             Item CurrentSlotScript = Player.Instance.Inventory[ID].GetComponent<Item>();
             if(CurrentSlotScript.Type!="Potion" &&  CurrentSlotScript.Type!="Consumable") transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Language_Changer.Instance.GetText("Lvl") + ": " + CurrentSlotScript.Level;

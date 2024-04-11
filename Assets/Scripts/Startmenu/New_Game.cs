@@ -23,9 +23,11 @@ public class New_Game : MonoBehaviour
     public int i;
     public Game game;
     public StopWatch StopWatch;
+    bool NewGame = false;
 
     public void OnClick()
     {
+        NewGame = true;
         if(i == 100){
             i = 0;
             text_g.SetActive(true);
@@ -60,6 +62,7 @@ public class New_Game : MonoBehaviour
         if(i == 100){
             i = 0;
             loading.SetActive(false);
+            if(NewGame)Fight.Instance.InventoryManager.Inventory_Add(10, 1, -1);
             Invoke("Menu_show", 0.1f);
         }
         else Invoke("re_move",0.005f);

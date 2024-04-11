@@ -80,7 +80,17 @@ public class EffectsManager : MonoBehaviour
         }
         else{
             Target.StatusEffects[Slot, 1] += Duration;
-            Target.StatusEffects[Slot, 2] = Target.StatusEffects[Slot, 1];
+            Target.StatusEffects[Slot, 2] = Target.StatusEffects[Slot, 1];//Inv lvl txt update
+        }
+    }
+
+    public void AddLimited(int Id, int Amount, int Limit, Entity Target){
+        for(int i = 0; i<10; ++i){
+            if(Target.StatusEffects[i, 0] == -1) Add(Id, Math.Min(Amount, Limit), Target);
+            if(Target.StatusEffects[i, 0] == Id){
+                if(Target.StatusEffects[i, 1] + Amount <= Limit) Add(Id, Amount, Target);
+                else if(Limit - Target.StatusEffects[i, 1] > 0) Add(Id, Limit - Target.StatusEffects[i, 1], Target);
+            }
         }
     }
 

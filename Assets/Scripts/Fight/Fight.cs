@@ -30,7 +30,10 @@ public class Fight : MonoBehaviour
     public float VampirsmHealPerc;
     public Sprite[] ShieldingLevelImages = new Sprite[3];
 
+    public Animator PlayerAnimator;
+
     void Awake(){
+        PlayerAnimator = PlayerAnimator.GetComponent<Animator>();
         Instance = this;
     }
 
@@ -41,7 +44,7 @@ public class Fight : MonoBehaviour
             if(player.Inventory[i] == null) break;
             if(player.Inventory[i].GetComponent<Item>().Type == "Potion"){
                 PotionSlots[Slot].SetActive(true);
-                PotionSlots[Slot].transform.Find("Image").GetComponent<Image>().sprite = player.Inventory[i].GetComponent<Image>().sprite;
+                PotionSlots[Slot].transform.Find("Image").GetComponent<Image>().sprite = player.Inventory[i].GetComponent<SpriteRenderer>().sprite;
                 Potions[Slot] = i;
                 ++Slot;
             }
@@ -71,13 +74,15 @@ public class Fight : MonoBehaviour
         }
     }
 
-    public async void PlayerPotionUse(GameObject Potion){
+    public async void PlayerPotionUse(int SlotIndex){
         if(InBattle && (MobScript.Health==0 || player.Health == 0)) return;
         if(InBattle) ButtonsActivate(false);
-        Item PotionScript = Potion.GetComponent<Item>();
+        Item PotionScript = player.Inventory[Potions[SlotIndex]].GetComponent<Item>();
         PotionScript.Use();
+        Debug.Log(PotionScript.Amount);
         if(PotionScript.Amount==0){
-            Destroy(PotionScript.GetComponent<GameObject>());
+            Destroy(player.Inventory[Potions[SlotIndex]]);
+            player.Inventory[Potions[SlotIndex]] = null;
             InventoryManager.Inventory_Reorganise();
         }
         if(InBattle){
@@ -191,10 +196,10 @@ public class Fight : MonoBehaviour
         player.DamageTaken = 0;
         player.DamageTakenByBuffs = 0;
         player.DamageBlockedByBuffs = 0;
-        Buttons[1].transform.Find("Image").GetComponent<SpriteRenderer>().sprite = InventoryManager.RightHandSlot.transform.Find("Image").GetComponent<SpriteRenderer>().sprite;
-        Buttons[1].transform.Find("Image").GetComponent<Animator>().runtimeAnimatorController = InventoryManager.RightHandSlot.transform.Find("Image").GetComponent<Animator>().runtimeAnimatorController;
-        Buttons[0].transform.Find("Image").GetComponent<SpriteRenderer>().sprite = InventoryManager.LeftHandSlot.transform.Find("Image").GetComponent<SpriteRenderer>().sprite;
-        Buttons[0].transform.Find("Image").GetComponent<Animator>().runtimeAnimatorController = InventoryManager.LeftHandSlot.transform.Find("Image").GetComponent<Animator>().runtimeAnimatorController;
+        Buttons[1].transform.Find("Image").GetComponent<SpriteRenderer>().sprite = player.RightHand.GetComponent<SpriteRenderer>().sprite;
+        Buttons[1].transform.Find("Image").GetComponent<Animator>().runtimeAnimatorController = player.RightHand.GetComponent<Animator>().runtimeAnimatorController;
+        Buttons[0].transform.Find("Image").GetComponent<SpriteRenderer>().sprite = player.LeftHand.GetComponent<SpriteRenderer>().sprite;
+        Buttons[0].transform.Find("Image").GetComponent<Animator>().runtimeAnimatorController = player.LeftHand.GetComponent<Animator>().runtimeAnimatorController;
         if(Game.MapMode){
             player.SpriteSwap();
             ModeSwitch.SetActive(false);
@@ -292,9 +297,23 @@ public class Fight : MonoBehaviour
         if(AllEntitiesAlive == false) return;
         AllEntitiesAlive = false;
         if(player.Health==0){
+            Player.Instance.RightHand.GetComponent<Item>().OnPlayerDefeat();
+            Player.Instance.LeftHand.GetComponent<Item>().OnPlayerDefeat();
+            Player.Instance.Hat.GetComponent<Item>().OnPlayerDefeat();
+            Player.Instance.Chestplate.GetComponent<Item>().OnPlayerDefeat();
+            Player.Instance.Boots.GetComponent<Item>().OnPlayerDefeat();
+            Player.Instance.Trinket1.GetComponent<Item>().OnPlayerDefeat();
+            Player.Instance.Trinket2.GetComponent<Item>().OnPlayerDefeat();
             Game.EndGame();
         }
         else {
+            Player.Instance.RightHand.GetComponent<Item>().OnEnemyKill();
+            Player.Instance.LeftHand.GetComponent<Item>().OnEnemyKill();
+            Player.Instance.Hat.GetComponent<Item>().OnEnemyKill();
+            Player.Instance.Chestplate.GetComponent<Item>().OnEnemyKill();
+            Player.Instance.Boots.GetComponent<Item>().OnEnemyKill();
+            Player.Instance.Trinket1.GetComponent<Item>().OnEnemyKill();
+            Player.Instance.Trinket2.GetComponent<Item>().OnEnemyKill();
             MobScript.LootGenerate();
         }
     }
@@ -326,6 +345,13 @@ public class Fight : MonoBehaviour
         if(MobScript.Health==0) return;
         MobScript.Attack();
         if(player.Health==0) return;
+        Player.Instance.RightHand.GetComponent<Item>().OnNextTurn();
+        Player.Instance.LeftHand.GetComponent<Item>().OnNextTurn();
+        Player.Instance.Hat.GetComponent<Item>().OnNextTurn();
+        Player.Instance.Chestplate.GetComponent<Item>().OnNextTurn();
+        Player.Instance.Boots.GetComponent<Item>().OnNextTurn();
+        Player.Instance.Trinket1.GetComponent<Item>().OnNextTurn();
+        Player.Instance.Trinket2.GetComponent<Item>().OnNextTurn();
         await Task.Delay(350);
         EffectsManager.TriggerEffects(1, player);
         EffectsManager.TriggerEffects(1, MobScript);

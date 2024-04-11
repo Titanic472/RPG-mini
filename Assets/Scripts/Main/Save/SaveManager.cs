@@ -37,35 +37,50 @@ public class SaveManager : MonoBehaviour
         {
             InventoryManager.InvokeID = 0;
             int i = 0;
-            Save.Player.Inventory[0] = Instantiate(Game.Items[Data.intPlayerItems[i]]);
-            Save.Player.Inventory[0].GetComponent<Item>().Load(Data.intPlayerItems[i+1], Data.intPlayerItems[i+2]);
-            InventoryManager.Item_Equip("Hat");
+            if(Data.intPlayerItems[i]!=-1){
+                Save.Player.Inventory[0] = Instantiate(Game.Items[Data.intPlayerItems[i]]);
+                Save.Player.Inventory[0].GetComponent<Item>().Load(Data.intPlayerItems[i+1], Data.intPlayerItems[i+2]);
+                InventoryManager.Item_Equip("Hat");
+            }
             i+=3;
-            Save.Player.Inventory[0] = Instantiate(Game.Items[Data.intPlayerItems[i]]);
-            Save.Player.Inventory[0].GetComponent<Item>().Load(Data.intPlayerItems[i+1], Data.intPlayerItems[i+2]);
-            InventoryManager.Item_Equip("Chestplate");
+            if(Data.intPlayerItems[i]!=-1){
+                Save.Player.Inventory[0] = Instantiate(Game.Items[Data.intPlayerItems[i]]);
+                Save.Player.Inventory[0].GetComponent<Item>().Load(Data.intPlayerItems[i+1], Data.intPlayerItems[i+2]);
+                InventoryManager.Item_Equip("Chestplate");
+            }
             i+=3;
-            Save.Player.Inventory[0] = Instantiate(Game.Items[Data.intPlayerItems[i]]);
-            Save.Player.Inventory[0].GetComponent<Item>().Load(Data.intPlayerItems[i+1], Data.intPlayerItems[i+2]);
-            InventoryManager.Item_Equip("Boots");
+            if(Data.intPlayerItems[i]!=-1){
+                Save.Player.Inventory[0] = Instantiate(Game.Items[Data.intPlayerItems[i]]);
+                Save.Player.Inventory[0].GetComponent<Item>().Load(Data.intPlayerItems[i+1], Data.intPlayerItems[i+2]);
+                InventoryManager.Item_Equip("Boots");
+            }
             i+=3;
-            Save.Player.Inventory[0] = Instantiate(Game.Items[Data.intPlayerItems[i]]);
-            Save.Player.Inventory[0].GetComponent<Item>().Load(Data.intPlayerItems[i+1], Data.intPlayerItems[i+2]);
-            InventoryManager.Item_Equip("RightHand");
+            if(Data.intPlayerItems[i]!=-1){
+                Save.Player.Inventory[0] = Instantiate(Game.Items[Data.intPlayerItems[i]]);
+                Save.Player.Inventory[0].GetComponent<Item>().Load(Data.intPlayerItems[i+1], Data.intPlayerItems[i+2]);
+                InventoryManager.Item_Equip("RightHand");
+            }
             i+=3;
-            Save.Player.Inventory[0] = Instantiate(Game.Items[Data.intPlayerItems[i]]);
-            Save.Player.Inventory[0].GetComponent<Item>().Load(Data.intPlayerItems[i+1], Data.intPlayerItems[i+2]);
-            InventoryManager.Item_Equip("LeftHand");
+            if(Data.intPlayerItems[i]!=-1){
+                Save.Player.Inventory[0] = Instantiate(Game.Items[Data.intPlayerItems[i]]);
+                Save.Player.Inventory[0].GetComponent<Item>().Load(Data.intPlayerItems[i+1], Data.intPlayerItems[i+2]);
+                InventoryManager.Item_Equip("LeftHand");
+            }
             i+=3;
-            Save.Player.Inventory[0] = Instantiate(Game.Items[Data.intPlayerItems[i]]);
-            Save.Player.Inventory[0].GetComponent<Item>().Load(Data.intPlayerItems[i+1], Data.intPlayerItems[i+2]);
-            InventoryManager.Item_Equip("Trinket1");
+            if(Data.intPlayerItems[i]!=-1){
+                Save.Player.Inventory[0] = Instantiate(Game.Items[Data.intPlayerItems[i]]);
+                Save.Player.Inventory[0].GetComponent<Item>().Load(Data.intPlayerItems[i+1], Data.intPlayerItems[i+2]);
+                InventoryManager.Item_Equip("Trinket1");
+            }
             i+=3;
-            Save.Player.Inventory[0] = Instantiate(Game.Items[Data.intPlayerItems[i]]);
-            Save.Player.Inventory[0].GetComponent<Item>().Load(Data.intPlayerItems[i+1], Data.intPlayerItems[i+2]);
-            InventoryManager.Item_Equip("Trinket2");
-        }
+            if(Data.intPlayerItems[i]!=-1){
+                Save.Player.Inventory[0] = Instantiate(Game.Items[Data.intPlayerItems[i]]);
+                Save.Player.Inventory[0].GetComponent<Item>().Load(Data.intPlayerItems[i+1], Data.intPlayerItems[i+2]);
+                InventoryManager.Item_Equip("Trinket2");
+        }}
+
         Save.LoadPlayer();
+        InventoryManager.Inventory_Reorganise();
         Save.LoadActiveSkills();
         Save.Player.ManaOverdrain.Check();
         Save.Player.UpdateAllStats();

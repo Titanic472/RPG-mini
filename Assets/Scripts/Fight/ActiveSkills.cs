@@ -312,5 +312,12 @@ public class ActiveSkills : MonoBehaviour
                 break;
         }
         if(CooldownTime>0)SetCooldown(SlotID-1, CooldownTime);
+        player.RightHand.GetComponent<Item>().OnActiveSkillUse();
+        player.LeftHand.GetComponent<Item>().OnActiveSkillUse();
+        player.Hat.GetComponent<Item>().OnActiveSkillUse();
+        player.Chestplate.GetComponent<Item>().OnActiveSkillUse();
+        player.Boots.GetComponent<Item>().OnActiveSkillUse();
+        player.Trinket1.GetComponent<Item>().OnActiveSkillUse();
+        player.Trinket2.GetComponent<Item>().OnActiveSkillUse();
     }
 }

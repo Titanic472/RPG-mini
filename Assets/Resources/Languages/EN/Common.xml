@@ -230,36 +230,10 @@ Unlock At Skill Tree</Unlock_At_Skill_Tree>
 	<Use>Use</Use>
 	<Max> Max</Max>
 	<Remove>Remove</Remove>
-	<Stick>Stick</Stick>
-	<Stick_Description>Best for hitting nettle</Stick_Description>
-	<Nettle_Band>Nettle Band</Nettle_Band>
-	<Nettle_Band_Description>It's definely not a good idea to put it on your head, but who will stop you?</Nettle_Band_Description>
-	<Rat_Slippers>Rat Slippers</Rat_Slippers>
-	<Rat_Slippers_Description>Very comfortable stinky slippers made from your enemies</Rat_Slippers_Description>
-	<Slimy_Chestplate>Slimy Chestplate</Slimy_Chestplate>
-	<Slimy_Chestplate_Description>Your best frieng in this cruel world</Slimy_Chestplate_Description>
-	<Decayed_Broadsword>Decayed Broadsword</Decayed_Broadsword>
-	<Decayed_Broadsword_Description>A bit of junk on a stick, but do you have a choise?</Decayed_Broadsword_Description>
-	<Old_Torn_Hood>Old Torn Hood</Old_Torn_Hood>
-	<Old_Torn_Hood_Description>It was once worn by an assassin, but has been forgotten ever since. Though ripped and dirty, may prove useful</Old_Torn_Hood_Description>
-	<Cope_Vest>Cope Vest</Cope_Vest>
-	<Cope_Vest_Description>More of a coping mechanism than an actual armor, but still gives some protection. Apparently it was built in somebody's garage</Cope_Vest_Description>
-	<Well_Worn_Jeans>Well Worn Jeans</Well_Worn_Jeans>
-	<Well_Worn_Jeans_Description>A classic kind of pants that everybody knows. It has more holes than actual fabric, but you need any kind of protection you can find</Well_Worn_Jeans_Description>
 	<Equip>Equip</Equip>
 	<Take_off>Take off</Take_off>
 	<Upgrade>Upgrade</Upgrade>
 	<Sell>Sell</Sell>
-	<Healing_Potion>Healing Potion</Healing_Potion>
-	<Healing_Potion_Description>Heals half of your max health. Allows you to live a bit longer</Healing_Potion_Description>
-	<Mana_Potion>Mana Potion</Mana_Potion>
-	<Mana_Potion_Description>Concetrated mana, restores half of your max mana</Mana_Potion_Description>
-	<Health_Regeneration_Potion>Health Regeneration Potion</Health_Regeneration_Potion>
-	<Health_Regeneration_Potion_Description>Like health potion restores your health, but it lasts for some time and heals more</Health_Regeneration_Potion_Description>
-	<Mana_Regeneration_Potion>Mana Regeneration Potion</Mana_Regeneration_Potion>
-	<Mana_Regeneration_Potion_Description>Slowly regenerates your mana</Mana_Regeneration_Potion_Description>
-	<Ironskin_Potion>Ironskin Potion</Ironskin_Potion>
-	<Ironskin_Potion_Description>Increases your defence for a short time</Ironskin_Potion_Description>
 	<Avoided>Avoided</Avoided>
 	<Parried>Parried</Parried>
 	<You_Died>You Died</You_Died>
@@ -276,8 +250,6 @@ Unlock At Skill Tree</Unlock_At_Skill_Tree>
 	<Save_and_Quit>Save and Quit</Save_and_Quit>
 	<Fullscreen>Fullscreen</Fullscreen>
 	<Windowed>Windowed</Windowed>
-	<Scimitar>Scimitar</Scimitar>
-	<Scimitar_Description>Your dad's scimitar stolen by Milk. Now it's your again</Scimitar_Description>
 	<Enemy_Stats>Enemy Stats</Enemy_Stats>
 	<Passive_Skills>Passive Skills</Passive_Skills>
 </texts>

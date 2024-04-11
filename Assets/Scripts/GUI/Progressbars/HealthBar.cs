@@ -31,6 +31,12 @@ public class HealthBar : MonoBehaviour
     }
 
     public IEnumerator HP_update(){
+        if(Target is Player){
+            if(Fight.Instance.gameObject.activeSelf){
+                if((float)Target.Health/(float)Target.MaxHealth>0.3f)Fight.Instance.PlayerAnimator.Play("Base Layer.Player");
+                else Fight.Instance.PlayerAnimator.Play("Base Layer.Player_LowHP");
+            }
+        }
         float a = Target.Health, b = Target.MaxHealth, add = 0, HP, PrevFill;
         text.text = Language_Changer.Instance.GetText("HP") + " " + Target.Health + "/" + Target.MaxHealth;
         HP = a/b;

@@ -11,7 +11,7 @@ public class Item : MonoBehaviour
     public float LevelPriceModifier = 1f;
     public int EnergyUsage = 1, UpgradeEnergyUsage, MinDefence, UpgradeMinDefence, MaxDefence, UpgradeMaxDefence, Accuracy, UpgradeAccuracy, Evasion, UpgradeEvasion, Mana, UpgradeMana, ManaUsage, UpgradeManaUsage, DamageReduction, UpgradeDamageReduction, Damage, UpgradeDamage, Health, UpgradeHealth, ManaRegen, UpgradeManaRegen, HealthRegen, UpgradeHealthRegen, ManaCost, UpgradeManaCost, ShieldingLevel;
     public float DamageModifier = 1f, UpgradeDamageModifier, DefenceModifier = 1f, UpgradeDefenceModifier, ExperienceModifier = 1f, UpgradeExperienceModifier, HealthModifier = 1f, UpgradeHealthModifier, SpeedModifier = 1f, UpgradeSpeedModifier, ManaModifier = 1f, UpgradeManaModifier, DamageResistance, UpgradeDamageResistance;
-    public bool Is2Handed = false;
+    public bool Is2Handed = false, CanBeUsedOutsideBattle = false;
     int StatsCount = 0;
 
     public virtual void Use(ref int Argument){}
@@ -25,22 +25,15 @@ public class Item : MonoBehaviour
     }
 
     public void CreateUpgradePrice(){
-        UpgradePrice = Price;
+        for(int i = 0; i<15; ++i)UpgradePrice[i] = Price[i];
         for(int i = 1; i<15; ++i)Price[i] = Price[i]/3;
-        for(int i = 1; i<15; ++i){
-            UpgradePrice[i] = Convert.ToInt32((UpgradePrice[i] + LevelPriceAdd[i]) * LevelPriceModifier);
-            if(UpgradePrice[i]>=1000){
-                UpgradePrice[i+1] = UpgradePrice[i]/1000;
-                UpgradePrice[i] = UpgradePrice[i]%1000;
-            }
-            if(UpgradePrice[0]<i && UpgradePrice[i]>0) UpgradePrice[0] = i;
-        }
+        IncreaseUpgradePrice();
     }
 
     public virtual void Upgrade(bool UseMoney = true){
         ++Level;
         int AdditionalUpgrade = 0;
-        if(Level%(6-Tier)==0)AdditionalUpgrade = 1;
+        if(Level%(6-Tier)==0) AdditionalUpgrade = 1;
         for(int i = 1; i<15; ++i){
             Price[i] += UpgradePrice[i]/3;
             if(Price[i]>=1000){
@@ -73,16 +66,20 @@ public class Item : MonoBehaviour
         Evasion += UpgradeEvasion*(1+AdditionalUpgrade);
 
         if(Tier*5<Level){//Calculate upgrade price for next level if level limit not reached
-            for(int i = 1; i<15; ++i){
-                UpgradePrice[i] = Convert.ToInt32((UpgradePrice[i] + LevelPriceAdd[i]) * LevelPriceModifier);
-                if(UpgradePrice[i]>=1000){
-                    UpgradePrice[i+1] = UpgradePrice[i]/1000;
-                    UpgradePrice[i] = UpgradePrice[i]%1000;
-                }
-                if(UpgradePrice[0]<i && UpgradePrice[i]>0) Price[0] = i;
-            }
+            IncreaseUpgradePrice();
         }
         Player.Instance.UpdateAllStats();
+    }
+
+    private void IncreaseUpgradePrice(){
+        for(int i = 1; i<15; ++i){
+            UpgradePrice[i] = Convert.ToInt32((UpgradePrice[i] + LevelPriceAdd[i]) * LevelPriceModifier);
+            if(UpgradePrice[i]>=1000){
+                UpgradePrice[i+1] = UpgradePrice[i]/1000;
+                UpgradePrice[i] = UpgradePrice[i]%1000;
+            }
+            if(UpgradePrice[0]<i && UpgradePrice[i]>0) UpgradePrice[0] = i;
+        }
     }
 
     public bool CanUpgrade(){
@@ -140,24 +137,26 @@ public class Item : MonoBehaviour
         StatsCount = 0;
         Stats1 = "";
         Stats2 = "";
-        if(MaxDefence!=0)StatsTextSet(MinDefence, UpgradeMinDefence, "Defence", ref Stats1, ref Stats2, UpgradeInformation, MaxDefence + "", (MaxDefence+UpgradeMaxDefence)+ "");
-        if(DamageReduction!=0)StatsTextSet(DamageReduction, UpgradeDamageReduction, "Defence", ref Stats1, ref Stats2, UpgradeInformation);
-        if(Damage!=0)StatsTextSet(Damage, UpgradeDamage, "Damage", ref Stats1, ref Stats2, UpgradeInformation);
-        if(ManaUsage!=0)StatsTextSet(ManaUsage, UpgradeManaUsage, "Mana", ref Stats1, ref Stats2, UpgradeInformation);
-        if(DamageResistance!=0)StatsTextSet(DamageResistance, UpgradeDamageResistance, "DamageResistance", ref Stats1, ref Stats2, UpgradeInformation);
-        if(DamageModifier!=1f)StatsTextSet(DamageModifier, UpgradeDamageModifier, "Damage", ref Stats1, ref Stats2, UpgradeInformation);
-        if(DefenceModifier!=1f)StatsTextSet(DefenceModifier, UpgradeDefenceModifier, "Defence", ref Stats1, ref Stats2, UpgradeInformation);
-        if(ExperienceModifier!=1f)StatsTextSet(ExperienceModifier, UpgradeExperienceModifier, "Arrow", ref Stats1, ref Stats2, UpgradeInformation);
-        if(HealthModifier!=1f)StatsTextSet(HealthModifier, UpgradeHealthModifier, "Health", ref Stats1, ref Stats2, UpgradeInformation);
-        if(Health!=0)StatsTextSet(Health, UpgradeHealth, "Health", ref Stats1, ref Stats2, UpgradeInformation);
-        if(SpeedModifier!=1f)StatsTextSet(SpeedModifier, UpgradeSpeedModifier, "Speed", ref Stats1, ref Stats2, UpgradeInformation);
-        if(Mana!=0)StatsTextSet(Mana, UpgradeMana, "Mana", ref Stats1, ref Stats2, UpgradeInformation);
-        if(ManaModifier!=1f)StatsTextSet(ManaModifier, UpgradeManaModifier, "Mana", ref Stats1, ref Stats2, UpgradeInformation);
-        if(ManaRegen!=0)StatsTextSet(ManaRegen, UpgradeManaRegen, "Mana", ref Stats1, ref Stats2, UpgradeInformation);
-        if(HealthRegen!=0)StatsTextSet(HealthRegen, UpgradeHealthRegen, "HealthRegen", ref Stats1, ref Stats2, UpgradeInformation);
-        if(ManaCost!=0)StatsTextSet(ManaCost, UpgradeManaCost, "Mana", ref Stats1, ref Stats2, UpgradeInformation);
-        if(Accuracy!=0)StatsTextSet(Accuracy, UpgradeAccuracy, "Accuracy", ref Stats1, ref Stats2, UpgradeInformation);
-        if(Evasion!=0)StatsTextSet(Evasion, UpgradeEvasion, "Evasion", ref Stats1, ref Stats2, UpgradeInformation);
+        int AdditionalUpgrade = 1;
+        if((Level+1)%(6-Tier)==0) AdditionalUpgrade = 2;
+        if(MaxDefence!=0)StatsTextSet(MinDefence, UpgradeMinDefence*AdditionalUpgrade, "Defence", ref Stats1, ref Stats2, UpgradeInformation, "-" + MaxDefence, "-" + (MaxDefence+UpgradeMaxDefence*AdditionalUpgrade));
+        if(DamageReduction!=0)StatsTextSet(DamageReduction, UpgradeDamageReduction*AdditionalUpgrade, "Defence", ref Stats1, ref Stats2, UpgradeInformation);
+        if(Damage!=0)StatsTextSet(Damage, UpgradeDamage*AdditionalUpgrade, "Damage", ref Stats1, ref Stats2, UpgradeInformation);
+        if(ManaUsage!=0)StatsTextSet(ManaUsage, UpgradeManaUsage*AdditionalUpgrade, "Mana", ref Stats1, ref Stats2, UpgradeInformation);
+        if(DamageResistance!=0)StatsTextSet(DamageResistance, UpgradeDamageResistance*AdditionalUpgrade, "DamageResistance", ref Stats1, ref Stats2, UpgradeInformation);
+        if(DamageModifier!=1f)StatsTextSet(DamageModifier, UpgradeDamageModifier*AdditionalUpgrade, "Damage", ref Stats1, ref Stats2, UpgradeInformation);
+        if(DefenceModifier!=1f)StatsTextSet(DefenceModifier, UpgradeDefenceModifier*AdditionalUpgrade, "Defence", ref Stats1, ref Stats2, UpgradeInformation);
+        if(ExperienceModifier!=1f)StatsTextSet(ExperienceModifier, UpgradeExperienceModifier*AdditionalUpgrade, "Arrow", ref Stats1, ref Stats2, UpgradeInformation);
+        if(HealthModifier!=1f)StatsTextSet(HealthModifier, UpgradeHealthModifier*AdditionalUpgrade, "Health", ref Stats1, ref Stats2, UpgradeInformation);
+        if(Health!=0)StatsTextSet(Health, UpgradeHealth*AdditionalUpgrade, "Health", ref Stats1, ref Stats2, UpgradeInformation);
+        if(SpeedModifier!=1f)StatsTextSet(SpeedModifier, UpgradeSpeedModifier*AdditionalUpgrade, "Speed", ref Stats1, ref Stats2, UpgradeInformation);
+        if(Mana!=0)StatsTextSet(Mana, UpgradeMana*AdditionalUpgrade, "Mana", ref Stats1, ref Stats2, UpgradeInformation);
+        if(ManaModifier!=1f)StatsTextSet(ManaModifier, UpgradeManaModifier*AdditionalUpgrade, "Mana", ref Stats1, ref Stats2, UpgradeInformation);
+        if(ManaRegen!=0)StatsTextSet(ManaRegen, UpgradeManaRegen*AdditionalUpgrade, "Mana", ref Stats1, ref Stats2, UpgradeInformation);
+        if(HealthRegen!=0)StatsTextSet(HealthRegen, UpgradeHealthRegen*AdditionalUpgrade, "HealthRegen", ref Stats1, ref Stats2, UpgradeInformation);
+        if(ManaCost!=0)StatsTextSet(ManaCost, UpgradeManaCost*AdditionalUpgrade, "Mana", ref Stats1, ref Stats2, UpgradeInformation);
+        if(Accuracy!=0)StatsTextSet(Accuracy, UpgradeAccuracy*AdditionalUpgrade, "Accuracy", ref Stats1, ref Stats2, UpgradeInformation);
+        if(Evasion!=0)StatsTextSet(Evasion, UpgradeEvasion*AdditionalUpgrade, "Evasion", ref Stats1, ref Stats2, UpgradeInformation);
     }
 
     public void StatsTextSet(float Stats, float UpgradeStats, string ImageName, ref string StatsText, ref string StatsText2, bool UpgradeInformation){
@@ -188,9 +187,11 @@ public class Item : MonoBehaviour
 
     public virtual void OnReceiveDamage(ref int Argument){}
 
+    public virtual void AfterReceiveDamage(){}
+
     public virtual void OnPotionUse(){}
 
-    public virtual void OnItemUse(){}
+    public virtual void OnItemUse(){}//Finish after adding items
 
     public virtual void OnEnemyKill(){}
 

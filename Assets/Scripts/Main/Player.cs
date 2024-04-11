@@ -375,15 +375,42 @@ public class Player : Entity
 
     public bool Crit(){
         int Chance = UnityEngine.Random.Range(0, 100);
-        if(Chance<Math.Min(MaxCritChance, Skills["Accuracy"]-mob.Evasion)) return true;
+        if(Chance<Math.Min(MaxCritChance, Skills["Accuracy"]-mob.Evasion)){
+            RightHand.GetComponent<Item>().OnCrit();
+            LeftHand.GetComponent<Item>().OnCrit();
+            Hat.GetComponent<Item>().OnCrit();
+            Chestplate.GetComponent<Item>().OnCrit();
+            Boots.GetComponent<Item>().OnCrit();
+            Trinket1.GetComponent<Item>().OnCrit();
+            Trinket2.GetComponent<Item>().OnCrit();
+            return true;
+        }
         else return false;
     }
 
     public bool Avoid(){
         int Chance = UnityEngine.Random.Range(0, 100);
-        if(Chance<Math.Min(MaxAvoidChance, Skills["Evasion"]-mob.Accuracy)) return true;
+        if(Chance<Math.Min(MaxAvoidChance, Skills["Evasion"]-mob.Accuracy)){
+            RightHand.GetComponent<Item>().OnAvoid();
+            LeftHand.GetComponent<Item>().OnAvoid();
+            Hat.GetComponent<Item>().OnAvoid();
+            Chestplate.GetComponent<Item>().OnAvoid();
+            Boots.GetComponent<Item>().OnAvoid();
+            Trinket1.GetComponent<Item>().OnAvoid();
+            Trinket2.GetComponent<Item>().OnAvoid();
+            return true;
+        }
         else Chance = UnityEngine.Random.Range(1, 101);
-        if(Chance<BuffsAvoidChance) return true;
+        if(Chance<BuffsAvoidChance){
+            RightHand.GetComponent<Item>().OnAvoid();
+            LeftHand.GetComponent<Item>().OnAvoid();
+            Hat.GetComponent<Item>().OnAvoid();
+            Chestplate.GetComponent<Item>().OnAvoid();
+            Boots.GetComponent<Item>().OnAvoid();
+            Trinket1.GetComponent<Item>().OnAvoid();
+            Trinket2.GetComponent<Item>().OnAvoid();
+            return true;
+        }
         else return false;
     }
 
@@ -456,6 +483,13 @@ public class Player : Entity
         DamageTaken += Amount;
         if(Health<0) Health = 0;
         if(ReloadHP)StartCoroutine(HealthBar.HP_update());
+        RightHand.GetComponent<Item>().AfterReceiveDamage();
+        LeftHand.GetComponent<Item>().AfterReceiveDamage();
+        Hat.GetComponent<Item>().AfterReceiveDamage();
+        Chestplate.GetComponent<Item>().AfterReceiveDamage();
+        Boots.GetComponent<Item>().AfterReceiveDamage();
+        Trinket1.GetComponent<Item>().AfterReceiveDamage();
+        Trinket2.GetComponent<Item>().AfterReceiveDamage();
         if(Health==0){
             await Task.Delay(1000);
             game.EndGame();

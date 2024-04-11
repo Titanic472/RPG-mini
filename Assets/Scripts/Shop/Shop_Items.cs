@@ -19,7 +19,8 @@ public class Shop_Items : MonoBehaviour
         gameObject.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = CurrentSlotScript.GetSellPrice();
     }
     public void OnClick(){
-        if(SelledItem.GetComponent<Item>().CanUpgrade() && player.Inventory[44] == null){
+        int FoundSlot = InventoryManager.SearchForItem(SelledItem.GetComponent<Item>().Id);
+        if(SelledItem.GetComponent<Item>().CanUpgrade() && (player.Inventory[44] == null || (FoundSlot != -1 && SelledItem.GetComponent<Item>().Type == "Potion" || SelledItem.GetComponent<Item>().Type == "Consumable"))){
             GetComponent<F_Text_Creator>().CreateText_Yellow("+1");
             
             player.MoneyRemove(SelledItem.GetComponent<Item>().Price);
