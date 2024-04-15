@@ -415,6 +415,18 @@ public class Player : Entity
     }
 
     public async void GetDamage(int Amount, bool AllowArmor = true, bool IsCrit = false, bool ReloadHP = true){
+        LeftHand.GetComponent<Item>().OnReceiveDamage(ref Amount);//Shield
+        if(Parry() && Amount > 0){
+            SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Language_Changer.Instance.GetText("Parried"));
+            Fight.Instance.EffectsManager.TriggerEffects(4, this);
+            return;
+        }
+        else if(Avoid() && Amount > 0){
+            SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Language_Changer.Instance.GetText("Avoided"));
+            Fight.Instance.EffectsManager.TriggerEffects(4, this);
+            return;
+        }
+        
         bool AllowText = true;
         if(BlockActive){
             int Chance = 0;
@@ -464,7 +476,6 @@ public class Player : Entity
                 else DamageBlockedByBuffs += BuffsDefence+Amount;
             }
             RightHand.GetComponent<Item>().OnReceiveDamage(ref Amount);//For Special Weapons
-            LeftHand.GetComponent<Item>().OnReceiveDamage(ref Amount);//Shield
             Hat.GetComponent<Item>().OnReceiveDamage(ref Amount);
             Chestplate.GetComponent<Item>().OnReceiveDamage(ref Amount);
             Boots.GetComponent<Item>().OnReceiveDamage(ref Amount);
@@ -490,9 +501,19 @@ public class Player : Entity
         Boots.GetComponent<Item>().AfterReceiveDamage();
         Trinket1.GetComponent<Item>().AfterReceiveDamage();
         Trinket2.GetComponent<Item>().AfterReceiveDamage();
+        Fight.Instance.EffectsManager.TriggerEffects(2, Fight.MobScript);
         if(Health==0){
+            Fight.Game.EndGame();
             await Task.Delay(1000);
             game.EndGame();
+            return;
+        }
+        Fight.EffectsManager.TriggerEffects(3, this);
+        if(Health==0){
+            Fight.Game.EndGame();
+            await Task.Delay(1000);
+            game.EndGame();
+            return;
         }
     }
 

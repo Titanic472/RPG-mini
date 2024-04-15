@@ -21,13 +21,8 @@ public class Milk : Mob
     }
 
     public void PowerfulAttack(){
-        bool Avoided = CheckPlayerAvoid();
-        if(!Avoided){
-            float AttackDamage = Damage*1.5f*BuffsDamageModifier;
-            player.GetDamage(Convert.ToInt32(Math.Floor(AttackDamage)), true, false);
-            TriggerEffects();
-        }
-        else Fight.EffectsManager.TriggerEffects(4, player);
+        float AttackDamage = Damage*1.5f*BuffsDamageModifier;
+        player.GetDamage(Convert.ToInt32(Math.Floor(AttackDamage)), true, false);
     }
 
     public override void LootGenerate(){

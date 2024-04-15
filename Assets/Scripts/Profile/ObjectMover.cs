@@ -12,8 +12,8 @@ public class ObjectMover : MonoBehaviour
 
     void Start(){
         speed = 0.21f;
-        maxPosition = new Vector2(6.2f, 15.16f);
-        minPosition = new Vector2(-14.3f, -13.2f);
+        //maxPosition = new Vector2(6.2f, 15.16f);
+        //minPosition = new Vector2(-14.3f, -13.2f);
         ReturnPosition = new Vector2(transform.position.x, transform.position.y);
     }
 

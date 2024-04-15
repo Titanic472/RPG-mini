@@ -67,34 +67,12 @@ public class Mob : Entity
         StartCoroutine(HealthBar.HP_update());
     }
 
-    public void TriggerEffects(){
-        Fight.EffectsManager.TriggerEffects(2, this);
-        if(player.Health==0) return;
-        Fight.EffectsManager.TriggerEffects(3, player);
-        if(player.Health==0){
-            Fight.Game.EndGame();
-            return;
-        }
-    }
-
-    public bool CheckPlayerAvoid(){
-        if(player.Parry())player.SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Language_Changer.Instance.GetText("Parried"));
-        else if(player.Avoid()) player.SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Language_Changer.Instance.GetText("Avoided"));
-        else return false;
-        return true;
-    }
-
     public void StandardAttack(){
-        bool Avoided = CheckPlayerAvoid();
-        if(!Avoided){
-            int AttackDamage = Damage;
-            AttackDamage = Convert.ToInt32(Math.Ceiling(AttackDamage*BuffsDamageModifier));
-            bool IsCrit = Crit();
-            AttackDamage += AttackDamage*Convert.ToInt32(IsCrit);
-            player.GetDamage(AttackDamage, true, IsCrit);
-            TriggerEffects();
-        }
-        else Fight.EffectsManager.TriggerEffects(4, player);
+        int AttackDamage = Damage;
+        AttackDamage = Convert.ToInt32(Math.Ceiling(AttackDamage*BuffsDamageModifier));
+        bool IsCrit = Crit();
+        AttackDamage += AttackDamage*Convert.ToInt32(IsCrit);
+        player.GetDamage(AttackDamage, true, IsCrit);
     }
 
     public bool Crit(){

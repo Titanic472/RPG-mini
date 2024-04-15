@@ -80,7 +80,7 @@ public class EffectsManager : MonoBehaviour
         }
         else{
             Target.StatusEffects[Slot, 1] += Duration;
-            Target.StatusEffects[Slot, 2] = Target.StatusEffects[Slot, 1];//Inv lvl txt update
+            Target.StatusEffects[Slot, 2] = Target.StatusEffects[Slot, 1];
         }
     }
 

@@ -324,6 +324,7 @@ public class InventoryManager : MonoBehaviour
     public void EquippedUpgrade(string Slot){
         Item CurrentSlot = GetProfileSlot(Slot);
         CurrentSlot.Upgrade();
+        CurrentSlot.gameObject.transform.parent.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Language_Changer.Instance.GetText("Lvl") + ": " + CurrentSlot.Level;
     }
 
     public void HideSprites(string Type = ""){

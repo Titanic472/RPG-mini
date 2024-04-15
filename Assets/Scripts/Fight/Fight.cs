@@ -116,6 +116,7 @@ public class Fight : MonoBehaviour
     }
 
     public void StartBattle(int MinLevel, int MaxLevel, int Location, int MobID, bool AllowSkilledTree = true){
+        StartCoroutine(player.HealthBar.HP_update());
         AllEntitiesAlive = true;
         InBattle = true;
         player.BrutalityStreak_MobAvoidChance = 0;
@@ -193,6 +194,7 @@ public class Fight : MonoBehaviour
         player.SpeedEnergy = 0;
         player.SpeedEnergyAdd();
         player.BlockActive = false;
+        player.LeftHand.GetComponent<Item>().ShieldingLevel = 0;
         player.DamageTaken = 0;
         player.DamageTakenByBuffs = 0;
         player.DamageBlockedByBuffs = 0;
