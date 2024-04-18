@@ -35,9 +35,10 @@ public class Item : MonoBehaviour
         int AdditionalUpgrade = 0;
         if(Level%(6-Tier)==0) AdditionalUpgrade = 1;
         for(int i = 1; i<15; ++i){
-            Price[i] += UpgradePrice[i]/3;
+            Price[i] += Convert.ToInt32(UpgradePrice[i]/3f);
+            if(i<14)Price[i] += Convert.ToInt32((UpgradePrice[i+1]*1000/3f)%1000);
             if(Price[i]>=1000){
-                Price[i+1] = Price[i]/1000;
+                Price[i+1] += Price[i]/1000;
                 Price[i] = Price[i]%1000;
             }
             if(Price[0]<i && Price[i]>0) Price[0] = i;
@@ -65,17 +66,28 @@ public class Item : MonoBehaviour
         Accuracy += UpgradeAccuracy*(1+AdditionalUpgrade);
         Evasion += UpgradeEvasion*(1+AdditionalUpgrade);
 
-        if(Tier*5<Level){//Calculate upgrade price for next level if level limit not reached
+        if(Tier*5>Level){//Calculate upgrade price for next level if level limit not reached
             IncreaseUpgradePrice();
         }
         Player.Instance.UpdateAllStats();
     }
 
     private void IncreaseUpgradePrice(){
+        int Cont = 0;
         for(int i = 1; i<15; ++i){
-            UpgradePrice[i] = Convert.ToInt32((UpgradePrice[i] + LevelPriceAdd[i]) * LevelPriceModifier);
+            float NewPrice = (UpgradePrice[i] + LevelPriceAdd[i]) * LevelPriceModifier;
+            UpgradePrice[i] = Convert.ToInt32(NewPrice);
+            UpgradePrice[i] += Cont;
+            Cont = 0;
+            if(i>1){
+                UpgradePrice[i-1] += Convert.ToInt32(NewPrice*1000)%1000;
+                if(UpgradePrice[i-1]>=1000){
+                UpgradePrice[i] += UpgradePrice[i-1]/1000;
+                UpgradePrice[i-1] = UpgradePrice[i-1]%1000;
+                }
+            }
             if(UpgradePrice[i]>=1000){
-                UpgradePrice[i+1] = UpgradePrice[i]/1000;
+                Cont = UpgradePrice[i]/1000;
                 UpgradePrice[i] = UpgradePrice[i]%1000;
             }
             if(UpgradePrice[0]<i && UpgradePrice[i]>0) UpgradePrice[0] = i;

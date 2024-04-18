@@ -396,5 +396,6 @@ public class InventoryManager : MonoBehaviour
 
     public void Consumable_Use(){
         player.Inventory[InvokeID].GetComponent<Item>().Use();
+        Inventory_ReloadAll();
     }
 }

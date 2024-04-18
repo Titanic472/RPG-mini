@@ -79,7 +79,6 @@ public class Fight : MonoBehaviour
         if(InBattle) ButtonsActivate(false);
         Item PotionScript = player.Inventory[Potions[SlotIndex]].GetComponent<Item>();
         PotionScript.Use();
-        Debug.Log(PotionScript.Amount);
         if(PotionScript.Amount==0){
             Destroy(player.Inventory[Potions[SlotIndex]]);
             player.Inventory[Potions[SlotIndex]] = null;
