@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 public class Player_MapSprite : Move
 {
-    public Sprite Left, Right, Front, Back;
+    public Animator MapMoveAnimator;
 
     protected override void Start(){
         base.Start();
@@ -29,10 +29,36 @@ public class Player_MapSprite : Move
 
         if(Horizontal != 0 || Vertical != 0){
             if(!IsMoving){
-                if(Horizontal==1)GetComponent<SpriteRenderer>().sprite = Right;
-                if(Horizontal==-1)GetComponent<SpriteRenderer>().sprite = Left;
-                if(Vertical==1)GetComponent<SpriteRenderer>().sprite = Back;
-                if(Vertical==-1)GetComponent<SpriteRenderer>().sprite = Front;
+                if(Horizontal==1)MapMoveAnimator.Play("Base Layer.Player_Right");
+                if(Horizontal==-1)MapMoveAnimator.Play("Base Layer.Player_Left");
+                if(Vertical==1)MapMoveAnimator.Play("Base Layer.Player_Back");
+                if(Vertical==-1)MapMoveAnimator.Play("Base Layer.Player_Front");
+            }
+            AttemptMove(Horizontal, Vertical);
+        }
+    }
+
+    public void TouchMoveControl(int Axis){//0, 1 - right/left; 2, 3 -up/down 
+        if(!AllowMove || Fight.Instance.InBattle) return;
+        else {
+            int Horizontal = 0, Vertical = 0;
+            if(!IsMoving){
+                if(Axis==0){
+                    MapMoveAnimator.Play("Base Layer.Player_Right");
+                    Horizontal = 1;
+                }
+                if(Axis==1){
+                    MapMoveAnimator.Play("Base Layer.Player_Left");
+                    Horizontal = -1;
+                }
+                if(Axis==2){
+                    MapMoveAnimator.Play("Base Layer.Player_Back");
+                    Vertical = 1;
+                }
+                if(Axis==3){
+                    MapMoveAnimator.Play("Base Layer.Player_Front");
+                    Vertical = -1;
+                }
             }
             AttemptMove(Horizontal, Vertical);
         }

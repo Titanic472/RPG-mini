@@ -16,6 +16,7 @@ public class SingleEffectPotion : Item
         Player.Instance.Boots.GetComponent<Item>().OnPotionUse();
         Player.Instance.Trinket1.GetComponent<Item>().OnPotionUse();
         Player.Instance.Trinket2.GetComponent<Item>().OnPotionUse();
+        Fight.Instance.EffectsManager.TriggerEffects(0, Player.Instance);
         Player.Instance.SpeedEnergyRemove(EnergyUsage);
     }
 }

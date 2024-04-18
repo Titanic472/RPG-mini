@@ -115,7 +115,6 @@ public class Fight : MonoBehaviour
     }
 
     public void StartBattle(int MinLevel, int MaxLevel, int Location, int MobID, bool AllowSkilledTree = true){
-        StartCoroutine(player.HealthBar.HP_update());
         AllEntitiesAlive = true;
         InBattle = true;
         player.BrutalityStreak_MobAvoidChance = 0;
@@ -209,6 +208,7 @@ public class Fight : MonoBehaviour
             GameObjects[0].SetActive(true);
             for(int i = 1; i<4;++i)GameObjects[i].SetActive(false);
         }
+        StartCoroutine(player.HealthBar.HP_update());
     }
 
     public void Mob_Create(int MinLevel, int MaxLevel, int Location, int MobID, bool AllowSkilledTree){
