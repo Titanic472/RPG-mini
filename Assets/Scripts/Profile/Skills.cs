@@ -23,10 +23,11 @@ public class Skills : MonoBehaviour
     public Camera MainCamera;
     public Player player;
     public Game game;
-    public TextMeshProUGUI SkillPointsCount;
+    public TextMeshProUGUI SkillPointsCount, BranchName, BranchInformationText0, BranchInformationText1, BranchInformationText2, BranchInformationText3, BranchInformationText4, BranchInformationText5, BranchInformationText6;
     //public GameObject Information_Skills_G, Button_Skills_G, Requirements_Skills_G, Title_Skills_G, X_G;
+    public Image BranchImage0, BranchImage1, InformationWindowSkillImage;
+    public Sprite AccuracySprite, EvasionSprite, SorcerySprite, UniversalSprite;
     public GameObject Information_Skills_BG;
-
     public int ChecklistItems = 0;
     public int EvasionMain, AccuracyMain, Practice_Plus;
     public bool HP_5_1_Magic_Tier1, MR_1_1_Magic_Tier1, BSU, EV_1_ACC_1_1_Magic_Tier1, M_1Perc_1_Magic_Tier1, Mana_10_1_Magic_Tier1, WeaponSkillChance_5Perc_1_Magic_Tier1, Mana_10_2_Magic_Tier1, MR_1_MCost_2Perc_Magic_Tier1, BS_Poison_AddDuration;
@@ -174,6 +175,62 @@ public class Skills : MonoBehaviour
                 Checklist_Remove(i);
                 --i;
             }
+        }
+    }
+
+    public void ChangeBranch(string BranchNameToSet){
+        switch(BranchNameToSet){
+            case "Sorcery":
+                BranchName.text = Language_Changer.Instance.GetText("Sorcery", "Skills");
+                BranchInformationText0.text  = "<sprite=\"Skills\" name=\"Upgrades\">";
+                BranchInformationText1.text  = "<sprite=\"Skills\" name=\"Mana\">";
+                BranchInformationText2.text  = "<sprite=\"Skills\" name=\"ManaRegen\">";
+                BranchInformationText3.text  = "<sprite=\"Skills\" name=\"ManaUsage\">";
+                BranchInformationText4.text  = "<sprite=\"Skills\" name=\"ManaPercentBoost\">";
+                BranchInformationText5.text  = "<sprite=\"Skills\" name=\"Health\">";
+                BranchInformationText6.text  = "<sprite=\"Skills\" name=\"DamageResistance\">";
+                BranchImage0.sprite = SorcerySprite;
+                BranchImage1.sprite = SorcerySprite;
+                break;
+            case "Accuracy":
+                BranchName.text = Language_Changer.Instance.GetText("Accuracy", "Skills");
+                BranchInformationText0.text  = "<sprite=\"Skills\" name=\"Upgrades\">";
+                BranchInformationText1.text  = "<sprite=\"Skills\" name=\"Accuracy\">";
+                BranchInformationText2.text  = "<sprite=\"Skills\" name=\"CritChance\">";
+                BranchInformationText3.text  = "<sprite=\"Skills\" name=\"Damage\">";
+                BranchInformationText4.text  = "<sprite=\"Skills\" name=\"DamagePercentBoost\">";
+                BranchInformationText5.text  = "<sprite=\"Skills\" name=\"Health\">";
+                BranchInformationText6.text  = "<sprite=\"Skills\" name=\"HealthPercentBoost\">";
+                BranchImage0.sprite = AccuracySprite;
+                BranchImage1.sprite = AccuracySprite;
+                break;
+            case "Evasion":
+                BranchName.text = Language_Changer.Instance.GetText("Evasion", "Skills");
+                BranchInformationText0.text  = "<sprite=\"Skills\" name=\"Upgrades\">";
+                BranchInformationText1.text  = "<sprite=\"Skills\" name=\"Evasion\">";
+                BranchInformationText2.text  = "<sprite=\"Skills\" name=\"AvoidChance\">";
+                BranchInformationText3.text  = "<sprite=\"Skills\" name=\"Stamina\">";
+                BranchInformationText4.text  = "<sprite=\"Skills\" name=\"StaminaRegen\">";
+                BranchInformationText5.text  = "<sprite=\"Skills\" name=\"DamageResistance\">";
+                BranchInformationText6.text  = "<sprite=\"Skills\" name=\"Health\">";
+                BranchImage0.sprite = EvasionSprite;
+                BranchImage1.sprite = EvasionSprite;
+                break;
+            case "Universal":
+                BranchName.text = Language_Changer.Instance.GetText("Universal_Upgrades", "Skills");
+                BranchInformationText0.text  = "<sprite=\"Skills\" name=\"Upgrades\">";
+                BranchInformationText1.text  = "<sprite=\"Skills\" name=\"UpgradesAccuracy\">";
+                BranchInformationText2.text  = "<sprite=\"Skills\" name=\"UpgradesEvasion\">";
+                BranchInformationText3.text  = "<sprite=\"Skills\" name=\"UpgradesSorcery\">";
+                BranchInformationText4.text  = "<sprite=\"Skills\" name=\"SkilledTree\">";
+                BranchInformationText5.text  = "<sprite=\"Skills\" name=\"EnchantTriggerChance\">";
+                BranchInformationText6.text  = "<sprite=\"Skills\" name=\"HealthRegen\">";
+                BranchImage0.sprite = UniversalSprite;
+                BranchImage1.sprite = UniversalSprite;
+                break;
+            default:
+                BranchName.text = "ERROR";
+                break;
         }
     }
     
