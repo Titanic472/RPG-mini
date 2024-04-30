@@ -186,3 +186,5 @@ MonoBehaviour:
   DamageResistance: 0
   UpgradeDamageResistance: 0
   Is2Handed: 0
+  CanBeUsedOutsideBattle: 0
+  CanBeUpgraded: 0

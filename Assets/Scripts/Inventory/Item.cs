@@ -11,7 +11,7 @@ public class Item : MonoBehaviour
     public float LevelPriceModifier = 1f;
     public int EnergyUsage = 1, UpgradeEnergyUsage, MinDefence, UpgradeMinDefence, MaxDefence, UpgradeMaxDefence, Accuracy, UpgradeAccuracy, Evasion, UpgradeEvasion, Mana, UpgradeMana, ManaUsage, UpgradeManaUsage, DamageReduction, UpgradeDamageReduction, Damage, UpgradeDamage, Health, UpgradeHealth, ManaRegen, UpgradeManaRegen, HealthRegen, UpgradeHealthRegen, ManaCost, UpgradeManaCost, ShieldingLevel;
     public float DamageModifier = 1f, UpgradeDamageModifier, DefenceModifier = 1f, UpgradeDefenceModifier, ExperienceModifier = 1f, UpgradeExperienceModifier, HealthModifier = 1f, UpgradeHealthModifier, SpeedModifier = 1f, UpgradeSpeedModifier, ManaModifier = 1f, UpgradeManaModifier, DamageResistance, UpgradeDamageResistance;
-    public bool Is2Handed = false, CanBeUsedOutsideBattle = false;
+    public bool Is2Handed = false, CanBeUsedOutsideBattle = false, CanBeUpgraded = true;
     int StatsCount = 0;
 
     public virtual void Use(ref int Argument){}
@@ -145,7 +145,7 @@ public class Item : MonoBehaviour
     }
 
     public virtual void GetStats(ref string Stats1, ref string Stats2, bool UpgradeInformation = false){
-        if(Level >= Tier*5)UpgradeInformation = false;
+        if(Level >= Tier*5 || !CanBeUpgraded)UpgradeInformation = false;
         StatsCount = 0;
         Stats1 = "";
         Stats2 = "";

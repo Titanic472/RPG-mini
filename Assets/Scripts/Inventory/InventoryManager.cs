@@ -290,7 +290,7 @@ public class InventoryManager : MonoBehaviour
     public void ButtonsActivate(Item CurrentSlot){
         if(CurrentSlot.Type!="Potion" &&  CurrentSlot.Type!="Consumable"){
             Use.SetActive(false);
-            if(CurrentSlot.Id!=3){
+            if(CurrentSlot.CanBeUpgraded){
                 if(CurrentSlot.Level>=CurrentSlot.Tier*5)UpgradeButton.SetActive(false);
                 else {
                     UpgradeButton.SetActive(true);
@@ -348,8 +348,9 @@ public class InventoryManager : MonoBehaviour
 
     public void GetDescription(string Slot){
         InventorySlot = Slot;
-        UpgradeButtonProfile.SetActive(true);
         Item CurrentSlot = GetProfileSlot(Slot);      
+        if(CurrentSlot.CanBeUpgraded)UpgradeButtonProfile.SetActive(true);
+        else UpgradeButtonProfile.SetActive(false);
         if(CurrentSlot.Level>=CurrentSlot.Tier*5) UpgradeButtonProfile.SetActive(false);
 
         UpgradeButtonProfile.transform.Find("text").GetComponent<TextMeshProUGUI>().text = Language_Changer.Instance.GetText("Upgrade") + "\n" + CurrentSlot.GetUpgradePrice();
