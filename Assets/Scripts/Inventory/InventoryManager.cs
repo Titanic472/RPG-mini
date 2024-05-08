@@ -396,7 +396,14 @@ public class InventoryManager : MonoBehaviour
     }
 
     public void Consumable_Use(){
-        player.Inventory[InvokeID].GetComponent<Item>().Use();
+        Item Consumable = player.Inventory[InvokeID].GetComponent<Item>();
+        Consumable.Use();
+        if(Consumable.Amount==0){
+            Destroy(player.Inventory[InvokeID]);
+            player.Inventory[InvokeID] = null;
+        }
         Inventory_ReloadAll();
+        InformationBackground.SetActive(false);
+        ShowSprites();
     }
 }

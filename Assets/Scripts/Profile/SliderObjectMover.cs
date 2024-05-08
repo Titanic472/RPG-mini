@@ -15,4 +15,8 @@ public class SliderObjectMover : MonoBehaviour
             NewPosition.x = MappedValue;
             ObjectToMove.transform.position = NewPosition;
     }
+
+    public void ChangeObjectToMove(GameObject NewObjectToMove){
+        ObjectToMove = NewObjectToMove;
+    }
 }
