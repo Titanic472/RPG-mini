@@ -119,7 +119,7 @@ public class Save : MonoBehaviour
     public void SaveSkillTree(){
         //Debug.Log("Save started: Skill Tree");
         //bool
-        Data.boolSkillTree[0] = Skills.HP_5_1_Magic_Tier1;
+        /*Data.boolSkillTree[0] = Skills.HP_5_1_Magic_Tier1;
         Data.boolSkillTree[1] = Skills.MR_1_1_Magic_Tier1;
         Data.boolSkillTree[2] = Skills.BSU;
         Data.boolSkillTree[3] = Skills.EV_1_ACC_1_1_Magic_Tier1;
@@ -1341,7 +1341,7 @@ public class Save : MonoBehaviour
         Data.stringSkills[173] = Skills.Accuracy_Tier1.EV_1_ACC_1_1.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text;
         Data.stringSkills[174] = Skills.Accuracy_Tier1.HP_5_3.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text;
         Data.stringSkills[175] = Skills.Accuracy_Tier1.HP_1Perc_1.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text;
-        //Debug.Log("Saved: Skill Tree");
+        //Debug.Log("Saved: Skill Tree");*/
     }
 
     public void LoadPlayer(){
@@ -1438,7 +1438,7 @@ public class Save : MonoBehaviour
     public void LoadSkillTree(){
         //Debug.Log("Load started: Skill Tree");
         //bool
-        Skills.HP_5_1_Magic_Tier1 = Data.boolSkillTree[0];
+        /*Skills.HP_5_1_Magic_Tier1 = Data.boolSkillTree[0];
         Skills.MR_1_1_Magic_Tier1 = Data.boolSkillTree[1];
         Skills.BSU = Data.boolSkillTree[2];
         Skills.EV_1_ACC_1_1_Magic_Tier1 = Data.boolSkillTree[3];
@@ -2660,6 +2660,6 @@ public class Save : MonoBehaviour
         Skills.Accuracy_Tier1.EV_1_ACC_1_1.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Data.stringSkills[173];
         Skills.Accuracy_Tier1.HP_5_3.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Data.stringSkills[174];
         Skills.Accuracy_Tier1.HP_1Perc_1.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Data.stringSkills[175];
-        Debug.Log("Loaded: Skill Tree");
+        Debug.Log("Loaded: Skill Tree");*/
     }
 }

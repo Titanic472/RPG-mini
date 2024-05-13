@@ -169,8 +169,8 @@ public class ActiveSkillsManager : MonoBehaviour
                 if(SkillManager.BS_NoEvasion) NoEvasion = Language_Changer.Instance.GetText("Active_Skill_6_Description_No_Evasion");
                 if(SkillManager.BS_Poison_AddDuration) PoisonDuration = "10";
                 else PoisonDuration = "5";
-                if(SkillManager.BS_UnlockWeakness){
-                    if(SkillManager.BS_Weakness_AddDuration) Weakness = string.Format(Language_Changer.Instance.GetText("Active_Skill_6_Description_Weakness"), 8);
+                if(SkillManager.BS_Weakness >=1){
+                    if(SkillManager.BS_Weakness == 2) Weakness = string.Format(Language_Changer.Instance.GetText("Active_Skill_6_Description_Weakness"), 8);
                     else Weakness = string.Format(Language_Changer.Instance.GetText("Active_Skill_6_Description_Weakness"), 5);
                 }
                 switch(SkillManager.BS_Damage){

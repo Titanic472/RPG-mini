@@ -141,8 +141,8 @@ public class ActiveSkills : MonoBehaviour
                     }
                     if(SkillManager.BS_Poison_AddDuration) Fight.EffectsManager.Add(4, 10, mob);
                     else Fight.EffectsManager.Add(4, 5, mob);
-                    if(SkillManager.BS_Weakness_AddDuration) Fight.EffectsManager.Add(6, 8, mob);
-                    else if(SkillManager.BS_UnlockWeakness) Fight.EffectsManager.Add(6, 5, mob);
+                    if(SkillManager.BS_Weakness == 2) Fight.EffectsManager.Add(6, 8, mob);
+                    else if(SkillManager.BS_Weakness == 1) Fight.EffectsManager.Add(6, 5, mob);
                     Fight.ReloadEffectImages();
                     Fight.EffectsManager.TriggerEffects(0, mob);
                     if(Chance>UnityEngine.Random.Range(0, 100)){

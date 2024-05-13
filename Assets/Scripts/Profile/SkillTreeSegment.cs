@@ -14,20 +14,54 @@ public class SkillTreeSegment : MonoBehaviour
     public TextMeshProUGUI Information_Skills, Button_Skills, Requirements_Skills, Title_Skills;
     public GameObject Information_Skills_BG;
     public string Class;
+    bool CanBeUpgraded = false;
 
-    public void Check(GameObject Object, string Name, int Case1, int CheckVal1, int Case2 = 0, int CheckVal2 = 0, int Case3 = 0, int CheckVal3 = 0, int Case4 = 0, int CheckVal4 = 0){
-        if(Case1>=CheckVal1 && Case2>=CheckVal2 && Case3>=CheckVal3 && Case4>=CheckVal4){
-            Object.transform.Find("Glowing_Yellow").gameObject.SetActive(true); 
+    public void Check(GameObject Object, string Name, int Case1, int CheckVal1, int Case2 = 0, int CheckVal2 = 0, int Case3 = 0, int CheckVal3 = 0){
+        if(Case1>=CheckVal1 && Case2>=CheckVal2 && Case3>=CheckVal3){
+            Object.GetComponent<Button>().interactable = true;
             SkillManager.IsChecked = true;
-            Type Type_InvClass = Type.GetType(Class);
-            FieldInfo IsChecked = Type_InvClass.GetField(Name + "_Checked"); 
-            IsChecked.SetValue(this , true);
+            // Type Type_InvokeClass = Type.GetType(Class); or GetType();
+            // FieldInfo IsChecked = Type_InvokeClass.GetField(Name + "_Checked"); //Searches for and changes bool "IsChecked" variable of current object
+            // IsChecked.SetValue(this , true);
         }
     }
 
-    public void GetText(string Name, string SkillName = "", string TextName = "", string DescriptionName = "", int Price = 1, char Category = ' ',  int Req_C = 0, int UpgValue = 0, float Format1 = -1, float Format2 = -1, float Format3 = -1, string StringFormat = "", string Req1 = "", int Req1Lvl = 1, string Req2 = "", int Req2Lvl = 1, string Req3 = "", int Req3Lvl = 1, string Req4 = "", int Req4Lvl = 1, bool InfiniteUpgrade = false, bool HasCheck = true, bool  HasSuffix = true, bool NeedOtherUnlock = false){
-        if(DescriptionName == "") DescriptionName = TextName + " Description";
+    public void CheckUpgrade(GameObject Object, string Name, int Case1, int CheckVal1, int Case2 = 0, int CheckVal2 = 0, int Case3 = 0, int CheckVal3 = 0, int Case4 = 0, int CheckVal4 = 0, string DescriptionKey = "", bool SplittedDescription = false, char Category = ' '){//if Splitted Description is set to false DescriptionKey cannot be empty, DescriptionKey supports only single checks
+        string Description = "";
+        if(SplittedDescription && Category == ' ') Description = Language_Changer.Instance.GetText(Name + "_CheckDescription", "Skills");
+        else if(Category != ' ') {
+            if(Category == 'A') Description = Language_Changer.Instance.GetText("AccuracyAllUpgrades", "Skills") + "\n";
+            else if(Category == 'E') Description = Language_Changer.Instance.GetText("EvasionAllUpgrades", "Skills") + "\n";
+            else if(Category == 'S') Description = Language_Changer.Instance.GetText("SorceryAllUpgrades", "Skills") + "\n";
+        }
+        else Description = Language_Changer.Instance.GetText(DescriptionKey, "Skills");
+        if(Case1>=CheckVal1){
+            Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkGreen\">", Case1);
+        }
+        else Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkRed\">", Case1);
+        if(Case2>=CheckVal2 && Case2!=0){
+            Description += string.Format(Language_Changer.Instance.GetText(Name + "_CheckDescription1", "Skills"), "<sprite=\"Checkmarks\" name=\"CheckmarkGreen\">", Case2);
+        }
+        else Description += string.Format(Language_Changer.Instance.GetText(Name + "_CheckDescription1", "Skills"), "<sprite=\"Checkmarks\" name=\"CheckmarkRed\">", Case2);
+        if(Case3>=CheckVal3 && Case3!=0){
+            Description += string.Format(Language_Changer.Instance.GetText(Name + "_CheckDescription2", "Skills"), "<sprite=\"Checkmarks\" name=\"CheckmarkGreen\">", Case3);
+        }
+        else Description += string.Format(Language_Changer.Instance.GetText(Name + "_CheckDescription2", "Skills"), "<sprite=\"Checkmarks\" name=\"CheckmarkRed\">", Case3);
+        if(Case4>=CheckVal4 && Case4!=0){
+            Description += string.Format(Language_Changer.Instance.GetText(Name + "_CheckDescription3", "Skills"), "<sprite=\"Checkmarks\" name=\"CheckmarkGreen\">", Case4);
+        }
+        else Description += string.Format(Language_Changer.Instance.GetText(Name + "_CheckDescription3", "Skills"), "<sprite=\"Checkmarks\" name=\"CheckmarkRed\">", Case4);
+        Requirements_Skills.text = Description;
+        if(Case1>=CheckVal1 && Case2>=CheckVal2 && Case3>=CheckVal3 && Case4>=CheckVal4){
+            CanBeUpgraded = true;
+        }
+        else CanBeUpgraded = false;
+    }
+
+    public void GetText(string Name, string SkillName = "", string TextName = "", string DescriptionName = "", int MaxUpgradesCount = 5, int Price1 = 1, int Price2 = -1, int Price3 = -1, int Price4 = -1, int Price5 = -1, float Format1 = -1, float Format2 = -1, float Format3 = -1, string StringFormat = "", bool HasCheck = true, bool HasSuffix = true){
+        if(DescriptionName == "") DescriptionName = TextName + "_Description";
         if(SkillName == "") SkillName = Name;
+        if(HasSuffix) SkillName += "_" + Class;
         if(Format1 == -1) Information_Skills.text = Language_Changer.Instance.GetText(DescriptionName);
         else if(Format2 == -1) Information_Skills.text = string.Format(Language_Changer.Instance.GetText(DescriptionName), Format1);
         else if(Format3 == -1) Information_Skills.text = string.Format(Language_Changer.Instance.GetText(DescriptionName), Format1, Format2);
@@ -35,35 +69,43 @@ public class SkillTreeSegment : MonoBehaviour
         if(StringFormat != "") Information_Skills.text = string.Format(Language_Changer.Instance.GetText(DescriptionName), StringFormat);
         Title_Skills.text = Language_Changer.Instance.GetText(TextName);
         
-        string Formatter_Req = "", Formatter_Price = "";
-        if(Req_C%10 >= 2 && Req_C%10 <= 4)  Formatter_Req = "s";
-        else if(Req_C%10 >= 5 || Req_C%10 == 0)  Formatter_Req = "s 5";
+        Type Type_SkillManager = SkillManager.GetType(); 
+        FieldInfo IsUpgraded = Type_SkillManager.GetField(SkillName);
+        int UpgradesCount = Convert.ToInt32(IsUpgraded.GetValue(SkillManager));
+        Invoke(Name + "_CheckUpgrade", 0f);
+
+        int Price = Price1;
+        if(MaxUpgradesCount>1 && MaxUpgradesCount<=5){
+            switch(UpgradesCount){
+                case 1:
+                    if(Price2 != -1) Price = Price2;
+                    break;
+                case 2:
+                    if(Price3 != -1) Price = Price3;
+                    break;
+                case 3:
+                    if(Price4 != -1) Price = Price4;
+                    break;
+                case 4:
+                    if(Price5 != -1) Price = Price5;
+                    break;
+                default:
+                    Debug.Log(UpgradesCount);
+                    break;
+            }
+        }
+        
+        string Formatter_Price = "";
         if(Price%10 >= 2 && Price%10 <= 4)  Formatter_Price = "s";
         else if(Price%10 >= 5 || Price%10 == 0)  Formatter_Price = "s 5";
 
-        Requirements_Skills.text = "";
-        if(Category == 'A') Requirements_Skills.text += "· " + Req_C + " " + Language_Changer.Instance.GetText("Accuracy_Point" + Formatter_Req) + "\n";
-        else if(Category == 'E') Requirements_Skills.text += "· " + Req_C + " " + Language_Changer.Instance.GetText("Evasion_Point" + Formatter_Req) + "\n";
-        else if(Category == 'M') Requirements_Skills.text += "· " + Language_Changer.Instance.GetText("Lvl") + " " + Req_C + " " + Language_Changer.Instance.GetText("Practice_Plus") + "\n";
+        if(Price!=0) Button_Skills.text = Price + " " +  Language_Changer.Instance.GetText("Skill_Point" + Formatter_Price, "Skills");
+        else Button_Skills.text = Language_Changer.Instance.GetText("Free");
 
-        if(Req1 != ""){
-            if(!NeedOtherUnlock) Requirements_Skills.text += "· " + Language_Changer.Instance.GetText("Lvl") + " " + Req1Lvl + " " + Language_Changer.Instance.GetText(Req1) + "\n";
-            else Requirements_Skills.text += "· " + Language_Changer.Instance.GetText("Unlocked") + " " + Language_Changer.Instance.GetText(Req1) + "\n";
-        }
-        if(Req2 != "") Requirements_Skills.text += "· " + Language_Changer.Instance.GetText("Lvl") + " " + Req2Lvl + " " + Language_Changer.Instance.GetText(Req2) + "\n";
-        if(Req3 != "") Requirements_Skills.text += "· " + Language_Changer.Instance.GetText("Lvl") + " " + Req3Lvl + " " + Language_Changer.Instance.GetText(Req3) + "\n";
-        if(Req4 != "") Requirements_Skills.text += "· " + Language_Changer.Instance.GetText("Lvl") + " " + Req4Lvl + " " + Language_Changer.Instance.GetText(Req4);
-        Button_Skills.text = Price + " " +  Language_Changer.Instance.GetText("Skill_Point" + Formatter_Price);
-        Type Type_SkillM = SkillManager.GetType(); 
-        Type Type_InvClass = Type.GetType(Class);
-        FieldInfo IsUpgraded;
-        if(HasSuffix) IsUpgraded = Type_SkillM.GetField(SkillName + "_" + Class);
-        else IsUpgraded = Type_SkillM.GetField(SkillName);
-        FieldInfo IsChecked = Type_InvClass.GetField(Name + "_Checked"); 
-        if(!InfiniteUpgrade){
-            if((HasCheck && player.SkillPoints>=Price && Convert.ToInt32(IsUpgraded.GetValue(SkillManager))==UpgValue && (bool)IsChecked.GetValue(this)) || (!HasCheck && player.SkillPoints>=Price && Convert.ToInt32(IsUpgraded.GetValue(SkillManager))==UpgValue)) SkillsUpgradeButton.interactable = true;
+        if(MaxUpgradesCount>0){
+            if((HasCheck && player.SkillPoints>=Price && UpgradesCount < MaxUpgradesCount && CanBeUpgraded) || (!HasCheck && player.SkillPoints>=Price && UpgradesCount < MaxUpgradesCount)) SkillsUpgradeButton.interactable = true;
             else SkillsUpgradeButton.interactable = false;
-            if(Convert.ToInt32(IsUpgraded.GetValue(SkillManager))>UpgValue) Button_Skills.text = Language_Changer.Instance.GetText("Fully_Upgraded");
+            if(UpgradesCount >= MaxUpgradesCount) Button_Skills.text = Language_Changer.Instance.GetText("Fully_Upgraded");
         }
         else if(player.SkillPoints>=Price)SkillsUpgradeButton.interactable = true;
         else SkillsUpgradeButton.interactable = false;
@@ -72,41 +114,54 @@ public class SkillTreeSegment : MonoBehaviour
         Information_Skills_BG.SetActive(true);
     }
 
-    public void Upgrade(GameObject Object, string Name, string SkillName = "", int Price = 1, string Invoke1 = "", string Invoke2 = "", bool IsBool = true, bool MoreUpgrades = false, bool HasSuffix = true){
+    public void Upgrade(GameObject Object, string Name, string SkillName = "", int Price1 = 1, int Price2 = -1, int Price3 = -1, int Price4 = -1, int Price5 = -1, string Invoke1 = "", string Invoke2 = "", bool IsBool = true, int MaxUpgradesCount = 5, bool HasSuffix = true){
         if(SkillName == "") SkillName = Name;
         if(HasSuffix) SkillName += "_" + Class;
-        player.SkillPoints-=Price;
-        Type Type_SkillM = SkillManager.GetType();
-        FieldInfo UpgradeVariable = Type_SkillM.GetField(SkillName);
+
+        Type Type_SkillManager = SkillManager.GetType(); 
+        FieldInfo UpgradeVariable = Type_SkillManager.GetField(SkillName);
+        int UpgradesCount = Convert.ToInt32(UpgradeVariable.GetValue(SkillManager));
+
+        int Price = Price1;
+        if(MaxUpgradesCount>1){
+            switch(Convert.ToInt32(UpgradeVariable.GetValue(SkillManager))){
+                case 1:
+                    if(Price2 != -1) Price = Price2;
+                    break;
+                case 2:
+                    if(Price3 != -1) Price = Price3;
+                    break;
+                case 3:
+                    if(Price4 != -1) Price = Price4;
+                    break;
+                case 4:
+                    if(Price5 != -1) Price = Price5;
+                    break;
+                default:
+                    Debug.Log(UpgradesCount + "Upgrade Method");
+                    break;
+            }
+        }
+
+        player.SkillPoints -= Price;
         if(IsBool){
             UpgradeVariable.SetValue(SkillManager , true);
-            Object.transform.Find("Glowing_Yellow").gameObject.SetActive(false);
-            Object.transform.Find("Glowing_Gold").gameObject.SetActive(true);
-            Object.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = "Max";
+            Object.transform.Find("UpgradeProgress").GetComponent<Image>().fillAmount = 1f;
         }
         else{
-            UpgradeVariable.SetValue(SkillManager, (int)UpgradeVariable.GetValue(SkillManager)+1);
-            if(!MoreUpgrades){
-                Object.transform.Find("Glowing_Yellow").gameObject.SetActive(false);
-                Object.transform.Find("Glowing_Gold").gameObject.SetActive(true);
-                Object.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = "Max";
-            }
-            else {
-                Object.transform.Find("Glowing_Yellow").gameObject.SetActive(false);
-                Object.transform.Find("Glowing_Blue").gameObject.SetActive(true);
-                Object.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = (int)UpgradeVariable.GetValue(SkillManager) + "";
-            }
+            UpgradeVariable.SetValue(SkillManager, (int)UpgradeVariable.GetValue(SkillManager) + 1);
+            Object.transform.Find("UpgradeProgress").GetComponent<Image>().fillAmount = (float)UpgradeVariable.GetValue(SkillManager)/(float)MaxUpgradesCount;
         }
         Invoke(Name + "_Text", 0f);
 
         
         SkillManager.SkillPointsCount_Update();
         if(Invoke1!=""){
-            MethodInfo method = Type_SkillM.GetMethod("Skilltree_" + Invoke1);
+            MethodInfo method = Type_SkillManager.GetMethod("Skilltree_" + Invoke1);
             method.Invoke(SkillManager, null);
         } 
         if(Invoke2!=""){
-            MethodInfo method = Type_SkillM.GetMethod("Skilltree_" + Invoke2);
+            MethodInfo method = Type_SkillManager.GetMethod("Skilltree_" + Invoke2);
             method.Invoke(SkillManager, null);
         }
     }

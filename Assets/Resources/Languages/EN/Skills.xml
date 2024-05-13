@@ -4,4 +4,7 @@
 	<Evasion>Agility</Evasion>
 	<Sorcery>Sorcery</Sorcery>
 	<Universal_Upgrades>Universal Upgrades</Universal_Upgrades>
+	<AccuracyAllUpgrades>{0} Accuracy Branch Upgrades: {1}</AccuracyAllUpgrades>
+	<EvasionAllUpgrades>{0} Agility Branch Upgrades: {1}</EvasionAllUpgrades>
+	<SorceryAllUpgrades>{0} Sorcery Branch Upgrades: {1}</SorceryAllUpgrades>
 </texts>
