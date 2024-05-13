@@ -15,6 +15,7 @@ public class SkillTreeSegment : MonoBehaviour
     public GameObject Information_Skills_BG;
     public string Class;
     bool CanBeUpgraded = false;
+    int CurrentSegmentUpgrades = 0;
 
     public void Check(GameObject Object, string Name, int Case1, int CheckVal1, int Case2 = 0, int CheckVal2 = 0, int Case3 = 0, int CheckVal3 = 0){
         if(Case1>=CheckVal1 && Case2>=CheckVal2 && Case3>=CheckVal3){
@@ -58,21 +59,24 @@ public class SkillTreeSegment : MonoBehaviour
         else CanBeUpgraded = false;
     }
 
-    public void GetText(string Name, string SkillName = "", string TextName = "", string DescriptionName = "", int MaxUpgradesCount = 5, int Price1 = 1, int Price2 = -1, int Price3 = -1, int Price4 = -1, int Price5 = -1, float Format1 = -1, float Format2 = -1, float Format3 = -1, string StringFormat = "", bool HasCheck = true, bool HasSuffix = true){
+    public void GetText(GameObject Object, string Name, string SkillName = "", string TextName = "", string DescriptionName = "", int MaxUpgradesCount = 5, int Price1 = 1, int Price2 = -1, int Price3 = -1, int Price4 = -1, int Price5 = -1, float Format1 = -1, float Format2 = -1, float Format3 = -1, string StringFormat = "", bool HasCheck = true, bool HasSuffix = true){
         if(DescriptionName == "") DescriptionName = TextName + "_Description";
         if(SkillName == "") SkillName = Name;
         if(HasSuffix) SkillName += "_" + Class;
-        if(Format1 == -1) Information_Skills.text = Language_Changer.Instance.GetText(DescriptionName);
-        else if(Format2 == -1) Information_Skills.text = string.Format(Language_Changer.Instance.GetText(DescriptionName), Format1);
-        else if(Format3 == -1) Information_Skills.text = string.Format(Language_Changer.Instance.GetText(DescriptionName), Format1, Format2);
-        else Information_Skills.text = string.Format(Language_Changer.Instance.GetText(DescriptionName), Format1, Format2, Format3);
-        if(StringFormat != "") Information_Skills.text = string.Format(Language_Changer.Instance.GetText(DescriptionName), StringFormat);
-        Title_Skills.text = Language_Changer.Instance.GetText(TextName);
+        if(Format1 == -1) Information_Skills.text = Language_Changer.Instance.GetText(DescriptionName, "Skills");
+        else if(Format2 == -1) Information_Skills.text = string.Format(Language_Changer.Instance.GetText(DescriptionName, "Skills"), Format1);
+        else if(Format3 == -1) Information_Skills.text = string.Format(Language_Changer.Instance.GetText(DescriptionName, "Skills"), Format1, Format2);
+        else Information_Skills.text = string.Format(Language_Changer.Instance.GetText(DescriptionName, "Skills"), Format1, Format2, Format3);
+        if(StringFormat != "") Information_Skills.text = string.Format(Language_Changer.Instance.GetText(DescriptionName, "Skills"), StringFormat);
+        Title_Skills.text = Language_Changer.Instance.GetText(TextName, "Skills");
         
         Type Type_SkillManager = SkillManager.GetType(); 
         FieldInfo IsUpgraded = Type_SkillManager.GetField(SkillName);
         int UpgradesCount = Convert.ToInt32(IsUpgraded.GetValue(SkillManager));
-        Invoke(Name + "_CheckUpgrade", 0f);
+        if(HasCheck)Invoke(Name + "_CheckUpgrade", 0f);
+        else Requirements_Skills.text = "";
+
+        SkillManager.InformationWindowSkillImage.sprite = Object.transform.Find("Image").GetComponent<Image>().sprite;
 
         int Price = Price1;
         if(MaxUpgradesCount>1 && MaxUpgradesCount<=5){
@@ -138,19 +142,20 @@ public class SkillTreeSegment : MonoBehaviour
                     if(Price5 != -1) Price = Price5;
                     break;
                 default:
-                    Debug.Log(UpgradesCount + "Upgrade Method");
+                    Debug.Log(UpgradesCount + " Upgrade Method");
                     break;
             }
         }
 
         player.SkillPoints -= Price;
+        ++CurrentSegmentUpgrades;
         if(IsBool){
             UpgradeVariable.SetValue(SkillManager , true);
             Object.transform.Find("UpgradeProgress").GetComponent<Image>().fillAmount = 1f;
         }
         else{
             UpgradeVariable.SetValue(SkillManager, (int)UpgradeVariable.GetValue(SkillManager) + 1);
-            Object.transform.Find("UpgradeProgress").GetComponent<Image>().fillAmount = (float)UpgradeVariable.GetValue(SkillManager)/(float)MaxUpgradesCount;
+            Object.transform.Find("UpgradeProgress").GetComponent<Image>().fillAmount = (float) Convert.ToDouble(UpgradeVariable.GetValue(SkillManager))/(float)MaxUpgradesCount;
         }
         Invoke(Name + "_Text", 0f);
 

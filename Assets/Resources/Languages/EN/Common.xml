@@ -20,17 +20,6 @@
 	<Stats>Stats</Stats>
 	<Skills>Skills</Skills>
 	<Abilities>Abilities</Abilities>
-	<EvasionMain>Base skill, allows player to avoid Enemy attacks. Avoid chance depends on agility level and some skill tree upgrades
-
-Current Agility: {0}</EvasionMain>
-	<AccuracyMain>Base skill, increases critical strike chance. Critical strike chance depends on Accuracy level and some skill tree upgrades
-
-Current Accuracy: {0}</AccuracyMain>
-	<Practice_Plus_Description>Ancient art of magic. Allows player to use spells and increases maximum mana</Practice_Plus_Description>
-	<Skill_Points>Skill Points</Skill_Points>
-	<Skill_Points_5>Skill Points</Skill_Points_5>
-	<Skill_Point>Skill Point</Skill_Point>
-	<Practice_Plus>Practice Plus</Practice_Plus>
 	<Fully_Upgraded>Fully Upgraded!</Fully_Upgraded>
 	<Additional_Health>Additional Health</Additional_Health>
 	<HP_5_Description>Increases maximum health amount by 5</HP_5_Description>
