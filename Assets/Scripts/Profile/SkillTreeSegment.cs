@@ -27,31 +27,29 @@ public class SkillTreeSegment : MonoBehaviour
         }
     }
 
-    public void CheckUpgrade(GameObject Object, string Name, int Case1, int CheckVal1, int Case2 = 0, int CheckVal2 = 0, int Case3 = 0, int CheckVal3 = 0, int Case4 = 0, int CheckVal4 = 0, string DescriptionKey = "", bool SplittedDescription = false, char Category = ' '){//if Splitted Description is set to false DescriptionKey cannot be empty, DescriptionKey supports only single checks
+    public void CheckUpgrade(GameObject Object, string Name, int Case1, int CheckVal1 = 0, int Case2 = 0, int CheckVal2 = 0, int Case3 = 0, int CheckVal3 = 0, int Case4 = 0, int CheckVal4 = 0, string DescriptionKey = "", bool SplittedDescription = false){//if Splitted Description is set to false DescriptionKey cannot be empty, DescriptionKey supports only single checks
         string Description = "";
-        if(SplittedDescription && Category == ' ') Description = Language_Changer.Instance.GetText(Name + "_CheckDescription", "Skills");
-        else if(Category != ' ') {
-            if(Category == 'A') Description = Language_Changer.Instance.GetText("AccuracyAllUpgrades", "Skills") + "\n";
-            else if(Category == 'E') Description = Language_Changer.Instance.GetText("EvasionAllUpgrades", "Skills") + "\n";
-            else if(Category == 'S') Description = Language_Changer.Instance.GetText("SorceryAllUpgrades", "Skills") + "\n";
+        if(SplittedDescription && CheckVal1 != 0) Description = Language_Changer.Instance.GetText(Name + "_CheckDescription", "Skills");
+        else if(CheckVal1 == 0) {
+            Description = Language_Changer.Instance.GetText(Class + "AllUpgrades", "Skills") + "\n";
         }
         else Description = Language_Changer.Instance.GetText(DescriptionKey, "Skills");
         if(Case1>=CheckVal1){
-            Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkGreen\">", Case1);
+            Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkGreen\">", CheckVal1);
         }
-        else Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkRed\">", Case1);
+        else Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkRed\">", CheckVal1);
         if(Case2>=CheckVal2 && Case2!=0){
-            Description += string.Format(Language_Changer.Instance.GetText(Name + "_CheckDescription1", "Skills"), "<sprite=\"Checkmarks\" name=\"CheckmarkGreen\">", Case2);
+            Description += string.Format(Language_Changer.Instance.GetText(Name + "_CheckDescription1", "Skills"), "<sprite=\"Checkmarks\" name=\"CheckmarkGreen\">", CheckVal2);
         }
-        else Description += string.Format(Language_Changer.Instance.GetText(Name + "_CheckDescription1", "Skills"), "<sprite=\"Checkmarks\" name=\"CheckmarkRed\">", Case2);
+        else Description += string.Format(Language_Changer.Instance.GetText(Name + "_CheckDescription1", "Skills"), "<sprite=\"Checkmarks\" name=\"CheckmarkRed\">", CheckVal2);
         if(Case3>=CheckVal3 && Case3!=0){
-            Description += string.Format(Language_Changer.Instance.GetText(Name + "_CheckDescription2", "Skills"), "<sprite=\"Checkmarks\" name=\"CheckmarkGreen\">", Case3);
+            Description += string.Format(Language_Changer.Instance.GetText(Name + "_CheckDescription2", "Skills"), "<sprite=\"Checkmarks\" name=\"CheckmarkGreen\">", CheckVal3);
         }
-        else Description += string.Format(Language_Changer.Instance.GetText(Name + "_CheckDescription2", "Skills"), "<sprite=\"Checkmarks\" name=\"CheckmarkRed\">", Case3);
+        else Description += string.Format(Language_Changer.Instance.GetText(Name + "_CheckDescription2", "Skills"), "<sprite=\"Checkmarks\" name=\"CheckmarkRed\">", CheckVal3);
         if(Case4>=CheckVal4 && Case4!=0){
-            Description += string.Format(Language_Changer.Instance.GetText(Name + "_CheckDescription3", "Skills"), "<sprite=\"Checkmarks\" name=\"CheckmarkGreen\">", Case4);
+            Description += string.Format(Language_Changer.Instance.GetText(Name + "_CheckDescription3", "Skills"), "<sprite=\"Checkmarks\" name=\"CheckmarkGreen\">", CheckVal4);
         }
-        else Description += string.Format(Language_Changer.Instance.GetText(Name + "_CheckDescription3", "Skills"), "<sprite=\"Checkmarks\" name=\"CheckmarkRed\">", Case4);
+        else Description += string.Format(Language_Changer.Instance.GetText(Name + "_CheckDescription3", "Skills"), "<sprite=\"Checkmarks\" name=\"CheckmarkRed\">", CheckVal4);
         Requirements_Skills.text = Description;
         if(Case1>=CheckVal1 && Case2>=CheckVal2 && Case3>=CheckVal3 && Case4>=CheckVal4){
             CanBeUpgraded = true;
@@ -59,8 +57,45 @@ public class SkillTreeSegment : MonoBehaviour
         else CanBeUpgraded = false;
     }
 
-    public void GetText(GameObject Object, string Name, string SkillName = "", string TextName = "", string DescriptionName = "", int MaxUpgradesCount = 5, int Price1 = 1, int Price2 = -1, int Price3 = -1, int Price4 = -1, int Price5 = -1, float Format1 = -1, float Format2 = -1, float Format3 = -1, string StringFormat = "", bool HasCheck = true, bool HasSuffix = true){
-        if(DescriptionName == "") DescriptionName = TextName + "_Description";
+    public void CheckUpgradeSingle(GameObject Object, string Name, int Lvl, int CheckValLvl1 = 0, int CheckValLvl2 = 0, int CheckValLvl3 = 0, int CheckValLvl4 = 0){//if Splitted Description is set to false DescriptionKey cannot be empty, DescriptionKey supports only single checks
+        string Description = Language_Changer.Instance.GetText(Class + "AllUpgrades", "Skills") + "\n";
+        CanBeUpgraded = false;
+        switch(Lvl){
+            case 0:
+                if(CurrentSegmentUpgrades>=CheckValLvl1){
+                    Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkGreen\">", CheckValLvl1);
+                    CanBeUpgraded = true;
+                }
+                else Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkRed\">", CheckValLvl1);
+                break;
+            case 1:
+                if(CurrentSegmentUpgrades>=CheckValLvl2){
+                    Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkGreen\">", CheckValLvl2);
+                    CanBeUpgraded = true;
+                }
+                else Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkRed\">", CheckValLvl2);
+                break;
+            case 2:
+                if(CurrentSegmentUpgrades>=CheckValLvl3){
+                    Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkGreen\">", CheckValLvl3);
+                    CanBeUpgraded = true;
+                }
+                else Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkRed\">", CheckValLvl3);
+                break;
+            case 3:
+                if(CurrentSegmentUpgrades>=CheckValLvl4){
+                    Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkGreen\">", CheckValLvl4);
+                    CanBeUpgraded = true;
+                }
+                else Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkRed\">", CheckValLvl4);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void GetText(GameObject Object, string Name, string SkillName = "", string TextName = "", int MaxUpgradesCount = 5, int Price1 = 1, int Price2 = -1, int Price3 = -1, int Price4 = -1, int Price5 = -1, float Format1 = -1, float Format2 = -1, float Format3 = -1, string StringFormat = "", bool HasCheck = true, bool HasSuffix = true){
+        string DescriptionName = TextName + "_Description";
         if(SkillName == "") SkillName = Name;
         if(HasSuffix) SkillName += "_" + Class;
         if(Format1 == -1) Information_Skills.text = Language_Changer.Instance.GetText(DescriptionName, "Skills");
@@ -118,7 +153,7 @@ public class SkillTreeSegment : MonoBehaviour
         Information_Skills_BG.SetActive(true);
     }
 
-    public void Upgrade(GameObject Object, string Name, string SkillName = "", int Price1 = 1, int Price2 = -1, int Price3 = -1, int Price4 = -1, int Price5 = -1, string Invoke1 = "", string Invoke2 = "", bool IsBool = true, int MaxUpgradesCount = 5, bool HasSuffix = true){
+    public void Upgrade(GameObject Object, string Name, string SkillName = "", int Price1 = 1, int Price2 = -1, int Price3 = -1, int Price4 = -1, int Price5 = -1, string Invoke1 = "", bool IsBool = false, int MaxUpgradesCount = 5, bool HasSuffix = true){
         if(SkillName == "") SkillName = Name;
         if(HasSuffix) SkillName += "_" + Class;
 
@@ -165,9 +200,9 @@ public class SkillTreeSegment : MonoBehaviour
             MethodInfo method = Type_SkillManager.GetMethod("Skilltree_" + Invoke1);
             method.Invoke(SkillManager, null);
         } 
-        if(Invoke2!=""){
+        /*if(Invoke2!=""){
             MethodInfo method = Type_SkillManager.GetMethod("Skilltree_" + Invoke2);
             method.Invoke(SkillManager, null);
-        }
+        }*/
     }
 }
