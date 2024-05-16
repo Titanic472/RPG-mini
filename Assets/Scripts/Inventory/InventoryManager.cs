@@ -247,7 +247,7 @@ public class InventoryManager : MonoBehaviour
             if(IsConsumable) player.Inventory[Slot].GetComponent<Item>().Amount = Level;
             else player.Inventory[Slot].GetComponent<Item>().LevelSet(Level);
             player.Inventory[Slot].GetComponent<Item>().EnchantmentId = EnchantmentId;
-            if(AddFightSprite) Fight.Instance.EndBattleWindow.transform.Find("LootItem").GetComponent<SpriteRenderer>().sprite = player.Inventory[Slot].GetComponent<Image>().sprite;
+            if(AddFightSprite) Fight.Instance.EndBattleWindow.transform.Find("LootItem").GetComponent<SpriteRenderer>().sprite = player.Inventory[Slot].GetComponent<SpriteRenderer>().sprite;
             Inventory_ReloadAll();
             return;
         }

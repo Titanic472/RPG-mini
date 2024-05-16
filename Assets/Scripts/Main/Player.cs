@@ -102,6 +102,8 @@ public class Player : Entity
         MaxHealth = DevTools.Instance.Health + Convert.ToInt32(Math.Ceiling(HealthModifier*(20f+Level*LevelHPBoost+Skills["BaseHealth"])));
         MaxMana = Convert.ToInt32(Math.Ceiling(ManaModifier*(Skills["Mana"] + Skills["BaseMana"])));
         AttackSpeed = (BaseAttackSpeed+1)*SpeedModifier;
+        HealthBar.Reset();
+        ManaBar.Reset();
     }
 
     public void Heal(float Modifier = 1f){
@@ -503,16 +505,16 @@ public class Player : Entity
         Trinket2.GetComponent<Item>().AfterReceiveDamage();
         Fight.Instance.EffectsManager.TriggerEffects(2, Fight.MobScript);
         if(Health==0){
-            Fight.Game.EndGame();
             await Task.Delay(1000);
-            game.EndGame();
+            if(Fight.InBattle) Fight.TriggerDeath();
+            else game.EndGame();
             return;
         }
         Fight.EffectsManager.TriggerEffects(3, this);
         if(Health==0){
-            Fight.Game.EndGame();
             await Task.Delay(1000);
-            game.EndGame();
+            if(Fight.InBattle) Fight.TriggerDeath();
+            else game.EndGame();
             return;
         }
     }

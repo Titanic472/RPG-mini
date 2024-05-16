@@ -26,6 +26,7 @@ public class Milk : Mob
     }
 
     public override void LootGenerate(){
+        Fight.EndBattle();
         if(!player.game.BossesDefeated[0]){
             Fight.InventoryManager.Inventory_Add(8, 1, -1, true);
             player.game.BossesDefeated[0] = true;
@@ -34,7 +35,7 @@ public class Milk : Mob
         }
         else Fight.EndBattleWindow.transform.Find("LootItem").GetComponent<SpriteRenderer>().sprite = Fight.InventoryManager.Empty;
         XPReward = player.NewLevelXP;
-        Fight.EndBattle();
+        
         /*int Chance = UnityEngine.Random.Range(0, 100);
         if(Chance<5){*/
     }
@@ -57,6 +58,7 @@ public class Milk : Mob
         if(IsCrit) GetComponent<F_Text_Creator>().CreateText_Red(Amount +" Crit!");
         else GetComponent<F_Text_Creator>().CreateText_Red(Amount +"");
         Health -= Amount;
+        DamageTaken += Amount;
         if(Health<0) Health = 0;
         StartCoroutine(HealthBar.HP_update());
         ActiveSkillsAddDamage = 0;//Change to if() when Precise hit Ultimate added

@@ -173,11 +173,14 @@ public class Item : MonoBehaviour
 
     public void StatsTextSet(float Stats, float UpgradeStats, string ImageName, ref string StatsText, ref string StatsText2, bool UpgradeInformation){
         if(StatsCount<3){
-            StatsText += "\n<sprite=\"Stats\" name=\"" + ImageName + "\">" + Convert.ToInt32(Stats*100) + "%";
+            if(StatsCount!=0)StatsText += "\n";
+            StatsText += "<sprite=\"Stats\" name=\"" + ImageName + "\">" + Convert.ToInt32(Stats*100) + "%";
             if(UpgradeInformation) StatsText += "<sprite=\"Stats\" name=\"Arrow\">" + Convert.ToInt32((Stats + UpgradeStats)*100) + "%";
         }
         else{
-            StatsText2 += "\n<sprite=\"Stats\" name=\"" + ImageName + "\">" + Convert.ToInt32(Stats*100) + "%";
+            if(StatsCount>3)StatsText += "\n";
+            ++StatsCount;
+            StatsText2 += "<sprite=\"Stats\" name=\"" + ImageName + "\">" + Convert.ToInt32(Stats*100) + "%";
             if(UpgradeInformation) StatsText2 += "<sprite=\"Stats\" name=\"Arrow\">" + Convert.ToInt32((Stats + UpgradeStats)*100) + "%";
         }
         ++StatsCount;
@@ -185,11 +188,14 @@ public class Item : MonoBehaviour
 
     public void StatsTextSet(int Stats, int UpgradeStats, string ImageName, ref string StatsText, ref string StatsText2, bool UpgradeInformation, string AddStats = "", string AddUpgradeStats = ""){
         if(StatsCount<3){
-            StatsText += "\n<sprite=\"Stats\" name=\"" + ImageName + "\">" + Stats + AddStats;
+            if(StatsCount!=0)StatsText += "\n";
+            StatsText += "<sprite=\"Stats\" name=\"" + ImageName + "\">" + Stats + AddStats;
             if(UpgradeInformation) StatsText += "<sprite=\"Stats\" name=\"Arrow\">" + (Stats + UpgradeStats) + AddUpgradeStats;
         }
         else{
-            StatsText2 += "\n<sprite=\"Stats\" name=\"" + ImageName + "\">" + Stats + AddStats;
+            if(StatsCount>3)StatsText += "\n";
+            ++StatsCount;
+            StatsText2 += "<sprite=\"Stats\" name=\"" + ImageName + "\">" + Stats + AddStats;
             if(UpgradeInformation) StatsText2 += "<sprite=\"Stats\" name=\"Arrow\">" + (Stats + UpgradeStats) + AddUpgradeStats;
         }
         ++StatsCount;
