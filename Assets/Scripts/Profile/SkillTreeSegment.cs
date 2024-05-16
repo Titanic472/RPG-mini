@@ -17,7 +17,7 @@ public class SkillTreeSegment : MonoBehaviour
     bool CanBeUpgraded = false;
     int CurrentSegmentUpgrades = 0;
 
-    public void Check(GameObject Object, string Name, int Case1, int CheckVal1, int Case2 = 0, int CheckVal2 = 0, int Case3 = 0, int CheckVal3 = 0){
+    /*public void Check(GameObject Object, int Case1, int CheckVal1, int Case2 = 0, int CheckVal2 = 0, int Case3 = 0, int CheckVal3 = 0){
         if(Case1>=CheckVal1 && Case2>=CheckVal2 && Case3>=CheckVal3){
             Object.GetComponent<Button>().interactable = true;
             SkillManager.IsChecked = true;
@@ -25,7 +25,7 @@ public class SkillTreeSegment : MonoBehaviour
             // FieldInfo IsChecked = Type_InvokeClass.GetField(Name + "_Checked"); //Searches for and changes bool "IsChecked" variable of current object
             // IsChecked.SetValue(this , true);
         }
-    }
+    }*/
 
     public void CheckUpgrade(GameObject Object, string Name, int Case1, int CheckVal1 = 0, int Case2 = 0, int CheckVal2 = 0, int Case3 = 0, int CheckVal3 = 0, int Case4 = 0, int CheckVal4 = 0, string DescriptionKey = "", bool SplittedDescription = false){//if Splitted Description is set to false DescriptionKey cannot be empty, DescriptionKey supports only single checks
         string Description = "";
@@ -57,7 +57,7 @@ public class SkillTreeSegment : MonoBehaviour
         else CanBeUpgraded = false;
     }
 
-    public void CheckUpgradeSingle(GameObject Object, string Name, int Lvl, int CheckValLvl1 = 0, int CheckValLvl2 = 0, int CheckValLvl3 = 0, int CheckValLvl4 = 0){//if Splitted Description is set to false DescriptionKey cannot be empty, DescriptionKey supports only single checks
+    public void CheckUpgradeSingle(GameObject Object, string Name, int Lvl, int CheckValLvl1 = 0, int CheckValLvl2 = 0, int CheckValLvl3 = 0, int CheckValLvl4 = 0){
         string Description = Language_Changer.Instance.GetText(Class + "AllUpgrades", "Skills") + "\n";
         CanBeUpgraded = false;
         switch(Lvl){
@@ -92,6 +92,7 @@ public class SkillTreeSegment : MonoBehaviour
             default:
                 break;
         }
+        Requirements_Skills.text = Description;
     }
 
     public void GetText(GameObject Object, string Name, string SkillName = "", string TextName = "", int MaxUpgradesCount = 5, int Price1 = 1, int Price2 = -1, int Price3 = -1, int Price4 = -1, int Price5 = -1, float Format1 = -1, float Format2 = -1, float Format3 = -1, string StringFormat = "", bool HasCheck = true, bool HasSuffix = true){
@@ -128,12 +129,11 @@ public class SkillTreeSegment : MonoBehaviour
                 case 4:
                     if(Price5 != -1) Price = Price5;
                     break;
-                default:
-                    Debug.Log(UpgradesCount);
+                default:  
                     break;
             }
         }
-        
+        Debug.Log(UpgradesCount);
         string Formatter_Price = "";
         if(Price%10 >= 2 && Price%10 <= 4)  Formatter_Price = "s";
         else if(Price%10 >= 5 || Price%10 == 0)  Formatter_Price = "s 5";
@@ -153,7 +153,7 @@ public class SkillTreeSegment : MonoBehaviour
         Information_Skills_BG.SetActive(true);
     }
 
-    public void Upgrade(GameObject Object, string Name, string SkillName = "", int Price1 = 1, int Price2 = -1, int Price3 = -1, int Price4 = -1, int Price5 = -1, string Invoke1 = "", bool IsBool = false, int MaxUpgradesCount = 5, bool HasSuffix = true){
+    public void Upgrade(GameObject Object, string Name, string SkillName = "", int Price1 = 1, int Price2 = -1, int Price3 = -1, int Price4 = -1, int Price5 = -1, string Invoke1 = "", bool IsBool = false, int MaxUpgradesCount = 5, bool HasSuffix = true, GameObject SetInteractable1 = null, int CheckVal1 = -1, GameObject SetInteractable2 = null, int CheckVal2 = -1, GameObject SetInteractable3 = null, int CheckVal3 = -1, GameObject SetInteractable4 = null, int CheckVal4 = -1){
         if(SkillName == "") SkillName = Name;
         if(HasSuffix) SkillName += "_" + Class;
 
@@ -204,5 +204,9 @@ public class SkillTreeSegment : MonoBehaviour
             MethodInfo method = Type_SkillManager.GetMethod("Skilltree_" + Invoke2);
             method.Invoke(SkillManager, null);
         }*/
+        if(CheckVal1>0 && Convert.ToInt32(UpgradeVariable.GetValue(SkillManager))>=CheckVal1)SetInteractable1.GetComponent<Button>().interactable = true;
+        if(CheckVal2>0 && Convert.ToInt32(UpgradeVariable.GetValue(SkillManager))>=CheckVal2)SetInteractable2.GetComponent<Button>().interactable = true;
+        if(CheckVal3>0 && Convert.ToInt32(UpgradeVariable.GetValue(SkillManager))>=CheckVal3)SetInteractable3.GetComponent<Button>().interactable = true;
+        if(CheckVal4>0 && Convert.ToInt32(UpgradeVariable.GetValue(SkillManager))>=CheckVal4)SetInteractable4.GetComponent<Button>().interactable = true;
     }
 }

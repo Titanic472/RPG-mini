@@ -22,7 +22,7 @@ public class Skills : MonoBehaviour
     public Image BranchImage0, BranchImage1, InformationWindowSkillImage;
     public Sprite AccuracySprite, EvasionSprite, SorcerySprite, UniversalSprite;
     public GameObject Information_Skills_BG;
-    public int ChecklistItems = 0;
+    //public int ChecklistItems = 0;
     public int EvasionMain, AccuracyMain, PracticePlus;
     public bool BSU, CHU, CH_Effect, VU, ManaOverdrain, BS_Poison_AddDuration, BS_NoEvasion, BS_Ultimate, CH_Ultimate_RandomDebuff, CH_Ultimate_HPPercent, V_Ultimate;
     public bool PHU, Parrying_Unlock;
@@ -42,9 +42,10 @@ public class Skills : MonoBehaviour
     public int BS_Mana = 0, BS_Cooldown = 0, BS_Damage = 0, BS_Weakness = 0, ManaOverdrain_Perc = 0, ManaOverdrain_Potion = 0, CH_Damage = 0, CH_Mana = 0, CH_Cooldown = 0, CH_Effect_EVChance = 0, CH_Effect_Damage = 0, CH_Effect_Duration = 0, V_Heal = 0, V_Damage = 0, V_EffectHeal = 0, V_Mana = 0;
     public int PH_Cooldown = 0, PH_Damage = 0, PH_WeaponSkillChance = 0, Parrying_Chance = 0, Parrying_Damage = 0, Parrying_Perc = 0;
     public int BL_ReturnDamage = 0, BL_Chance = 0, BL_Cooldown = 0, BrutalityStreak_EnergySave = 0, BrutalityStreak_AvoidChance = 0;
-    public string[,] Checklist = new string[2,50]; 
+    //public string[,] Checklist = new string[2,50]; 
     public string InvokeMethod, InvokeClass; 
-    public bool IsChecked;
+    public float Shield_MagicDefence = 0, Shield_DamageReturn = 0;
+    //public bool IsChecked;
 
     public void Upgradebutton_click(){
         Type type = Type.GetType(InvokeClass);
@@ -70,7 +71,7 @@ public class Skills : MonoBehaviour
     //Convert.ToInt32()
     //adding stats from skill tree
     public void Skilltree_Evasion(){
-        player.Skills["BaseEvasion"] = EvasionMain;// + Convert.ToInt32(EV_1_ACC_1_1_Magic_Tier1) + Convert.ToInt32(EV_1_ACC_1_2_Magic_Tier2) + Convert.ToInt32(EV_2_ACC_2_1_Magic_Tier2)*2 + Convert.ToInt32(EV_2_ACC_2_2_Magic_Tier3)*2 + Convert.ToInt32(EV_1_ACC_1_3_Magic_Tier3) + Convert.ToInt32(EV_2_ACC_2_3_Magic_Tier4)*2 + Convert.ToInt32(EV_2_ACC_2_4_Magic_Tier4)*2 + Convert.ToInt32(EV_5_ACC_5_1_Magic_Tier5)*5 + Convert.ToInt32(EV_5_ACC_5_2_Magic_Tier5)*5 + Convert.ToInt32(EV_3_1_Evasion_Tier1)*3 + Convert.ToInt32(EV_1_ACC_1_1_Evasion_Tier1) + Convert.ToInt32(EV_2_ACC_2_1_Evasion_Tier2)*2 + Convert.ToInt32(EV_3_2_Evasion_Tier2)*3 + Convert.ToInt32(EV_1_ACC_1_2_Evasion_Tier2) + Convert.ToInt32(EV_1_ACC_1_1_Accuracy_Tier1) + Convert.ToInt32(EV_1_ACC_1_2_Accuracy_Tier2) + Convert.ToInt32(EV_2_ACC_2_1_Accuracy_Tier2)*2;
+        player.Skills["BaseEvasion"] = EvasionMain;
         player.UpdateAllStats();
     }
 
@@ -80,12 +81,12 @@ public class Skills : MonoBehaviour
     }
 
     public void Skilltree_Mana(){
-        player.Skills["BaseMana"] = PracticePlus*10;
+        player.Skills["BaseMana"] = PracticePlus*10 + Mana_10_1_Sorcery*10 + Mana_10_2_Sorcery*10 + Mana_10_3_Sorcery*10 + Mana_20_1_Sorcery*20;
         player.UpdateAllStats();
     }
 
     public void Skilltree_Health(){
-        player.Skills["BaseHealth"] = 0;
+        player.Skills["BaseHealth"] = HP_5_1_Sorcery*5 + HP_10_1_Sorcery*10 + HP_10_2_Sorcery*10 + HP_10_3_Sorcery*10 + HP_15_1_Sorcery*15;
         player.UpdateAllStats();
     }
 
@@ -95,17 +96,17 @@ public class Skills : MonoBehaviour
     }
 
     public void Skilltree_ManaRegen(){
-        player.Skills["BaseManaRegen"] = 0;
+        player.Skills["BaseManaRegen"] = MR_1_1_Sorcery + MR_1_2_Sorcery + MR_2_1_Sorcery*2 + MR_2_2_Sorcery*2 + MR_3_1_Sorcery*3 + MR_3_2_Sorcery*3 + MR_3_3_Sorcery*3;
         player.UpdateAllStats();
     }
 
     public void Skilltree_ManaModifier(){
-        player.BaseManaModifier = 1f;
+        player.BaseManaModifier = 1f-(ManaUsage_1Perc_1_Sorcery + ManaUsage_1Perc_2_Sorcery + ManaUsage_1Perc_3_Sorcery + ManaUsage_3Perc_1_Sorcery*3 + ManaUsage_1Perc_4_Sorcery + ManaUsage_3Perc_2_Sorcery*3)/100f;
         player.UpdateAllStats();
     }
 
     public void Skilltree_ManaCost(){
-        player.BaseManaCost = 1f;
+        player.BaseManaCost = 1f-(Mana_2Perc_1_Sorcery*2 + Mana_2Perc_2_Sorcery*2 + Mana_2Perc_3_Sorcery*2 + Mana_1Perc_1_Sorcery + Mana_3Perc_1_Sorcery*3)/100f;
         player.UpdateAllStats();
     }
 
@@ -120,7 +121,7 @@ public class Skills : MonoBehaviour
     }
 
     public void Skilltree_DamageResistance(){
-        player.BaseDamageResistance = DevTools.Instance.Resistance;
+        player.BaseDamageResistance = (DevTools.Instance.Resistance + DMG_Resistance_1_1_Sorcery + DMG_Resistance_1_2_Sorcery)/100f;
         player.UpdateAllStats();
     }
 
@@ -146,10 +147,11 @@ public class Skills : MonoBehaviour
     }
 
     public void Skilltree_Shield(){
-        
+        Shield_MagicDefence = (Shield_MagicDef_2Perc_1*2 + Shield_MagicDef_2Perc_2*2)/100f;
+        Shield_DamageReturn = (Shield_DmgReturn_1Perc_1 + Shield_DmgReturn_1Perc_2)/100f;
     }
 
-    public void Checklist_Add(string a, string b){
+    /*public void Checklist_Add(string a, string b){
         Checklist[0, ChecklistItems] = a;
         Checklist[1, ChecklistItems] = b;
         ++ChecklistItems;
@@ -179,7 +181,7 @@ public class Skills : MonoBehaviour
                 --i;
             }
         }
-    }
+    }*/
 
     public void ChangeBranch(string BranchNameToSet){
         switch(BranchNameToSet){
