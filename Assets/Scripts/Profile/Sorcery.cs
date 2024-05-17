@@ -115,7 +115,7 @@ public class Sorcery : SkillTreeSegment
     }
 
     public void Shield_MagicDef_2Perc_1_Text(){
-        GetText(Shield_MagicDef_2Perc_1, "Shield_MagicDef_2Perc_1", TextName: "Shield_Magic_Defence", Price1: 3, Price2: 3, Price3: 4, Price4: 4, Price5: 4, Format1: 2, HasCheck: false, HasSuffix: false);
+        GetText(Shield_MagicDef_2Perc_1, "Shield_MagicDef_2Perc_1", TextName: "Shield_Magic_Defence", Price1: 3, Price2: 3, Price3: 4, Price4: 4, Price5: 4, Format1: 2, Format2: SkillManager.Shield_MagicDefence*100, HasCheck: false, HasSuffix: false);
     }
 
     public void Shield_MagicDef_2Perc_1_Upgrade(){
@@ -123,7 +123,7 @@ public class Sorcery : SkillTreeSegment
     }
 
     public void Shield_MagicDef_2Perc_2_Text(){
-        GetText(Shield_MagicDef_2Perc_2, "Shield_MagicDef_2Perc_2", TextName: "Shield_Magic_Defence", Price1: 4, Price2: 4, Price3: 5, Price4: 5, Price5: 5, Format1: 2, HasCheck: false, HasSuffix: false);
+        GetText(Shield_MagicDef_2Perc_2, "Shield_MagicDef_2Perc_2", TextName: "Shield_Magic_Defence", Price1: 4, Price2: 4, Price3: 5, Price4: 5, Price5: 5, Format1: 2, Format2: SkillManager.Shield_MagicDefence*100, HasCheck: false, HasSuffix: false);
     }
 
     public void Shield_MagicDef_2Perc_2_Upgrade(){
@@ -131,7 +131,7 @@ public class Sorcery : SkillTreeSegment
     }
 
     public void Shield_DmgReturn_1Perc_1_Text(){
-        GetText(Shield_DmgReturn_1Perc_1, "Shield_DmgReturn_1Perc_1", TextName: "Shield_Damage_Return", Price1: 3, Price2: 3, Price3: 4, Price4: 4, Price5: 4, Format1: 1, HasCheck: false, HasSuffix: false);
+        GetText(Shield_DmgReturn_1Perc_1, "Shield_DmgReturn_1Perc_1", TextName: "Shield_Damage_Return", Price1: 3, Price2: 3, Price3: 4, Price4: 4, Price5: 4, Format1: 1, Format2: SkillManager.Shield_DamageReturn*100, HasCheck: false, HasSuffix: false);
     }
 
     public void Shield_DmgReturn_1Perc_1_Upgrade(){
@@ -139,7 +139,7 @@ public class Sorcery : SkillTreeSegment
     }
 
     public void Shield_DmgReturn_1Perc_2_Text(){
-        GetText(Shield_DmgReturn_1Perc_2, "Shield_DmgReturn_1Perc_2", TextName: "Shield_Damage_Return", Price1: 4, Price2: 4, Price3: 5, Price4: 5, Price5: 5, Format1: 1, HasCheck: false, HasSuffix: false);
+        GetText(Shield_DmgReturn_1Perc_2, "Shield_DmgReturn_1Perc_2", TextName: "Shield_Damage_Return", Price1: 4, Price2: 4, Price3: 5, Price4: 5, Price5: 5, Format1: 1, Format2: SkillManager.Shield_DamageReturn*100, HasCheck: false, HasSuffix: false);
     }
 
     public void Shield_DmgReturn_1Perc_2_Upgrade(){
@@ -734,7 +734,7 @@ public class Sorcery : SkillTreeSegment
     }
 
     public void BS_NoEvasion_Text(){
-        GetText(BS_NoEvasion, "BS_NoEvasion", TextName: "Perfect_Accuracy", MaxUpgradesCount: 1, Price1: 1, HasCheck: false, HasSuffix: false);
+        GetText(BS_NoEvasion, "BS_NoEvasion", TextName: "Perfect_Accuracy", MaxUpgradesCount: 1, Price1: 1, HasCheck: true, HasSuffix: false);
     }
 
     public void BS_NoEvasion_Upgrade(){

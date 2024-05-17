@@ -123,12 +123,12 @@ Your current maximum avoid chance: {1}%</Avoid_Chance_Description>
 	<Precise_Damage_Description>Precise Hit now deals +{0}% Damage</Precise_Damage_Description>
 	<Precise_Cooldown>Precise Cooldown</Precise_Cooldown>
 	<Precise_Cooldown_Description>Reduces Precise Hit cooldown to {0} turns</Precise_Cooldown_Description>
-	<Parrying_Unlock>Parrying Unlock</Parrying_Unlock>
-	<Parrying_Unlock_Description>Parrying allows you to avoid avery Enemy attack. Parry chance increases by 1% Every time you take damage</Parrying_Unlock_Description>
-	<Parrying_Chance>Parrying Chance</Parrying_Chance>
-	<Parrying_Chance_Description>Parrying chance increases every time you take damage by {0}%</Parrying_Chance_Description>
-	<Painful_Parrying>Painful Parrying</Painful_Parrying>
-	<Painful_Parrying_Description>Parrying chance increases every time you take damage by {0}% of damage taken</Painful_Parrying_Description>
+	<Parry_Unlock>Parry Unlock</Parry_Unlock>
+	<Parry_Unlock_Description>Parry allows you to avoid avery Enemy attack. Parry chance increases by 1% Every time you take damage</Parry_Unlock_Description>
+	<Parry_Chance>Parry Chance</Parry_Chance>
+	<Parry_Chance_Description>Parry chance increases every time you take damage by {0}%</Parry_Chance_Description>
+	<Painful_Parry>Painful Parry</Painful_Parry>
+	<Painful_Parry_Description>Parry chance increases every time you take damage by {0}% of damage taken</Painful_Parry_Description>
 	<Precise_Enchants>Precise Enchants</Precise_Enchants>
 	<Precise_Enchants_Description>Precise Hit now have {0}% chance to trigger weapon enchant</Precise_Enchants_Description>
 	<Max_Critical_Strike_Chance>Max Critical Strike Chance</Max_Critical_Strike_Chance>

@@ -28,9 +28,9 @@ public class ObjectMover : MonoBehaviour
             transform.position = new Vector3(Mathf.Clamp(transform.position.x, minPosition.x, maxPosition.x), Mathf.Clamp(transform.position.y, minPosition.y, maxPosition.y),0);
         }
     }
-    public void CameraReset(){
+    public void CameraReset(bool SetPosition = false){
         CameraMoveEnabled = false;
-        transform.position = ReturnPosition;
+        if(SetPosition)transform.position = ReturnPosition;
     }
 
     public void EnableMove(){ //WHY UNITY CAN'T CHANGE BOOL VALUE???

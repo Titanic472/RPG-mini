@@ -101,12 +101,12 @@ public class Skills : MonoBehaviour
     }
 
     public void Skilltree_ManaModifier(){
-        player.BaseManaModifier = 1f-(ManaUsage_1Perc_1_Sorcery + ManaUsage_1Perc_2_Sorcery + ManaUsage_1Perc_3_Sorcery + ManaUsage_3Perc_1_Sorcery*3 + ManaUsage_1Perc_4_Sorcery + ManaUsage_3Perc_2_Sorcery*3)/100f;
+        player.BaseManaModifier = 1f+(Mana_2Perc_1_Sorcery*2 + Mana_2Perc_2_Sorcery*2 + Mana_2Perc_3_Sorcery*2 + Mana_1Perc_1_Sorcery + Mana_3Perc_1_Sorcery*3)/100f;
         player.UpdateAllStats();
     }
 
     public void Skilltree_ManaCost(){
-        player.BaseManaCost = 1f-(Mana_2Perc_1_Sorcery*2 + Mana_2Perc_2_Sorcery*2 + Mana_2Perc_3_Sorcery*2 + Mana_1Perc_1_Sorcery + Mana_3Perc_1_Sorcery*3)/100f;
+        player.BaseManaCost = 1f-(ManaUsage_1Perc_1_Sorcery + ManaUsage_1Perc_2_Sorcery + ManaUsage_1Perc_3_Sorcery + ManaUsage_3Perc_1_Sorcery*3 + ManaUsage_1Perc_4_Sorcery + ManaUsage_3Perc_2_Sorcery*3)/100f;
         player.UpdateAllStats();
     }
 
@@ -187,13 +187,13 @@ public class Skills : MonoBehaviour
         switch(BranchNameToSet){
             case "Sorcery":
                 BranchName.text = Language_Changer.Instance.GetText("Sorcery", "Skills");
-                BranchInformationText0.text  = "<sprite=\"Skills\" name=\"Upgrades\">";
-                BranchInformationText1.text  = "<sprite=\"Skills\" name=\"Mana\">";
-                BranchInformationText2.text  = "<sprite=\"Skills\" name=\"ManaRegen\">";
-                BranchInformationText3.text  = "<sprite=\"Skills\" name=\"ManaUsage\">";
-                BranchInformationText4.text  = "<sprite=\"Skills\" name=\"ManaPercentBoost\">";
-                BranchInformationText5.text  = "<sprite=\"Skills\" name=\"Health\">";
-                BranchInformationText6.text  = "<sprite=\"Skills\" name=\"DamageResistance\">";
+                BranchInformationText0.text  = "<sprite=\"Skills\" name=\"Upgrades\">" + Sorcery.CurrentSegmentUpgrades;
+                BranchInformationText1.text  = "<sprite=\"Skills\" name=\"Mana\">" + player.Skills["BaseMana"];
+                BranchInformationText2.text  = "<sprite=\"Skills\" name=\"ManaRegen\">" + player.Skills["BaseManaRegen"];
+                BranchInformationText3.text  = "<sprite=\"Skills\" name=\"ManaUsage\">" + player.BaseManaCost*100 + "%";
+                BranchInformationText4.text  = "<sprite=\"Skills\" name=\"Mana2\">" + player.BaseManaModifier*100 + "%";
+                BranchInformationText5.text  = "<sprite=\"Skills\" name=\"Health\">" + (HP_5_1_Sorcery*5 + HP_10_1_Sorcery*10 + HP_10_2_Sorcery*10 + HP_10_3_Sorcery*10 + HP_15_1_Sorcery*15);
+                BranchInformationText6.text  = "<sprite=\"Skills\" name=\"DamageResistance\">" + (DMG_Resistance_1_1_Sorcery + DMG_Resistance_1_2_Sorcery) + "%";
                 BranchImage0.sprite = SorcerySprite;
                 BranchImage1.sprite = SorcerySprite;
                 break;

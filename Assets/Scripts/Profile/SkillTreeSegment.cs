@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System;
+using System.Threading.Tasks;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
@@ -14,8 +15,8 @@ public class SkillTreeSegment : MonoBehaviour
     public TextMeshProUGUI Information_Skills, Button_Skills, Requirements_Skills, Title_Skills;
     public GameObject Information_Skills_BG;
     public string Class;
-    bool CanBeUpgraded = false;
-    int CurrentSegmentUpgrades = 0;
+    bool CanBeUpgraded = false, WaitUntilChecked = false;
+    public int CurrentSegmentUpgrades = 0;
 
     /*public void Check(GameObject Object, int Case1, int CheckVal1, int Case2 = 0, int CheckVal2 = 0, int Case3 = 0, int CheckVal3 = 0){
         if(Case1>=CheckVal1 && Case2>=CheckVal2 && Case3>=CheckVal3){
@@ -93,9 +94,10 @@ public class SkillTreeSegment : MonoBehaviour
                 break;
         }
         Requirements_Skills.text = Description;
+        WaitUntilChecked = false;//Yes, no very good idea, but works
     }
 
-    public void GetText(GameObject Object, string Name, string SkillName = "", string TextName = "", int MaxUpgradesCount = 5, int Price1 = 1, int Price2 = -1, int Price3 = -1, int Price4 = -1, int Price5 = -1, float Format1 = -1, float Format2 = -1, float Format3 = -1, string StringFormat = "", bool HasCheck = true, bool HasSuffix = true){
+    public async void GetText(GameObject Object, string Name, string SkillName = "", string TextName = "", int MaxUpgradesCount = 5, int Price1 = 1, int Price2 = -1, int Price3 = -1, int Price4 = -1, int Price5 = -1, float Format1 = -1, float Format2 = -1, float Format3 = -1, string StringFormat = "", bool HasCheck = true, bool HasSuffix = true){
         string DescriptionName = TextName + "_Description";
         if(SkillName == "") SkillName = Name;
         if(HasSuffix) SkillName += "_" + Class;
@@ -109,10 +111,14 @@ public class SkillTreeSegment : MonoBehaviour
         Type Type_SkillManager = SkillManager.GetType(); 
         FieldInfo IsUpgraded = Type_SkillManager.GetField(SkillName);
         int UpgradesCount = Convert.ToInt32(IsUpgraded.GetValue(SkillManager));
-        if(HasCheck)Invoke(Name + "_CheckUpgrade", 0f);
-        else Requirements_Skills.text = "";
-
         SkillManager.InformationWindowSkillImage.sprite = Object.transform.Find("Image").GetComponent<Image>().sprite;
+        
+        WaitUntilChecked = true;
+        if(HasCheck && MaxUpgradesCount>UpgradesCount){
+            Invoke(Name + "_CheckUpgrade", 0f);
+            while(WaitUntilChecked)await Task.Delay(50);
+        }
+        else Requirements_Skills.text = "";
 
         int Price = Price1;
         if(MaxUpgradesCount>1 && MaxUpgradesCount<=5){
@@ -133,7 +139,6 @@ public class SkillTreeSegment : MonoBehaviour
                     break;
             }
         }
-        Debug.Log(UpgradesCount);
         string Formatter_Price = "";
         if(Price%10 >= 2 && Price%10 <= 4)  Formatter_Price = "s";
         else if(Price%10 >= 5 || Price%10 == 0)  Formatter_Price = "s 5";
@@ -141,13 +146,9 @@ public class SkillTreeSegment : MonoBehaviour
         if(Price!=0) Button_Skills.text = Price + " " +  Language_Changer.Instance.GetText("Skill_Point" + Formatter_Price, "Skills");
         else Button_Skills.text = Language_Changer.Instance.GetText("Free");
 
-        if(MaxUpgradesCount>0){
-            if((HasCheck && player.SkillPoints>=Price && UpgradesCount < MaxUpgradesCount && CanBeUpgraded) || (!HasCheck && player.SkillPoints>=Price && UpgradesCount < MaxUpgradesCount)) SkillsUpgradeButton.interactable = true;
-            else SkillsUpgradeButton.interactable = false;
-            if(UpgradesCount >= MaxUpgradesCount) Button_Skills.text = Language_Changer.Instance.GetText("Fully_Upgraded");
-        }
-        else if(player.SkillPoints>=Price)SkillsUpgradeButton.interactable = true;
+        if((HasCheck && player.SkillPoints>=Price && UpgradesCount < MaxUpgradesCount && CanBeUpgraded) || (!HasCheck && player.SkillPoints>=Price && UpgradesCount < MaxUpgradesCount)) SkillsUpgradeButton.interactable = true;
         else SkillsUpgradeButton.interactable = false;
+        if(UpgradesCount >= MaxUpgradesCount) Button_Skills.text = Language_Changer.Instance.GetText("Fully_Upgraded");
         SkillManager.InvokeClass = Class;
         SkillManager.InvokeMethod = Name;
         Information_Skills_BG.SetActive(true);
@@ -177,7 +178,6 @@ public class SkillTreeSegment : MonoBehaviour
                     if(Price5 != -1) Price = Price5;
                     break;
                 default:
-                    Debug.Log(UpgradesCount + " Upgrade Method");
                     break;
             }
         }
@@ -208,5 +208,6 @@ public class SkillTreeSegment : MonoBehaviour
         if(CheckVal2>0 && Convert.ToInt32(UpgradeVariable.GetValue(SkillManager))>=CheckVal2)SetInteractable2.GetComponent<Button>().interactable = true;
         if(CheckVal3>0 && Convert.ToInt32(UpgradeVariable.GetValue(SkillManager))>=CheckVal3)SetInteractable3.GetComponent<Button>().interactable = true;
         if(CheckVal4>0 && Convert.ToInt32(UpgradeVariable.GetValue(SkillManager))>=CheckVal4)SetInteractable4.GetComponent<Button>().interactable = true;
+        SkillManager.ChangeBranch(Class);
     }
 }
