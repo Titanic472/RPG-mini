@@ -8,6 +8,7 @@ public class Sorcery : SkillTreeSegment
 {
     public GameObject PracticePlus, BSU, MR_1_1, Mana_10_1, ManaOverdrain, ManaOverdrain_Perc, ManaOverdrain_Potion, Shield_MagicDef_2Perc_1, Shield_MagicDef_2Perc_2, Shield_DmgReturn_1Perc_1, Shield_DmgReturn_1Perc_2, Mana_10_2, Mana_1Perc_1, Mana_2Perc_1, HP_5_1, MR_1_2, ManaUsage_1Perc_1, MR_2_1, DMG_Resistance_1_1, Mana_10_3, ManaUsage_1Perc_2, Mana_2Perc_2, Mana_20_1, ManaUsage_1Perc_3, Mana_3Perc_1, Mana_2Perc_3, ManaUsage_3Perc_1, HP_10_1, ManaUsage_1Perc_4, MR_2_2, HP_10_2, MR_3_1, MR_3_2, HP_10_3, ManaUsage_3Perc_2, MR_3_3, HP_15_1, DMG_Resistance_1_2, BS_Mana, BS_Damage, BS_Cooldown, BS_Poison_AddDuration, BS_Weakness, CHU, CH_Cooldown, CH_Mana, CH_Damage, CH_Effect, CH_Effect_EVChance, CH_Effect_Damage, CH_Effect_Duration, VU, V_Mana, V_EffectHeal, V_Damage, V_Heal, BS_NoEvasion;
     int SkillsUpgradeCost;
+    
     void Awake(){
         Class = "Sorcery";
     }
