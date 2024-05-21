@@ -148,38 +148,38 @@ public class Fight : MonoBehaviour
                 player.BrutalityStreak_AddDamage = 0.01f;
                 break;
         }}
-        if(SkillManager.Parrying_Unlock){
-        switch(SkillManager.Parrying_Chance){
+        if(SkillManager.Parry_Unlock){
+        switch(SkillManager.Parry_Chance){
             case 1:
-                player.Parrying_Chance = 2;
+                player.Parry_Chance = 2;
                 break;
             case 2:
-                player.Parrying_Chance = 3;
+                player.Parry_Chance = 3;
                 break;
             default:
-                player.Parrying_Chance = 1;
+                player.Parry_Chance = 1;
                 break;
         }
-        switch(SkillManager.Parrying_Perc){
+        switch(SkillManager.Parry_Perc){
             case 1:
-                player.Parrying_RemovePercent = 0.9f;
+                player.Parry_RemovePercent = 0.9f;
                 break;
             case 2:
-                player.Parrying_RemovePercent = 0.75f;
+                player.Parry_RemovePercent = 0.75f;
                 break;
             default:
-                player.Parrying_RemovePercent = 1f;
+                player.Parry_RemovePercent = 1f;
                 break;
         }
-        switch(SkillManager.Parrying_Damage){
+        switch(SkillManager.Parry_Damage){
             case 1:
-                player.Parrying_DamagePercent = 5;
+                player.Parry_DamagePercent = 5;
                 break;
             case 2:
-                player.Parrying_DamagePercent = 10;
+                player.Parry_DamagePercent = 10;
                 break;
             default:
-                player.Parrying_DamagePercent = 0;
+                player.Parry_DamagePercent = 0;
                 break;
         }}
         Mob_Create(MinLevel, MaxLevel, Location, MobID, AllowSkilledTree);
@@ -450,7 +450,7 @@ public class Fight : MonoBehaviour
                 break;
             case "PassiveSkillsStats":
                 PassiveSkillsStats.text = "<sprite=\"PassiveSkills\" name=\"BrutalityStreak\"> " + (player.BrutalityStreak_AddDamageAll*100).ToString("0.00") + "%\n";
-                PassiveSkillsStats.text += "<sprite=\"PassiveSkills\" name=\"Parry\"> " + player.Parrying_ChanceAll.ToString("0.00") + "%\n";
+                PassiveSkillsStats.text += "<sprite=\"PassiveSkills\" name=\"Parry\"> " + player.Parry_ChanceAll.ToString("0.00") + "%\n";
                 PassiveSkillsStats.text += "<sprite=\"PassiveSkills\" name=\"ManaOverdrain\"> " + player.ManaOverdrain.MovesLeft;
                 break;
             default:

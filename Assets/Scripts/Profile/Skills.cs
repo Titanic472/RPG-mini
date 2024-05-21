@@ -25,7 +25,7 @@ public class Skills : MonoBehaviour
     //public int ChecklistItems = 0;
     public int EvasionMain, AccuracyMain, PracticePlus;
     public bool BSU, CHU, CH_Effect, VU, ManaOverdrain, BS_Poison_AddDuration, BS_NoEvasion, BS_Ultimate, CH_Ultimate_RandomDebuff, CH_Ultimate_HPPercent, V_Ultimate;
-    public bool PHU, Parrying_Unlock;
+    public bool PHU, Parry_Unlock;
     public bool BLU, BrutalityStreak_Unlock;
     public int Shield_MagicDef_2Perc_1, Shield_MagicDef_2Perc_2, Shield_DmgReturn_1Perc_1, Shield_DmgReturn_1Perc_2;
     public int MR_1_1_Sorcery, Mana_10_1_Sorcery, Mana_10_2_Sorcery, Mana_1Perc_1_Sorcery, Mana_2Perc_1_Sorcery, HP_5_1_Sorcery, MR_1_2_Sorcery, ManaUsage_1Perc_1_Sorcery, MR_2_1_Sorcery, DMG_Resistance_1_1_Sorcery, Mana_10_3_Sorcery, ManaUsage_1Perc_2_Sorcery, Mana_2Perc_2_Sorcery, Mana_20_1_Sorcery, ManaUsage_1Perc_3_Sorcery, Mana_3Perc_1_Sorcery, Mana_2Perc_3_Sorcery, ManaUsage_3Perc_1_Sorcery, HP_10_1_Sorcery, ManaUsage_1Perc_4_Sorcery, MR_2_2_Sorcery, HP_10_2_Sorcery, MR_3_1_Sorcery, MR_3_2_Sorcery, HP_10_3_Sorcery, ManaUsage_3Perc_2_Sorcery, MR_3_3_Sorcery, HP_15_1_Sorcery, DMG_Resistance_1_2_Sorcery; 
@@ -40,7 +40,7 @@ public class Skills : MonoBehaviour
     public bool , ACC_3_2_Accuracy_Tier2, MaxCrit_5Perc_2_Accuracy_Tier2, HP_10_1_Accuracy_Tier2, ACC_3_3_Accuracy_Tier2, HP_10_2_Accuracy_Tier2, MaxCrit_5Perc_3_Accuracy_Tier2, HP_1Perc_2_Accuracy_Tier2, EV_1_ACC_1_2_Accuracy_Tier2, HP_10_3_Accuracy_Tier2, EV_2_ACC_2_1_Accuracy_Tier2, AddSlot_Accuracy_Tier2;
 */
     public int BS_Mana = 0, BS_Cooldown = 0, BS_Damage = 0, BS_Weakness = 0, ManaOverdrain_Perc = 0, ManaOverdrain_Potion = 0, CH_Damage = 0, CH_Mana = 0, CH_Cooldown = 0, CH_Effect_EVChance = 0, CH_Effect_Damage = 0, CH_Effect_Duration = 0, V_Heal = 0, V_Damage = 0, V_EffectHeal = 0, V_Mana = 0;
-    public int PH_Cooldown = 0, PH_Damage = 0, PH_WeaponSkillChance = 0, Parrying_Chance = 0, Parrying_Damage = 0, Parrying_Perc = 0;
+    public int PH_Cooldown = 0, PH_Damage = 0, PH_WeaponSkillChance = 0, Parry_Chance = 0, Parry_Damage = 0, Parry_Perc = 0;
     public int BL_ReturnDamage = 0, BL_Chance = 0, BL_Cooldown = 0, BrutalityStreak_EnergySave = 0, BrutalityStreak_AvoidChance = 0;
     //public string[,] Checklist = new string[2,50]; 
     public string InvokeMethod, InvokeClass; 

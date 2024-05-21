@@ -16,11 +16,11 @@ public class Player : Entity
     public SpeedEnergy speedEnergy;
     public ManaOverdrain ManaOverdrain;
     public GameObject SelfSprite2;
-    public int LevelHPBoost, BaseDamage, SkillPoints, MaxAvoidChance, MaxCritChance, DamageReduction, MaxSpeedEnergy, BrutalityStreak_MobAvoidChance, Parrying_Chance, Parrying_DamagePercent;//Damage Reduction - shield
+    public int LevelHPBoost, BaseDamage, SkillPoints, MaxAvoidChance, MaxCritChance, DamageReduction, MaxSpeedEnergy, BrutalityStreak_MobAvoidChance, Parry_Chance, Parry_DamagePercent;//Damage Reduction - shield
     public int[] Money = new int[15], Experience = new int[25], NewLevelXP = new int[25]; //0 - max id
     public GameObject[] Inventory = new GameObject[45];
     public float[] CollectedData = new float[2];
-    public float HealthModifier, ManaModifier, DamageModifier, DefenceModifier, ExperienceModifier, SpeedModifier, BaseHealthModifier, BaseManaModifier, BaseManaCost, ManaCost, BaseAttackSpeed, AttackSpeed, DamageResistance, BaseDamageResistance, PriceModifier, SpeedEnergy, BrutalityStreak_AddDamage, BrutalityStreak_AddDamageAll, Parrying_RemovePercent, Parrying_ChanceAll;
+    public float HealthModifier, ManaModifier, DamageModifier, DefenceModifier, ExperienceModifier, SpeedModifier, BaseHealthModifier, BaseManaModifier, BaseManaCost, ManaCost, BaseAttackSpeed, AttackSpeed, DamageResistance, BaseDamageResistance, PriceModifier, SpeedEnergy, BrutalityStreak_AddDamage, BrutalityStreak_AddDamageAll, Parry_RemovePercent, Parry_ChanceAll;
     public bool BlockActive = false, Overdrained = false;
     public Dictionary<string, int> Skills = new Dictionary<string, int>();
     public GameObject Hat, Chestplate, Boots, LeftHand, RightHand, Trinket1, Trinket2;
@@ -63,7 +63,7 @@ public class Player : Entity
      MaxSpeedEnergy = 5;
      BuffsDamageModifier = 1; 
      BuffsDamageTakenModifier = 1;
-     Parrying_RemovePercent = 1;
+     Parry_RemovePercent = 1;
 
      for(int i = 0; i<10; ++i) for(int j = 0; j<5;++j) StatusEffects[i, j] = -1;
 
@@ -468,7 +468,7 @@ public class Player : Entity
                 SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Language_Changer.Instance.GetText("Blocked"));
             }
         }
-        Parrying_ChanceAll += Parrying_Chance;
+        Parry_ChanceAll += Parry_Chance;
         Amount = Convert.ToInt32(Math.Floor(Amount*BuffsDamageTakenModifier));
         Amount = Convert.ToInt32(Math.Floor(Amount-Amount*DamageResistance));
         if(AllowArmor){
@@ -489,7 +489,7 @@ public class Player : Entity
             Amount = 0;
             ReloadHP = false;
         }
-        Parrying_ChanceAll += Amount/(float)MaxHealth*Parrying_DamagePercent;
+        Parry_ChanceAll += Amount/(float)MaxHealth*Parry_DamagePercent;
         if(IsCrit && AllowText)SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Amount +" Crit!");
         else if(AllowText)SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Amount +"");
         Health -= Amount;
@@ -521,8 +521,8 @@ public class Player : Entity
 
     public bool Parry(){
         int Chance = UnityEngine.Random.Range(0, 100);
-        if(Chance<Parrying_ChanceAll){
-            Parrying_ChanceAll -= Parrying_ChanceAll*Parrying_RemovePercent;
+        if(Chance<Parry_ChanceAll){
+            Parry_ChanceAll -= Parry_ChanceAll*Parry_RemovePercent;
             return true;
         }
         else return false;

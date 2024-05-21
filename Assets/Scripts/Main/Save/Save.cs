@@ -72,7 +72,7 @@ public class Save : MonoBehaviour
         Data.floatPlayer[12] = Player.DamageResistance;
         Data.floatPlayer[13] = Player.BaseDamageResistance;
         Data.floatPlayer[14] = Player.BrutalityStreak_AddDamageAll;
-        Data.floatPlayer[15] = Player.Parrying_ChanceAll;
+        Data.floatPlayer[15] = Player.Parry_ChanceAll;
         //Equipment Items
         {
             int i = 0;
@@ -208,7 +208,7 @@ public class Save : MonoBehaviour
         Data.boolSkillTree[86] = Skills.AtkSpeed_1_1_Evasion_Tier1;
         Data.boolSkillTree[87] = Skills.AvoidChance_3Perc_1_Evasion_Tier1;
         Data.boolSkillTree[88] = Skills.DMG_Resistance_1_1_Evasion_Tier1;
-        Data.boolSkillTree[89] = Skills.Parrying_Unlock;
+        Data.boolSkillTree[89] = Skills.Parry_Unlock;
         Data.boolSkillTree[90] = Skills.DMG_Resistance_1_2_Evasion_Tier2;
         Data.boolSkillTree[91] = Skills.AvoidChance_5Perc_1_Evasion_Tier2;
         Data.boolSkillTree[92] = Skills.AvoidChance_5Perc_2_Evasion_Tier2;
@@ -279,13 +279,13 @@ public class Save : MonoBehaviour
         Data.boolSkillsChecked[34] = Skills.Evasion_Tier1.AvoidChance_3Perc_1_Checked;
         Data.boolSkillsChecked[35] = Skills.Evasion_Tier1.PH_Damage_1_Checked;
         Data.boolSkillsChecked[36] = Skills.Evasion_Tier1.PH_Cooldown_1_Checked;
-        Data.boolSkillsChecked[37] = Skills.Evasion_Tier2.Parrying_Unlock_Checked;
+        Data.boolSkillsChecked[37] = Skills.Evasion_Tier2.Parry_Unlock_Checked;
         Data.boolSkillsChecked[38] = Skills.Evasion_Tier2.DMG_Resistance_1_2_Checked;
         Data.boolSkillsChecked[39] = Skills.Evasion_Tier2.AvoidChance_5Perc_1_Checked;
         Data.boolSkillsChecked[40] = Skills.Evasion_Tier2.AvoidChance_5Perc_2_Checked;
-        Data.boolSkillsChecked[41] = Skills.Evasion_Tier2.Parrying_Chance_1_Checked;
+        Data.boolSkillsChecked[41] = Skills.Evasion_Tier2.Parry_Chance_1_Checked;
         Data.boolSkillsChecked[42] = Skills.Evasion_Tier2.HP_5_2_Checked;
-        Data.boolSkillsChecked[43] = Skills.Evasion_Tier2.Parrying_Damage_1_Checked;
+        Data.boolSkillsChecked[43] = Skills.Evasion_Tier2.Parry_Damage_1_Checked;
         Data.boolSkillsChecked[44] = Skills.Evasion_Tier2.AtkSpeed_1_2_Checked;
         Data.boolSkillsChecked[45] = Skills.Evasion_Tier2.HP_10_1_Checked;
         Data.boolSkillsChecked[46] = Skills.Evasion_Tier2.PH_Damage_2_Checked;
@@ -760,9 +760,9 @@ public class Save : MonoBehaviour
         Data.boolGameObjects[352] = Skills.Magic_Tier1.BSU.transform.Find("Glowing_Yellow").gameObject.activeSelf;
         Data.boolGameObjects[353] = Skills.Magic_Tier1.BSU.transform.Find("Glowing_Gold").gameObject.activeSelf;
         //Evasion_Tier2
-        Data.boolGameObjects[354] = Skills.Evasion_Tier2.Parrying_Unlock.activeSelf;
-        Data.boolGameObjects[355] = Skills.Evasion_Tier2.Parrying_Unlock.transform.Find("Glowing_Yellow").gameObject.activeSelf;
-        Data.boolGameObjects[356] = Skills.Evasion_Tier2.Parrying_Unlock.transform.Find("Glowing_Gold").gameObject.activeSelf;
+        Data.boolGameObjects[354] = Skills.Evasion_Tier2.Parry_Unlock.activeSelf;
+        Data.boolGameObjects[355] = Skills.Evasion_Tier2.Parry_Unlock.transform.Find("Glowing_Yellow").gameObject.activeSelf;
+        Data.boolGameObjects[356] = Skills.Evasion_Tier2.Parry_Unlock.transform.Find("Glowing_Gold").gameObject.activeSelf;
         Data.boolGameObjects[357] = Skills.Evasion_Tier2.DMG_Resistance_1_2.activeSelf;
         Data.boolGameObjects[358] = Skills.Evasion_Tier2.DMG_Resistance_1_2.transform.Find("Glowing_Yellow").gameObject.activeSelf;
         Data.boolGameObjects[359] = Skills.Evasion_Tier2.DMG_Resistance_1_2.transform.Find("Glowing_Gold").gameObject.activeSelf;
@@ -772,15 +772,15 @@ public class Save : MonoBehaviour
         Data.boolGameObjects[363] = Skills.Evasion_Tier2.AvoidChance_5Perc_2.activeSelf;
         Data.boolGameObjects[364] = Skills.Evasion_Tier2.AvoidChance_5Perc_2.transform.Find("Glowing_Yellow").gameObject.activeSelf;
         Data.boolGameObjects[365] = Skills.Evasion_Tier2.AvoidChance_5Perc_2.transform.Find("Glowing_Gold").gameObject.activeSelf;
-        Data.boolGameObjects[366] = Skills.Evasion_Tier2.Parrying_Chance_1.activeSelf;
-        Data.boolGameObjects[367] = Skills.Evasion_Tier2.Parrying_Chance_1.transform.Find("Glowing_Yellow").gameObject.activeSelf;
-        Data.boolGameObjects[368] = Skills.Evasion_Tier2.Parrying_Chance_1.transform.Find("Glowing_Gold").gameObject.activeSelf;
+        Data.boolGameObjects[366] = Skills.Evasion_Tier2.Parry_Chance_1.activeSelf;
+        Data.boolGameObjects[367] = Skills.Evasion_Tier2.Parry_Chance_1.transform.Find("Glowing_Yellow").gameObject.activeSelf;
+        Data.boolGameObjects[368] = Skills.Evasion_Tier2.Parry_Chance_1.transform.Find("Glowing_Gold").gameObject.activeSelf;
         Data.boolGameObjects[369] = Skills.Evasion_Tier2.HP_5_2.activeSelf;
         Data.boolGameObjects[370] = Skills.Evasion_Tier2.HP_5_2.transform.Find("Glowing_Yellow").gameObject.activeSelf;
         Data.boolGameObjects[371] = Skills.Evasion_Tier2.HP_5_2.transform.Find("Glowing_Gold").gameObject.activeSelf;
-        Data.boolGameObjects[372] = Skills.Evasion_Tier2.Parrying_Damage_1.activeSelf;
-        Data.boolGameObjects[373] = Skills.Evasion_Tier2.Parrying_Damage_1.transform.Find("Glowing_Yellow").gameObject.activeSelf;
-        Data.boolGameObjects[374] = Skills.Evasion_Tier2.Parrying_Damage_1.transform.Find("Glowing_Gold").gameObject.activeSelf;
+        Data.boolGameObjects[372] = Skills.Evasion_Tier2.Parry_Damage_1.activeSelf;
+        Data.boolGameObjects[373] = Skills.Evasion_Tier2.Parry_Damage_1.transform.Find("Glowing_Yellow").gameObject.activeSelf;
+        Data.boolGameObjects[374] = Skills.Evasion_Tier2.Parry_Damage_1.transform.Find("Glowing_Gold").gameObject.activeSelf;
         Data.boolGameObjects[375] = Skills.Evasion_Tier2.AtkSpeed_1_2.activeSelf;
         Data.boolGameObjects[376] = Skills.Evasion_Tier2.AtkSpeed_1_2.transform.Find("Glowing_Yellow").gameObject.activeSelf;
         Data.boolGameObjects[377] = Skills.Evasion_Tier2.AtkSpeed_1_2.transform.Find("Glowing_Gold").gameObject.activeSelf;
@@ -1064,13 +1064,13 @@ public class Save : MonoBehaviour
         Data.boolGameObjects[646] = Skills.Magic_Tier1.BS_Poison_AddDuration.transform.Find("Button").GetComponent<Button>().IsInteractable();
         Data.boolGameObjects[647] = Skills.Magic_Tier1.BSU.transform.Find("Button").GetComponent<Button>().IsInteractable();
         //Evasion_Tier2
-        Data.boolGameObjects[648] = Skills.Evasion_Tier2.Parrying_Unlock.transform.Find("Button").GetComponent<Button>().IsInteractable();
+        Data.boolGameObjects[648] = Skills.Evasion_Tier2.Parry_Unlock.transform.Find("Button").GetComponent<Button>().IsInteractable();
         Data.boolGameObjects[649] = Skills.Evasion_Tier2.DMG_Resistance_1_2.transform.Find("Button").GetComponent<Button>().IsInteractable();
         Data.boolGameObjects[650] = Skills.Evasion_Tier2.AvoidChance_5Perc_1.transform.Find("Button").GetComponent<Button>().IsInteractable();
         Data.boolGameObjects[651] = Skills.Evasion_Tier2.AvoidChance_5Perc_2.transform.Find("Button").GetComponent<Button>().IsInteractable();
-        Data.boolGameObjects[652] = Skills.Evasion_Tier2.Parrying_Chance_1.transform.Find("Button").GetComponent<Button>().IsInteractable();
+        Data.boolGameObjects[652] = Skills.Evasion_Tier2.Parry_Chance_1.transform.Find("Button").GetComponent<Button>().IsInteractable();
         Data.boolGameObjects[653] = Skills.Evasion_Tier2.HP_5_2.transform.Find("Button").GetComponent<Button>().IsInteractable();
-        Data.boolGameObjects[654] = Skills.Evasion_Tier2.Parrying_Damage_1.transform.Find("Button").GetComponent<Button>().IsInteractable();
+        Data.boolGameObjects[654] = Skills.Evasion_Tier2.Parry_Damage_1.transform.Find("Button").GetComponent<Button>().IsInteractable();
         Data.boolGameObjects[655] = Skills.Evasion_Tier2.AtkSpeed_1_2.transform.Find("Button").GetComponent<Button>().IsInteractable();
         Data.boolGameObjects[656] = Skills.Evasion_Tier2.HP_10_1.transform.Find("Button").GetComponent<Button>().IsInteractable();
         Data.boolGameObjects[657] = Skills.Evasion_Tier2.PH_Damage_2.transform.Find("Button").GetComponent<Button>().IsInteractable();
@@ -1144,9 +1144,9 @@ public class Save : MonoBehaviour
         Data.intSkillTree[15] = Skills.PH_Cooldown;
         Data.intSkillTree[16] = Skills.PH_Damage;
         Data.intSkillTree[17] = Skills.PH_WeaponSkillChance;
-        Data.intSkillTree[18] = Skills.Parrying_Chance;
-        Data.intSkillTree[19] = Skills.Parrying_Damage;
-        Data.intSkillTree[20] = Skills.Parrying_Perc;
+        Data.intSkillTree[18] = Skills.Parry_Chance;
+        Data.intSkillTree[19] = Skills.Parry_Damage;
+        Data.intSkillTree[20] = Skills.Parry_Perc;
         Data.intSkillTree[21] = Skills.BL_ReturnDamage;
         Data.intSkillTree[22] = Skills.BL_Chance;
         Data.intSkillTree[23] = Skills.BL_Cooldown;
@@ -1280,13 +1280,13 @@ public class Save : MonoBehaviour
         Data.stringSkills[116] = Skills.Magic_Tier1.BS_Poison_AddDuration.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text;
         Data.stringSkills[117] = Skills.Magic_Tier1.BSU.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text;
         //Evasion_Tier2
-        Data.stringSkills[118] = Skills.Evasion_Tier2.Parrying_Unlock.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text;
+        Data.stringSkills[118] = Skills.Evasion_Tier2.Parry_Unlock.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text;
         Data.stringSkills[119] = Skills.Evasion_Tier2.DMG_Resistance_1_2.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text;
         Data.stringSkills[120] = Skills.Evasion_Tier2.AvoidChance_5Perc_1.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text;
         Data.stringSkills[121] = Skills.Evasion_Tier2.AvoidChance_5Perc_2.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text;
-        Data.stringSkills[122] = Skills.Evasion_Tier2.Parrying_Chance_1.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text;
+        Data.stringSkills[122] = Skills.Evasion_Tier2.Parry_Chance_1.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text;
         Data.stringSkills[123] = Skills.Evasion_Tier2.HP_5_2.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text;
-        Data.stringSkills[124] = Skills.Evasion_Tier2.Parrying_Damage_1.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text;
+        Data.stringSkills[124] = Skills.Evasion_Tier2.Parry_Damage_1.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text;
         Data.stringSkills[125] = Skills.Evasion_Tier2.AtkSpeed_1_2.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text;
         Data.stringSkills[126] = Skills.Evasion_Tier2.HP_10_1.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text;
         Data.stringSkills[127] = Skills.Evasion_Tier2.PH_Damage_2.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text;
@@ -1409,7 +1409,7 @@ public class Save : MonoBehaviour
         Player.DamageResistance = Data.floatPlayer[12];
         Player.BaseDamageResistance = Data.floatPlayer[13];
         Player.BrutalityStreak_AddDamageAll = Data.floatPlayer[14];
-        Player.Parrying_ChanceAll = Data.floatPlayer[15];
+        Player.Parry_ChanceAll = Data.floatPlayer[15];
         //Debug.Log("Loaded: Player");
     }
 
@@ -1527,7 +1527,7 @@ public class Save : MonoBehaviour
         Skills.AtkSpeed_1_1_Evasion_Tier1 = Data.boolSkillTree[86];
         Skills.AvoidChance_3Perc_1_Evasion_Tier1 = Data.boolSkillTree[87];
         Skills.DMG_Resistance_1_1_Evasion_Tier1 = Data.boolSkillTree[88];
-        Skills.Parrying_Unlock = Data.boolSkillTree[89];
+        Skills.Parry_Unlock = Data.boolSkillTree[89];
         Skills.DMG_Resistance_1_2_Evasion_Tier2 = Data.boolSkillTree[90];
         Skills.AvoidChance_5Perc_1_Evasion_Tier2 = Data.boolSkillTree[91];
         Skills.AvoidChance_5Perc_2_Evasion_Tier2 = Data.boolSkillTree[92];
@@ -1598,13 +1598,13 @@ public class Save : MonoBehaviour
         Skills.Evasion_Tier1.AvoidChance_3Perc_1_Checked = Data.boolSkillsChecked[34];
         Skills.Evasion_Tier1.PH_Damage_1_Checked = Data.boolSkillsChecked[35];
         Skills.Evasion_Tier1.PH_Cooldown_1_Checked = Data.boolSkillsChecked[36];
-        Skills.Evasion_Tier2.Parrying_Unlock_Checked = Data.boolSkillsChecked[37];
+        Skills.Evasion_Tier2.Parry_Unlock_Checked = Data.boolSkillsChecked[37];
         Skills.Evasion_Tier2.DMG_Resistance_1_2_Checked = Data.boolSkillsChecked[38];
         Skills.Evasion_Tier2.AvoidChance_5Perc_1_Checked = Data.boolSkillsChecked[39];
         Skills.Evasion_Tier2.AvoidChance_5Perc_2_Checked = Data.boolSkillsChecked[40];
-        Skills.Evasion_Tier2.Parrying_Chance_1_Checked = Data.boolSkillsChecked[41];
+        Skills.Evasion_Tier2.Parry_Chance_1_Checked = Data.boolSkillsChecked[41];
         Skills.Evasion_Tier2.HP_5_2_Checked = Data.boolSkillsChecked[42];
-        Skills.Evasion_Tier2.Parrying_Damage_1_Checked = Data.boolSkillsChecked[43];
+        Skills.Evasion_Tier2.Parry_Damage_1_Checked = Data.boolSkillsChecked[43];
         Skills.Evasion_Tier2.AtkSpeed_1_2_Checked = Data.boolSkillsChecked[44];
         Skills.Evasion_Tier2.HP_10_1_Checked = Data.boolSkillsChecked[45];
         Skills.Evasion_Tier2.PH_Damage_2_Checked = Data.boolSkillsChecked[46];
@@ -2079,9 +2079,9 @@ public class Save : MonoBehaviour
         Skills.Magic_Tier1.BSU.transform.Find("Glowing_Yellow").gameObject.SetActive(Data.boolGameObjects[352]);
         Skills.Magic_Tier1.BSU.transform.Find("Glowing_Gold").gameObject.SetActive(Data.boolGameObjects[353]);
         //Evasion_Tier2
-        Skills.Evasion_Tier2.Parrying_Unlock.SetActive(Data.boolGameObjects[354]);
-        Skills.Evasion_Tier2.Parrying_Unlock.transform.Find("Glowing_Yellow").gameObject.SetActive(Data.boolGameObjects[355]);
-        Skills.Evasion_Tier2.Parrying_Unlock.transform.Find("Glowing_Gold").gameObject.SetActive(Data.boolGameObjects[356]);
+        Skills.Evasion_Tier2.Parry_Unlock.SetActive(Data.boolGameObjects[354]);
+        Skills.Evasion_Tier2.Parry_Unlock.transform.Find("Glowing_Yellow").gameObject.SetActive(Data.boolGameObjects[355]);
+        Skills.Evasion_Tier2.Parry_Unlock.transform.Find("Glowing_Gold").gameObject.SetActive(Data.boolGameObjects[356]);
         Skills.Evasion_Tier2.DMG_Resistance_1_2.SetActive(Data.boolGameObjects[357]);
         Skills.Evasion_Tier2.DMG_Resistance_1_2.transform.Find("Glowing_Yellow").gameObject.SetActive(Data.boolGameObjects[358]);
         Skills.Evasion_Tier2.DMG_Resistance_1_2.transform.Find("Glowing_Gold").gameObject.SetActive(Data.boolGameObjects[359]);
@@ -2091,15 +2091,15 @@ public class Save : MonoBehaviour
         Skills.Evasion_Tier2.AvoidChance_5Perc_2.SetActive(Data.boolGameObjects[363]);
         Skills.Evasion_Tier2.AvoidChance_5Perc_2.transform.Find("Glowing_Yellow").gameObject.SetActive(Data.boolGameObjects[364]);
         Skills.Evasion_Tier2.AvoidChance_5Perc_2.transform.Find("Glowing_Gold").gameObject.SetActive(Data.boolGameObjects[365]);
-        Skills.Evasion_Tier2.Parrying_Chance_1.SetActive(Data.boolGameObjects[366]);
-        Skills.Evasion_Tier2.Parrying_Chance_1.transform.Find("Glowing_Yellow").gameObject.SetActive(Data.boolGameObjects[367]);
-        Skills.Evasion_Tier2.Parrying_Chance_1.transform.Find("Glowing_Gold").gameObject.SetActive(Data.boolGameObjects[368]);
+        Skills.Evasion_Tier2.Parry_Chance_1.SetActive(Data.boolGameObjects[366]);
+        Skills.Evasion_Tier2.Parry_Chance_1.transform.Find("Glowing_Yellow").gameObject.SetActive(Data.boolGameObjects[367]);
+        Skills.Evasion_Tier2.Parry_Chance_1.transform.Find("Glowing_Gold").gameObject.SetActive(Data.boolGameObjects[368]);
         Skills.Evasion_Tier2.HP_5_2.SetActive(Data.boolGameObjects[369]);
         Skills.Evasion_Tier2.HP_5_2.transform.Find("Glowing_Yellow").gameObject.SetActive(Data.boolGameObjects[370]);
         Skills.Evasion_Tier2.HP_5_2.transform.Find("Glowing_Gold").gameObject.SetActive(Data.boolGameObjects[371]);
-        Skills.Evasion_Tier2.Parrying_Damage_1.SetActive(Data.boolGameObjects[372]);
-        Skills.Evasion_Tier2.Parrying_Damage_1.transform.Find("Glowing_Yellow").gameObject.SetActive(Data.boolGameObjects[373]);
-        Skills.Evasion_Tier2.Parrying_Damage_1.transform.Find("Glowing_Gold").gameObject.SetActive(Data.boolGameObjects[374]);
+        Skills.Evasion_Tier2.Parry_Damage_1.SetActive(Data.boolGameObjects[372]);
+        Skills.Evasion_Tier2.Parry_Damage_1.transform.Find("Glowing_Yellow").gameObject.SetActive(Data.boolGameObjects[373]);
+        Skills.Evasion_Tier2.Parry_Damage_1.transform.Find("Glowing_Gold").gameObject.SetActive(Data.boolGameObjects[374]);
         Skills.Evasion_Tier2.AtkSpeed_1_2.SetActive(Data.boolGameObjects[375]);
         Skills.Evasion_Tier2.AtkSpeed_1_2.transform.Find("Glowing_Yellow").gameObject.SetActive(Data.boolGameObjects[376]);
         Skills.Evasion_Tier2.AtkSpeed_1_2.transform.Find("Glowing_Gold").gameObject.SetActive(Data.boolGameObjects[377]);
@@ -2383,13 +2383,13 @@ public class Save : MonoBehaviour
         Skills.Magic_Tier1.BS_Poison_AddDuration.transform.Find("Button").GetComponent<Button>().interactable = Data.boolGameObjects[646];
         Skills.Magic_Tier1.BSU.transform.Find("Button").GetComponent<Button>().interactable = Data.boolGameObjects[647];
         //Evasion_Tier2
-        Skills.Evasion_Tier2.Parrying_Unlock.transform.Find("Button").GetComponent<Button>().interactable = Data.boolGameObjects[648];
+        Skills.Evasion_Tier2.Parry_Unlock.transform.Find("Button").GetComponent<Button>().interactable = Data.boolGameObjects[648];
         Skills.Evasion_Tier2.DMG_Resistance_1_2.transform.Find("Button").GetComponent<Button>().interactable = Data.boolGameObjects[649];
         Skills.Evasion_Tier2.AvoidChance_5Perc_1.transform.Find("Button").GetComponent<Button>().interactable = Data.boolGameObjects[650];
         Skills.Evasion_Tier2.AvoidChance_5Perc_2.transform.Find("Button").GetComponent<Button>().interactable = Data.boolGameObjects[651];
-        Skills.Evasion_Tier2.Parrying_Chance_1.transform.Find("Button").GetComponent<Button>().interactable = Data.boolGameObjects[652];
+        Skills.Evasion_Tier2.Parry_Chance_1.transform.Find("Button").GetComponent<Button>().interactable = Data.boolGameObjects[652];
         Skills.Evasion_Tier2.HP_5_2.transform.Find("Button").GetComponent<Button>().interactable = Data.boolGameObjects[653];
-        Skills.Evasion_Tier2.Parrying_Damage_1.transform.Find("Button").GetComponent<Button>().interactable = Data.boolGameObjects[654];
+        Skills.Evasion_Tier2.Parry_Damage_1.transform.Find("Button").GetComponent<Button>().interactable = Data.boolGameObjects[654];
         Skills.Evasion_Tier2.AtkSpeed_1_2.transform.Find("Button").GetComponent<Button>().interactable = Data.boolGameObjects[655];
         Skills.Evasion_Tier2.HP_10_1.transform.Find("Button").GetComponent<Button>().interactable = Data.boolGameObjects[656];
         Skills.Evasion_Tier2.PH_Damage_2.transform.Find("Button").GetComponent<Button>().interactable = Data.boolGameObjects[657];
@@ -2463,9 +2463,9 @@ public class Save : MonoBehaviour
         Skills.PH_Cooldown = Data.intSkillTree[15];
         Skills.PH_Damage = Data.intSkillTree[16];
         Skills.PH_WeaponSkillChance = Data.intSkillTree[17];
-        Skills.Parrying_Chance = Data.intSkillTree[18];
-        Skills.Parrying_Damage = Data.intSkillTree[19];
-        Skills.Parrying_Perc = Data.intSkillTree[20];
+        Skills.Parry_Chance = Data.intSkillTree[18];
+        Skills.Parry_Damage = Data.intSkillTree[19];
+        Skills.Parry_Perc = Data.intSkillTree[20];
         Skills.BL_ReturnDamage = Data.intSkillTree[21];
         Skills.BL_Chance = Data.intSkillTree[22];
         Skills.BL_Cooldown = Data.intSkillTree[23];
@@ -2599,13 +2599,13 @@ public class Save : MonoBehaviour
         Skills.Magic_Tier1.BS_Poison_AddDuration.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Data.stringSkills[116];
         Skills.Magic_Tier1.BSU.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Data.stringSkills[117];
         //Evasion_Tier2
-        Skills.Evasion_Tier2.Parrying_Unlock.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Data.stringSkills[118];
+        Skills.Evasion_Tier2.Parry_Unlock.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Data.stringSkills[118];
         Skills.Evasion_Tier2.DMG_Resistance_1_2.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Data.stringSkills[119];
         Skills.Evasion_Tier2.AvoidChance_5Perc_1.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Data.stringSkills[120];
         Skills.Evasion_Tier2.AvoidChance_5Perc_2.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Data.stringSkills[121];
-        Skills.Evasion_Tier2.Parrying_Chance_1.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Data.stringSkills[122];
+        Skills.Evasion_Tier2.Parry_Chance_1.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Data.stringSkills[122];
         Skills.Evasion_Tier2.HP_5_2.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Data.stringSkills[123];
-        Skills.Evasion_Tier2.Parrying_Damage_1.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Data.stringSkills[124];
+        Skills.Evasion_Tier2.Parry_Damage_1.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Data.stringSkills[124];
         Skills.Evasion_Tier2.AtkSpeed_1_2.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Data.stringSkills[125];
         Skills.Evasion_Tier2.HP_10_1.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Data.stringSkills[126];
         Skills.Evasion_Tier2.PH_Damage_2.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Data.stringSkills[127];
