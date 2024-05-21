@@ -146,7 +146,7 @@ public class SkillTreeSegment : MonoBehaviour
         if(Price!=0) Button_Skills.text = Price + " " +  Language_Changer.Instance.GetText("Skill_Point" + Formatter_Price, "Skills");
         else Button_Skills.text = Language_Changer.Instance.GetText("Free");
 
-        if((HasCheck && player.SkillPoints>=Price && UpgradesCount < MaxUpgradesCount && CanBeUpgraded) || (!HasCheck && player.SkillPoints>=Price && UpgradesCount < MaxUpgradesCount)) SkillsUpgradeButton.interactable = true;
+        if((HasCheck && player.SkillPoints>=Price && UpgradesCount < MaxUpgradesCount && CanBeUpgraded) || (!HasCheck && player.SkillPoints>=Price && (UpgradesCount < MaxUpgradesCount || MaxUpgradesCount == -1))) SkillsUpgradeButton.interactable = true;
         else SkillsUpgradeButton.interactable = false;
         if(UpgradesCount >= MaxUpgradesCount) Button_Skills.text = Language_Changer.Instance.GetText("Fully_Upgraded");
         SkillManager.InvokeClass = Class;
@@ -190,7 +190,7 @@ public class SkillTreeSegment : MonoBehaviour
         }
         else{
             UpgradeVariable.SetValue(SkillManager, (int)UpgradeVariable.GetValue(SkillManager) + 1);
-            Object.transform.Find("UpgradeProgress").GetComponent<Image>().fillAmount = (float) Convert.ToDouble(UpgradeVariable.GetValue(SkillManager))/(float)MaxUpgradesCount;
+            if(MaxUpgradesCount>0)Object.transform.Find("UpgradeProgress").GetComponent<Image>().fillAmount = (float) Convert.ToDouble(UpgradeVariable.GetValue(SkillManager))/(float)MaxUpgradesCount;
         }
         Invoke(Name + "_Text", 0f);
 

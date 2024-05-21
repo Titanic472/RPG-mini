@@ -139,7 +139,7 @@ Your current maximum critical strike chance: {1}%</Max_Critical_Strike_Chance_De
 	<Strike_Back>Strike Back</Strike_Back>
 	<Strike_Back_Description>Block returns {0}% of damage</Strike_Back_Description>
 	<More_Accuracy>More Accuracy</More_Accuracy>
-	<More_Accuracy_Description>Extra 3 accuracy points for a good price</More_Accuracy_Description>
+	<More_Accuracy_Description>Extra 10 accuracy points for a good price</More_Accuracy_Description>
 	<Block_Chance>Block Chance</Block_Chance>
 	<Block_Chance_Description>Increases Block Chance to {0}%</Block_Chance_Description>
 	<More_Health>More Health</More_Health>
@@ -153,4 +153,18 @@ Enemy always have 8% avoid chance</Brutality_Streak_Unlock_Description>
 	<Brutality_Streak_Mob_Avoid_Chance_Description>Permanent Enemy avoid chance decreased to {0}%</Brutality_Streak_Mob_Avoid_Chance_Description>
 	<Block_Cooldown>Block Cooldown</Block_Cooldown>
 	<Block_Cooldown_Description>Reduces Block cooldown to {0} turns</Block_Cooldown_Description>
+	<BrutalityStreak_SpecialAttacksTrigger>Special Streak</BrutalityStreak_SpecialAttacksTrigger>
+	<BrutalityStreak_SpecialAttacksTrigger_Description>Applies Brutality Streak damage modifier to all special attacks</BrutalityStreak_SpecialAttacksTrigger_Description>
+	<Instant_Shield>Instant Shield</Instant_Shield>
+	<Instant_Shield_Description>Adds 5% to chance of using shield without consuming stamina.
+Current chance: {0}</Instant_Shield_Description>
+	<Dangerous_Shield>Dangerous Shield</Dangerous_Shield>
+	<Dangerous_Shield_Description>How about attacking with shield? Increases damage by {0}% for every shielding level</Dangerous_Shield_Description>
+	<Additional_Damage>Additional Damage</Additional_Damage>
+	<Additional_Damage_Description>Makes your attacks more powerful increasing your damage by {0}</Additional_Damage_Description>
+	<Even_More_Damage>Even More Damage</Even_More_Damage>
+	<Even_More_Damage_Description>Who said there it could be too much damage? Increases damage by {0}%</Even_More_Damage_Description>
+	<Crit_Damage></Crit_Damage>
+	<Crit_Damage_Description>Increases critical strike damage increase by {0}%
+Your current critical strike damage: {1}%</Crit_Damage_Description>
 </texts>

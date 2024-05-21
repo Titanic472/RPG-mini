@@ -88,7 +88,7 @@ public class Player : Entity
         HealthModifier = BaseHealthModifier * Hat.GetComponent<Item>().HealthModifier*Chestplate.GetComponent<Item>().HealthModifier*Boots.GetComponent<Item>().HealthModifier*LeftHand.GetComponent<Item>().HealthModifier*RightHand.GetComponent<Item>().HealthModifier*Trinket1.GetComponent<Item>().HealthModifier*Trinket2.GetComponent<Item>().HealthModifier;
         ManaModifier = BaseManaModifier * Hat.GetComponent<Item>().ManaModifier*Chestplate.GetComponent<Item>().ManaModifier*Boots.GetComponent<Item>().ManaModifier*LeftHand.GetComponent<Item>().ManaModifier*RightHand.GetComponent<Item>().ManaModifier*Trinket1.GetComponent<Item>().ManaModifier*Trinket2.GetComponent<Item>().ManaModifier;
         ManaCost = BaseManaCost * Hat.GetComponent<Item>().ManaCost*Chestplate.GetComponent<Item>().ManaCost*Boots.GetComponent<Item>().ManaCost*LeftHand.GetComponent<Item>().ManaCost*RightHand.GetComponent<Item>().ManaCost*Trinket1.GetComponent<Item>().ManaCost*Trinket2.GetComponent<Item>().ManaCost;
-        DamageModifier = Hat.GetComponent<Item>().DamageModifier * Chestplate.GetComponent<Item>().DamageModifier * Boots.GetComponent<Item>().DamageModifier * LeftHand.GetComponent<Item>().DamageModifier * RightHand.GetComponent<Item>().DamageModifier * Trinket1.GetComponent<Item>().DamageModifier * Trinket2.GetComponent<Item>().DamageModifier;
+        DamageModifier = SkillManager.DamageModifier * Hat.GetComponent<Item>().DamageModifier * Chestplate.GetComponent<Item>().DamageModifier * Boots.GetComponent<Item>().DamageModifier * LeftHand.GetComponent<Item>().DamageModifier * RightHand.GetComponent<Item>().DamageModifier * Trinket1.GetComponent<Item>().DamageModifier * Trinket2.GetComponent<Item>().DamageModifier;
         DefenceModifier = Hat.GetComponent<Item>().DefenceModifier * Chestplate.GetComponent<Item>().DefenceModifier * Boots.GetComponent<Item>().DefenceModifier * LeftHand.GetComponent<Item>().DefenceModifier * RightHand.GetComponent<Item>().DefenceModifier * Trinket1.GetComponent<Item>().DefenceModifier * Trinket2.GetComponent<Item>().DefenceModifier;
         ExperienceModifier = Hat.GetComponent<Item>().ExperienceModifier * Chestplate.GetComponent<Item>().ExperienceModifier * Boots.GetComponent<Item>().ExperienceModifier * LeftHand.GetComponent<Item>().ExperienceModifier * RightHand.GetComponent<Item>().ExperienceModifier * Trinket1.GetComponent<Item>().ExperienceModifier * Trinket2.GetComponent<Item>().ExperienceModifier;
         SpeedModifier = Hat.GetComponent<Item>().SpeedModifier * Chestplate.GetComponent<Item>().SpeedModifier * Boots.GetComponent<Item>().SpeedModifier * LeftHand.GetComponent<Item>().SpeedModifier * RightHand.GetComponent<Item>().SpeedModifier * Trinket1.GetComponent<Item>().SpeedModifier * Trinket2.GetComponent<Item>().SpeedModifier;
@@ -307,7 +307,7 @@ public class Player : Entity
     }
 
     public void NewLevel(){
-        BaseDamage += 1;
+        SkillManager.Skilltree_Damage();
         SkillPoints += 2;
         ++Level;
         UpdateAllStats();

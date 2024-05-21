@@ -11,9 +11,11 @@ public class Skills : MonoBehaviour
 {
     //public Image Button1, Close, Background;
     public ActiveSkillsManager ActiveSkillsManager;
-    // public Accuracy Accuracy;
+     public Accuracy Accuracy;
     // public Evasion Evasion;
     public Sorcery Sorcery;
+    // public Universal Universal;
+    // public Shadow Shadow;
     public Camera MainCamera;
     public Player player;
     public Game game;
@@ -26,9 +28,11 @@ public class Skills : MonoBehaviour
     public int EvasionMain, AccuracyMain, PracticePlus;
     public bool BSU, CHU, CH_Effect, VU, ManaOverdrain, BS_Poison_AddDuration, BS_NoEvasion, BS_Ultimate, CH_Ultimate_RandomDebuff, CH_Ultimate_HPPercent, V_Ultimate;
     public bool PHU, Parry_Unlock;
-    public bool BLU, BrutalityStreak_Unlock;
-    public int Shield_MagicDef_2Perc_1, Shield_MagicDef_2Perc_2, Shield_DmgReturn_1Perc_1, Shield_DmgReturn_1Perc_2;
+    public bool BLU, BrutalityStreak_Unlock, BrutalityStreak_SpecialAttacksTrigger;
+    public int Shield_MagicDef_2Perc_1, Shield_MagicDef_2Perc_2, Shield_DmgReturn_1Perc_1, Shield_DmgReturn_1Perc_2, DMGCapOverdamage_Unlock;
+    public int Shield_NoStaminaUsage_5Perc, Shield_DamageBoost_3Perc;
     public int MR_1_1_Sorcery, Mana_10_1_Sorcery, Mana_10_2_Sorcery, Mana_1Perc_1_Sorcery, Mana_2Perc_1_Sorcery, HP_5_1_Sorcery, MR_1_2_Sorcery, ManaUsage_1Perc_1_Sorcery, MR_2_1_Sorcery, DMG_Resistance_1_1_Sorcery, Mana_10_3_Sorcery, ManaUsage_1Perc_2_Sorcery, Mana_2Perc_2_Sorcery, Mana_20_1_Sorcery, ManaUsage_1Perc_3_Sorcery, Mana_3Perc_1_Sorcery, Mana_2Perc_3_Sorcery, ManaUsage_3Perc_1_Sorcery, HP_10_1_Sorcery, ManaUsage_1Perc_4_Sorcery, MR_2_2_Sorcery, HP_10_2_Sorcery, MR_3_1_Sorcery, MR_3_2_Sorcery, HP_10_3_Sorcery, ManaUsage_3Perc_2_Sorcery, MR_3_3_Sorcery, HP_15_1_Sorcery, DMG_Resistance_1_2_Sorcery; 
+    public int DMG_2_1_Accuracy, DMG_1Perc_1_Accuracy, HP_1Perc_1_Accuracy, EV_4_ACC_4_1_Accuracy, HP_25_1_Accuracy, DMG_2Perc_1_Accuracy, HP_2Perc_1_Accuracy, DMG_4_1_Accuracy, DMG_4_2_Accuracy, DMG_2Perc_2_Accuracy, DMG_5_1_Accuracy, EV_10_ACC_10_1_Accuracy, HP_30_1_Accuracy, EV_10_ACC_10_2_Accuracy, EV_6_ACC_6_1_Accuracy, DMG_5_2_Accuracy, DMG_5Perc_1_Accuracy, HP_5Perc_1_Accuracy, CritChance_2Perc_1_Accuracy, ACC_10_1_Accuracy, CritDamage_5Perc_1_Accuracy, CritChance_2Perc_2_Accuracy, CritChance_2Perc_3_Accuracy, CritDamage_5Perc_2_Accuracy, HP_30_2_Accuracy, HP_2Perc_2_Accuracy, CritChance_4Perc_1_Accuracy, HP_25_2_Accuracy, CritDamage_10Perc_1_Accuracy, ACC_10_3_Accuracy, CritDamage_10Perc_2_Accuracy, CritDamage_20Perc_1_Accuracy, ACC_10_4_Accuracy, HP_40_1_Accuracy, ACC_10_2_Accuracy, EV_10_ACC_10_3_Accuracy;
     /*public bool HP_5_1_Magic_Tier1, MR_1_1_Magic_Tier1, EV_1_ACC_1_1_Magic_Tier1, M_1Perc_1_Magic_Tier1, Mana_10_1_Magic_Tier1, WeaponSkillChance_5Perc_1_Magic_Tier1, Mana_10_2_Magic_Tier1, MR_1_MCost_2Perc_Magic_Tier1, ;
     public bool ManaOverdrain, HP_5_2_Magic_Tier2, Mana_10_3_Magic_Tier2, HP_10_1_Magic_Tier2, Mana_10_4_Magic_Tier2, EV_2_ACC_2_1_Magic_Tier2, MR_1_3_Magic_Tier2, AddSlot_Magic_Tier2, Mana_10_5_Magic_Tier2, MR_1_2_Magic_Tier2, EV_1_ACC_1_2_Magic_Tier2;
     public bool DMG_Resistance_1_1_Magic_Tier3, EV_2_ACC_2_2_Magic_Tier3, Mana_10_6_Magic_Tier3, MR_2_1_Magic_Tier3, Mana_20_1_Magic_Tier3, MCost_1Perc_1_Magic_Tier3, HP_15_1_Magic_Tier3, HP_5_3_Magic_Tier3, EV_1_ACC_1_3_Magic_Tier3, MR_1_4_Magic_Tier3, AtkSpeed_1_1_Magic_Tier3, HP_5_4_Magic_Tier3, Mana_20_2_Magic_Tier3, MR_1_5_Magic_Tier3, SkilledTree_1_Magic_Tier3;
@@ -41,12 +45,16 @@ public class Skills : MonoBehaviour
 */
     public int BS_Mana = 0, BS_Cooldown = 0, BS_Damage = 0, BS_Weakness = 0, ManaOverdrain_Perc = 0, ManaOverdrain_Potion = 0, CH_Damage = 0, CH_Mana = 0, CH_Cooldown = 0, CH_Effect_EVChance = 0, CH_Effect_Damage = 0, CH_Effect_Duration = 0, V_Heal = 0, V_Damage = 0, V_EffectHeal = 0, V_Mana = 0;
     public int PH_Cooldown = 0, PH_Damage = 0, PH_WeaponSkillChance = 0, Parry_Chance = 0, Parry_Damage = 0, Parry_Perc = 0;
-    public int BL_ReturnDamage = 0, BL_Chance = 0, BL_Cooldown = 0, BrutalityStreak_EnergySave = 0, BrutalityStreak_AvoidChance = 0;
+    public int BL_ReturnDamage = 0, BL_Chance = 0, BL_Cooldown = 0, BrutalityStreak_EnergySave = 0, BrutalityStreak_AvoidChance = 0, DMGCapOverdamage_10Perc_1 = 0, DMGCapOverdamage_10Perc_2 = 0;
     //public string[,] Checklist = new string[2,50]; 
     public string InvokeMethod, InvokeClass; 
-    public float Shield_MagicDefence = 0, Shield_DamageReturn = 0;
+    public float Shield_MagicDefence = 0, Shield_DamageReturn = 0, Shield_NoStaminaUsageChance = 0, Shield_DamageBoost = 0, DMGCapOverdamage = 1.5f, Crit_Damage = 0.5f, DamageModifier = 1f;
     //public bool IsChecked;
+    public static Skills Instance;
 
+    void Awake(){
+        Instance = this;
+    }
     public void Upgradebutton_click(){
         Type type = Type.GetType(InvokeClass);
         object obj = FindObjectOfType(type);
@@ -149,8 +157,26 @@ public class Skills : MonoBehaviour
     public void Skilltree_Shield(){
         Shield_MagicDefence = (Shield_MagicDef_2Perc_1*2 + Shield_MagicDef_2Perc_2*2)/100f;
         Shield_DamageReturn = (Shield_DmgReturn_1Perc_1 + Shield_DmgReturn_1Perc_2)/100f;
+        Shield_NoStaminaUsageChance = Shield_NoStaminaUsage_5Perc*0.05f;
+        Shield_DamageBoost = Shield_DamageBoost_3Perc*0.03f;
     }
 
+    public void Skilltree_Damage(){
+        player.BaseDamage = player.Level + 1;
+    }
+
+    public void Skilltree_DamageModifier(){
+        DamageModifier = 1f;
+        player.UpdateAllStats();
+    }
+    
+    public void Skilltree_CritDamage(){
+        Crit_Damage = 0.5f;
+    }
+    
+    public void Skilltree_DMGCapOverdamage(){
+        DMGCapOverdamage = 1.5f + DMGCapOverdamage_10Perc_1*0.1f + DMGCapOverdamage_10Perc_2*0.1f;
+    }
     /*public void Checklist_Add(string a, string b){
         Checklist[0, ChecklistItems] = a;
         Checklist[1, ChecklistItems] = b;
