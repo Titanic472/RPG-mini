@@ -10,12 +10,12 @@
 	<AccuracyAllUpgrades>{0} Accuracy Branch Upgrades: {1}</AccuracyAllUpgrades>
 	<EvasionAllUpgrades>{0} Agility Branch Upgrades: {1}</EvasionAllUpgrades>
 	<SorceryAllUpgrades>{0} Sorcery Branch Upgrades: {1}</SorceryAllUpgrades>
-	<EvasionMain>Base skill, allows player to avoid Enemy attacks. Avoid chance depends on agility level and some skill tree upgrades
+	<Evasion_Description>Base skill, allows player to avoid Enemy attacks. Avoid chance depends on agility level and some skill tree upgrades
 
-Current Agility: {0}</EvasionMain>
-	<AccuracyMain>Base skill, increases critical strike chance. Critical strike chance depends on Accuracy level and some skill tree upgrades
+Current Agility: {0}</Evasion_Description>
+	<Accuracy_Description>Base skill, increases critical strike chance. Critical strike chance depends on Accuracy level and some skill tree upgrades
 
-Current Accuracy: {0}</AccuracyMain>
+Current Accuracy: {0}</Accuracy_Description>
 	<Practice_Plus_Description>Ancient art of magic. Allows player to use spells and increases maximum mana</Practice_Plus_Description>
 	<Practice_Plus>Practice Plus</Practice_Plus>
 	<Shield_Magic_Defence>Anti-Magic Shield</Shield_Magic_Defence>
@@ -118,7 +118,8 @@ Your current maximum avoid chance: {1}%</Avoid_Chance_Description>
 	<More_Evasion>More Evasion</More_Evasion>
 	<More_Evasion_Description>Extra 3 agility points for a good price</More_Evasion_Description>
 	<Precise_Hit_Unlock>Precise Hit Unlock</Precise_Hit_Unlock>
-	<Precise_Hit_Unlock_Description>Most Precise Attack, hits the Enemy always</Precise_Hit_Unlock_Description>
+	<Precise_Hit_Unlock_Description>Most Precise Attack, hits the Enemy always
+Cooldown: 8 Turns</Precise_Hit_Unlock_Description>
 	<Precise_Damage>Precise Damage</Precise_Damage>
 	<Precise_Damage_Description>Precise Hit now deals +{0}% Damage</Precise_Damage_Description>
 	<Precise_Cooldown>Precise Cooldown</Precise_Cooldown>
@@ -135,7 +136,8 @@ Your current maximum avoid chance: {1}%</Avoid_Chance_Description>
 	<Max_Critical_Strike_Chance_Description>Increases maximum critical strike chance by {0}%
 Your current maximum critical strike chance: {1}%</Max_Critical_Strike_Chance_Description>
 	<Block_Unlock>Block Unlock</Block_Unlock>
-	<Block_Unlock_Description>Blocks incoming Enemy attack with 65% chance</Block_Unlock_Description>
+	<Block_Unlock_Description>Blocks incoming Enemy attack with 65% chance
+Cooldown: 6 Turns</Block_Unlock_Description>
 	<Strike_Back>Strike Back</Strike_Back>
 	<Strike_Back_Description>Block returns {0}% of damage</Strike_Back_Description>
 	<More_Accuracy>More Accuracy</More_Accuracy>
@@ -164,7 +166,12 @@ Current chance: {0}</Instant_Shield_Description>
 	<Additional_Damage_Description>Makes your attacks more powerful increasing your damage by {0}</Additional_Damage_Description>
 	<Even_More_Damage>Even More Damage</Even_More_Damage>
 	<Even_More_Damage_Description>Who said there it could be too much damage? Increases damage by {0}%</Even_More_Damage_Description>
-	<Crit_Damage></Crit_Damage>
+	<Crit_Damage>Crit Damage</Crit_Damage>
 	<Crit_Damage_Description>Increases critical strike damage increase by {0}%
 Your current critical strike damage: {1}%</Crit_Damage_Description>
+	<DMGCapOverdamage_Unlock>Overdamage</DMGCapOverdamage_Unlock>
+	<DMGCapOverdamage_Unlock_Description>Allows you to deal 150% of maximum allowed damage when enemy have maximum damage cap when damage is x{0} higher than damage cap</DMGCapOverdamage_Unlock_Description>
+	<More_Overdamage>More Overdamage</More_Overdamage>
+	<More_Overdamage_Description>Increases Overdamage by 10%
+Current Overdamage percent: {0}%</More_Overdamage_Description>
 </texts>

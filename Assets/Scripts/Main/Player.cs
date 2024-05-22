@@ -56,8 +56,8 @@ public class Player : Entity
      SkillPoints = 1;
      DamageResistance = 0;
      BaseDamageResistance = 0;
-     MaxAvoidChance = 40;
-     MaxCritChance = 40;
+     MaxAvoidChance = 25;
+     MaxCritChance = 25;
      Money[0] = 1;
      DamageReduction = 0;
      MaxSpeedEnergy = 5;
@@ -310,6 +310,7 @@ public class Player : Entity
         SkillManager.Skilltree_Damage();
         SkillPoints += 2;
         ++Level;
+        SkillManager.Skilltree_Damage();
         UpdateAllStats();
         Health = MaxHealth;
         StartCoroutine(HealthBar.HP_update());

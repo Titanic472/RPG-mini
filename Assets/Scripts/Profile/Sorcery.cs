@@ -145,7 +145,6 @@ public class Sorcery : SkillTreeSegment
 
     public void Shield_DmgReturn_1Perc_2_Upgrade(){
         Upgrade(Shield_DmgReturn_1Perc_2, "Shield_DmgReturn_1Perc_2", Price1: 4, Price2: 4, Price3: 5, Price4: 5, Price5: 5, HasSuffix: false, Invoke1: "Shield");
-
     }
 
     public void Mana_10_2_Text(){

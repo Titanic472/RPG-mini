@@ -148,13 +148,13 @@ public class SkillTreeSegment : MonoBehaviour
 
         if((HasCheck && player.SkillPoints>=Price && UpgradesCount < MaxUpgradesCount && CanBeUpgraded) || (!HasCheck && player.SkillPoints>=Price && (UpgradesCount < MaxUpgradesCount || MaxUpgradesCount == -1))) SkillsUpgradeButton.interactable = true;
         else SkillsUpgradeButton.interactable = false;
-        if(UpgradesCount >= MaxUpgradesCount) Button_Skills.text = Language_Changer.Instance.GetText("Fully_Upgraded");
+        if(UpgradesCount >= MaxUpgradesCount && MaxUpgradesCount != -1) Button_Skills.text = Language_Changer.Instance.GetText("Fully_Upgraded");
         SkillManager.InvokeClass = Class;
         SkillManager.InvokeMethod = Name;
         Information_Skills_BG.SetActive(true);
     }
 
-    public void Upgrade(GameObject Object, string Name, string SkillName = "", int Price1 = 1, int Price2 = -1, int Price3 = -1, int Price4 = -1, int Price5 = -1, string Invoke1 = "", bool IsBool = false, int MaxUpgradesCount = 5, bool HasSuffix = true, GameObject SetInteractable1 = null, int CheckVal1 = -1, GameObject SetInteractable2 = null, int CheckVal2 = -1, GameObject SetInteractable3 = null, int CheckVal3 = -1, GameObject SetInteractable4 = null, int CheckVal4 = -1){
+    public void Upgrade(GameObject Object, string Name, string SkillName = "", int Price1 = 1, int Price2 = -1, int Price3 = -1, int Price4 = -1, int Price5 = -1, string Invoke1 = "", string Invoke2 = "", bool IsBool = false, int MaxUpgradesCount = 5, bool HasSuffix = true, GameObject SetInteractable1 = null, int CheckVal1 = -1, GameObject SetInteractable2 = null, int CheckVal2 = -1, GameObject SetInteractable3 = null, int CheckVal3 = -1, GameObject SetInteractable4 = null, int CheckVal4 = -1){
         if(SkillName == "") SkillName = Name;
         if(HasSuffix) SkillName += "_" + Class;
 
@@ -200,10 +200,10 @@ public class SkillTreeSegment : MonoBehaviour
             MethodInfo method = Type_SkillManager.GetMethod("Skilltree_" + Invoke1);
             method.Invoke(SkillManager, null);
         } 
-        /*if(Invoke2!=""){
+        if(Invoke2!=""){
             MethodInfo method = Type_SkillManager.GetMethod("Skilltree_" + Invoke2);
             method.Invoke(SkillManager, null);
-        }*/
+        }
         if(CheckVal1>0 && Convert.ToInt32(UpgradeVariable.GetValue(SkillManager))>=CheckVal1)SetInteractable1.GetComponent<Button>().interactable = true;
         if(CheckVal2>0 && Convert.ToInt32(UpgradeVariable.GetValue(SkillManager))>=CheckVal2)SetInteractable2.GetComponent<Button>().interactable = true;
         if(CheckVal3>0 && Convert.ToInt32(UpgradeVariable.GetValue(SkillManager))>=CheckVal3)SetInteractable3.GetComponent<Button>().interactable = true;

@@ -79,12 +79,24 @@ public class Skills : MonoBehaviour
     //Convert.ToInt32()
     //adding stats from skill tree
     public void Skilltree_Evasion(){
-        player.Skills["BaseEvasion"] = EvasionMain;
+        int AllEvasionMain;
+        if(EvasionMain == 0) AllEvasionMain = 0;
+        else if(EvasionMain<5) AllEvasionMain = (EvasionMain-1)*4 + 2;
+        else if(EvasionMain<15) AllEvasionMain =  (EvasionMain-5)*6 + 18;
+        else if(EvasionMain<24) AllEvasionMain = (EvasionMain-15)*8 + 78;
+        else AllEvasionMain = (EvasionMain-24)*10 + 150;
+        player.Skills["BaseEvasion"] = AllEvasionMain + EV_4_ACC_4_1_Accuracy*4 + EV_6_ACC_6_1_Accuracy*6 + EV_10_ACC_10_1_Accuracy*10 + EV_10_ACC_10_2_Accuracy*10 + EV_10_ACC_10_3_Accuracy*10;
         player.UpdateAllStats();
     }
 
     public void Skilltree_Accuracy(){
-        player.Skills["BaseAccuracy"] = AccuracyMain;
+        int AllAccuracyMain = 0;
+        if(AccuracyMain == 0) AllAccuracyMain = 0;
+        else if(AccuracyMain<5) AllAccuracyMain = (AccuracyMain-1)*4 + 2;
+        else if(AccuracyMain<15) AllAccuracyMain =  (AccuracyMain-5)*6 + 18;
+        else if(AccuracyMain<24) AllAccuracyMain = (AccuracyMain-15)*8 + 78;
+        else AllAccuracyMain = (AccuracyMain-24)*10 + 150;
+        player.Skills["BaseAccuracy"] = AllAccuracyMain + ACC_10_1_Accuracy*10 + ACC_10_2_Accuracy*10 + ACC_10_3_Accuracy*10 + ACC_10_4_Accuracy*10 + EV_4_ACC_4_1_Accuracy*4 + EV_6_ACC_6_1_Accuracy*6 + EV_10_ACC_10_1_Accuracy*10 + EV_10_ACC_10_2_Accuracy*10 + EV_10_ACC_10_3_Accuracy*10;
         player.UpdateAllStats();
     }
 
@@ -94,7 +106,7 @@ public class Skills : MonoBehaviour
     }
 
     public void Skilltree_Health(){
-        player.Skills["BaseHealth"] = HP_5_1_Sorcery*5 + HP_10_1_Sorcery*10 + HP_10_2_Sorcery*10 + HP_10_3_Sorcery*10 + HP_15_1_Sorcery*15;
+        player.Skills["BaseHealth"] = HP_5_1_Sorcery*5 + HP_10_1_Sorcery*10 + HP_10_2_Sorcery*10 + HP_10_3_Sorcery*10 + HP_15_1_Sorcery*15 + HP_25_1_Accuracy*25 + HP_25_2_Accuracy*25 + HP_30_1_Accuracy*30 + HP_30_2_Accuracy*30 + HP_40_1_Accuracy*40;
         player.UpdateAllStats();
     }
 
@@ -119,7 +131,7 @@ public class Skills : MonoBehaviour
     }
 
     public void Skilltree_HealthModifier(){
-        player.BaseHealthModifier = 1f;
+        player.BaseHealthModifier = 1f + HP_1Perc_1_Accuracy*0.01f + HP_2Perc_1_Accuracy*0.02f + HP_2Perc_2_Accuracy*0.02f + HP_5Perc_1_Accuracy*0.05f;
         player.UpdateAllStats();
     }
 
@@ -146,7 +158,7 @@ public class Skills : MonoBehaviour
     }
 
     public void Skilltree_MaxCritChance(){
-        player.MaxCritChance = 25;
+        player.MaxCritChance = 25 + CritChance_2Perc_1_Accuracy*2 + CritChance_2Perc_2_Accuracy*2 + CritChance_2Perc_3_Accuracy*2 + CritChance_4Perc_1_Accuracy*4;
     }
 
     public void Skilltree_ActiveSkillsSlots(){
@@ -155,23 +167,23 @@ public class Skills : MonoBehaviour
     }
 
     public void Skilltree_Shield(){
-        Shield_MagicDefence = (Shield_MagicDef_2Perc_1*2 + Shield_MagicDef_2Perc_2*2)/100f;
+        Shield_MagicDefence = Shield_MagicDef_2Perc_1*0.02f + Shield_MagicDef_2Perc_2*0.02f;
         Shield_DamageReturn = (Shield_DmgReturn_1Perc_1 + Shield_DmgReturn_1Perc_2)/100f;
         Shield_NoStaminaUsageChance = Shield_NoStaminaUsage_5Perc*0.05f;
         Shield_DamageBoost = Shield_DamageBoost_3Perc*0.03f;
     }
 
     public void Skilltree_Damage(){
-        player.BaseDamage = player.Level + 1;
+        player.BaseDamage = player.Level + 1 + DMG_2_1_Accuracy*2 + DMG_4_1_Accuracy*4 + DMG_4_2_Accuracy*4 + DMG_5_1_Accuracy*5 + DMG_5_2_Accuracy*5;
     }
 
     public void Skilltree_DamageModifier(){
-        DamageModifier = 1f;
+        DamageModifier = 1f + DMG_1Perc_1_Accuracy*0.01f + DMG_2Perc_1_Accuracy*0.02f + DMG_2Perc_2_Accuracy*0.02f + DMG_5Perc_1_Accuracy*0.05f;
         player.UpdateAllStats();
     }
     
     public void Skilltree_CritDamage(){
-        Crit_Damage = 0.5f;
+        Crit_Damage = 0.5f + CritDamage_5Perc_1_Accuracy*0.05f + CritDamage_5Perc_2_Accuracy*0.05f + CritDamage_10Perc_1_Accuracy*0.1f + CritDamage_10Perc_2_Accuracy*0.1f + CritDamage_20Perc_1_Accuracy*0.2f;
     }
     
     public void Skilltree_DMGCapOverdamage(){
@@ -225,13 +237,13 @@ public class Skills : MonoBehaviour
                 break;
             case "Accuracy":
                 BranchName.text = Language_Changer.Instance.GetText("Accuracy", "Skills");
-                BranchInformationText0.text  = "<sprite=\"Skills\" name=\"Upgrades\">";
-                BranchInformationText1.text  = "<sprite=\"Skills\" name=\"Accuracy\">";
-                BranchInformationText2.text  = "<sprite=\"Skills\" name=\"CritChance\">";
-                BranchInformationText3.text  = "<sprite=\"Skills\" name=\"Damage\">";
-                BranchInformationText4.text  = "<sprite=\"Skills\" name=\"DamagePercentBoost\">";
-                BranchInformationText5.text  = "<sprite=\"Skills\" name=\"Health\">";
-                BranchInformationText6.text  = "<sprite=\"Skills\" name=\"HealthPercentBoost\">";
+                BranchInformationText0.text  = "<sprite=\"Skills\" name=\"Upgrades\">" + Accuracy.CurrentSegmentUpgrades;
+                BranchInformationText1.text  = "<sprite=\"Skills\" name=\"Accuracy\">" + player.Skills["BaseAccuracy"];
+                BranchInformationText2.text  = "<sprite=\"Skills\" name=\"CritChance\">" + player.MaxCritChance + "%";
+                BranchInformationText3.text  = "<sprite=\"Skills\" name=\"Damage\">" + (DMG_2_1_Accuracy*2 + DMG_4_1_Accuracy*4 + DMG_4_2_Accuracy*4 + DMG_5_1_Accuracy*5 + DMG_5_2_Accuracy*5);
+                BranchInformationText4.text  = "<sprite=\"Skills\" name=\"DamagePercentBoost\">" + DamageModifier*100 + "%";
+                BranchInformationText5.text  = "<sprite=\"Skills\" name=\"Health\">" + (HP_25_1_Accuracy*25 + HP_25_2_Accuracy*25 + HP_30_1_Accuracy*30 + HP_30_2_Accuracy*30 + HP_40_1_Accuracy*40);
+                BranchInformationText6.text  = "<sprite=\"Skills\" name=\"HealthPercentBoost\">" + player.BaseHealthModifier*100 + "%";
                 BranchImage0.sprite = AccuracySprite;
                 BranchImage1.sprite = AccuracySprite;
                 break;
