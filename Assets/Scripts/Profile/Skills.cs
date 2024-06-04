@@ -11,8 +11,8 @@ public class Skills : MonoBehaviour
 {
     //public Image Button1, Close, Background;
     public ActiveSkillsManager ActiveSkillsManager;
-     public Accuracy Accuracy;
-    // public Evasion Evasion;
+    public Accuracy Accuracy;
+    public Evasion Evasion;
     public Sorcery Sorcery;
     // public Universal Universal;
     // public Shadow Shadow;
@@ -27,24 +27,16 @@ public class Skills : MonoBehaviour
     //public int ChecklistItems = 0;
     public int EvasionMain, AccuracyMain, PracticePlus;
     public bool BSU, CHU, CH_Effect, VU, ManaOverdrain, BS_Poison_AddDuration, BS_NoEvasion, BS_Ultimate, CH_Ultimate_RandomDebuff, CH_Ultimate_HPPercent, V_Ultimate;
-    public bool PHU, Parry_Unlock;
+    public bool PHU, Parry_Unlock, DoubleStaminaUnlock, KDU, KD_Bleeding, KD_Poison, KD_IgnoreAvoid, DFU, DF_Debuff, DF_DoubleEffect;
     public bool BLU, BrutalityStreak_Unlock, BrutalityStreak_SpecialAttacksTrigger;
     public int Shield_MagicDef_2Perc_1, Shield_MagicDef_2Perc_2, Shield_DmgReturn_1Perc_1, Shield_DmgReturn_1Perc_2, DMGCapOverdamage_Unlock;
     public int Shield_NoStaminaUsage_5Perc, Shield_DamageBoost_3Perc;
+    public int Shield_ParryChance_1Perc, Shield_DMGResistance_1Perc_1, Shield_DMGResistance_2Perc_1, Shield_AvoidChance1Perc_1, Shield_AvoidChance2Perc_1;
     public int MR_1_1_Sorcery, Mana_10_1_Sorcery, Mana_10_2_Sorcery, Mana_1Perc_1_Sorcery, Mana_2Perc_1_Sorcery, HP_5_1_Sorcery, MR_1_2_Sorcery, ManaUsage_1Perc_1_Sorcery, MR_2_1_Sorcery, DMG_Resistance_1_1_Sorcery, Mana_10_3_Sorcery, ManaUsage_1Perc_2_Sorcery, Mana_2Perc_2_Sorcery, Mana_20_1_Sorcery, ManaUsage_1Perc_3_Sorcery, Mana_3Perc_1_Sorcery, Mana_2Perc_3_Sorcery, ManaUsage_3Perc_1_Sorcery, HP_10_1_Sorcery, ManaUsage_1Perc_4_Sorcery, MR_2_2_Sorcery, HP_10_2_Sorcery, MR_3_1_Sorcery, MR_3_2_Sorcery, HP_10_3_Sorcery, ManaUsage_3Perc_2_Sorcery, MR_3_3_Sorcery, HP_15_1_Sorcery, DMG_Resistance_1_2_Sorcery; 
     public int DMG_2_1_Accuracy, DMG_1Perc_1_Accuracy, HP_1Perc_1_Accuracy, EV_4_ACC_4_1_Accuracy, HP_25_1_Accuracy, DMG_2Perc_1_Accuracy, HP_2Perc_1_Accuracy, DMG_4_1_Accuracy, DMG_4_2_Accuracy, DMG_2Perc_2_Accuracy, DMG_5_1_Accuracy, EV_10_ACC_10_1_Accuracy, HP_30_1_Accuracy, EV_10_ACC_10_2_Accuracy, EV_6_ACC_6_1_Accuracy, DMG_5_2_Accuracy, DMG_5Perc_1_Accuracy, HP_5Perc_1_Accuracy, CritChance_2Perc_1_Accuracy, ACC_10_1_Accuracy, CritDamage_5Perc_1_Accuracy, CritChance_2Perc_2_Accuracy, CritChance_2Perc_3_Accuracy, CritDamage_5Perc_2_Accuracy, HP_30_2_Accuracy, HP_2Perc_2_Accuracy, CritChance_4Perc_1_Accuracy, HP_25_2_Accuracy, CritDamage_10Perc_1_Accuracy, ACC_10_3_Accuracy, CritDamage_10Perc_2_Accuracy, CritDamage_20Perc_1_Accuracy, ACC_10_4_Accuracy, HP_40_1_Accuracy, ACC_10_2_Accuracy, EV_10_ACC_10_3_Accuracy;
-    /*public bool HP_5_1_Magic_Tier1, MR_1_1_Magic_Tier1, EV_1_ACC_1_1_Magic_Tier1, M_1Perc_1_Magic_Tier1, Mana_10_1_Magic_Tier1, WeaponSkillChance_5Perc_1_Magic_Tier1, Mana_10_2_Magic_Tier1, MR_1_MCost_2Perc_Magic_Tier1, ;
-    public bool ManaOverdrain, HP_5_2_Magic_Tier2, Mana_10_3_Magic_Tier2, HP_10_1_Magic_Tier2, Mana_10_4_Magic_Tier2, EV_2_ACC_2_1_Magic_Tier2, MR_1_3_Magic_Tier2, AddSlot_Magic_Tier2, Mana_10_5_Magic_Tier2, MR_1_2_Magic_Tier2, EV_1_ACC_1_2_Magic_Tier2;
-    public bool DMG_Resistance_1_1_Magic_Tier3, EV_2_ACC_2_2_Magic_Tier3, Mana_10_6_Magic_Tier3, MR_2_1_Magic_Tier3, Mana_20_1_Magic_Tier3, MCost_1Perc_1_Magic_Tier3, HP_15_1_Magic_Tier3, HP_5_3_Magic_Tier3, EV_1_ACC_1_3_Magic_Tier3, MR_1_4_Magic_Tier3, AtkSpeed_1_1_Magic_Tier3, HP_5_4_Magic_Tier3, Mana_20_2_Magic_Tier3, MR_1_5_Magic_Tier3, SkilledTree_1_Magic_Tier3;
-    public bool MR_2_2_Magic_Tier4, Mana_20_3_Magic_Tier4, M_2Perc_1_Magic_Tier4, HP_10_2_Magic_Tier4, EV_2_ACC_2_3_Magic_Tier4, HP_15_2_Magic_Tier4, MR_2_3_Magic_Tier4, MCost_2Perc_1_Magic_Tier4, EV_2_ACC_2_4_Magic_Tier4, Mana_20_4_Magic_Tier4, UltimateUnlock_Magic_Tier4;
-    public bool Mana_2Perc_2_Magic_Tier5, Mana_10_7_Magic_Tier5, MR_2_4_Magic_Tier5, Mana_20_7_Magic_Tier5, MCost_1Perc_2_Magic_Tier5, MR_2_6_Magic_Tier5, EV_5_ACC_5_2_Magic_Tier5, HP_20_1_Magic_Tier5, HPRegen_10_1_Magic_Tier5, DMG_Resistance_2_1_Magic_Tier5, MCost_2Perc_2_Magic_Tier5, Mana_20_5_Magic_Tier5, MR_2_5_Magic_Tier5, Mana_20_6_Magic_Tier5, EV_5_ACC_5_1_Magic_Tier5, HPRegen_20_1_Magic_Tier5, MCost_2Perc_3_Magic_Tier5, HP_20_2_Magic_Tier5, Mana_20_8_Magic_Tier5, MR_2_7_Magic_Tier5, DMG_Resistance_2_2_Magic_Tier5, Mana_20_9_Magic_Tier5, HPRegen_20_2_Magic_Tier5;
-    public bool , AvoidChance_2Perc_1_Evasion_Tier1, EV_1_ACC_1_1_Evasion_Tier1, HP_5_1_Evasion_Tier1, EV_3_1_Evasion_Tier1, WeaponSkillChance_5Perc_1_Evasion_Tier1, AtkSpeed_1_1_Evasion_Tier1, AvoidChance_3Perc_1_Evasion_Tier1, DMG_Resistance_1_1_Evasion_Tier1;
-    public bool , DMG_Resistance_1_2_Evasion_Tier2, AvoidChance_5Perc_1_Evasion_Tier2, AvoidChance_5Perc_2_Evasion_Tier2, HP_5_2_Evasion_Tier2, AtkSpeed_1_2_Evasion_Tier2, HP_10_1_Evasion_Tier2, EV_3_2_Evasion_Tier2, EV_1_ACC_1_2_Evasion_Tier2, EV_2_ACC_2_1_Evasion_Tier2, AddSlot_Evasion_Tier2;
-    public bool HP_5_1_Accuracy_Tier1, MaxCrit_5Perc_1_Accuracy_Tier1, ACC_3_1_Accuracy_Tier1, WeaponSkillChance_2Perc_1_Accuracy_Tier1, HP_5_2_Accuracy_Tier1, WeaponSkillChance_3Perc_1_Accuracy_Tier1, EV_1_ACC_1_1_Accuracy_Tier1, HP_5_3_Accuracy_Tier1, HP_1Perc_1_Accuracy_Tier1;
-    public bool , ACC_3_2_Accuracy_Tier2, MaxCrit_5Perc_2_Accuracy_Tier2, HP_10_1_Accuracy_Tier2, ACC_3_3_Accuracy_Tier2, HP_10_2_Accuracy_Tier2, MaxCrit_5Perc_3_Accuracy_Tier2, HP_1Perc_2_Accuracy_Tier2, EV_1_ACC_1_2_Accuracy_Tier2, HP_10_3_Accuracy_Tier2, EV_2_ACC_2_1_Accuracy_Tier2, AddSlot_Accuracy_Tier2;
-*/
+    public int AvoidChance_1Perc_1_Evasion, EV_4_1_Evasion, AvoidChance_1Perc_2_Evasion, HP_10_1_Evasion, DMG_Resistance_1Perc_1_Evasion, AvoidChance_2Perc_1_Evasion, AvoidChance_2Perc_2_Evasion, EV_8_1_Evasion, HP_15_1_Evasion, AvoidChance_2Perc_3_Evasion, EV_10_1_Evasion, DMG_Resistance_1Perc_2_Evasion, EV_8_2_Evasion, EV_10_2_Evasion, HP_10_2_Evasion, StaminaRegen_1_1_Evasion, MaxStamina_1_1_Evasion, EV_6_ACC_6_1_Evasion, StaminaRegen_1_2_Evasion, HP_10_3_Evasion, MaxStamina_1_2_Evasion, EV_4_ACC_4_1_Evasion, StaminaRegen_1_3_Evasion, HP_15_2_Evasion, EV_10_ACC_10_1_Evasion, MaxStamina_1_3_Evasion, StaminaRegen_2_1_Evasion, EV_10_ACC_10_2_Evasion, MaxStamina_1_4_Evasion, DMG_resistance_1Perc_3_Evasion, EV_10_ACC_10_3_Evasion;
     public int BS_Mana = 0, BS_Cooldown = 0, BS_Damage = 0, BS_Weakness = 0, ManaOverdrain_Perc = 0, ManaOverdrain_Potion = 0, CH_Damage = 0, CH_Mana = 0, CH_Cooldown = 0, CH_Effect_EVChance = 0, CH_Effect_Damage = 0, CH_Effect_Duration = 0, V_Heal = 0, V_Damage = 0, V_EffectHeal = 0, V_Mana = 0;
-    public int PH_Cooldown = 0, PH_Damage = 0, PH_WeaponSkillChance = 0, Parry_Chance = 0, Parry_Damage = 0, Parry_Perc = 0;
+    public int PH_Cooldown = 0, PH_Damage = 0, PH_WeaponSkillChance = 0, Parry_Chance = 0, Parry_Damage = 0, Parry_Perc = 0, KD_Amount = 0, KD_Damage = 0, KD_Cooldown = 0, KD_NoStaminaUse = 0, KD_Explosive = 0, DF_EffectDuration = 0, DF_Debuff_Percent = 0, DF_Debuff_Stamina = 0, DF_Debuff_Duration = 0;
     public int BL_ReturnDamage = 0, BL_Chance = 0, BL_Cooldown = 0, BrutalityStreak_EnergySave = 0, BrutalityStreak_AvoidChance = 0, DMGCapOverdamage_10Perc_1 = 0, DMGCapOverdamage_10Perc_2 = 0;
     //public string[,] Checklist = new string[2,50]; 
     public string InvokeMethod, InvokeClass; 
@@ -85,7 +77,7 @@ public class Skills : MonoBehaviour
         else if(EvasionMain<15) AllEvasionMain =  (EvasionMain-5)*6 + 18;
         else if(EvasionMain<24) AllEvasionMain = (EvasionMain-15)*8 + 78;
         else AllEvasionMain = (EvasionMain-24)*10 + 150;
-        player.Skills["BaseEvasion"] = AllEvasionMain + EV_4_ACC_4_1_Accuracy*4 + EV_6_ACC_6_1_Accuracy*6 + EV_10_ACC_10_1_Accuracy*10 + EV_10_ACC_10_2_Accuracy*10 + EV_10_ACC_10_3_Accuracy*10;
+        player.Skills["BaseEvasion"] = AllEvasionMain + EV_4_ACC_4_1_Accuracy*4 + EV_6_ACC_6_1_Accuracy*6 + EV_10_ACC_10_1_Accuracy*10 + EV_10_ACC_10_2_Accuracy*10 + EV_10_ACC_10_3_Accuracy*10 + EV_4_1_Evasion*4 + EV_8_1_Evasion*8 + EV_8_2_Evasion*8 + EV_10_1_Evasion*10 + EV_10_2_Evasion*10 + EV_4_ACC_4_1_Evasion*4 + EV_6_ACC_6_1_Evasion*6 + EV_10_ACC_10_1_Evasion*10 + EV_10_ACC_10_2_Evasion*10 + EV_10_ACC_10_3_Evasion*10;
         player.UpdateAllStats();
     }
 
@@ -96,7 +88,7 @@ public class Skills : MonoBehaviour
         else if(AccuracyMain<15) AllAccuracyMain =  (AccuracyMain-5)*6 + 18;
         else if(AccuracyMain<24) AllAccuracyMain = (AccuracyMain-15)*8 + 78;
         else AllAccuracyMain = (AccuracyMain-24)*10 + 150;
-        player.Skills["BaseAccuracy"] = AllAccuracyMain + ACC_10_1_Accuracy*10 + ACC_10_2_Accuracy*10 + ACC_10_3_Accuracy*10 + ACC_10_4_Accuracy*10 + EV_4_ACC_4_1_Accuracy*4 + EV_6_ACC_6_1_Accuracy*6 + EV_10_ACC_10_1_Accuracy*10 + EV_10_ACC_10_2_Accuracy*10 + EV_10_ACC_10_3_Accuracy*10;
+        player.Skills["BaseAccuracy"] = AllAccuracyMain + ACC_10_1_Accuracy*10 + ACC_10_2_Accuracy*10 + ACC_10_3_Accuracy*10 + ACC_10_4_Accuracy*10 + EV_4_ACC_4_1_Accuracy*4 + EV_6_ACC_6_1_Accuracy*6 + EV_10_ACC_10_1_Accuracy*10 + EV_10_ACC_10_2_Accuracy*10 + EV_10_ACC_10_3_Accuracy*10 + EV_4_ACC_4_1_Evasion*4 + EV_6_ACC_6_1_Evasion*6 + EV_10_ACC_10_1_Evasion*10 + EV_10_ACC_10_2_Evasion*10 + EV_10_ACC_10_3_Evasion*10;
         player.UpdateAllStats();
     }
 
@@ -106,7 +98,7 @@ public class Skills : MonoBehaviour
     }
 
     public void Skilltree_Health(){
-        player.Skills["BaseHealth"] = HP_5_1_Sorcery*5 + HP_10_1_Sorcery*10 + HP_10_2_Sorcery*10 + HP_10_3_Sorcery*10 + HP_15_1_Sorcery*15 + HP_25_1_Accuracy*25 + HP_25_2_Accuracy*25 + HP_30_1_Accuracy*30 + HP_30_2_Accuracy*30 + HP_40_1_Accuracy*40;
+        player.Skills["BaseHealth"] = HP_5_1_Sorcery*5 + HP_10_1_Sorcery*10 + HP_10_2_Sorcery*10 + HP_10_3_Sorcery*10 + HP_15_1_Sorcery*15 + HP_25_1_Accuracy*25 + HP_25_2_Accuracy*25 + HP_30_1_Accuracy*30 + HP_30_2_Accuracy*30 + HP_40_1_Accuracy*40 + HP_10_1_Evasion*10 + HP_15_1_Evasion*15 + HP_10_2_Evasion*10 + HP_10_3_Evasion*10 + HP_15_2_Evasion*15;
         player.UpdateAllStats();
     }
 
@@ -136,12 +128,12 @@ public class Skills : MonoBehaviour
     }
 
     public void Skilltree_AttackSpeed(){
-        player.BaseAttackSpeed = 0;
+        player.BaseAttackSpeed = 0 + (StaminaRegen_1_1_Evasion + StaminaRegen_1_2_Evasion + StaminaRegen_1_3_Evasion + StaminaRegen_2_1_Evasion*2)/10f;
         player.UpdateAllStats();
     }
 
     public void Skilltree_DamageResistance(){
-        player.BaseDamageResistance = (DevTools.Instance.Resistance + DMG_Resistance_1_1_Sorcery + DMG_Resistance_1_2_Sorcery)/100f;
+        player.BaseDamageResistance = (DevTools.Instance.Resistance + DMG_Resistance_1_1_Sorcery + DMG_Resistance_1_2_Sorcery + DMG_Resistance_1Perc_1_Evasion + DMG_Resistance_1Perc_2_Evasion + DMG_resistance_1Perc_3_Evasion)/100f;
         player.UpdateAllStats();
     }
 
@@ -154,7 +146,7 @@ public class Skills : MonoBehaviour
     }
 
     public void Skilltree_MaxAvoidChance(){
-        player.MaxAvoidChance = 25;
+        player.MaxAvoidChance = 25 + AvoidChance_1Perc_1_Evasion + AvoidChance_1Perc_2_Evasion + AvoidChance_2Perc_1_Evasion*2 + AvoidChance_2Perc_2_Evasion*2 + AvoidChance_2Perc_3_Evasion*2;
     }
 
     public void Skilltree_MaxCritChance(){
@@ -188,6 +180,12 @@ public class Skills : MonoBehaviour
     
     public void Skilltree_DMGCapOverdamage(){
         DMGCapOverdamage = 1.5f + DMGCapOverdamage_10Perc_1*0.1f + DMGCapOverdamage_10Perc_2*0.1f;
+    }
+
+    public void Skilltree_MaxStamina(){
+        player.speedEnergy.AddMoreSlots();
+        //MaxStamina_1_1_Evasion, MaxStamina_1_2_Evasion, MaxStamina_1_3_Evasion, MaxStamina_1_4_Evasion
+        ++player.MaxSpeedEnergy;
     }
     /*public void Checklist_Add(string a, string b){
         Checklist[0, ChecklistItems] = a;
@@ -249,13 +247,13 @@ public class Skills : MonoBehaviour
                 break;
             case "Evasion":
                 BranchName.text = Language_Changer.Instance.GetText("Evasion", "Skills");
-                BranchInformationText0.text  = "<sprite=\"Skills\" name=\"Upgrades\">";
-                BranchInformationText1.text  = "<sprite=\"Skills\" name=\"Evasion\">";
-                BranchInformationText2.text  = "<sprite=\"Skills\" name=\"AvoidChance\">";
-                BranchInformationText3.text  = "<sprite=\"Skills\" name=\"Stamina\">";
-                BranchInformationText4.text  = "<sprite=\"Skills\" name=\"StaminaRegen\">";
-                BranchInformationText5.text  = "<sprite=\"Skills\" name=\"DamageResistance\">";
-                BranchInformationText6.text  = "<sprite=\"Skills\" name=\"Health\">";
+                BranchInformationText0.text  = "<sprite=\"Skills\" name=\"Upgrades\">" + Evasion.CurrentSegmentUpgrades;
+                BranchInformationText1.text  = "<sprite=\"Skills\" name=\"Evasion\">" + player.Skills["BaseEvasion"];
+                BranchInformationText2.text  = "<sprite=\"Skills\" name=\"AvoidChance\">" + player.MaxAvoidChance + "%";
+                BranchInformationText3.text  = "<sprite=\"Skills\" name=\"Stamina\">" + (MaxStamina_1_1_Evasion + MaxStamina_1_2_Evasion + MaxStamina_1_3_Evasion + MaxStamina_1_4_Evasion);
+                BranchInformationText4.text  = "<sprite=\"Skills\" name=\"StaminaRegen\">" + player.BaseAttackSpeed;
+                BranchInformationText5.text  = "<sprite=\"Skills\" name=\"DamageResistance\">" + (DMG_Resistance_1Perc_1_Evasion + DMG_Resistance_1Perc_2_Evasion + DMG_resistance_1Perc_3_Evasion) + "%";
+                BranchInformationText6.text  = "<sprite=\"Skills\" name=\"Health\">" + (HP_10_1_Evasion*10 + HP_15_1_Evasion*15 + HP_10_2_Evasion*10 + HP_10_3_Evasion*10 + HP_15_2_Evasion*15);
                 BranchImage0.sprite = EvasionSprite;
                 BranchImage1.sprite = EvasionSprite;
                 break;

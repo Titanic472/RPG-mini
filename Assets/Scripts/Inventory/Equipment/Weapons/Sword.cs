@@ -19,7 +19,7 @@ public class Sword : Item
             AttackDamage += Convert.ToInt32(AttackDamage*Player.Instance.BrutalityStreak_AddDamageAll);
             Player.Instance.BrutalityStreak_AddDamageAll += Player.Instance.BrutalityStreak_AddDamage;
             bool IsCrit = Player.Instance.Crit();
-            AttackDamage += Convert.ToInt32(AttackDamage*Convert.ToInt32(IsCrit)*Skills.Instance.Crit_Damage);
+            AttackDamage += Convert.ToInt32(Math.Ceiling(AttackDamage*Convert.ToInt32(IsCrit)*Skills.Instance.Crit_Damage));
             Fight.Instance.MobScript.GetDamage(AttackDamage, true, IsCrit);
             Fight.Instance.EffectsManager.TriggerEffects(2, Player.Instance);
             Fight.Instance.EffectsManager.TriggerEffects(3, Fight.Instance.MobScript);

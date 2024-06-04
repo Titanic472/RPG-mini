@@ -10,19 +10,19 @@
 	<AccuracyAllUpgrades>{0} Accuracy Branch Upgrades: {1}</AccuracyAllUpgrades>
 	<EvasionAllUpgrades>{0} Agility Branch Upgrades: {1}</EvasionAllUpgrades>
 	<SorceryAllUpgrades>{0} Sorcery Branch Upgrades: {1}</SorceryAllUpgrades>
-	<Evasion_Description>Base skill, allows player to avoid Enemy attacks. Avoid chance depends on agility level and some skill tree upgrades
+	<Evasion_Description>Base skill, allows player to avoid Enemy attacks. Avoid chance depends on agility level and some skill tree upgrades.
 
 Current Agility: {0}</Evasion_Description>
-	<Accuracy_Description>Base skill, increases critical strike chance. Critical strike chance depends on Accuracy level and some skill tree upgrades
+	<Accuracy_Description>Base skill, increases critical strike chance. Critical strike chance depends on Accuracy level and some skill tree upgrades.
 
 Current Accuracy: {0}</Accuracy_Description>
 	<Practice_Plus_Description>Ancient art of magic. Allows player to use spells and increases maximum mana</Practice_Plus_Description>
 	<Practice_Plus>Practice Plus</Practice_Plus>
 	<Shield_Magic_Defence>Anti-Magic Shield</Shield_Magic_Defence>
-	<Shield_Magic_Defence_Description>Every activation level of shield will also add {0}% of incoming magic damage resistance
+	<Shield_Magic_Defence_Description>Every activation level of shield will also add {0}% of incoming magic damage resistance.
 Current Magic Damage Resistance: {1}%</Shield_Magic_Defence_Description>
 	<Shield_Damage_Return>Shield Spikes</Shield_Damage_Return>
-	<Shield_Damage_Return_Description>Casts Magical Spikes on shield. Every activation level of shield will additionally hurt attacker with {0}% of incoming damage
+	<Shield_Damage_Return_Description>Casts Magical Spikes on shield. Every activation level of shield will additionally hurt attacker with {0}% of incoming damage.
 Current Spikes Damage: {1}%</Shield_Damage_Return_Description>
 	<Additional_Health>Additional Health</Additional_Health>
 	<Additional_Health_Description>Increases maximum health amount by {0}</Additional_Health_Description>
@@ -81,13 +81,13 @@ Cooldown: 7 Turns</Chaos_Description>
 	<A_Lot_Of_Mana>A Lot Of Mana</A_Lot_Of_Mana>
 	<A_Lot_Of_Mana_Description>Even more mana for even more spells. Increases maximum mana amount by 20</A_Lot_Of_Mana_Description>
 	<Faster_Attacks>Faster Attacks</Faster_Attacks>
-	<Faster_Attacks_Description>Increases your attack speed by 0.1(stamina bar fills faster)</Faster_Attacks_Description>
+	<Faster_Attacks_Description>Increases your stamina regeneration by 0.{0}</Faster_Attacks_Description>
 	<Chaos_Effect>Chaos Effect</Chaos_Effect>
-	<Chaos_Effect_Description>Now instead of dealing percent of enemy health damage Chaos applies debuff for 1-5 turns that gives you 0.5% damage to Enemy's health per debuff turn, but also Enemy has 9% avoid chance per debuff turn. Works only with Physical attacks!</Chaos_Effect_Description>
+	<Chaos_Effect_Description>Now instead of dealing percent of Enemy health damage Chaos applies debuff for 1-5 turns that gives you 0.5% damage to Enemy's health per debuff turn, but also Enemy has 9% avoid chance per debuff turn. Works only with Physical attacks!</Chaos_Effect_Description>
 	<Vampirism_Heal>Vampirism Heal</Vampirism_Heal>
 	<Vampirism_Heal_Description>Increases healing amount to {0}% of damage done</Vampirism_Heal_Description>
 	<Vampirism>Vampirism</Vampirism>
-	<Vampirism_Description>Deals 200% of Player's base damage, restores 10% of the damage done to Player's health. 
+	<Vampirism_Description>Deals 200% of Player's base damage, restores 10% of the damage done to Enemy's health. 
 Uses 150 Mana
 Cooldown: 6 Turns</Vampirism_Description>
 	<Vampirism_Damage>Vampirism Damage</Vampirism_Damage>
@@ -107,36 +107,38 @@ Cooldown: 6 Turns</Vampirism_Description>
 	<Chaos_Ultimate_Random_Debuff>Chaos Ultimate Random Debuff</Chaos_Ultimate_Random_Debuff>
 	<Chaos_Ultimate_Random_Debuff_Description>Chaos, additionally to Chaos debuff, applies random debuff with random duration, sometimes</Chaos_Ultimate_Random_Debuff_Description>
 	<Ultimate_Vampirism>Ultimate Vampirism</Ultimate_Vampirism>
-	<Ultimate_Vampirism_Description>Vampirism makes the enemy bleed for 5 turns. Healing effect from debuffs is doubled</Ultimate_Vampirism_Description>
+	<Ultimate_Vampirism_Description>Vampirism makes the Enemy bleed for 5 turns. Healing effect from debuffs is doubled</Ultimate_Vampirism_Description>
 	<Ultimate_Beginner>Ultimate Beginner</Ultimate_Beginner>
 	<Ultimate_Beginner_Description></Ultimate_Beginner_Description>
 	<Health_Regeneration>Health Regeneration</Health_Regeneration>
 	<Health_Regeneration_Description>Increases base health regeneration for {0}. Slightly overpriced permanent healing!</Health_Regeneration_Description>
 	<Avoid_Chance>Avoid Chance</Avoid_Chance>
-	<Avoid_Chance_Description>Increases maximum avoid chance by {0}%
-Your current maximum avoid chance: {1}%</Avoid_Chance_Description>
+	<Avoid_Chance_Description>Increases maximum avoid chance by {0}%.
+Current maximum avoid chance: {1}%</Avoid_Chance_Description>
 	<More_Evasion>More Evasion</More_Evasion>
-	<More_Evasion_Description>Extra 3 agility points for a good price</More_Evasion_Description>
-	<Precise_Hit_Unlock>Precise Hit Unlock</Precise_Hit_Unlock>
-	<Precise_Hit_Unlock_Description>Most Precise Attack, hits the Enemy always
-Cooldown: 8 Turns</Precise_Hit_Unlock_Description>
+	<More_Evasion_Description>Extra {0} agility points for a good price</More_Evasion_Description>
+	<Precise_Hit>Precise Hit</Precise_Hit>
+	<Precise_Hit_Description>Most Precise Attack, hits the Enemy always.
+Cooldown: 8 Turns</Precise_Hit_Description>
 	<Precise_Damage>Precise Damage</Precise_Damage>
 	<Precise_Damage_Description>Precise Hit now deals +{0}% Damage</Precise_Damage_Description>
 	<Precise_Cooldown>Precise Cooldown</Precise_Cooldown>
 	<Precise_Cooldown_Description>Reduces Precise Hit cooldown to {0} turns</Precise_Cooldown_Description>
-	<Parry_Unlock>Parry Unlock</Parry_Unlock>
+	<Parry_Unlock>Parry</Parry_Unlock>
 	<Parry_Unlock_Description>Parry allows you to avoid avery Enemy attack. Parry chance increases by 1% Every time you take damage</Parry_Unlock_Description>
 	<Parry_Chance>Parry Chance</Parry_Chance>
 	<Parry_Chance_Description>Parry chance increases every time you take damage by {0}%</Parry_Chance_Description>
 	<Painful_Parry>Painful Parry</Painful_Parry>
 	<Painful_Parry_Description>Parry chance increases every time you take damage by {0}% of damage taken</Painful_Parry_Description>
+	<Better_Parry>Better Parry</Better_Parry>
+	<Better_Parry_Description>Better understanding of how parry works allows you to save {0}% of parry chance after performing parry</Better_Parry_Description>
 	<Precise_Enchants>Precise Enchants</Precise_Enchants>
 	<Precise_Enchants_Description>Precise Hit now have {0}% chance to trigger weapon enchant</Precise_Enchants_Description>
 	<Max_Critical_Strike_Chance>Max Critical Strike Chance</Max_Critical_Strike_Chance>
-	<Max_Critical_Strike_Chance_Description>Increases maximum critical strike chance by {0}%
-Your current maximum critical strike chance: {1}%</Max_Critical_Strike_Chance_Description>
+	<Max_Critical_Strike_Chance_Description>Increases maximum critical strike chance by {0}%.
+Current maximum critical strike chance: {1}%</Max_Critical_Strike_Chance_Description>
 	<Block_Unlock>Block Unlock</Block_Unlock>
-	<Block_Unlock_Description>Blocks incoming Enemy attack with 65% chance
+	<Block_Unlock_Description>Blocks incoming Enemy attack with 65% chance.
 Cooldown: 6 Turns</Block_Unlock_Description>
 	<Strike_Back>Strike Back</Strike_Back>
 	<Strike_Back_Description>Block returns {0}% of damage</Strike_Back_Description>
@@ -146,7 +148,7 @@ Cooldown: 6 Turns</Block_Unlock_Description>
 	<Block_Chance_Description>Increases Block Chance to {0}%</Block_Chance_Description>
 	<More_Health>More Health</More_Health>
 	<More_Health_Description>Increases your maximum health by {0}%</More_Health_Description>
-	<Brutality_Streak_Unlock>Brutality Streak Unlock</Brutality_Streak_Unlock>
+	<Brutality_Streak_Unlock>Brutality Streak</Brutality_Streak_Unlock>
 	<Brutality_Streak_Unlock_Description>Every successful attack icrease your damage by 1%. If Enemy blocks attack all extra damage will be lost.
 Enemy always have 8% avoid chance</Brutality_Streak_Unlock_Description>
 	<Energy_Saving>Energy Saving</Energy_Saving>
@@ -163,15 +165,62 @@ Current chance: {0}</Instant_Shield_Description>
 	<Dangerous_Shield>Dangerous Shield</Dangerous_Shield>
 	<Dangerous_Shield_Description>How about attacking with shield? Increases damage by {0}% for every shielding level</Dangerous_Shield_Description>
 	<Additional_Damage>Additional Damage</Additional_Damage>
-	<Additional_Damage_Description>Makes your attacks more powerful increasing your damage by {0}</Additional_Damage_Description>
+	<Additional_Damage_Description>Makes your attacks more powerful increasing your base damage by {0}</Additional_Damage_Description>
 	<Even_More_Damage>Even More Damage</Even_More_Damage>
 	<Even_More_Damage_Description>Who said there it could be too much damage? Increases damage by {0}%</Even_More_Damage_Description>
 	<Crit_Damage>Crit Damage</Crit_Damage>
-	<Crit_Damage_Description>Increases critical strike damage increase by {0}%
-Your current critical strike damage: {1}%</Crit_Damage_Description>
+	<Crit_Damage_Description>Increases critical strike damage increase by {0}%.
+Current critical strike damage: {1}%</Crit_Damage_Description>
 	<DMGCapOverdamage_Unlock>Overdamage</DMGCapOverdamage_Unlock>
-	<DMGCapOverdamage_Unlock_Description>Allows you to deal 150% of maximum allowed damage when enemy have maximum damage cap when damage is x{0} higher than damage cap</DMGCapOverdamage_Unlock_Description>
+	<DMGCapOverdamage_Unlock_Description>Allows you to deal 150% of maximum allowed damage when Enemy have maximum damage cap when damage is x{0} higher than damage cap</DMGCapOverdamage_Unlock_Description>
 	<More_Overdamage>More Overdamage</More_Overdamage>
-	<More_Overdamage_Description>Increases Overdamage by 10%
+	<More_Overdamage_Description>Increases Overdamage by 10%.
 Current Overdamage percent: {0}%</More_Overdamage_Description>
+	<Shield_Parry>Shield Parry</Shield_Parry>
+	<Shield_Parry_Description>Improving parry techniques using shield. After blocking all incoming damage with shield parry chance is increased by {0}%</Shield_Parry_Description>
+	<Tough_Shield>Tough Shield</Tough_Shield>
+	<Tough_Shield_Description>Every activation level of shield will also add {0}% of incoming damage resistance.
+Current Shield Damage Resistance: {1}%</Tough_Shield_Description>
+	<Shield_Avoid>Shielded avoid</Shield_Avoid>
+	<Shield_Avoid_Description>Adds {0}% avoid chance per activation level of shield.
+Current Shield Avoid Chance: {1}%</Shield_Avoid_Description>
+	<Endurance>Endurance</Endurance>
+	<Endurance_Description>After long training you learned how to store more stamina. Increases maximum stamina amount by 1</Endurance_Description>
+	<Better_Start>Better Start</Better_Start>
+	<Better_Start_Description>Makes start of every battle better - you get double starting stamina at the beginning of every battle</Better_Start_Description>
+	<Dance_With_Knives_Unlock>Dance With Knives</Dance_With_Knives_Unlock>
+	<Dance_With_Knives_Unlock_Description>How about showering Enemy with knives? Throws up to 3 knives with 50% of base damage, every throw consumes stamina. If Enemy avoided, next knife wouldn't be thrown.
+Cooldown: 8 Turns</Dance_With_Knives_Unlock_Description>
+	<More_Knives>More Knives</More_Knives>
+	<More_Knives_Description>Increases maximum amount of knives that can be thrown to {0}</More_Knives_Description>
+	<Knife_Damage>Knife Damage</Knife_Damage>
+	<Knife_Damage_Description>Increases damage of every knife to {0}% of base damage</Knife_Damage_Description>
+	<Knives_Cooldown>Knives Cooldown</Knives_Cooldown>
+	<Knives_Cooldown_Description>Decreases Dance With Knives' cooldown to {0} turns</Knives_Cooldown_Description>
+	<Knife-Combo>Knife-Combo</Knife-Combo>
+	<Knife-Combo_Description>Now every knife have a {0}% chance not to consume stamina</Knife-Combo_Description>
+	<Sharpened_Knives>Sharpened Knives</Sharpened_Knives>
+	<Sharpened_Knives_Description>Knives that hit the Enemy apply bleeding for 1 turn</Sharpened_Knives_Description>
+	<Poisoned_Knives>Poisoned Knives</Poisoned_Knives>
+	<Poisoned_Knives_Description>Some of knives will be poisoned and every of them applies poison debuff for 7 turns</Poisoned_Knives_Description>
+	<Explosive_Knives>Explosive Knives</Explosive_Knives>
+	<Explosive_Knives_Description>How about making knives more dangerous? Some of knives will deal triple damage due to explosion</Explosive_Knives_Description>
+	<Stronger_Explosives_Description>How about making knives even more dangerous? After explosion Enemy will become weaker</Stronger_Explosives_Description>
+	<No_Mercy>No Mercy</No_Mercy>
+	<No_Mercy_Description>No one will stop you from throwing knives. Knives will be thrown even after Enemy's avoid</No_Mercy_Description>
+	<Deep_Focus_Unlock>Deep Focus Unlock</Deep_Focus_Unlock>
+	<Deep_Focus_Unlock_Description>Focuses stamina to perform more attacks. Applies buff that gives you 0.25 stamina multiplied by remaining turns with buff for 3 turns. Consumes 1 stamina.
+Cooldown: 5 Turns</Deep_Focus_Unlock_Description>
+	<Longer_Focus>Longer Focus</Longer_Focus>
+	<Longer_Focus_Description>Increases buff duration to {0} turns, but also inscreases cooldown to {1} turns</Longer_Focus_Description>
+	<Focused_Debuff>Focused Debuff</Focused_Debuff>
+	<Focused_Debuff_Description>Additionally applies debuff on Enemy, that gives you stamina for dealing damage, 0.1 stamina per 10% of Enemy's max health</Focused_Debuff_Description>
+	<Stronger_Debuff>Stronger Debuff</Stronger_Debuff>
+	<Stronger_Debuff_Description>Now debuff on Enemy, gives you stamina per {0}% of Enemy's max health for dealing damage</Stronger_Debuff_Description>
+	<Better_Debuff>Better Debuff</Better_Debuff>
+	<Better_Debuff_Description>Increases stamina gain by debuff on Enemy to 0.{0}</Better_Debuff_Description>
+	<Deeper_Debuff>Deeper Debuff</Deeper_Debuff>
+	<Deeper_Debuff_Description>Debuff now lasts for {0} turns</Deeper_Debuff_Description>
+	<Focused_Avoid>Focused Avoid</Focused_Avoid>
+	<Focused_Avoid_Description>Stamina regeneration buff from Deep Focus gives you double amount of stamina after avoiding the incoming attack</Focused_Avoid_Description>
 </texts>

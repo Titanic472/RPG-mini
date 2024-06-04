@@ -126,8 +126,8 @@
 	<Evasion_Points_5></Evasion_Points_5>
 	<More_Evasion></More_Evasion>
 	<More_Evasion_Description></More_Evasion_Description>
-	<Precise_Hit_Unlock></Precise_Hit_Unlock>
-	<Precise_Hit_Unlock_Description></Precise_Hit_Unlock_Description>
+	<Precise_Hit></Precise_Hit>
+	<Precise_Hit_Description></Precise_Hit_Description>
 	<Precise_Damage></Precise_Damage>
 	<Precise_Damage_Description></Precise_Damage_Description>
 	<Precise_Cooldown></Precise_Cooldown>

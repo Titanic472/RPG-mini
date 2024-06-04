@@ -116,7 +116,7 @@ public class SkillTreeSegment : MonoBehaviour
         WaitUntilChecked = true;
         if(HasCheck && MaxUpgradesCount>UpgradesCount){
             Invoke(Name + "_CheckUpgrade", 0f);
-            while(WaitUntilChecked)await Task.Delay(50);
+            while(WaitUntilChecked)await Task.Delay(10);
         }
         else Requirements_Skills.text = "";
 

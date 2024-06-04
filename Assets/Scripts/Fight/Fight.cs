@@ -191,6 +191,7 @@ public class Fight : MonoBehaviour
         ActiveSkills.ReloadActiveSkills();
         player.SpeedEnergy = 0;
         player.SpeedEnergyAdd();
+        if(SkillManager.DoubleStaminaUnlock)player.SpeedEnergyAdd();
         player.BlockActive = false;
         player.LeftHand.GetComponent<Item>().ShieldingLevel = 0;
         player.DamageTaken = 0;
