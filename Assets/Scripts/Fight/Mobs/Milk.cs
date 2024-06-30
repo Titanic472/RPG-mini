@@ -39,33 +39,4 @@ public class Milk : Mob
         /*int Chance = UnityEngine.Random.Range(0, 100);
         if(Chance<5){*/
     }
-
-    public override async void GetDamage(int Amount, bool AllowArmor = true, bool IsCrit = false){
-        Amount += Convert.ToInt32(Math.Ceiling(Amount*ActiveSkillsAddDamage));
-        Amount = Convert.ToInt32(Math.Floor(Amount*BuffsDamageTakenModifier));
-        Amount = Convert.ToInt32(Math.Floor(Amount-Amount*DamageResistance));
-        if(AllowArmor){
-            int Defence = UnityEngine.Random.Range(MinDefence, MaxDefence+1);
-            Amount -= Defence;
-            if(Amount > 0){
-                Amount -= BuffsDefence;
-                if(Amount >= 0)DamageBlockedByBuffs += BuffsDefence;
-                else DamageBlockedByBuffs += BuffsDefence+Amount;
-            }
-        }
-        if(Amount<0) Amount = 0;
-        if(Amount>40) Amount = 40;
-        if(IsCrit) GetComponent<F_Text_Creator>().CreateText_Red(Amount +" Crit!");
-        else GetComponent<F_Text_Creator>().CreateText_Red(Amount +"");
-        Health -= Amount;
-        DamageTaken += Amount;
-        if(Health<0) Health = 0;
-        StartCoroutine(HealthBar.HP_update());
-        ActiveSkillsAddDamage = 0;//Change to if() when Precise hit Ultimate added
-        if(Health==0){
-            Fight.StopWatch.StopCounting();
-            await Task.Delay(500);
-            Fight.TriggerDeath();
-        }
-    }
 }

@@ -14,7 +14,7 @@ public class Sword : Item
         Player.Instance.Trinket1.GetComponent<Item>().OnAttack();
         Player.Instance.Trinket2.GetComponent<Item>().OnAttack();
         if(!Fight.Instance.MobScript.Avoid()){
-            int AttackDamage = Convert.ToInt32(Math.Ceiling(Player.Instance.DamageModifier*(Player.Instance.BaseDamage + Damage + Player.Instance.Trinket1.GetComponent<Item>().Damage + Player.Instance.Trinket2.GetComponent<Item>().Damage + Player.Instance.Hat.GetComponent<Item>().Damage + Player.Instance.Chestplate.GetComponent<Item>().Damage + Player.Instance.Boots.GetComponent<Item>().Damage)));
+            int AttackDamage = Convert.ToInt32(Math.Ceiling((Player.Instance.DamageModifier + Player.Instance.TemporaryDamageBoost)*(Player.Instance.BaseDamage + Damage + Player.Instance.Trinket1.GetComponent<Item>().Damage + Player.Instance.Trinket2.GetComponent<Item>().Damage + Player.Instance.Hat.GetComponent<Item>().Damage + Player.Instance.Chestplate.GetComponent<Item>().Damage + Player.Instance.Boots.GetComponent<Item>().Damage)));
             AttackDamage = Convert.ToInt32(Math.Ceiling(AttackDamage* + Player.Instance.BuffsDamageModifier));
             AttackDamage += Convert.ToInt32(AttackDamage*Player.Instance.BrutalityStreak_AddDamageAll);
             Player.Instance.BrutalityStreak_AddDamageAll += Player.Instance.BrutalityStreak_AddDamage;

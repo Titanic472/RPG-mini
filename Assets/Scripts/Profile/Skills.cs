@@ -42,7 +42,7 @@ public class Skills : MonoBehaviour
     public int BL_ReturnDamage = 0, BL_Chance = 0, BL_Cooldown = 0, BrutalityStreak_EnergySave = 0, BrutalityStreak_AvoidChance = 0, DMGCapOverdamage_10Perc_1 = 0, DMGCapOverdamage_10Perc_2 = 0;
     //public string[,] Checklist = new string[2,50]; 
     public string InvokeMethod, InvokeClass; 
-    public float Shield_MagicDefence = 0, Shield_DamageReturn = 0, Shield_NoStaminaUsageChance = 0, Shield_DamageBoost = 0, DMGCapOverdamage = 1.5f, Crit_Damage = 0.5f, DamageModifier = 1f;
+    public float Shield_MagicDefence = 0, Shield_DamageReturn = 0, Shield_NoStaminaUsageChance = 0, Shield_DamageBoost = 0, DMGCapOverdamage = 1.5f, Crit_Damage = 0.5f, DamageModifier = 1f, Shield_DamageResistance = 0, Shield_AvoidChance = 0;
     //public bool IsChecked;
     public static Skills Instance;
 
@@ -171,6 +171,8 @@ public class Skills : MonoBehaviour
         Shield_DamageReturn = (Shield_DmgReturn_1Perc_1 + Shield_DmgReturn_1Perc_2)/100f;
         Shield_NoStaminaUsageChance = Shield_NoStaminaUsage_5Perc*0.05f;
         Shield_DamageBoost = Shield_DamageBoost_3Perc*0.03f;
+        Shield_DamageResistance = (Shield_DMGResistance_1Perc_1 + Shield_DMGResistance_2Perc_1*2)/100f;
+        Shield_AvoidChance = (Shield_AvoidChance1Perc_1 + Shield_AvoidChance2Perc_1*2)/100f;
     }
 
     public void Skilltree_Damage(){

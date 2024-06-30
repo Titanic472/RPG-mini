@@ -21,6 +21,7 @@ public class Player : Entity
     public GameObject[] Inventory = new GameObject[45];
     public float[] CollectedData = new float[2];
     public float HealthModifier, ManaModifier, DamageModifier, DefenceModifier, ExperienceModifier, SpeedModifier, BaseHealthModifier, BaseManaModifier, BaseManaCost, ManaCost, BaseAttackSpeed, AttackSpeed, DamageResistance, BaseDamageResistance, PriceModifier, SpeedEnergy, BrutalityStreak_AddDamage, BrutalityStreak_AddDamageAll, Parry_RemovePercent, Parry_ChanceAll;
+    public float TemporaryDamageBoost = 0f;
     public bool BlockActive = false, Overdrained = false;
     public Dictionary<string, int> Skills = new Dictionary<string, int>();
     public GameObject Hat, Chestplate, Boots, LeftHand, RightHand, Trinket1, Trinket2;
@@ -102,6 +103,7 @@ public class Player : Entity
         MaxHealth = DevTools.Instance.Health + Convert.ToInt32(Math.Ceiling(HealthModifier*(20f+Level*LevelHPBoost+Skills["BaseHealth"])));
         MaxMana = Convert.ToInt32(Math.Ceiling(ManaModifier*(Skills["Mana"] + Skills["BaseMana"])));
         AttackSpeed = (BaseAttackSpeed+1)*SpeedModifier;
+        MagicDefence = Hat.GetComponent<Item>().MagicDefence + Chestplate.GetComponent<Item>().MagicDefence + Boots.GetComponent<Item>().MagicDefence + LeftHand.GetComponent<Item>().MagicDefence + RightHand.GetComponent<Item>().MagicDefence + Trinket1.GetComponent<Item>().MagicDefence + Trinket2.GetComponent<Item>().MagicDefence;
         HealthBar.Reset();
         ManaBar.Reset();
     }
@@ -417,7 +419,7 @@ public class Player : Entity
         else return false;
     }
 
-    public async void GetDamage(int Amount, bool AllowArmor = true, bool IsCrit = false, bool ReloadHP = true){
+    public async void GetDamage(int Amount, bool AllowArmor = true, bool IsCrit = false, bool ReloadHP = true, string DamageType = "Physical"){
         LeftHand.GetComponent<Item>().OnReceiveDamage(ref Amount);//Shield
         if(Parry() && Amount > 0){
             SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Language_Changer.Instance.GetText("Parried"));
@@ -427,6 +429,14 @@ public class Player : Entity
         else if(Avoid() && Amount > 0){
             SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Language_Changer.Instance.GetText("Avoided"));
             Fight.Instance.EffectsManager.TriggerEffects(4, this);
+            return;
+        }
+        else if(LeftHand.GetComponent<Item>().Type == "Shield" && Amount > 0){
+            int Chance = UnityEngine.Random.Range(0, 100);
+            if(Chance<SkillManager.Shield_AvoidChance*100*LeftHand.GetComponent<Item>().ShieldingLevel){
+                SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Language_Changer.Instance.GetText("Avoided"));
+                Fight.Instance.EffectsManager.TriggerEffects(4, this);
+            }
             return;
         }
         
@@ -470,22 +480,28 @@ public class Player : Entity
             }
         }
         Parry_ChanceAll += Parry_Chance;
-        Amount = Convert.ToInt32(Math.Floor(Amount*BuffsDamageTakenModifier));
-        Amount = Convert.ToInt32(Math.Floor(Amount-Amount*DamageResistance));
-        if(AllowArmor){
-            if(Amount > 0){
-                Amount -= BuffsDefence;
-                if(Amount >= 0)DamageBlockedByBuffs += BuffsDefence;
-                else DamageBlockedByBuffs += BuffsDefence+Amount;
+        
+        if(DamageType == "Physical"){
+            Amount = Convert.ToInt32(Math.Floor(Amount*BuffsDamageTakenModifier));
+            Amount = Convert.ToInt32(Math.Floor(Amount-Amount*DamageResistance));
+            if(AllowArmor){
+                if(Amount > 0){
+                    Amount -= BuffsDefence;
+                    if(Amount >= 0)DamageBlockedByBuffs += BuffsDefence;
+                    else DamageBlockedByBuffs += BuffsDefence+Amount;
+                }
+                RightHand.GetComponent<Item>().OnReceiveDamage(ref Amount);//For Special Weapons
+                Hat.GetComponent<Item>().OnReceiveDamage(ref Amount);
+                Chestplate.GetComponent<Item>().OnReceiveDamage(ref Amount);
+                Boots.GetComponent<Item>().OnReceiveDamage(ref Amount);
+                Trinket1.GetComponent<Item>().OnReceiveDamage(ref Amount);
+                Trinket2.GetComponent<Item>().OnReceiveDamage(ref Amount);
             }
-            RightHand.GetComponent<Item>().OnReceiveDamage(ref Amount);//For Special Weapons
-            Hat.GetComponent<Item>().OnReceiveDamage(ref Amount);
-            Chestplate.GetComponent<Item>().OnReceiveDamage(ref Amount);
-            Boots.GetComponent<Item>().OnReceiveDamage(ref Amount);
-            Trinket1.GetComponent<Item>().OnReceiveDamage(ref Amount);
-            Trinket2.GetComponent<Item>().OnReceiveDamage(ref Amount);
+            Amount -= DamageReduction;
         }
-        Amount -= DamageReduction;
+        else if(DamageType == "Magic"){
+            Amount -= Convert.ToInt32(Math.Ceiling(Amount * MagicDefence));
+        }
         if(Amount<0){
             Amount = 0;
             ReloadHP = false;

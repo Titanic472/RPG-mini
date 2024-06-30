@@ -10,7 +10,7 @@ public class Mob : Entity
 {   
     public Player player;
     public int[] XPReward = new int[25];
-    public int MinCoins, MaxCoins, LevelHPBoost, Damage, Evasion, Accuracy, MaxDefence, MinDefence, MaxAvoidChance, MaxCritChance;
+    public int MinCoins, MaxCoins, LevelHPBoost, Damage, Evasion, Accuracy, MaxDefence, MinDefence, MaxAvoidChance, MaxCritChance, DamageCap;
     public float DamageResistance, XPLevelModifier, LevelDamage, LevelMaxDefence, LevelMinDefence, LevelAccuracy, LevelEvasion, ActiveSkillsAddDamage;
     public string Name;
     
@@ -106,6 +106,13 @@ public class Mob : Entity
             }
         }
         if(Amount<0) Amount = 0;
+        if(DamageCap>0 && Amount>DamageCap){
+            if(Skills.Instance.DMGCapOverdamage_Unlock>0){
+                if(Amount/DamageCap>=10/Skills.Instance.DMGCapOverdamage_Unlock)
+                Amount = Convert.ToInt32(DamageCap*Skills.Instance.DMGCapOverdamage);
+            }
+            else Amount = DamageCap;
+        }
         if(IsCrit) GetComponent<F_Text_Creator>().CreateText_Red(Amount +" Crit!");
         else GetComponent<F_Text_Creator>().CreateText_Red(Amount +"");
         Health -= Amount;

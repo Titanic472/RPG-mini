@@ -19,7 +19,8 @@ public class Fight : MonoBehaviour
     public Tooltip Tooltip;
     public TextMeshProUGUI MobText, MobDescriptionTitle, MobDescription, MobStats, MobStats2, MobStatsTitle, PassiveSkillsStats;
     public GameObject[] Buttons = new GameObject[16], PotionSlots = new GameObject[5], PlayerEffectImages = new GameObject[10], MobEffectImages = new GameObject[10], GameObjects = new GameObject[4];
-    public GameObject EndBattleWindow, CoinsText, Mob_MapSprite, BG, ModeSwitch, ShieldingLevel;
+    public GameObject EndBattleWindow, CoinsText, Mob_MapSprite, BG, ModeSwitch, ShieldingLevel, MobDescription_GameObject, MobStats_GameObject, PassiveSkillsInfo_GameObject;
+    public Button MobDescription_Button, MobStats_Button, PassiveSkillsInfo_Button;
     public EffectsManager EffectsManager;
     public int[] Potions = new int[5];
     public bool InBattle = false, AllEntitiesAlive;
@@ -185,6 +186,15 @@ public class Fight : MonoBehaviour
         Mob_Create(MinLevel, MaxLevel, Location, MobID, AllowSkilledTree);
         PotionSlots_Reload();
         ReloadEffectImages();
+        MobDescription_GameObject.SetActive(false);
+        MobStats_GameObject.SetActive(false);
+        PassiveSkillsInfo_GameObject.SetActive(false);
+        if(SkillManager.EnemyInfoUnlock)MobDescription_Button.interactable = true;
+        else MobDescription_Button.interactable = false;
+        if(SkillManager.EnemyStatsUnlock)MobStats_Button.interactable = true;
+        else MobStats_Button.interactable = false;
+        if(SkillManager.PassiveSkillsInfoUnlock)PassiveSkillsInfo_Button.interactable = true;
+        else PassiveSkillsInfo_Button.interactable = false;
         ReloadFightDescription();
         ReloadFightDescription("MobDescription");
         ReloadFightDescription("PassiveSkillsStats");
@@ -282,6 +292,7 @@ public class Fight : MonoBehaviour
     
     public void Clear(){
         Destroy(mob);
+        Player.Instance.TemporaryDamageBoost = 0;
         InBattle = false;
         gameObject.SetActive(false);
         if(!Game.MapMode)MainMenu.SetActive(true);
@@ -292,6 +303,7 @@ public class Fight : MonoBehaviour
             GameObjects[0].SetActive(false);
             for(int i = 1; i<4;++i)GameObjects[i].SetActive(true);
         }
+        player.UpdateAllStats();
         SaveManager.SaveAll();
     }
 

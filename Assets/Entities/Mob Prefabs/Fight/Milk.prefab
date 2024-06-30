@@ -107,6 +107,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &4483174137714665797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +169,7 @@ MonoBehaviour:
   MinDefence: 5
   MaxAvoidChance: 30
   MaxCritChance: 0
+  DamageCap: 40
   DamageResistance: 0
   XPLevelModifier: 0.2
   LevelDamage: 0
@@ -176,3 +178,4 @@ MonoBehaviour:
   LevelAccuracy: 0
   LevelEvasion: 0
   ActiveSkillsAddDamage: 0
+  Name: 

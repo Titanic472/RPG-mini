@@ -10,7 +10,7 @@ public class Item : MonoBehaviour
     public int[] UpgradePrice = new int[15], Price = new int[15], LevelPriceAdd = new int[15];
     public float LevelPriceModifier = 1f;
     public int EnergyUsage = 1, UpgradeEnergyUsage, MinDefence, UpgradeMinDefence, MaxDefence, UpgradeMaxDefence, Accuracy, UpgradeAccuracy, Evasion, UpgradeEvasion, Mana, UpgradeMana, ManaUsage, UpgradeManaUsage, DamageReduction, UpgradeDamageReduction, Damage, UpgradeDamage, Health, UpgradeHealth, ManaRegen, UpgradeManaRegen, HealthRegen, UpgradeHealthRegen, ManaCost, UpgradeManaCost, ShieldingLevel;
-    public float DamageModifier = 1f, UpgradeDamageModifier, DefenceModifier = 1f, UpgradeDefenceModifier, ExperienceModifier = 1f, UpgradeExperienceModifier, HealthModifier = 1f, UpgradeHealthModifier, SpeedModifier = 1f, UpgradeSpeedModifier, ManaModifier = 1f, UpgradeManaModifier, DamageResistance, UpgradeDamageResistance;
+    public float DamageModifier = 1f, UpgradeDamageModifier, DefenceModifier = 1f, UpgradeDefenceModifier, ExperienceModifier = 1f, UpgradeExperienceModifier, HealthModifier = 1f, UpgradeHealthModifier, SpeedModifier = 1f, UpgradeSpeedModifier, ManaModifier = 1f, UpgradeManaModifier, DamageResistance, UpgradeDamageResistance, MagicDefence, UpgradeMagicDefence;
     public bool Is2Handed = false, CanBeUsedOutsideBattle = false, CanBeUpgraded = true;
     int StatsCount = 0;
 
@@ -65,7 +65,7 @@ public class Item : MonoBehaviour
         ManaCost += UpgradeManaCost*(1+AdditionalUpgrade);
         Accuracy += UpgradeAccuracy*(1+AdditionalUpgrade);
         Evasion += UpgradeEvasion*(1+AdditionalUpgrade);
-
+        MagicDefence += UpgradeMagicDefence*(1+AdditionalUpgrade);
         if(Tier*5>Level){//Calculate upgrade price for next level if level limit not reached
             IncreaseUpgradePrice();
         }
@@ -169,6 +169,7 @@ public class Item : MonoBehaviour
         if(ManaCost!=0)StatsTextSet(ManaCost, UpgradeManaCost*AdditionalUpgrade, "Mana", ref Stats1, ref Stats2, UpgradeInformation);
         if(Accuracy!=0)StatsTextSet(Accuracy, UpgradeAccuracy*AdditionalUpgrade, "Accuracy", ref Stats1, ref Stats2, UpgradeInformation);
         if(Evasion!=0)StatsTextSet(Evasion, UpgradeEvasion*AdditionalUpgrade, "Evasion", ref Stats1, ref Stats2, UpgradeInformation);
+        if(MagicDefence!=0)StatsTextSet(MagicDefence, UpgradeMagicDefence*AdditionalUpgrade, "MagicDefence", ref Stats1, ref Stats2, UpgradeInformation);
     }
 
     public void StatsTextSet(float Stats, float UpgradeStats, string ImageName, ref string StatsText, ref string StatsText2, bool UpgradeInformation){

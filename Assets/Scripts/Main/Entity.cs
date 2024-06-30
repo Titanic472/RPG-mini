@@ -5,7 +5,7 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
     public int Health, MaxHealth, HealthRegen, Mana, MaxMana, ManaRegen, Level, BuffsDefence, BuffsAvoidChance, MaxBuffsDamage = -1, DamageTaken, DamageTakenByBuffs, DamageBlockedByBuffs;
-    public float BuffsDamageModifier = 1, BuffsDamageTakenModifier = 1;
+    public float BuffsDamageModifier = 1, BuffsDamageTakenModifier = 1, MagicDefence = 0f;
     public int[,] StatusEffects = new int[10,5];//0 - id, 1 - duration, 2 - start duration, 3 - type, 4 - type2
     public GameObject SelfSprite;
     public HealthBar HealthBar;
