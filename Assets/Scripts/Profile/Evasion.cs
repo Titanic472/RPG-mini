@@ -18,7 +18,7 @@ public class Evasion : SkillTreeSegment
         if(SkillManager.EvasionMain>=1) SkillsUpgradeCost = 2;
         if(SkillManager.EvasionMain>=5) SkillsUpgradeCost = 3;
         if(SkillManager.EvasionMain>=15) SkillsUpgradeCost = 4;
-        if(SkillManager.EvasionMain==24) SkillsUpgradeCost = 5;
+        if(SkillManager.EvasionMain>=24) SkillsUpgradeCost = 5;
         GetText(Object: EvasionMain, Name: "EvasionMain", TextName: "Evasion", Price1: SkillsUpgradeCost, MaxUpgradesCount: -1, Format1: player.Skills["BaseEvasion"], HasCheck: false, HasSuffix: false);
     }
 

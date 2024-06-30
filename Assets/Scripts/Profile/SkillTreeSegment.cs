@@ -28,7 +28,7 @@ public class SkillTreeSegment : MonoBehaviour
         }
     }*/
 
-    public void CheckUpgrade(GameObject Object, string Name, int Case1, int CheckVal1 = 0, int Case2 = 0, int CheckVal2 = 0, int Case3 = 0, int CheckVal3 = 0, int Case4 = 0, int CheckVal4 = 0, string DescriptionKey = "", bool SplittedDescription = false){//if Splitted Description is set to false DescriptionKey cannot be empty, DescriptionKey supports only single checks
+    /*public void CheckUpgrade(GameObject Object, string Name, int Case1, int CheckVal1 = 0, int Case2 = 0, int CheckVal2 = 0, int Case3 = 0, int CheckVal3 = 0, int Case4 = 0, int CheckVal4 = 0, string DescriptionKey = "", bool SplittedDescription = false){//if Splitted Description is set to false DescriptionKey cannot be empty, DescriptionKey supports only single checks
         string Description = "";
         if(SplittedDescription && CheckVal1 != 0) Description = Language_Changer.Instance.GetText(Name + "_CheckDescription", "Skills");
         else if(CheckVal1 == 0) {
@@ -56,39 +56,47 @@ public class SkillTreeSegment : MonoBehaviour
             CanBeUpgraded = true;
         }
         else CanBeUpgraded = false;
-    }
+    }*/
 
-    public void CheckUpgradeSingle(GameObject Object, string Name, int Lvl, int CheckValLvl1 = 0, int CheckValLvl2 = 0, int CheckValLvl3 = 0, int CheckValLvl4 = 0){
+    public void CheckUpgradeSingle(GameObject Object, string Name, int Lvl, int CheckValLvl1 = 0, int CheckValLvl2 = 0, int CheckValLvl3 = 0, int CheckValLvl4 = 0, int CheckValLvl5 = 0, int Case = 0){
         string Description = Language_Changer.Instance.GetText(Class + "AllUpgrades", "Skills") + "\n";
+        if(Case == 0)Case = CurrentSegmentUpgrades;
         CanBeUpgraded = false;
         switch(Lvl){
             case 0:
-                if(CurrentSegmentUpgrades>=CheckValLvl1){
+                if(Case>=CheckValLvl1){
                     Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkGreen\">", CheckValLvl1);
                     CanBeUpgraded = true;
                 }
                 else Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkRed\">", CheckValLvl1);
                 break;
             case 1:
-                if(CurrentSegmentUpgrades>=CheckValLvl2){
+                if(Case>=CheckValLvl2){
                     Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkGreen\">", CheckValLvl2);
                     CanBeUpgraded = true;
                 }
                 else Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkRed\">", CheckValLvl2);
                 break;
             case 2:
-                if(CurrentSegmentUpgrades>=CheckValLvl3){
+                if(Case>=CheckValLvl3){
                     Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkGreen\">", CheckValLvl3);
                     CanBeUpgraded = true;
                 }
                 else Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkRed\">", CheckValLvl3);
                 break;
             case 3:
-                if(CurrentSegmentUpgrades>=CheckValLvl4){
+                if(Case>=CheckValLvl4){
                     Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkGreen\">", CheckValLvl4);
                     CanBeUpgraded = true;
                 }
                 else Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkRed\">", CheckValLvl4);
+                break;
+            case 4:
+                if(Case>=CheckValLvl5){
+                    Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkGreen\">", CheckValLvl5);
+                    CanBeUpgraded = true;
+                }
+                else Description = string.Format(Description, "<sprite=\"Checkmarks\" name=\"CheckmarkRed\">", CheckValLvl5);
                 break;
             default:
                 break;

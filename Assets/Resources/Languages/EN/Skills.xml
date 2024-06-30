@@ -3,6 +3,7 @@
 	<Skill_Points>Skill Points</Skill_Points>
 	<Skill_Points_5>Skill Points</Skill_Points_5>
 	<Skill_Point>Skill Point</Skill_Point>
+	<Free>Free</Free>
 	<Accuracy>Accuracy</Accuracy>
 	<Evasion>Agility</Evasion>
 	<Sorcery>Sorcery</Sorcery>
@@ -10,6 +11,7 @@
 	<AccuracyAllUpgrades>{0} Accuracy Branch Upgrades: {1}</AccuracyAllUpgrades>
 	<EvasionAllUpgrades>{0} Agility Branch Upgrades: {1}</EvasionAllUpgrades>
 	<SorceryAllUpgrades>{0} Sorcery Branch Upgrades: {1}</SorceryAllUpgrades>
+	<UniversalAllUpgrades>{0} All Branches Upgrades: {1}</UniversalAllUpgrades>
 	<Evasion_Description>Base skill, allows player to avoid Enemy attacks. Avoid chance depends on agility level and some skill tree upgrades.
 
 Current Agility: {0}</Evasion_Description>
@@ -37,7 +39,7 @@ Cooldown: 8 Turns</Beginner_Spell_Description>
 	<Even_More_Mana>Even More Mana</Even_More_Mana>
 	<Even_More_Mana_Description>Adds {0}% to your maximum mana</Even_More_Mana_Description>
 	<Weapon_Ability_Chance>Weapon Ability Chance</Weapon_Ability_Chance>
-	<Weapon_Ability_Chance_Description>Increases Weapon Ability chance by {0}%</Weapon_Ability_Chance_Description>
+	<Weapon_Ability_Chance_Description>Increases Weapon Ability trigger chance by {0}%</Weapon_Ability_Chance_Description>
 	<More_Mana>More Mana</More_Mana>
 	<More_Mana_Description>More mana makes you stronger. Adds 10 mana</More_Mana_Description>
 	<Beginner_Damage>Beginner Damage</Beginner_Damage>
@@ -59,7 +61,7 @@ Cooldown: 8 Turns</Beginner_Spell_Description>
 	<Mana_Overdrain_Potion>Overdrained Potions</Mana_Overdrain_Potion>
 	<Mana_Overdrain_Potion_Description>Mana potions will decrease Mana Overdrain time by {0} turns per every potion used</Mana_Overdrain_Potion_Description>
 	<Additional_Slot>Additional Slot</Additional_Slot>
-	<Additional_Slot_Description>Unlocks additional active skill slot. More active skills - more fun</Additional_Slot_Description>
+	<Additional_Slot_Description>Adds more active skill slots. More active skills - more fun</Additional_Slot_Description>
 	<Damage_Resistance>Damage Resistance</Damage_Resistance>
 	<Damage_Resistance_Description>Increases your Damage Resistance by {0}%. Permanent Armor!</Damage_Resistance_Description>
 	<Chaos>Chaos</Chaos>
@@ -77,7 +79,8 @@ Cooldown: 7 Turns</Chaos_Description>
 	<Chaos_Mana>Chaos Mana</Chaos_Mana>
 	<Chaos_Mana_Description>Reduces Chaos mana cost to {0}</Chaos_Mana_Description>
 	<Skilled_Tree_Chance>Skilled Tree Chance</Skilled_Tree_Chance>
-	<Skilled_Tree_Chance_Description>Increases Skilled Tree spawn chance by 1%. People say that Skilled Tree can give you something more powerful than Experience</Skilled_Tree_Chance_Description>
+	<Skilled_Tree_Chance_Description>Increases Skilled Tree spawn chance by 1%. People say that Skilled Tree can give you something more powerful than Experience
+Current chance: {0}%</Skilled_Tree_Chance_Description>
 	<A_Lot_Of_Mana>A Lot Of Mana</A_Lot_Of_Mana>
 	<A_Lot_Of_Mana_Description>Even more mana for even more spells. Increases maximum mana amount by 20</A_Lot_Of_Mana_Description>
 	<Faster_Attacks>Faster Attacks</Faster_Attacks>
@@ -223,4 +226,12 @@ Cooldown: 5 Turns</Deep_Focus_Unlock_Description>
 	<Deeper_Debuff_Description>Debuff now lasts for {0} turns</Deeper_Debuff_Description>
 	<Focused_Avoid>Focused Avoid</Focused_Avoid>
 	<Focused_Avoid_Description>Stamina regeneration buff from Deep Focus gives you double amount of stamina after avoiding the incoming attack</Focused_Avoid_Description>
+	<Enemy_Discovery>Enemy Discovery</Enemy_Discovery>
+	<Enemy_Discovery_Description>Some discovery and now you can learn more about the enemy</Enemy_Discovery_Description>
+	<Enemy_Research>Enemy Research</Enemy_Research>
+	<Enemy_Research_Description>Some more research and your knowledge will also contain information about enemy's stats</Enemy_Research_Description>
+	<Self-inspecton>Self-inspecton</Self-inspecton>
+	<Self-inspecton_Description>Allows you to see information about your passve skills during battle</Self-inspecton_Description>
+	<Multiple_Shielding>Multiple Shielding</Multiple_Shielding>
+	<Multiple_Shielding_Description>How about using shield better way? Increases limit of shield usage per turn by 1. More times the shield used - more damage it will block</Multiple_Shielding_Description>
 </texts>
