@@ -17,7 +17,7 @@ public class Game : MonoBehaviour
     public Sprite[] Item_Sprites = new Sprite[9], Potion_Sprites = new Sprite[5], Effects_Sprites = new Sprite[11];
     public int SkilledTreeChance = 0, ResolutionMode = 0;
     public bool IsHardcore = false, IsSpeedrunning = false, IsTesting = false, MapMode = false, IsFullscreen = true;
-    public GameObject DeathWindow, PlayerSprite;
+    public GameObject DeathWindow, PlayerSprite, Devtools;
     public static Game Instance;
     bool ValuesChanging = false;
 
@@ -60,6 +60,7 @@ public class Game : MonoBehaviour
 
     public void ChangeTest(){
         IsTesting = !IsTesting;
+        Devtools.SetActive(IsTesting);
     }
 
     public void ChangeMapMode(){

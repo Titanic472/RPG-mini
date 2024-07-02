@@ -78,9 +78,6 @@ public class New_Game : MonoBehaviour
             if(i==100 && game.IsSpeedrunning){
                 StopWatch.StartCounting();
             }
-            if(i==100 && game.IsTesting){
-                game.player.SkillPoints = 900;
-            }
         }
         
     }

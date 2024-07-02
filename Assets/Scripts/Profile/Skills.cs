@@ -270,7 +270,7 @@ public class Skills : MonoBehaviour
             case "Universal":
                 Universal.AllUpgrades = Sorcery.CurrentSegmentUpgrades + Evasion.CurrentSegmentUpgrades + Accuracy.CurrentSegmentUpgrades;
                 BranchName.text = Language_Changer.Instance.GetText("Universal_Upgrades", "Skills");
-                BranchInformationText0.text  = "<sprite=\"Skills\" name=\"Upgrades\">" + Universal.AllUpgrades;
+                BranchInformationText0.text  = "<sprite=\"Skills\" name=\"AllUpgrades\">" + Universal.AllUpgrades;
                 BranchInformationText1.text  = "<sprite=\"Skills\" name=\"UpgradesAccuracy\">" + Accuracy.CurrentSegmentUpgrades;
                 BranchInformationText2.text  = "<sprite=\"Skills\" name=\"UpgradesEvasion\">" + Evasion.CurrentSegmentUpgrades;
                 BranchInformationText3.text  = "<sprite=\"Skills\" name=\"UpgradesSorcery\">" + Sorcery.CurrentSegmentUpgrades;

@@ -70,6 +70,13 @@ public abstract class Move : MonoBehaviour
             Fight.Instance.EffectsManager.TriggerEffects(1, Player.Instance);
             Fight.Instance.EffectsManager.Duration_Remove(Player.Instance, false);
             Fight.Instance.EffectsManager.TriggerEffects(0, Player.Instance);
+            Player.Instance.RightHand.GetComponent<Item>().OnMove();
+            Player.Instance.LeftHand.GetComponent<Item>().OnMove();
+            Player.Instance.Hat.GetComponent<Item>().OnMove();
+            Player.Instance.Chestplate.GetComponent<Item>().OnMove();
+            Player.Instance.Boots.GetComponent<Item>().OnMove();
+            Player.Instance.Trinket1.GetComponent<Item>().OnMove();
+            Player.Instance.Trinket2.GetComponent<Item>().OnMove();
             Player.Instance.Health_Regenerate();
             Player.Instance.Mana_Regenerate();
             Player.Instance.ManaOverdrain.Remove();

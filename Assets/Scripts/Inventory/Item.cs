@@ -223,6 +223,8 @@ public class Item : MonoBehaviour
     public virtual void OnCrit(){}
 
     public virtual void OnAvoid(){}
+    
+    public virtual void OnMove(){}
 
     public virtual void Save(ref int Index1, ref int Index2, ref int Index3){
         Index1 = Id;
