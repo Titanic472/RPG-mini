@@ -348,7 +348,7 @@ public class InventoryManager : MonoBehaviour
 
     public void GetDescription(string Slot){
         InventorySlot = Slot;
-        Item CurrentSlot = GetProfileSlot(Slot);      
+        Item CurrentSlot = GetProfileSlot(Slot);
         if(CurrentSlot.CanBeUpgraded)UpgradeButtonProfile.SetActive(true);
         else UpgradeButtonProfile.SetActive(false);
         if(CurrentSlot.Level>=CurrentSlot.Tier*5) UpgradeButtonProfile.SetActive(false);

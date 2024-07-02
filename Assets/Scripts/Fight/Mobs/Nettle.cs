@@ -19,7 +19,7 @@ public class Nettle : Mob
         if(Chance<5){
             Fight.InventoryManager.Inventory_Add(1, 1, -1, true);
         }
-        else if(Chance>=5 && Chance <10){
+        else if(Chance>=5 && Chance < 10){
             Fight.InventoryManager.Inventory_Add(0, 1, -1, true);
         }
         else Fight.EndBattleWindow.transform.Find("LootItem").GetComponent<SpriteRenderer>().sprite = Fight.InventoryManager.Empty;

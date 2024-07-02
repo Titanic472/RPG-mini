@@ -96,7 +96,7 @@ public class Item : MonoBehaviour
 
     public bool CanUpgrade(){
         if(Player.Instance.Money[0]>UpgradePrice[0])return true;
-        for(int i = Player.Instance.Money[0]; i>0; --i){
+        for(int i = Math.Max(Player.Instance.Money[0], UpgradePrice[0]); i>0; --i){
             if(Player.Instance.Money[i]>UpgradePrice[i]) return true;
             else if(Player.Instance.Money[i]<UpgradePrice[i])return false;
         }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Move : MonoBehaviour
 {   
@@ -8,10 +9,10 @@ public abstract class Move : MonoBehaviour
     public float MoveTime = 0.1f;
     public LayerMask BlockingLayer;
     public LayerMask TriggeringLayer;
-
     private BoxCollider2D BoxCollider, TriggerBoxCollider;
     private Rigidbody2D Rigidbody;
     private float InverseMoveTime;
+    public Button ReturnButton;
     public int MovesMade = 0;
     public bool IsMoving;
     public Camera Camera;
@@ -63,6 +64,7 @@ public abstract class Move : MonoBehaviour
 
     protected IEnumerator SmoothMovement (Vector3 End){
         IsMoving = true;
+        ReturnButton.interactable = false;
         float sqrRemainingDistance = (transform.position - End).sqrMagnitude;
         ++MovesMade;
         if(MovesMade == 3){
@@ -92,6 +94,7 @@ public abstract class Move : MonoBehaviour
         }
         //yield return null;
         IsMoving = false;
+        ReturnButton.interactable = true;
     }
 
     protected virtual void AttemptMove(int XDir, int YDir){
