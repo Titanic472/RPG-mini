@@ -37,6 +37,7 @@ public class Evasion : SkillTreeSegment
 
     public void PHU_Upgrade(){
         Upgrade(PHU, "PHU", MaxUpgradesCount: 1, Price1: 4, HasSuffix: false, IsBool:true, SetInteractable1: PH_Damage, CheckVal1: 1, SetInteractable2: PH_Cooldown, CheckVal2: 1, SetInteractable3: PH_WeaponSkillChance, CheckVal3: 1, SetInteractable4: KDU, CheckVal4: 1);
+        SkillManager.ActiveSkillsManager.SkillsUnlockCheck();
     }
     
     public void AvoidChance_1Perc_1_Text(){
@@ -490,7 +491,6 @@ public class Evasion : SkillTreeSegment
         KD_IgnoreAvoid.GetComponent<Button>().interactable = true;
         DFU.GetComponent<Button>().interactable = true;
         SkillManager.ActiveSkillsManager.SkillsUnlockCheck();
-        
     }
     
     public void KD_Amount_CheckUpgrade(){

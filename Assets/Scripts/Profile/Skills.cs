@@ -167,7 +167,7 @@ public class Skills : MonoBehaviour
     }
 
     public void Skilltree_Shield(){
-        Shield_MagicDefence = Shield_MagicDef_2Perc_1*0.02f + Shield_MagicDef_2Perc_2*0.02f;
+        Shield_MagicDefence = (Shield_MagicDef_2Perc_1*2 + Shield_MagicDef_2Perc_2*2)/100f;
         Shield_DamageReturn = (Shield_DmgReturn_1Perc_1 + Shield_DmgReturn_1Perc_2)/100f;
         Shield_NoStaminaUsageChance = Shield_NoStaminaUsage_5Perc*0.05f;
         Shield_DamageBoost = Shield_DamageBoost_3Perc*0.03f;
@@ -180,16 +180,16 @@ public class Skills : MonoBehaviour
     }
 
     public void Skilltree_DamageModifier(){
-        DamageModifier = 1f + DMG_1Perc_1_Accuracy*0.01f + DMG_2Perc_1_Accuracy*0.02f + DMG_2Perc_2_Accuracy*0.02f + DMG_5Perc_1_Accuracy*0.05f;
+        DamageModifier = 1f + (DMG_1Perc_1_Accuracy + DMG_2Perc_1_Accuracy*2 + DMG_2Perc_2_Accuracy*2 + DMG_5Perc_1_Accuracy*5)/100f;
         player.UpdateAllStats();
     }
     
     public void Skilltree_CritDamage(){
-        Crit_Damage = 0.5f + CritDamage_5Perc_1_Accuracy*0.05f + CritDamage_5Perc_2_Accuracy*0.05f + CritDamage_10Perc_1_Accuracy*0.1f + CritDamage_10Perc_2_Accuracy*0.1f + CritDamage_20Perc_1_Accuracy*0.2f;
+        Crit_Damage = 0.5f + (CritDamage_5Perc_1_Accuracy*5 + CritDamage_5Perc_2_Accuracy*5 + CritDamage_10Perc_1_Accuracy*10 + CritDamage_10Perc_2_Accuracy*10 + CritDamage_20Perc_1_Accuracy*20)/100f;
     }
     
     public void Skilltree_DMGCapOverdamage(){
-        DMGCapOverdamage = 1.5f + DMGCapOverdamage_10Perc_1*0.1f + DMGCapOverdamage_10Perc_2*0.1f;
+        DMGCapOverdamage = 1.5f + (DMGCapOverdamage_10Perc_1*10 + DMGCapOverdamage_10Perc_2*10)/100f;
     }
 
     public void Skilltree_MaxStamina(){

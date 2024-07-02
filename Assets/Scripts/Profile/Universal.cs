@@ -67,15 +67,15 @@ public class Universal : SkillTreeSegment
     }
 
     public void AddActveSkillSlot_CheckUpgrade(){
-        CheckUpgradeSingle(AddActveSkillSlot, "AddActveSkillSlot", Lvl: Convert.ToInt32(SkillManager.AddActveSkillSlot), CheckValLvl1: 70, CheckValLvl2: 160, Case: AllUpgrades);
-    }
+    CheckUpgradeSingle(AddActveSkillSlot, "AddActveSkillSlot", Lvl: Convert.ToInt32(SkillManager.AddActveSkillSlot), CheckValLvl1: 70, CheckValLvl2: 160, Case: AllUpgrades);
+}
 
     public void AddActveSkillSlot_Text(){
         GetText(AddActveSkillSlot, "AddActveSkillSlot", TextName: "Additional_Slot", MaxUpgradesCount: 3, Price1: 3, Price2: 4, Price3: 5, HasSuffix: false);
     }
 
     public void AddActveSkillSlot_Upgrade(){
-        Upgrade(AddActveSkillSlot, "AddActveSkillSlot", MaxUpgradesCount: 3, Price1: 3, Price2: 4, Price3: 5, HasSuffix: false, Invoke1: "ActiveSkillsSlots", SetInteractable1: SkilledTree_1Perc, CheckVal1: 1, SetInteractable2: ShieldStacking, CheckVal2: 1);
+        Upgrade(AddActveSkillSlot, "AddActveSkillSlot", MaxUpgradesCount: 3, Price1: 3, Price2: 4, Price3: 5, HasSuffix: false, Invoke1: "ActiveSkillsSlots", SetInteractable1: SkilledTree_1Perc, CheckVal1: 1);
     }
 
     public void ShieldStacking_CheckUpgrade(){
@@ -87,7 +87,7 @@ public class Universal : SkillTreeSegment
     }
 
     public void ShieldStacking_Upgrade(){
-        Upgrade(ShieldStacking, "ShieldStacking", MaxUpgradesCount: 2, Price1: 2, Price2: 3, HasSuffix: false, SetInteractable1: StaminaRegen_1_1, CheckVal1: 1);
+        Upgrade(ShieldStacking, "ShieldStacking", MaxUpgradesCount: 2, Price1: 2, Price2: 3, HasSuffix: false, SetInteractable1: StaminaRegen_1_1, CheckVal1: 1, SetInteractable2: AddActveSkillSlot, CheckVal2: 1);
     }
 
     public void SkilledTree_1Perc_CheckUpgrade(){
@@ -113,6 +113,7 @@ public class Universal : SkillTreeSegment
     public void StaminaRegen_1_1_Upgrade(){
         Upgrade(StaminaRegen_1_1, "StaminaRegen_1_1", Price1: 2, Price2: 2, Price3: 2, Price4: 2, Price5: 2, Invoke1: "AttackSpeed");
     }
+
 
     public void EV_1_ACC_1_1_CheckUpgrade(){
         CheckUpgradeSingle(EV_1_ACC_1_1, "EV_1_ACC_1_1", Lvl: Convert.ToInt32(SkillManager.EV_1_ACC_1_1_Universal), CheckValLvl1: 5, CheckValLvl2: 10, CheckValLvl3: 15, CheckValLvl4: 20, CheckValLvl5: 25, Case: AllUpgrades);

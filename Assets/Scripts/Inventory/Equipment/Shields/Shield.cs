@@ -27,7 +27,7 @@ public class Shield : Item
 
     public override void OnNextTurn(){
         Player.Instance.MagicDefence -= Skills.Instance.Shield_MagicDefence*ShieldingLevel;
-        Player.Instance.TemporaryDamageBoost -= Skills.Instance.Shield_DamageBoost*ShieldingLevel;
+        Player.Instance.TemporaryDamageBoost = 0;
         ShieldingLevel = 0;
         Fight.Instance.ReloadShieldingLevelImage();
     }

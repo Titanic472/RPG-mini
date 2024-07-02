@@ -420,8 +420,8 @@ public class Player : Entity
 
     public async void GetDamage(int Amount, bool AllowArmor = true, bool IsCrit = false, bool ReloadHP = true, string DamageType = "Physical"){
         if(Parry() && Amount > 0){
-            SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Language_Changer.Instance.GetText("Parried"));
-            Fight.Instance.EffectsManager.TriggerEffects(4, this);
+                SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Language_Changer.Instance.GetText("Parried"));
+                Fight.Instance.EffectsManager.TriggerEffects(4, this);
             return;
         }
         else if(LeftHand.GetComponent<Item>().Type == "Shield" && Amount > 0){
@@ -429,8 +429,8 @@ public class Player : Entity
             if(Chance<SkillManager.Shield_AvoidChance*100*LeftHand.GetComponent<Item>().ShieldingLevel){
                 SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Language_Changer.Instance.GetText("Avoided"));
                 Fight.Instance.EffectsManager.TriggerEffects(4, this);
+                return;
             }
-            return;
         }
         
         bool AllowText = true;
@@ -476,8 +476,8 @@ public class Player : Entity
         
         if(DamageType == "Physical"){
             if(Avoid() && Amount > 0){
-            SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Language_Changer.Instance.GetText("Avoided"));
-            Fight.Instance.EffectsManager.TriggerEffects(4, this);
+                SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Language_Changer.Instance.GetText("Avoided"));
+                Fight.Instance.EffectsManager.TriggerEffects(4, this);
             return;
             }
             LeftHand.GetComponent<Item>().OnReceiveDamage(ref Amount);//Shield
