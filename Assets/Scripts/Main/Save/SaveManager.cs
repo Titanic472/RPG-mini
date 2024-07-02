@@ -81,7 +81,16 @@ public class SaveManager : MonoBehaviour
 
         Save.LoadPlayer();
         InventoryManager.Inventory_Reorganise();
+
         Save.LoadActiveSkills();
+        for(int i = 0; i<4; ++i){
+            if(Data.intActiveSkills[i]!=-1){
+                Save.ActiveSkillsManager.Removing = false;
+                Save.ActiveSkillsManager.SelectedSlotID = Data.intActiveSkills[i];
+                Save.ActiveSkillsManager.SelectSkill();
+            }
+        }
+
         Save.Player.ManaOverdrain.Check();
         Save.Player.UpdateAllStats();
         StartCoroutine(Save.Player.ExperienceBar.XP_update(false));
@@ -93,11 +102,13 @@ public class SaveManager : MonoBehaviour
         Save.LoadSkillTree();
         Save.Skills.Skilltree_ActiveSkillsSlots();
         Save.ActiveSkillsManager.SkillsUnlockCheck();
+        
         Save.LoadMap();
-        LocationManager.Instance.ChangeLocation();
+        LocationManager.Instance.ChangeLocation(false);
     }
 
     public void SaveAll(){
+        Data = new Data();
         Save.Data = Data;
         Save.SaveGame();
         Save.SavePlayer();

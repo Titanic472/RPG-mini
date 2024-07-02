@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+    public Game game; 
     public int Health, MaxHealth, HealthRegen, Mana, MaxMana, ManaRegen, Level, BuffsDefence, BuffsAvoidChance, MaxBuffsDamage = -1, DamageTaken, DamageTakenByBuffs, DamageBlockedByBuffs;
-    public float BuffsDamageModifier = 1, BuffsDamageTakenModifier = 1, MagicDefence = 0f;
+    public float BuffsDamageModifier = 1, BuffsDamageTakenModifier = 1, MagicDefence = 0f, BuffsEvasion = 0, BuffsAccuracy = 0;
     public int[,] StatusEffects = new int[10,5];//0 - id, 1 - duration, 2 - start duration, 3 - type, 4 - type2
     public GameObject SelfSprite;
     public HealthBar HealthBar;
@@ -17,7 +18,8 @@ public class Entity : MonoBehaviour
         if(Health-Amount<=0){
             SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Health + "");
             Health = 0;
-            Fight.TriggerDeath();
+            if(Fight.InBattle) Fight.TriggerDeath();
+            else game.EndGame();
         }
         else {
             Health -= Amount;

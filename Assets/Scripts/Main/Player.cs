@@ -12,7 +12,6 @@ public class Player : Entity
     public Experience ExperienceBar;
     public Skills SkillManager;
     public Mob mob;
-    public Game game; 
     public SpeedEnergy speedEnergy;
     public ManaOverdrain ManaOverdrain;
     public GameObject SelfSprite2;
@@ -380,7 +379,7 @@ public class Player : Entity
 
     public bool Crit(){
         int Chance = UnityEngine.Random.Range(0, 100);
-        if(Chance<Math.Min(MaxCritChance, Skills["Accuracy"]-mob.Evasion)){
+        if(Chance<Math.Min(MaxCritChance, Skills["Accuracy"] + BuffsAccuracy - mob.Evasion)){
             RightHand.GetComponent<Item>().OnCrit();
             LeftHand.GetComponent<Item>().OnCrit();
             Hat.GetComponent<Item>().OnCrit();
@@ -395,7 +394,7 @@ public class Player : Entity
 
     public bool Avoid(){
         int Chance = UnityEngine.Random.Range(0, 100);
-        if(Chance<Math.Min(MaxAvoidChance, Skills["Evasion"]-mob.Accuracy)){
+        if(Chance<Math.Min(MaxAvoidChance, Skills["Evasion"] + BuffsEvasion - mob.Accuracy)){
             RightHand.GetComponent<Item>().OnAvoid();
             LeftHand.GetComponent<Item>().OnAvoid();
             Hat.GetComponent<Item>().OnAvoid();
@@ -420,14 +419,8 @@ public class Player : Entity
     }
 
     public async void GetDamage(int Amount, bool AllowArmor = true, bool IsCrit = false, bool ReloadHP = true, string DamageType = "Physical"){
-        LeftHand.GetComponent<Item>().OnReceiveDamage(ref Amount);//Shield
         if(Parry() && Amount > 0){
             SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Language_Changer.Instance.GetText("Parried"));
-            Fight.Instance.EffectsManager.TriggerEffects(4, this);
-            return;
-        }
-        else if(Avoid() && Amount > 0){
-            SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Language_Changer.Instance.GetText("Avoided"));
             Fight.Instance.EffectsManager.TriggerEffects(4, this);
             return;
         }
@@ -477,11 +470,17 @@ public class Player : Entity
                 Amount = 0;
                 AllowText = false;
                 SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Language_Changer.Instance.GetText("Blocked"));
+                return;
             }
         }
-        Parry_ChanceAll += Parry_Chance;
         
         if(DamageType == "Physical"){
+            if(Avoid() && Amount > 0){
+            SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Language_Changer.Instance.GetText("Avoided"));
+            Fight.Instance.EffectsManager.TriggerEffects(4, this);
+            return;
+            }
+            LeftHand.GetComponent<Item>().OnReceiveDamage(ref Amount);//Shield
             Amount = Convert.ToInt32(Math.Floor(Amount*BuffsDamageTakenModifier));
             Amount = Convert.ToInt32(Math.Floor(Amount-Amount*DamageResistance));
             if(AllowArmor){
@@ -502,17 +501,23 @@ public class Player : Entity
         else if(DamageType == "Magic"){
             Amount -= Convert.ToInt32(Math.Ceiling(Amount * MagicDefence));
         }
+
         if(Amount<0){
             Amount = 0;
             ReloadHP = false;
         }
+
+        Parry_ChanceAll += Parry_Chance;
         Parry_ChanceAll += Amount/(float)MaxHealth*Parry_DamagePercent;
-        if(IsCrit && AllowText)SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Amount +" Crit!");
-        else if(AllowText)SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Amount +"");
+
+        if(IsCrit && AllowText)SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Amount + " Crit!");
+        else if(AllowText)SelfSprite.GetComponent<F_Text_Creator>().CreateText_Red(Amount + "");
+
         Health -= Amount;
         DamageTaken += Amount;
         if(Health<0) Health = 0;
         if(ReloadHP)StartCoroutine(HealthBar.HP_update());
+
         RightHand.GetComponent<Item>().AfterReceiveDamage();
         LeftHand.GetComponent<Item>().AfterReceiveDamage();
         Hat.GetComponent<Item>().AfterReceiveDamage();
@@ -520,6 +525,7 @@ public class Player : Entity
         Boots.GetComponent<Item>().AfterReceiveDamage();
         Trinket1.GetComponent<Item>().AfterReceiveDamage();
         Trinket2.GetComponent<Item>().AfterReceiveDamage();
+
         Fight.Instance.EffectsManager.TriggerEffects(2, Fight.MobScript);
         if(Health==0){
             await Task.Delay(1000);
@@ -528,12 +534,6 @@ public class Player : Entity
             return;
         }
         Fight.EffectsManager.TriggerEffects(3, this);
-        if(Health==0){
-            await Task.Delay(1000);
-            if(Fight.InBattle) Fight.TriggerDeath();
-            else game.EndGame();
-            return;
-        }
     }
 
     public bool Parry(){

@@ -16,7 +16,7 @@ public class LocationManager : MonoBehaviour
         if(CurrentLocation == null)CurrentLocation = Locations[0];
     }   
 
-    public void ChangeLocation(){
+    public void ChangeLocation(bool Save = true){
         switch(Location){
             case "PlainsTest1":
                 CurrentLocation.SetActive(false);
@@ -35,6 +35,6 @@ public class LocationManager : MonoBehaviour
         }
         Game.Instance.PlayerSprite.GetComponent<Player_MapSprite>().Boundaries_Update();
         Game.Instance.PlayerSprite.GetComponent<Player_MapSprite>().Camera_Move();
-        SaveManager.Instance.SaveAll();
+        if(Save)SaveManager.Instance.SaveAll();
     } 
 }

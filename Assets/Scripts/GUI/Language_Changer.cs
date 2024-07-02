@@ -74,7 +74,7 @@ public class Language_Changer : MonoBehaviour
 		Return1.text = GetText("Return");
 		Return2.text = GetText("Return");
 		Return3.text = GetText("Return");
-		Return4.text = GetText("Return");
+		//Return4.text = GetText("Return");
 		Return5.text = GetText("Return");
 		Return6.text = GetText("Return");
 		Shop.text = GetText("Shop");

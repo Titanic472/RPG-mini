@@ -358,7 +358,7 @@ public class ActiveSkillsManager : MonoBehaviour
                 Information.text = string.Format(Language_Changer.Instance.GetText("Active_Skill_8_Description"), Damage, Heal, Cooldown, ManaUsage, EffectHeal, UltimateDescription);
                 break;
             default:
-                Information.text = "Something Went Wrong, Please Report This";
+                Information.text = "Wild Active skill will appear in new update";
                 break;
         }
     }

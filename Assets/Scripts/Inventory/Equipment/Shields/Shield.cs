@@ -18,7 +18,7 @@ public class Shield : Item
     }
 
     public override void OnReceiveDamage(ref int IncomingDamage){
-        if(Skills.Instance.Shield_DamageReturn>0)Fight.Instance.MobScript.GetDamage(Convert.ToInt32(Math.Ceiling(IncomingDamage*Skills.Instance.Shield_DamageReturn*ShieldingLevel)));
+        if(Skills.Instance.Shield_DamageReturn>0)Fight.Instance.MobScript.GetDamage(Convert.ToInt32(Math.Ceiling(IncomingDamage*Skills.Instance.Shield_DamageReturn*ShieldingLevel)), false);
         if(Skills.Instance.Shield_DamageResistance>0)IncomingDamage -= Convert.ToInt32(IncomingDamage*Skills.Instance.Shield_DamageResistance*ShieldingLevel);
         IncomingDamage -= DamageReduction*ShieldingLevel;
         if(IncomingDamage<0 && Skills.Instance.Shield_ParryChance_1Perc>0)Player.Instance.Parry_ChanceAll += Skills.Instance.Shield_ParryChance_1Perc;
