@@ -108,8 +108,8 @@ public class Mob : Entity
         if(Amount<0) Amount = 0;
         if(DamageCap>0 && Amount>DamageCap){
             if(Skills.Instance.DMGCapOverdamage_Unlock>0){
-                if(Amount/DamageCap>=10/Skills.Instance.DMGCapOverdamage_Unlock)
-                Amount = Convert.ToInt32(DamageCap*Skills.Instance.DMGCapOverdamage);
+                if(Amount/DamageCap>=10/Skills.Instance.DMGCapOverdamage_Unlock) Amount = Convert.ToInt32(DamageCap*Skills.Instance.DMGCapOverdamage);
+                else Amount = DamageCap;
             }
             else Amount = DamageCap;
         }
