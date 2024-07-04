@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class SpeedEnergy : MonoBehaviour
@@ -22,6 +23,15 @@ public class SpeedEnergy : MonoBehaviour
             GreenSprites[(int)i].SetActive(true);
         }
         if(Player.Instance.SpeedEnergy == Player.Instance.MaxSpeedEnergy)GreenSprites[19].SetActive(true);
+        if(Fight.Instance.InBattle){
+            Item LeftHand, RightHand;
+            LeftHand = Player.Instance.LeftHand.GetComponent<Item>();
+            RightHand = Player.Instance.RightHand.GetComponent<Item>();
+            if(RightHand.EnergyUsage <= Player.Instance.SpeedEnergy) for(int i = 0; i < RightHand.EnergyUsage; ++i) Fight.Instance.HandsStaminaUsage[i].sprite = Fight.Instance.StaminaLevelImages[0];
+            else for(int i = 0; i < RightHand.EnergyUsage; ++i) Fight.Instance.HandsStaminaUsage[i].sprite = Fight.Instance.StaminaLevelImages[1];
+            if(LeftHand.EnergyUsage <= Player.Instance.SpeedEnergy) for(int i = 0; i < LeftHand.EnergyUsage; ++i) Fight.Instance.HandsStaminaUsage[i+3].sprite = Fight.Instance.StaminaLevelImages[0];
+            else for(int i = 0; i < LeftHand.EnergyUsage; ++i) Fight.Instance.HandsStaminaUsage[i+3].sprite = Fight.Instance.StaminaLevelImages[1];
+        }
     }
 
 }

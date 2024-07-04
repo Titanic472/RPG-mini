@@ -14,9 +14,10 @@ public class InventoryManager : MonoBehaviour
     public Sprite Empty;
     public GameObject HatSlotEmpty, ChestplateSlotEmpty, BootsSlotEmpty, LeftHandSlotEmpty, RightHandSlotEmpty, Trinket1SlotEmpty, Trinket2SlotEmpty, InformationBackground;
     public int InvokeID;
-    public TextMeshProUGUI Title, Description, DescriptionStats, DescriptionStats2, TitleProfile, DescriptionProfile, DescriptionStatsProfile, DescriptionStatsProfile2;
+    public TextMeshProUGUI Title, Description, DescriptionStats, DescriptionStats2, TitleProfile, DescriptionProfile, DescriptionStatsProfile, DescriptionStatsProfile2, ItemType, ItemTypeProfile;
     public GameObject UpgradeButton, UpgradeButtonProfile, UnequipButton, Sell, Equip, Use, Choose, HatSlot, ChestplateSlot, BootsSlot, LeftHandSlot, RightHandSlot, Trinket1Slot, Trinket2Slot;
     public string Potion, ChooseType, InventorySlot; 
+    public Color[] TierColors = new Color[6];
 
     public void Item_Sell(){
         player.MoneyAdd(player.Inventory[InvokeID].GetComponent<Item>().Price);
@@ -357,6 +358,8 @@ public class InventoryManager : MonoBehaviour
         if(CurrentSlot.CanUpgrade()) UpgradeButtonProfile.GetComponent<Button>().interactable = true;
         else UpgradeButtonProfile.GetComponent<Button>().interactable = false;
         TitleProfile.text = Language_Changer.Instance.GetText(CurrentSlot.Name, "Items");
+        ItemTypeProfile.text = Language_Changer.Instance.GetText(CurrentSlot.Type, "Items");
+        ItemTypeProfile.color = TierColors[Math.Max(CurrentSlot.Tier-1, 0)];
         DescriptionProfile.text = CurrentSlot.GetDescription();
         string SlotText1 = "", SlotText2 = "";
         CurrentSlot.GetStats(ref SlotText1, ref SlotText2, true);

@@ -6,6 +6,7 @@ using UnityEngine;
 public class HealingPotion : Item
 {
     public override void Use(){
+        if(Fight.Instance.InBattle && Player.Instance.SpeedEnergy<EnergyUsage) return;
         if(Player.Instance.Health == Player.Instance.MaxHealth) return;
         --Amount;
         float Modifier = 1;

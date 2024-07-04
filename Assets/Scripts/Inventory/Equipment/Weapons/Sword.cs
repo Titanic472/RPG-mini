@@ -6,6 +6,7 @@ using UnityEngine;
 public class Sword : Item
 {
     public override void Use(){
+        if(Player.Instance.SpeedEnergy<EnergyUsage) return;
         Player.Instance.RightHand.GetComponent<Item>().OnAttack();
         Player.Instance.LeftHand.GetComponent<Item>().OnAttack();
         Player.Instance.Hat.GetComponent<Item>().OnAttack();

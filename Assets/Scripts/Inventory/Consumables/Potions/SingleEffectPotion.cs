@@ -7,6 +7,7 @@ public class SingleEffectPotion : Item
     public int EffectId, Duration;
 
     public override void Use(){
+        if(Fight.Instance.InBattle && Player.Instance.SpeedEnergy<EnergyUsage) return;
         --Amount;
         Fight.Instance.EffectsManager.Add(EffectId, Duration, Player.Instance);
         Player.Instance.RightHand.GetComponent<Item>().OnPotionUse();

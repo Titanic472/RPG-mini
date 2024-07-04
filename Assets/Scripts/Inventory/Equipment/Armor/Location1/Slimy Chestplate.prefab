@@ -136,7 +136,7 @@ MonoBehaviour:
   Name: Slimy_Chestplate
   Type: Chestplate
   Id: 3
-  Tier: 1
+  Tier: 6
   Level: 1
   Amount: 0
   EnchantmentId: -1
@@ -185,6 +185,8 @@ MonoBehaviour:
   UpgradeManaModifier: 0
   DamageResistance: 0
   UpgradeDamageResistance: 0
+  MagicDefence: 0
+  UpgradeMagicDefence: 0
   Is2Handed: 0
   CanBeUsedOutsideBattle: 0
   CanBeUpgraded: 0

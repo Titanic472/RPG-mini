@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
@@ -33,6 +34,8 @@ public class InventorySlot_Items : MonoBehaviour
         InventoryManager.Choose.SetActive(false);
         InventoryManager.InvokeID = ID;
         InventoryManager.Title.text = Language_Changer.Instance.GetText(CurrentSlotScript.Name, "Items");
+        InventoryManager.ItemType.text = Language_Changer.Instance.GetText(CurrentSlotScript.Type, "Items");
+        InventoryManager.ItemType.color = InventoryManager.TierColors[Math.Max(CurrentSlotScript.Tier-1, 0)];
         InventoryManager.Description.text = CurrentSlotScript.GetDescription();
         string SlotText1 = "", SlotText2 = "";
         CurrentSlotScript.GetStats(ref SlotText1, ref SlotText2, true);

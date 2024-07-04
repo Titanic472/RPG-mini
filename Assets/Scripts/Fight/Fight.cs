@@ -19,6 +19,7 @@ public class Fight : MonoBehaviour
     public Tooltip Tooltip;
     public TextMeshProUGUI MobText, MobDescriptionTitle, MobDescription, MobStats, MobStats2, MobStatsTitle, PassiveSkillsStats;
     public GameObject[] Buttons = new GameObject[16], PotionSlots = new GameObject[5], PlayerEffectImages = new GameObject[10], MobEffectImages = new GameObject[10], GameObjects = new GameObject[4];
+    public Image[] HandsStaminaUsage = new Image[6];
     public GameObject EndBattleWindow, CoinsText, Mob_MapSprite, BG, ModeSwitch, ShieldingLevel, MobDescription_GameObject, MobStats_GameObject, PassiveSkillsInfo_GameObject;
     public Button MobDescription_Button, MobStats_Button, PassiveSkillsInfo_Button;
     public EffectsManager EffectsManager;
@@ -29,7 +30,7 @@ public class Fight : MonoBehaviour
     public static Fight Instance = null;
     public bool IsVampirismActive = false;
     public float VampirsmHealPerc;
-    public Sprite[] ShieldingLevelImages = new Sprite[3];
+    public Sprite[] ShieldingLevelImages = new Sprite[3], StaminaLevelImages = new Sprite[2];
 
     public Animator PlayerAnimator;
 
@@ -46,6 +47,7 @@ public class Fight : MonoBehaviour
             if(player.Inventory[i].GetComponent<Item>().Type == "Potion"){
                 PotionSlots[Slot].SetActive(true);
                 PotionSlots[Slot].transform.Find("Image").GetComponent<Image>().sprite = player.Inventory[i].GetComponent<SpriteRenderer>().sprite;
+                PotionSlots[Slot].transform.Find("Amount_Text").GetComponent<TextMeshProUGUI>().text = player.Inventory[i].GetComponent<Item>().Amount + "";
                 Potions[Slot] = i;
                 ++Slot;
             }
@@ -119,70 +121,72 @@ public class Fight : MonoBehaviour
         AllEntitiesAlive = true;
         InBattle = true;
         player.BrutalityStreak_MobAvoidChance = 0;
-        player.BrutalityStreak_AddDamage = 0;
+        player.BrutalityStreak_AddDamageAll = 0;
         EffectsManager.TriggerEffects(0, player);
         player.LeftHand.GetComponent<Item>().ShieldingLevel = 0;
         ShieldingLevel.GetComponent<Image>().sprite = InventoryManager.Empty;
         if(SkillManager.BrutalityStreak_Unlock){
-        switch(SkillManager.BrutalityStreak_AvoidChance){
-            case 1:
-                player.BrutalityStreak_MobAvoidChance = 7;
-                break;
-            case 2:
-                player.BrutalityStreak_MobAvoidChance = 5;
-                break;
-            default:
-                player.BrutalityStreak_MobAvoidChance = 8;
-                break;
+            switch(SkillManager.BrutalityStreak_AvoidChance){
+                case 1:
+                    player.BrutalityStreak_MobAvoidChance = 7;
+                    break;
+                case 2:
+                    player.BrutalityStreak_MobAvoidChance = 5;
+                    break;
+                default:
+                    player.BrutalityStreak_MobAvoidChance = 8;
+                    break;
+            }
+            switch(SkillManager.BrutalityStreak_EnergySave){
+                case 1:
+                    player.BrutalityStreak_AddDamage = 0.02f;
+                    break;
+                case 2:
+                    player.BrutalityStreak_AddDamage = 0.03f;
+                    break;
+                case 3:
+                    player.BrutalityStreak_AddDamage = 0.04f;
+                    break;
+                default:
+                    player.BrutalityStreak_AddDamage = 0.01f;
+                    break;
+            }
         }
-        switch(SkillManager.BrutalityStreak_EnergySave){
-            case 1:
-                player.BrutalityStreak_AddDamage = 0.02f;
-                break;
-            case 2:
-                player.BrutalityStreak_AddDamage = 0.03f;
-                break;
-            case 3:
-                player.BrutalityStreak_AddDamage = 0.04f;
-                break;
-            default:
-                player.BrutalityStreak_AddDamage = 0.01f;
-                break;
-        }}
         if(SkillManager.Parry_Unlock){
-        switch(SkillManager.Parry_Chance){
-            case 1:
-                player.Parry_Chance = 2;
-                break;
-            case 2:
-                player.Parry_Chance = 3;
-                break;
-            default:
-                player.Parry_Chance = 1;
-                break;
+            switch(SkillManager.Parry_Chance){
+                case 1:
+                    player.Parry_Chance = 2;
+                    break;
+                case 2:
+                    player.Parry_Chance = 3;
+                    break;
+                default:
+                    player.Parry_Chance = 1;
+                    break;
+            }
+            switch(SkillManager.Parry_Perc){
+                case 1:
+                    player.Parry_RemovePercent = 0.9f;
+                    break;
+                case 2:
+                    player.Parry_RemovePercent = 0.75f;
+                    break;
+                default:
+                    player.Parry_RemovePercent = 1f;
+                    break;
+            }
+            switch(SkillManager.Parry_Damage){
+                case 1:
+                    player.Parry_DamagePercent = 5;
+                    break;
+                case 2:
+                    player.Parry_DamagePercent = 10;
+                    break;
+                default:
+                    player.Parry_DamagePercent = 0;
+                    break;
+            }
         }
-        switch(SkillManager.Parry_Perc){
-            case 1:
-                player.Parry_RemovePercent = 0.9f;
-                break;
-            case 2:
-                player.Parry_RemovePercent = 0.75f;
-                break;
-            default:
-                player.Parry_RemovePercent = 1f;
-                break;
-        }
-        switch(SkillManager.Parry_Damage){
-            case 1:
-                player.Parry_DamagePercent = 5;
-                break;
-            case 2:
-                player.Parry_DamagePercent = 10;
-                break;
-            default:
-                player.Parry_DamagePercent = 0;
-                break;
-        }}
         Mob_Create(MinLevel, MaxLevel, Location, MobID, AllowSkilledTree);
         PotionSlots_Reload();
         ReloadEffectImages();
@@ -207,10 +211,15 @@ public class Fight : MonoBehaviour
         player.DamageTaken = 0;
         player.DamageTakenByBuffs = 0;
         player.DamageBlockedByBuffs = 0;
+
         Buttons[1].transform.Find("Image").GetComponent<SpriteRenderer>().sprite = player.RightHand.GetComponent<SpriteRenderer>().sprite;
         Buttons[1].transform.Find("Image").GetComponent<Animator>().runtimeAnimatorController = player.RightHand.GetComponent<Animator>().runtimeAnimatorController;
         Buttons[0].transform.Find("Image").GetComponent<SpriteRenderer>().sprite = player.LeftHand.GetComponent<SpriteRenderer>().sprite;
         Buttons[0].transform.Find("Image").GetComponent<Animator>().runtimeAnimatorController = player.LeftHand.GetComponent<Animator>().runtimeAnimatorController;
+        for(int i = 0; i < 6; ++i) HandsStaminaUsage[i].gameObject.SetActive(false);
+        for(int i = 0; i < Player.Instance.RightHand.GetComponent<Item>().EnergyUsage; ++i) HandsStaminaUsage[i].gameObject.SetActive(true);
+        for(int i = 0; i < Player.Instance.LeftHand.GetComponent<Item>().EnergyUsage; ++i) HandsStaminaUsage[i+3].gameObject.SetActive(true);
+
         if(Game.MapMode){
             player.SpriteSwap();
             ModeSwitch.SetActive(false);

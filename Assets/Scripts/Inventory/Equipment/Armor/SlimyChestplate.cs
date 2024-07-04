@@ -27,14 +27,12 @@ public class SlimyChestplate : Chestplate
         if(RemoveXP)XP-=NewLevelXP;
         Price[1]+=100;
         if(Level < 5){
-            Tier = 1;
             MinDefence += 1;
             MaxDefence += 2;
             NewLevelXP += 100;
             return;
         }
         if(Level < 10){
-            Tier = 2;
             MinDefence += 2;
             MaxDefence += 3;
             Accuracy += 2;
@@ -43,7 +41,6 @@ public class SlimyChestplate : Chestplate
             return;
         }
         if(Level < 15){
-            Tier = 3;
             MinDefence += 3;
             MaxDefence += 5;
             Accuracy += 4;
@@ -52,7 +49,6 @@ public class SlimyChestplate : Chestplate
             return;
         }
         if(Level < 20){
-            Tier = 4;
             MinDefence += 5;
             MaxDefence += 8;
             Accuracy += 7;
@@ -63,7 +59,6 @@ public class SlimyChestplate : Chestplate
             return;
         }
         if(Level < 25){
-            Tier = 5;
             MinDefence += 10;
             MaxDefence += 14;
             Accuracy += 15;

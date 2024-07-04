@@ -32,5 +32,11 @@ Experience: {0}/{1}</Slimy_Chestplate_Description>
 	<Mana_Regeneration_Potion_Description>Slowly regenerates your mana</Mana_Regeneration_Potion_Description>
 	<Ironskin_Potion>Ironskin Potion</Ironskin_Potion>
 	<Ironskin_Potion_Description>Increases your defence for a short time</Ironskin_Potion_Description>
-	
+	<Weapon>Weapon</Weapon>
+	<Shield>Shield</Shield>
+	<Hat>Hat</Hat>
+	<Chestplate>Chestplate</Chestplate>
+	<Boots>Boots</Boots>
+	<Trinket>Trinket</Trinket>
+	<Potion>Potion</Potion>
 </texts>

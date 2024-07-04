@@ -29,7 +29,7 @@ public class Skills : MonoBehaviour
     public bool EnemyInfoUnlock, EnemyStatsUnlock, PassiveSkillsInfoUnlock;
     public bool BSU, CHU, CH_Effect, VU, ManaOverdrain, BS_Poison_AddDuration, BS_NoEvasion, BS_Ultimate, CH_Ultimate_RandomDebuff, CH_Ultimate_HPPercent, V_Ultimate;
     public bool PHU, Parry_Unlock, DoubleStaminaUnlock, KDU, KD_Bleeding, KD_Poison, KD_IgnoreAvoid, DFU, DF_Debuff, DF_DoubleEffect;
-    public bool BLU, BrutalityStreak_Unlock, BrutalityStreak_SpecialAttacksTrigger;
+    public bool BLU, BrutalityStreak_Unlock, BrutalityStreak_SpecialAttacksTrigger;//finish after adding enchants
     public int Shield_MagicDef_2Perc_1, Shield_MagicDef_2Perc_2, Shield_DmgReturn_1Perc_1, Shield_DmgReturn_1Perc_2, DMGCapOverdamage_Unlock;
     public int Shield_NoStaminaUsage_5Perc, Shield_DamageBoost_3Perc;
     public int Shield_ParryChance_1Perc, Shield_DMGResistance_1Perc_1, Shield_DMGResistance_2Perc_1, Shield_AvoidChance1Perc_1, Shield_AvoidChance2Perc_1;

@@ -5,6 +5,7 @@ using UnityEngine;
 public class ManaPotion : Item
 {
     public override void Use(){
+        if(Fight.Instance.InBattle && Player.Instance.SpeedEnergy<EnergyUsage) return;
         if(Player.Instance.Mana == Player.Instance.MaxMana) return;
         --Amount;
         if(Fight.Instance.InBattle)Fight.Instance.PotionSlots_Reload();

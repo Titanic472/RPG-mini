@@ -7,6 +7,7 @@ public class Shield : Item
 {
     
     public override void Use(){
+        if(Player.Instance.SpeedEnergy<EnergyUsage) return;
         if(ShieldingLevel<1+Skills.Instance.ShieldStacking){
             ShieldingLevel+=1;
             if(Skills.Instance.Shield_DamageBoost>0)Player.Instance.TemporaryDamageBoost += Skills.Instance.Shield_DamageBoost;
