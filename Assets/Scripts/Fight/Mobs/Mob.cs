@@ -10,7 +10,7 @@ public class Mob : Entity
 {   
     public Player player;
     public int[] XPReward = new int[25];
-    public int MinCoins, MaxCoins, LevelHPBoost, Damage, Evasion, Accuracy, MaxDefence, MinDefence, MaxAvoidChance, MaxCritChance, DamageCap;
+    public int MinCoins, MaxCoins, LevelHPBoost, Damage, MaxDefence, MinDefence, MaxAvoidChance, MaxCritChance, DamageCap;
     public float DamageResistance, XPLevelModifier, LevelDamage, LevelMaxDefence, LevelMinDefence, LevelAccuracy, LevelEvasion, ActiveSkillsAddDamage;
     public string Name;
     
@@ -32,8 +32,8 @@ public class Mob : Entity
             }
         }
         Health = MaxHealth;
-        Accuracy += Convert.ToInt32(LevelAccuracy*Level);
-        Evasion += Convert.ToInt32(LevelEvasion*Level);
+        BaseAccuracy += Convert.ToInt32(LevelAccuracy*Level);
+        BaseEvasion += Convert.ToInt32(LevelEvasion*Level);
         Damage += Convert.ToInt32(LevelDamage*Level);
         MaxDefence += Convert.ToInt32(LevelMaxDefence*Level);
         MinDefence += Convert.ToInt32(LevelMinDefence*Level);
@@ -42,6 +42,7 @@ public class Mob : Entity
         player.mob = this;
         Fight.ActiveSkills.mob = this;
         HealthBar.Restart();
+        UpdateAllStats();
     }
 
     public virtual void Attack(){}
@@ -77,7 +78,7 @@ public class Mob : Entity
 
     public bool Crit(){
         int Chance = UnityEngine.Random.Range(0, 100);
-        if(Chance<Math.Min(MaxCritChance, Accuracy-player.Skills["Evasion"])) return true;
+        if(Chance<Math.Min(MaxCritChance, Accuracy-player.Evasion)) return true;
         else return false;
     }
 
@@ -86,7 +87,7 @@ public class Mob : Entity
         int Chance = UnityEngine.Random.Range(0, 100);
         if(Chance<player.BrutalityStreak_MobAvoidChance) return true;
         else Chance = UnityEngine.Random.Range(0, 100);
-        if(Chance<Math.Min(MaxAvoidChance, Evasion-player.Skills["Accuracy"])) return true;
+        if(Chance<Math.Min(MaxAvoidChance, Evasion-player.Accuracy)) return true;
         else Chance = UnityEngine.Random.Range(1, 101);
         if(Chance<BuffsAvoidChance) return true;
         else return false;

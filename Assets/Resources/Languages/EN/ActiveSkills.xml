@@ -1,0 +1,54 @@
+<texts>
+	<Active_Skill_0>Precise Hit</Active_Skill_0>
+	<Active_Skill_0_Description>Most Precise Attack, hits the Enemy always. Also Adds {0}% damage to normal attack and triggers weapon enchantment with {2}% chance.
+Cooldown: {1} Turns</Active_Skill_0_Description>
+	<Active_Skill_1>Dance With Knives</Active_Skill_1>
+	<Active_Skill_1_Description>Throws up to {0} knives{1}.{2} Every knife deals {3}% of base damage.{4}{5}
+Cooldown: {6} Turns</Active_Skill_1_Description>
+    <Active_Skill_1_Description_No_Stamina_Use_Chance> with {0} chance not to consume stamina but enemy has {1}% avoid chance after every throw</Active_Skill_1_Description_No_Stamina_Use_Chance>
+    <Active_Skill_1_Description_Extra_Debuffs> Every knife{0}{1}.</Active_Skill_1_Description_Extra_Debuffs>
+    <Active_Skill_1_Description_Explosive> Some knives explode and deal triple damage{0}.</Active_Skill_1_Description_Explosive>
+    <Active_Skill_1_Description_Explosive_Debuff> also weakening the enemy</Active_Skill_1_Description_Explosive_Debuff>
+    <Active_Skill_1_Description_Bleeding> applies 1 turn of bleeding</Active_Skill_1_Description_Bleeding>
+    <Active_Skill_1_Description_Poison>{0} has chance to apply poison</Active_Skill_1_Description_Poison>
+    <Active_Skill_1_Description_Avoid> If Enemy avoided, next knife wouldn't be thrown.</Active_Skill_1_Description_Avoid>
+	<Active_Skill_2>Deep Focus</Active_Skill_2>
+	<Active_Skill_2_Description>Applies buff that gives you 0.25 stamina multiplied by remaining turns with buff for {0} turns.{1} Consumes 1 stamina.{2}
+Cooldown: {3} Turns</Active_Skill_2_Description>
+    <Active_Skill_2_Description_Double_Stamina> Buff gives double stamina after avoid.</Active_Skill_2_Description_Double_Stamina>
+    <Active_Skill_2_Description_Debuff> Additionally applies debuff on enemy, that gives you stamina for dealing damage, {0} stamina per {1}% of enemy's max health for {2} turns</Active_Skill_2_Description_Debuff>
+	<Active_Skill_3>Block</Active_Skill_3>
+	<Active_Skill_3_Description>Allows you to block every attack during move with {1}% chance. If blocked attack, returns {0}% of damage.
+Cooldown: {2} Turns</Active_Skill_3_Description>
+	<Active_Skill_4></Active_Skill_4>
+	<Active_Skill_4_Description></Active_Skill_4_Description>
+	<Active_Skill_5></Active_Skill_5>
+	<Active_Skill_5_Description></Active_Skill_5_Description>
+	<Active_Skill_6>Beginner Spell</Active_Skill_6>
+	<Active_Skill_6_Description>Applies Poison for {0} turns{4}. Have {1}% chance to deal {6}base damage ignoring defence.{5}
+Cooldown: {2} Turns
+Uses {3} Mana</Active_Skill_6_Description>
+	<Active_Skill_6_Description_Weakness>, also weakens Enemy for {0} turns</Active_Skill_6_Description_Weakness>
+	<Active_Skill_6_Description_No_Evasion>
+Always Hits Enemy!</Active_Skill_6_Description_No_Evasion>
+	<Active_Skill_7>Chaos</Active_Skill_7>
+	<Active_Skill_7_Description>Adds {0}% of Enemy's health to Player's base damage. 
+Cooldown: {1} Turns
+Uses {2} Mana</Active_Skill_7_Description>
+	<Active_Skill_7_Description_Effect>Destabilizes Enemy for {6} turns. Deals {0}% of Enemy's{4} health and adds {1}% avoid chance for each turn of effect duration.{5}
+Cooldown: {2} Turns
+Uses {3} Mana</Active_Skill_7_Description_Effect>
+	<Active_Skill_7_Description_Ultimate>
+Applies Random Debuff</Active_Skill_7_Description_Ultimate>
+	<Active_Skill_8>Vampirism</Active_Skill_8>
+	<Active_Skill_8_Description>Deals {0}% of base damage, regenerates {1}% of damage dealt.{4}{5}
+Cooldown: {2} Turns
+Uses {3} Mana</Active_Skill_8_Description>
+	<Active_Skill_8_Description_Effect>
+Also heals {0}% of damage dealt by debuffs.</Active_Skill_8_Description_Effect>
+	<Active_Skill_8_Description_Ultimate>
+Enemy bleeds, giving you life energy.</Active_Skill_8_Description_Ultimate>
+	<Unlock_At_Skill_Tree>Unlock At Skill Tree</Unlock_At_Skill_Tree>
+	<Active_Skills_Default>Click Skill Button For More
+Information</Active_Skills_Default>
+</texts>

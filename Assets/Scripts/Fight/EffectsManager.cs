@@ -148,6 +148,10 @@ public class EffectsManager : MonoBehaviour
                 Type = 5;
                 IsStackable = 1;
                 break;
+            case 11:
+                Type = 0;
+                IsStackable = 1;
+                break;
             default:
                 Type = -1;
                 IsStackable = -1;
@@ -181,6 +185,10 @@ public class EffectsManager : MonoBehaviour
         Target.BuffsDamageModifier = 1;
         Target.BuffsDamageTakenModifier = 1;
         Target.BuffsAvoidChance = 0;
+        Target.BuffsEvasion = 0;
+        Target.BuffsAccuracy = 0;
+        Target.BuffsEvasionModifier = 1f;
+        Target.BuffsAccuracyModifier = 1f;
     }
 
     public void Duration_Remove(Entity Target, bool AllowImagesReload = true){
@@ -208,10 +216,11 @@ public class EffectsManager : MonoBehaviour
         for(int i = 0; i<10; ++i){
             if(Target.StatusEffects[i, 0] == -1) break; 
             if(Target.StatusEffects[i, 3] == Type || Target.StatusEffects[i, 4] == Type){
-                if(Type >= 1)await Task.Delay(250);
+                if(Type >= 1)await Task.Delay(200);
                 Effect_Trigger(i, Type, Target);
             }
         }
+        if(Type == 0)Target.UpdateAllStats();
     }
 
     public void Effect_Trigger(int EffectSlot, int Type, Entity Target){
@@ -300,10 +309,14 @@ public class EffectsManager : MonoBehaviour
                 }
                 Target.BuffsDefence += Target.StatusEffects[EffectSlot, 1];
                 break;
+            case 11:
+                Target.BuffsEvasionModifier *= 0.7f;
+                Target.BuffsAccuracyModifier *= 0.7f;
+                break;
             default:
                 break;
         }
     }
 
-}//effects: 0 - HPRegen, 1 - ManaRegen, 2 - Ironskin, 3 - Strength, 4 - Poison, 5 - Bleeding, 6 - Weakness, 7 - Chaos, 8 - Energy Shield, 9 - Healing Weakness, 10 - Healing Vampirism
+}//effects: 0 - HPRegen, 1 - ManaRegen, 2 - Ironskin, 3 - Strength, 4 - Poison, 5 - Bleeding, 6 - Weakness, 7 - Chaos, 8 - Energy Shield, 9 - Healing Weakness, 10 - Healing Vampirism, 11 - Shell Shock
 //Type: 0 - passive(only changes variable values), 1 - Active, 2 - After Attack, 3 - After Getting Damage, 4 - After Avoid, 5 - Custom Implementation

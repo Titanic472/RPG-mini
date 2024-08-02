@@ -22,6 +22,7 @@ Damage per turn: {1}.
 Duration remainning: {0}</Id_4_Description>
 	<Id_5>Bleeding</Id_5>
 	<Id_5_Description>Slowly losing huge amount of remaining health.
+Damage per turn: {1}.
 Duration remainning: {0}</Id_5_Description>
 	<Id_6>Weakness</Id_6>
 	<Id_6_Description>Why did equipment suddenly become so much heavier?
@@ -42,4 +43,7 @@ Duration remainning: {0}</Id_9_Description>
 	<Id_10_Description>Non-effect healing will be stolen by the opposing creature.
 Opposing creature will steal 20% of this entity's healing.
 Duration remainning: {0}</Id_10_Description>	
+	<Id_11>Shell Shock</Id_11>
+	<Id_11_Description>Reduces Agility and Evasion by 30%.
+Duration remainning: {0}</Id_11_Description>
 </texts>

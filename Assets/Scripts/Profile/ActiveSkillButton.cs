@@ -17,12 +17,14 @@ public class ActiveSkillButton : MonoBehaviour
     }
 
     public void OnClick(){
-        Title.text = Language_Changer.Instance.GetText("Active_Skill_" + SlotID);
-        if(!ActiveSkillsManager.SkillsList[SlotID, 0] && !(SlotID == 1)){//!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            ActiveSkillsManager.Information.text = Language_Changer.Instance.GetText("Unlock_At_Skill_Tree");
+        Title.text = Language_Changer.Instance.GetText("Active_Skill_" + SlotID, "ActiveSkills");
+        if(!ActiveSkillsManager.SkillsList[SlotID, 0]){
+            ActiveSkillsManager.Information.alignment = TextAlignmentOptions.Capline;
+            ActiveSkillsManager.Information.text = Language_Changer.Instance.GetText("Unlock_At_Skill_Tree", "ActiveSkills");
             Button.SetActive(false);
         }
         else{
+            ActiveSkillsManager.Information.alignment = TextAlignmentOptions.TopLeft;
             ActiveSkillsManager.GetDescription(SlotID);
             Button.SetActive(true);
             ActiveSkillsManager.SelectedSlotID = SlotID;

@@ -43,7 +43,7 @@ public class ActiveSkills : MonoBehaviour
         }
     }
 
-    public void TriggerActiveSkill(int SlotID){
+    public async void TriggerActiveSkill(int SlotID){
         if(mob.Health==0 || player.Health == 0) return;
         int ID = ActiveSkillsManager.ActiveSlots[SlotID], CooldownTime = 0, ManaUsage = 0;
         switch(ID){
@@ -77,6 +77,165 @@ public class ActiveSkills : MonoBehaviour
                     break;
                 }
                 break;
+            case 1:
+                {
+                int Amount, NoStaminaUseChance, AvoidChance, Damage;
+                switch(SkillManager.KD_Amount){
+                    case 1:
+                        Amount = 5;
+                        break;
+                    case 2:
+                        Amount = 7;
+                        break;
+                    case 3:
+                        Amount = 10;
+                        break;
+                    default:
+                        Amount = 3;
+                        break;
+                }
+                switch(SkillManager.KD_Damage){
+                    case 1:
+                        Damage = Convert.ToInt32(Math.Ceiling(1f * player.BaseDamage));
+                        break;
+                    case 2:
+                        Damage = Convert.ToInt32(Math.Ceiling(1.5f * player.BaseDamage));
+                        break;
+                    default:
+                        Damage = Convert.ToInt32(Math.Ceiling(0.5f * player.BaseDamage));
+                        break;
+                }
+                switch(SkillManager.KD_Cooldown){
+                    case 1:
+                        CooldownTime = 7;
+                        break;
+                    case 2:
+                        CooldownTime = 6;
+                        break;
+                    default:
+                        CooldownTime = 8;
+                        break;
+                }
+                switch(SkillManager.KD_NoStaminaUse){
+                    case 1:
+                        NoStaminaUseChance = 10;
+                        AvoidChance = 3;
+                        break;
+                    case 2:
+                        NoStaminaUseChance = 20;
+                        AvoidChance = 5;
+                        break;
+                    case 3:
+                        NoStaminaUseChance = 33;
+                        AvoidChance = 8;
+                        break;
+                    default:
+                        NoStaminaUseChance = 0;
+                        AvoidChance = 0;
+                        break;
+                }
+                bool CanUseExplosiveDebuff = false, CanUseExplosive = false, CanApplyPoison = false, CanApplyBleeding = false, IgnoreAvoid = false;
+                if(SkillManager.KD_Explosive>0) CanUseExplosive = true;
+                if(SkillManager.KD_Explosive>1) CanUseExplosiveDebuff = true;
+                if(SkillManager.KD_Bleeding) CanApplyBleeding = true;
+                if(SkillManager.KD_Poison) CanApplyPoison = true;
+                if(SkillManager.KD_IgnoreAvoid) IgnoreAvoid = true;
+
+                for(int i = 0; i < Amount && player.SpeedEnergy>=1; ++i){
+                    bool Avoided = mob.Avoid();
+                    if(!Avoided) Avoided = AvoidChance > UnityEngine.Random.Range(0, 100);
+                    if(Avoided){
+                        mob.GetComponent<F_Text_Creator>().CreateText_Red(Language_Changer.Instance.GetText("Avoided"));
+                        if(!IgnoreAvoid) break;
+                    }
+                    else {
+                        int CurrentDamage = Damage;
+                        if(CanApplyBleeding) Fight.EffectsManager.Add(5, 1, mob);
+                        if(CanApplyPoison && 33 > UnityEngine.Random.Range(0, 100)) Fight.EffectsManager.Add(4, 7, mob);
+                        if(CanUseExplosive && 20 > UnityEngine.Random.Range(0, 100)){
+                            CurrentDamage*=3;
+                            if(CanUseExplosiveDebuff) {
+                                Fight.EffectsManager.Add(11, 1, mob);
+                                Fight.EffectsManager.Add(6, 1, mob);
+                            }
+                        }
+
+                        mob.GetDamage(CurrentDamage);
+                        if(NoStaminaUseChance <= UnityEngine.Random.Range(0, 100))player.SpeedEnergyRemove(1);
+                        if(mob.Health<=0) break;
+                        Fight.ReloadEffectImages();
+                        Fight.EffectsManager.TriggerEffects(0, mob);
+                        await Task.Delay(200);
+                    }
+                }
+                if(mob.Health>0 && player.SpeedEnergy<1f) Fight.NextTurn();
+                }
+                break;
+            /*case 2:
+                string Debuff_Description = "", DoubleEffect = "";
+                switch(SkillManager.DF_EffectDuration){
+                    case 1:
+                        EffectDuration = "4";
+                        Cooldown = "6";
+                        break;
+                    case 2:
+                        EffectDuration = "5";
+                        Cooldown = "7";
+                        break;
+                    case 3:
+                        EffectDuration = "6";
+                        Cooldown = "8";
+                        break;
+                    default:
+                        EffectDuration = "3";
+                        Cooldown = "5";
+                        break;
+                }
+                if(SkillManager.DF_Debuff){
+                    string Debuff_Percent, Debuff_Stamina, Debuff_Duration;
+                    switch(SkillManager.DF_Debuff_Percent){
+                        case 1:
+                            Debuff_Percent = "8";
+                            break;
+                        case 2:
+                            Debuff_Percent = "5";
+                            break;
+                        default:
+                            Debuff_Percent = "10";
+                            break;
+                    }
+                    switch(SkillManager.DF_Debuff_Stamina){
+                        case 1:
+                            Debuff_Stamina = "0.15";
+                            break;
+                        case 2:
+                            Debuff_Stamina = "0.2";
+                            break;
+                        case 3:
+                            Debuff_Stamina = "0.25";
+                            break;
+                        default:
+                            Debuff_Stamina = "0.1";
+                            break;
+                    }
+                    switch(SkillManager.DF_Debuff_Duration){
+                        case 1:
+                            Debuff_Duration = "5";
+                            break;
+                        case 2:
+                            Debuff_Duration = "8";
+                            break;
+                        default:
+                            Debuff_Duration = "3";
+                            break;
+                    }
+                    Debuff_Description = string.Format(Language_Changer.Instance.GetText("Active_Skill_2_Description_Debuff", "ActiveSkills"), Debuff_Stamina, Debuff_Percent, Debuff_Duration);
+                }
+                if(SkillManager.DF_DoubleEffect){
+                    DoubleEffect = Language_Changer.Instance.GetText("Active_Skill_2_Description_Double_Stamina", "ActiveSkills");
+                }
+                Information.text = string.Format(Language_Changer.Instance.GetText("Active_Skill_" + ID + "_Description", "ActiveSkills"), EffectDuration, DoubleEffect, Debuff_Description, Cooldown);
+                break;*/
             case 3:
                 player.BlockActive = true;
                 switch(SkillManager.BL_Cooldown){

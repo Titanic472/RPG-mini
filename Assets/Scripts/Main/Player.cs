@@ -67,15 +67,6 @@ public class Player : Entity
 
      for(int i = 0; i<10; ++i) for(int j = 0; j<5;++j) StatusEffects[i, j] = -1;
 
-     Skills.Add("Mana", 0);
-     Skills.Add("Evasion", 0);
-     Skills.Add("Accuracy", 0);
-     Skills.Add("BaseMana", 0);
-     Skills.Add("BaseEvasion", 0);
-     Skills.Add("BaseAccuracy", 0);
-     Skills.Add("BaseHealth", 0);
-     Skills.Add("BaseHealthRegen", 0);
-     Skills.Add("BaseManaRegen", 0);
      Skills.Add("WeaponSkillChance", 5);
     }
 
@@ -83,7 +74,7 @@ public class Player : Entity
         (SelfSprite, SelfSprite2) = (SelfSprite2, SelfSprite);
     }
 
-    public void UpdateAllStats(){
+    public override void UpdateAllStats(){
         //Modifiers
         HealthModifier = BaseHealthModifier * Hat.GetComponent<Item>().HealthModifier*Chestplate.GetComponent<Item>().HealthModifier*Boots.GetComponent<Item>().HealthModifier*LeftHand.GetComponent<Item>().HealthModifier*RightHand.GetComponent<Item>().HealthModifier*Trinket1.GetComponent<Item>().HealthModifier*Trinket2.GetComponent<Item>().HealthModifier;
         ManaModifier = BaseManaModifier * Hat.GetComponent<Item>().ManaModifier*Chestplate.GetComponent<Item>().ManaModifier*Boots.GetComponent<Item>().ManaModifier*LeftHand.GetComponent<Item>().ManaModifier*RightHand.GetComponent<Item>().ManaModifier*Trinket1.GetComponent<Item>().ManaModifier*Trinket2.GetComponent<Item>().ManaModifier;
@@ -94,13 +85,13 @@ public class Player : Entity
         SpeedModifier = Hat.GetComponent<Item>().SpeedModifier * Chestplate.GetComponent<Item>().SpeedModifier * Boots.GetComponent<Item>().SpeedModifier * LeftHand.GetComponent<Item>().SpeedModifier * RightHand.GetComponent<Item>().SpeedModifier * Trinket1.GetComponent<Item>().SpeedModifier * Trinket2.GetComponent<Item>().SpeedModifier;
         //Other Stats
         DamageResistance = BaseDamageResistance + Hat.GetComponent<Item>().DamageResistance + Chestplate.GetComponent<Item>().DamageResistance + Boots.GetComponent<Item>().DamageResistance + LeftHand.GetComponent<Item>().DamageResistance + RightHand.GetComponent<Item>().DamageResistance + Trinket1.GetComponent<Item>().DamageResistance + Trinket2.GetComponent<Item>().DamageResistance;
-        Skills["Mana"] = Hat.GetComponent<Item>().Mana + Chestplate.GetComponent<Item>().Mana + Boots.GetComponent<Item>().Mana + LeftHand.GetComponent<Item>().Mana + RightHand.GetComponent<Item>().Mana + Trinket1.GetComponent<Item>().Mana + Trinket2.GetComponent<Item>().Mana;
-        Skills["Evasion"] = Skills["BaseEvasion"] + Hat.GetComponent<Item>().Evasion + Chestplate.GetComponent<Item>().Evasion + Boots.GetComponent<Item>().Evasion + LeftHand.GetComponent<Item>().Evasion + RightHand.GetComponent<Item>().Evasion + Trinket1.GetComponent<Item>().Evasion + Trinket2.GetComponent<Item>().Evasion;
-        Skills["Accuracy"] = Skills["BaseAccuracy"] + Hat.GetComponent<Item>().Accuracy + Chestplate.GetComponent<Item>().Accuracy + Boots.GetComponent<Item>().Accuracy + LeftHand.GetComponent<Item>().Accuracy + RightHand.GetComponent<Item>().Accuracy + Trinket1.GetComponent<Item>().Accuracy + Trinket2.GetComponent<Item>().Accuracy;
-        ManaRegen = Skills["BaseManaRegen"] + Hat.GetComponent<Item>().ManaRegen + Chestplate.GetComponent<Item>().ManaRegen + Boots.GetComponent<Item>().ManaRegen + LeftHand.GetComponent<Item>().ManaRegen + RightHand.GetComponent<Item>().ManaRegen + Trinket1.GetComponent<Item>().ManaRegen + Trinket2.GetComponent<Item>().ManaRegen;
-        HealthRegen = Skills["BaseHealthRegen"] + Hat.GetComponent<Item>().HealthRegen + Chestplate.GetComponent<Item>().HealthRegen + Boots.GetComponent<Item>().HealthRegen + LeftHand.GetComponent<Item>().HealthRegen + RightHand.GetComponent<Item>().HealthRegen + Trinket1.GetComponent<Item>().HealthRegen + Trinket2.GetComponent<Item>().HealthRegen;
-        MaxHealth = DevTools.Instance.Health + Convert.ToInt32(Math.Ceiling(HealthModifier*(20f+Level*LevelHPBoost+Skills["BaseHealth"])));
-        MaxMana = Convert.ToInt32(Math.Ceiling(ManaModifier*(Skills["Mana"] + Skills["BaseMana"])));
+        Mana = Hat.GetComponent<Item>().Mana + Chestplate.GetComponent<Item>().Mana + Boots.GetComponent<Item>().Mana + LeftHand.GetComponent<Item>().Mana + RightHand.GetComponent<Item>().Mana + Trinket1.GetComponent<Item>().Mana + Trinket2.GetComponent<Item>().Mana;
+        Evasion = Convert.ToInt32(Math.Floor((BaseEvasion + BuffsEvasion + Hat.GetComponent<Item>().Evasion + Chestplate.GetComponent<Item>().Evasion + Boots.GetComponent<Item>().Evasion + LeftHand.GetComponent<Item>().Evasion + RightHand.GetComponent<Item>().Evasion + Trinket1.GetComponent<Item>().Evasion + Trinket2.GetComponent<Item>().Evasion)*BuffsEvasionModifier));
+        Accuracy = Convert.ToInt32(Math.Floor((BaseAccuracy + BuffsAccuracy + Hat.GetComponent<Item>().Accuracy + Chestplate.GetComponent<Item>().Accuracy + Boots.GetComponent<Item>().Accuracy + LeftHand.GetComponent<Item>().Accuracy + RightHand.GetComponent<Item>().Accuracy + Trinket1.GetComponent<Item>().Accuracy + Trinket2.GetComponent<Item>().Accuracy)*BuffsAccuracyModifier));
+        ManaRegen = BaseManaRegen + Hat.GetComponent<Item>().ManaRegen + Chestplate.GetComponent<Item>().ManaRegen + Boots.GetComponent<Item>().ManaRegen + LeftHand.GetComponent<Item>().ManaRegen + RightHand.GetComponent<Item>().ManaRegen + Trinket1.GetComponent<Item>().ManaRegen + Trinket2.GetComponent<Item>().ManaRegen;
+        HealthRegen = BaseHealthRegen + Hat.GetComponent<Item>().HealthRegen + Chestplate.GetComponent<Item>().HealthRegen + Boots.GetComponent<Item>().HealthRegen + LeftHand.GetComponent<Item>().HealthRegen + RightHand.GetComponent<Item>().HealthRegen + Trinket1.GetComponent<Item>().HealthRegen + Trinket2.GetComponent<Item>().HealthRegen;
+        MaxHealth = DevTools.Instance.Health + Convert.ToInt32(Math.Ceiling(HealthModifier*(20f+Level*LevelHPBoost+BaseHealth)));
+        MaxMana = Convert.ToInt32(Math.Ceiling(ManaModifier*(Mana + BaseMana)));
         AttackSpeed = (BaseAttackSpeed+1)*SpeedModifier;
         MagicDefence = Hat.GetComponent<Item>().MagicDefence + Chestplate.GetComponent<Item>().MagicDefence + Boots.GetComponent<Item>().MagicDefence + LeftHand.GetComponent<Item>().MagicDefence + RightHand.GetComponent<Item>().MagicDefence + Trinket1.GetComponent<Item>().MagicDefence + Trinket2.GetComponent<Item>().MagicDefence;
         HealthBar.Reset();
@@ -379,7 +370,7 @@ public class Player : Entity
 
     public bool Crit(){
         int Chance = UnityEngine.Random.Range(0, 100);
-        if(Chance<Math.Min(MaxCritChance, Skills["Accuracy"] + BuffsAccuracy - mob.Evasion)){
+        if(Chance<Math.Min(MaxCritChance, Accuracy + BuffsAccuracy - mob.Evasion)){
             RightHand.GetComponent<Item>().OnCrit();
             LeftHand.GetComponent<Item>().OnCrit();
             Hat.GetComponent<Item>().OnCrit();
@@ -394,7 +385,7 @@ public class Player : Entity
 
     public bool Avoid(){
         int Chance = UnityEngine.Random.Range(0, 100);
-        if(Chance<Math.Min(MaxAvoidChance, Skills["Evasion"] + BuffsEvasion - mob.Accuracy)){
+        if(Chance<Math.Min(MaxAvoidChance, Evasion + BuffsEvasion - mob.Accuracy)){
             RightHand.GetComponent<Item>().OnAvoid();
             LeftHand.GetComponent<Item>().OnAvoid();
             Hat.GetComponent<Item>().OnAvoid();

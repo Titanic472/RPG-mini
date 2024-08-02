@@ -207,6 +207,7 @@ Cooldown: 8 Turns</Dance_With_Knives_Unlock_Description>
 	<Poisoned_Knives_Description>Some of knives will be poisoned and every of them applies poison debuff for 7 turns</Poisoned_Knives_Description>
 	<Explosive_Knives>Explosive Knives</Explosive_Knives>
 	<Explosive_Knives_Description>How about making knives more dangerous? Some of knives will deal triple damage due to explosion</Explosive_Knives_Description>
+	<Stronger_Explosives>Stronger Explosives</Stronger_Explosives>
 	<Stronger_Explosives_Description>How about making knives even more dangerous? After explosion Enemy will become weaker</Stronger_Explosives_Description>
 	<No_Mercy>No Mercy</No_Mercy>
 	<No_Mercy_Description>No one will stop you from throwing knives. Knives will be thrown even after Enemy's avoid</No_Mercy_Description>
@@ -216,7 +217,7 @@ Cooldown: 5 Turns</Deep_Focus_Unlock_Description>
 	<Longer_Focus>Longer Focus</Longer_Focus>
 	<Longer_Focus_Description>Increases buff duration to {0} turns, but also inscreases cooldown to {1} turns</Longer_Focus_Description>
 	<Focused_Debuff>Focused Debuff</Focused_Debuff>
-	<Focused_Debuff_Description>Additionally applies debuff on Enemy, that gives you stamina for dealing damage, 0.1 stamina per 10% of Enemy's max health</Focused_Debuff_Description>
+	<Focused_Debuff_Description>Additionally applies debuff on Enemy, that gives you stamina for dealing damage, 0.1 stamina per 10% of Enemy's max health for 3 turns</Focused_Debuff_Description>
 	<Stronger_Debuff>Stronger Debuff</Stronger_Debuff>
 	<Stronger_Debuff_Description>Now debuff on Enemy, gives you stamina per {0}% of Enemy's max health for dealing damage</Stronger_Debuff_Description>
 	<Better_Debuff>Better Debuff</Better_Debuff>

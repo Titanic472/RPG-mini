@@ -26,6 +26,7 @@ public class Milk : Mob
     }
 
     public override void LootGenerate(){
+        XPReward = player.NewLevelXP;
         Fight.EndBattle();
         if(!player.game.BossesDefeated[0]){
             Fight.InventoryManager.Inventory_Add(8, 1, -1, true);
@@ -34,7 +35,6 @@ public class Milk : Mob
             ++player.MaxSpeedEnergy;
         }
         else Fight.EndBattleWindow.transform.Find("LootItem").GetComponent<SpriteRenderer>().sprite = Fight.InventoryManager.Empty;
-        XPReward = player.NewLevelXP;
         
         /*int Chance = UnityEngine.Random.Range(0, 100);
         if(Chance<5){*/

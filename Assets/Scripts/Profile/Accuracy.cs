@@ -19,7 +19,7 @@ public class Accuracy : SkillTreeSegment
         if(SkillManager.AccuracyMain>=5) SkillsUpgradeCost = 3;
         if(SkillManager.AccuracyMain>=15) SkillsUpgradeCost = 4;
         if(SkillManager.AccuracyMain>=24) SkillsUpgradeCost = 5;
-        GetText(Object: AccuracyMain, Name: "AccuracyMain", TextName: "Accuracy", Price1: SkillsUpgradeCost, MaxUpgradesCount: -1, Format1: player.Skills["BaseAccuracy"], HasCheck: false, HasSuffix: false);
+        GetText(Object: AccuracyMain, Name: "AccuracyMain", TextName: "Accuracy", Price1: SkillsUpgradeCost, MaxUpgradesCount: -1, Format1: player.BaseAccuracy, HasCheck: false, HasSuffix: false);
     }
 
     public void AccuracyMain_Upgrade(){

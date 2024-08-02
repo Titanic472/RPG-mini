@@ -79,7 +79,7 @@ public class Skills : MonoBehaviour
         else if(EvasionMain<15) AllEvasionMain =  (EvasionMain-5)*6 + 18;
         else if(EvasionMain<24) AllEvasionMain = (EvasionMain-15)*8 + 78;
         else AllEvasionMain = (EvasionMain-24)*10 + 150;
-        player.Skills["BaseEvasion"] = AllEvasionMain + EV_4_ACC_4_1_Accuracy*4 + EV_6_ACC_6_1_Accuracy*6 + EV_10_ACC_10_1_Accuracy*10 + EV_10_ACC_10_2_Accuracy*10 + EV_10_ACC_10_3_Accuracy*10 + EV_4_1_Evasion*4 + EV_8_1_Evasion*8 + EV_8_2_Evasion*8 + EV_10_1_Evasion*10 + EV_10_2_Evasion*10 + EV_4_ACC_4_1_Evasion*4 + EV_6_ACC_6_1_Evasion*6 + EV_10_ACC_10_1_Evasion*10 + EV_10_ACC_10_2_Evasion*10 + EV_10_ACC_10_3_Evasion*10 + EV_1_ACC_1_1_Universal + EV_2_ACC_2_1_Universal*2 + EV_4_ACC_4_1_Universal*4 + EV_5_ACC_5_1_Universal*5 + EV_8_ACC_8_1_Universal*8;
+        player.BaseEvasion = AllEvasionMain + EV_4_ACC_4_1_Accuracy*4 + EV_6_ACC_6_1_Accuracy*6 + EV_10_ACC_10_1_Accuracy*10 + EV_10_ACC_10_2_Accuracy*10 + EV_10_ACC_10_3_Accuracy*10 + EV_4_1_Evasion*4 + EV_8_1_Evasion*8 + EV_8_2_Evasion*8 + EV_10_1_Evasion*10 + EV_10_2_Evasion*10 + EV_4_ACC_4_1_Evasion*4 + EV_6_ACC_6_1_Evasion*6 + EV_10_ACC_10_1_Evasion*10 + EV_10_ACC_10_2_Evasion*10 + EV_10_ACC_10_3_Evasion*10 + EV_1_ACC_1_1_Universal + EV_2_ACC_2_1_Universal*2 + EV_4_ACC_4_1_Universal*4 + EV_5_ACC_5_1_Universal*5 + EV_8_ACC_8_1_Universal*8;
         player.UpdateAllStats();
     }
 
@@ -90,17 +90,17 @@ public class Skills : MonoBehaviour
         else if(AccuracyMain<15) AllAccuracyMain =  (AccuracyMain-5)*6 + 18;
         else if(AccuracyMain<24) AllAccuracyMain = (AccuracyMain-15)*8 + 78;
         else AllAccuracyMain = (AccuracyMain-24)*10 + 150;
-        player.Skills["BaseAccuracy"] = AllAccuracyMain + ACC_10_1_Accuracy*10 + ACC_10_2_Accuracy*10 + ACC_10_3_Accuracy*10 + ACC_10_4_Accuracy*10 + EV_4_ACC_4_1_Accuracy*4 + EV_6_ACC_6_1_Accuracy*6 + EV_10_ACC_10_1_Accuracy*10 + EV_10_ACC_10_2_Accuracy*10 + EV_10_ACC_10_3_Accuracy*10 + EV_4_ACC_4_1_Evasion*4 + EV_6_ACC_6_1_Evasion*6 + EV_10_ACC_10_1_Evasion*10 + EV_10_ACC_10_2_Evasion*10 + EV_10_ACC_10_3_Evasion*10 + EV_1_ACC_1_1_Universal + EV_2_ACC_2_1_Universal*2 + EV_4_ACC_4_1_Universal*4 + EV_5_ACC_5_1_Universal*5 + EV_8_ACC_8_1_Universal*8;
+        player.BaseAccuracy = AllAccuracyMain + ACC_10_1_Accuracy*10 + ACC_10_2_Accuracy*10 + ACC_10_3_Accuracy*10 + ACC_10_4_Accuracy*10 + EV_4_ACC_4_1_Accuracy*4 + EV_6_ACC_6_1_Accuracy*6 + EV_10_ACC_10_1_Accuracy*10 + EV_10_ACC_10_2_Accuracy*10 + EV_10_ACC_10_3_Accuracy*10 + EV_4_ACC_4_1_Evasion*4 + EV_6_ACC_6_1_Evasion*6 + EV_10_ACC_10_1_Evasion*10 + EV_10_ACC_10_2_Evasion*10 + EV_10_ACC_10_3_Evasion*10 + EV_1_ACC_1_1_Universal + EV_2_ACC_2_1_Universal*2 + EV_4_ACC_4_1_Universal*4 + EV_5_ACC_5_1_Universal*5 + EV_8_ACC_8_1_Universal*8;
         player.UpdateAllStats();
     }
 
     public void Skilltree_Mana(){
-        player.Skills["BaseMana"] = PracticePlus*10 + Mana_10_1_Sorcery*10 + Mana_10_2_Sorcery*10 + Mana_10_3_Sorcery*10 + Mana_20_1_Sorcery*20;
+        player.BaseMana = PracticePlus*10 + Mana_10_1_Sorcery*10 + Mana_10_2_Sorcery*10 + Mana_10_3_Sorcery*10 + Mana_20_1_Sorcery*20;
         player.UpdateAllStats();
     }
 
     public void Skilltree_Health(){
-        player.Skills["BaseHealth"] = HP_5_1_Sorcery*5 + HP_10_1_Sorcery*10 + HP_10_2_Sorcery*10 + HP_10_3_Sorcery*10 + HP_15_1_Sorcery*15 + HP_25_1_Accuracy*25 + HP_25_2_Accuracy*25 + HP_30_1_Accuracy*30 + HP_30_2_Accuracy*30 + HP_40_1_Accuracy*40 + HP_10_1_Evasion*10 + HP_15_1_Evasion*15 + HP_10_2_Evasion*10 + HP_10_3_Evasion*10 + HP_15_2_Evasion*15;
+        player.BaseHealth = HP_5_1_Sorcery*5 + HP_10_1_Sorcery*10 + HP_10_2_Sorcery*10 + HP_10_3_Sorcery*10 + HP_15_1_Sorcery*15 + HP_25_1_Accuracy*25 + HP_25_2_Accuracy*25 + HP_30_1_Accuracy*30 + HP_30_2_Accuracy*30 + HP_40_1_Accuracy*40 + HP_10_1_Evasion*10 + HP_15_1_Evasion*15 + HP_10_2_Evasion*10 + HP_10_3_Evasion*10 + HP_15_2_Evasion*15;
         player.UpdateAllStats();
     }
 
@@ -111,12 +111,12 @@ public class Skills : MonoBehaviour
         else if(HPRegen<15) AllHPRegen =  (HPRegen-5)*6 + 18;
         else if(HPRegen<24) AllHPRegen = (HPRegen-15)*8 + 78;
         else AllHPRegen = (HPRegen-24)*10 + 150;
-        player.Skills["BaseHealthRegen"] = AllHPRegen;
+        player.BaseHealthRegen = AllHPRegen;
         player.UpdateAllStats();
     }
 
     public void Skilltree_ManaRegen(){
-        player.Skills["BaseManaRegen"] = MR_1_1_Sorcery + MR_1_2_Sorcery + MR_2_1_Sorcery*2 + MR_2_2_Sorcery*2 + MR_3_1_Sorcery*3 + MR_3_2_Sorcery*3 + MR_3_3_Sorcery*3;
+        player.BaseManaRegen = MR_1_1_Sorcery + MR_1_2_Sorcery + MR_2_1_Sorcery*2 + MR_2_2_Sorcery*2 + MR_3_1_Sorcery*3 + MR_3_2_Sorcery*3 + MR_3_3_Sorcery*3;
         player.UpdateAllStats();
     }
 
@@ -234,8 +234,8 @@ public class Skills : MonoBehaviour
             case "Sorcery":
                 BranchName.text = Language_Changer.Instance.GetText("Sorcery", "Skills");
                 BranchInformationText0.text  = "<sprite=\"Skills\" name=\"Upgrades\">" + Sorcery.CurrentSegmentUpgrades;
-                BranchInformationText1.text  = "<sprite=\"Skills\" name=\"Mana\">" + player.Skills["BaseMana"];
-                BranchInformationText2.text  = "<sprite=\"Skills\" name=\"ManaRegen\">" + player.Skills["BaseManaRegen"];
+                BranchInformationText1.text  = "<sprite=\"Skills\" name=\"Mana\">" + player.BaseMana;
+                BranchInformationText2.text  = "<sprite=\"Skills\" name=\"ManaRegen\">" + player.BaseManaRegen;
                 BranchInformationText3.text  = "<sprite=\"Skills\" name=\"ManaUsage\">" + player.BaseManaCost*100 + "%";
                 BranchInformationText4.text  = "<sprite=\"Skills\" name=\"Mana2\">" + player.BaseManaModifier*100 + "%";
                 BranchInformationText5.text  = "<sprite=\"Skills\" name=\"Health\">" + (HP_5_1_Sorcery*5 + HP_10_1_Sorcery*10 + HP_10_2_Sorcery*10 + HP_10_3_Sorcery*10 + HP_15_1_Sorcery*15);
@@ -246,7 +246,7 @@ public class Skills : MonoBehaviour
             case "Accuracy":
                 BranchName.text = Language_Changer.Instance.GetText("Accuracy", "Skills");
                 BranchInformationText0.text  = "<sprite=\"Skills\" name=\"Upgrades\">" + Accuracy.CurrentSegmentUpgrades;
-                BranchInformationText1.text  = "<sprite=\"Skills\" name=\"Accuracy\">" + player.Skills["BaseAccuracy"];
+                BranchInformationText1.text  = "<sprite=\"Skills\" name=\"Accuracy\">" + player.BaseAccuracy;
                 BranchInformationText2.text  = "<sprite=\"Skills\" name=\"CritChance\">" + player.MaxCritChance + "%";
                 BranchInformationText3.text  = "<sprite=\"Skills\" name=\"Damage\">" + (DMG_2_1_Accuracy*2 + DMG_4_1_Accuracy*4 + DMG_4_2_Accuracy*4 + DMG_5_1_Accuracy*5 + DMG_5_2_Accuracy*5);
                 BranchInformationText4.text  = "<sprite=\"Skills\" name=\"DamagePercentBoost\">" + DamageModifier*100 + "%";
@@ -258,7 +258,7 @@ public class Skills : MonoBehaviour
             case "Evasion":
                 BranchName.text = Language_Changer.Instance.GetText("Evasion", "Skills");
                 BranchInformationText0.text  = "<sprite=\"Skills\" name=\"Upgrades\">" + Evasion.CurrentSegmentUpgrades;
-                BranchInformationText1.text  = "<sprite=\"Skills\" name=\"Evasion\">" + player.Skills["BaseEvasion"];
+                BranchInformationText1.text  = "<sprite=\"Skills\" name=\"Evasion\">" + player.BaseEvasion;
                 BranchInformationText2.text  = "<sprite=\"Skills\" name=\"AvoidChance\">" + player.MaxAvoidChance + "%";
                 BranchInformationText3.text  = "<sprite=\"Skills\" name=\"Stamina\">" + (MaxStamina_1_1_Evasion + MaxStamina_1_2_Evasion + MaxStamina_1_3_Evasion + MaxStamina_1_4_Evasion);
                 BranchInformationText4.text  = "<sprite=\"Skills\" name=\"StaminaRegen\">" + player.BaseAttackSpeed;
@@ -276,7 +276,7 @@ public class Skills : MonoBehaviour
                 BranchInformationText3.text  = "<sprite=\"Skills\" name=\"UpgradesSorcery\">" + Sorcery.CurrentSegmentUpgrades;
                 BranchInformationText4.text  = "<sprite=\"Skills\" name=\"SkilledTree\">" + (game.SkilledTreeChance+1) + "%";
                 BranchInformationText5.text  = "<sprite=\"Skills\" name=\"EnchantTriggerChance\">" + player.Skills["WeaponSkillChance"] + "%";
-                BranchInformationText6.text  = "<sprite=\"Skills\" name=\"HealthRegen\">" + player.Skills["BaseHealthRegen"];
+                BranchInformationText6.text  = "<sprite=\"Skills\" name=\"HealthRegen\">" + player.BaseHealthRegen;
                 BranchImage0.sprite = UniversalSprite;
                 BranchImage1.sprite = UniversalSprite;
                 break;
