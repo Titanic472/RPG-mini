@@ -150,7 +150,7 @@ public class Item : MonoBehaviour
         Stats1 = "";
         Stats2 = "";
         int AdditionalUpgrade = 1;
-        if((Level+1)%(6-Tier)==0) AdditionalUpgrade = 2;
+        if((Level+1)%(Math.Max(6-Tier,1))==0) AdditionalUpgrade = 2;
         if(MaxDefence!=0)StatsTextSet(MinDefence, UpgradeMinDefence*AdditionalUpgrade, "Defence", ref Stats1, ref Stats2, UpgradeInformation, "-" + MaxDefence, "-" + (MaxDefence+UpgradeMaxDefence*AdditionalUpgrade));
         if(DamageReduction!=0)StatsTextSet(DamageReduction, UpgradeDamageReduction*AdditionalUpgrade, "Defence", ref Stats1, ref Stats2, UpgradeInformation);
         if(Damage!=0)StatsTextSet(Damage, UpgradeDamage*AdditionalUpgrade, "Damage", ref Stats1, ref Stats2, UpgradeInformation);

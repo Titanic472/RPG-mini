@@ -10,7 +10,7 @@ public class Accuracy : SkillTreeSegment
     int SkillsUpgradeCost;
     
     void Awake(){
-        Class = "Accuracy";
+        branchName = "Accuracy";
     }
 
     public void AccuracyMain_Text(){
@@ -474,7 +474,7 @@ public class Accuracy : SkillTreeSegment
     }
 
     public void DMGCapOverdamage_Unlock_Upgrade(){
-        Upgrade(DMGCapOverdamage_Unlock, "DMGCapOverdamage_Unlock", MaxUpgradesCount: 1, Price1: 6, HasSuffix: false, SetInteractable1: DMGCapOverdamage_10Perc_1, CheckVal1: 1, SetInteractable2: DMGCapOverdamage_10Perc_2, CheckVal2: 1);
+        Upgrade(DMGCapOverdamage_Unlock, "DMGCapOverdamage_Unlock", MaxUpgradesCount: 2, Price1: 6, HasSuffix: false, SetInteractable1: DMGCapOverdamage_10Perc_1, CheckVal1: 1, SetInteractable2: DMGCapOverdamage_10Perc_2, CheckVal2: 1);
     }
 
     public void DMGCapOverdamage_10Perc_1_Text(){

@@ -10,7 +10,7 @@ public class Evasion : SkillTreeSegment
     int SkillsUpgradeCost;
     
     void Awake(){
-        Class = "Evasion";
+        branchName = "Evasion";
     }
 
     public void EvasionMain_Text(){

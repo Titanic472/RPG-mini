@@ -324,7 +324,7 @@ public class Player : Entity
         if(List[Modifier]>0 && List[0]<Modifier)List[0] = Modifier;
         if(Modifier==MaxAllowedModifier)return;
         if(List[Modifier] >=1000){
-            List[Modifier + 1] = Convert.ToInt32(List[Modifier]/1000);
+            List[Modifier + 1] += Convert.ToInt32(List[Modifier]/1000);
             List[Modifier] = List[Modifier]%1000;
             if(Modifier+1>List[0]) List[0] = Modifier+1;
         }

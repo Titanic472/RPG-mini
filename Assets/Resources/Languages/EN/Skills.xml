@@ -231,7 +231,7 @@ Cooldown: 5 Turns</Deep_Focus_Unlock_Description>
 	<Enemy_Research>Enemy Research</Enemy_Research>
 	<Enemy_Research_Description>Some more research and your knowledge will also contain information about enemy's stats</Enemy_Research_Description>
 	<Self-inspecton>Self-inspecton</Self-inspecton>
-	<Self-inspecton_Description>Allows you to see information about your passve skills during battle</Self-inspecton_Description>
+	<Self-inspecton_Description>Allows you to see information about your passive skills during battle</Self-inspecton_Description>
 	<Multiple_Shielding>Multiple Shielding</Multiple_Shielding>
 	<Multiple_Shielding_Description>How about using shield better way? Increases limit of shield usage per turn by 1. More times the shield used - more damage it will block</Multiple_Shielding_Description>
 </texts>

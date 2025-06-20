@@ -11,7 +11,7 @@ public class Universal : SkillTreeSegment
     public int AllUpgrades;
 
     void Awake(){
-        Class = "Universal";
+        branchName = "Universal";
     }
 
     public void HPRegen_CheckUpgrade(){

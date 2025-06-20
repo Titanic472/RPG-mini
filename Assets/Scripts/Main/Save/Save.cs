@@ -326,11 +326,10 @@ public class Save : MonoBehaviour
         Data.intSkillTree[162] = Skills.BrutalityStreak_AvoidChance;
         Data.intSkillTree[163] = Skills.DMGCapOverdamage_10Perc_1;
         Data.intSkillTree[164] = Skills.DMGCapOverdamage_10Perc_2;
-        Data.intSkillTree[165] = Skills.Accuracy.CurrentSegmentUpgrades;
-        Data.intSkillTree[166] = Skills.Evasion.CurrentSegmentUpgrades;
-        Data.intSkillTree[167] = Skills.Sorcery.CurrentSegmentUpgrades;
-        Data.intSkillTree[168] = Skills.Universal.CurrentSegmentUpgrades;
-        Data.intSkillTree[169] = Skills.Universal.AllUpgrades;
+        Data.intSkillTree[165] = Skills.AccuracyUpgrades;
+        Data.intSkillTree[166] = Skills.EvasionUpgrades;
+        Data.intSkillTree[167] = Skills.SorceryUpgrades;
+        Data.intSkillTree[168] = Skills.UniversalUpgrades;
 
         //GameObjects
         
@@ -1015,11 +1014,11 @@ public class Save : MonoBehaviour
         Skills.BrutalityStreak_AvoidChance = Data.intSkillTree[162];
         Skills.DMGCapOverdamage_10Perc_1 = Data.intSkillTree[163];
         Skills.DMGCapOverdamage_10Perc_2 = Data.intSkillTree[164];
-        Skills.Accuracy.CurrentSegmentUpgrades = Data.intSkillTree[165];
-        Skills.Evasion.CurrentSegmentUpgrades = Data.intSkillTree[166];
-        Skills.Sorcery.CurrentSegmentUpgrades = Data.intSkillTree[167];
-        Skills.Universal.CurrentSegmentUpgrades = Data.intSkillTree[168];
-        Skills.Universal.AllUpgrades = Data.intSkillTree[169];
+        Skills.AccuracyUpgrades = Data.intSkillTree[165];
+        Skills.EvasionUpgrades = Data.intSkillTree[166];
+        Skills.SorceryUpgrades = Data.intSkillTree[167];
+        Skills.UniversalUpgrades = Data.intSkillTree[168];
+        Skills.AllUpgrades = Skills.AccuracyUpgrades + Skills.EvasionUpgrades + Skills.SorceryUpgrades + Skills.UniversalUpgrades;
 
         //GameObjects
 

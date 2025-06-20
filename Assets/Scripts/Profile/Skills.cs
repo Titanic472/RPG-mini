@@ -45,15 +45,18 @@ public class Skills : MonoBehaviour
     public float Shield_MagicDefence = 0, Shield_DamageReturn = 0, Shield_NoStaminaUsageChance = 0, Shield_DamageBoost = 0, DMGCapOverdamage = 1.5f, Crit_Damage = 0.5f, DamageModifier = 1f, Shield_DamageResistance = 0, Shield_AvoidChance = 0;
     //public bool IsChecked;
     public static Skills Instance;
+    public int AccuracyUpgrades = 0, EvasionUpgrades = 0, SorceryUpgrades = 0, UniversalUpgrades = 0, AllUpgrades = 0;
+    public GameObject invokeObject;
 
     void Awake(){
         Instance = this;
     }
     public void Upgradebutton_click(){
-        Type type = Type.GetType(InvokeClass);
-        object obj = FindObjectOfType(type);
-        MethodInfo method = type.GetMethod(InvokeMethod + "_Upgrade");
-        method.Invoke(obj, null);
+        invokeObject.GetComponent<SkillTreeButton>().UpgradeClick();
+        // Type type = Type.GetType(InvokeClass);
+        // object obj = FindObjectOfType(type);
+        // MethodInfo method = type.GetMethod(InvokeMethod + "_Upgrade");
+        // method.Invoke(obj, null);
     }
 
     public void SkillPointsCount_Update(){
@@ -233,7 +236,7 @@ public class Skills : MonoBehaviour
         switch(BranchNameToSet){
             case "Sorcery":
                 BranchName.text = Language_Changer.Instance.GetText("Sorcery", "Skills");
-                BranchInformationText0.text  = "<sprite=\"Skills\" name=\"Upgrades\">" + Sorcery.CurrentSegmentUpgrades;
+                BranchInformationText0.text  = "<sprite=\"Skills\" name=\"Upgrades\">" + SorceryUpgrades;
                 BranchInformationText1.text  = "<sprite=\"Skills\" name=\"Mana\">" + player.BaseMana;
                 BranchInformationText2.text  = "<sprite=\"Skills\" name=\"ManaRegen\">" + player.BaseManaRegen;
                 BranchInformationText3.text  = "<sprite=\"Skills\" name=\"ManaUsage\">" + player.BaseManaCost*100 + "%";
@@ -245,7 +248,7 @@ public class Skills : MonoBehaviour
                 break;
             case "Accuracy":
                 BranchName.text = Language_Changer.Instance.GetText("Accuracy", "Skills");
-                BranchInformationText0.text  = "<sprite=\"Skills\" name=\"Upgrades\">" + Accuracy.CurrentSegmentUpgrades;
+                BranchInformationText0.text  = "<sprite=\"Skills\" name=\"Upgrades\">" + AccuracyUpgrades;
                 BranchInformationText1.text  = "<sprite=\"Skills\" name=\"Accuracy\">" + player.BaseAccuracy;
                 BranchInformationText2.text  = "<sprite=\"Skills\" name=\"CritChance\">" + player.MaxCritChance + "%";
                 BranchInformationText3.text  = "<sprite=\"Skills\" name=\"Damage\">" + (DMG_2_1_Accuracy*2 + DMG_4_1_Accuracy*4 + DMG_4_2_Accuracy*4 + DMG_5_1_Accuracy*5 + DMG_5_2_Accuracy*5);
@@ -257,7 +260,7 @@ public class Skills : MonoBehaviour
                 break;
             case "Evasion":
                 BranchName.text = Language_Changer.Instance.GetText("Evasion", "Skills");
-                BranchInformationText0.text  = "<sprite=\"Skills\" name=\"Upgrades\">" + Evasion.CurrentSegmentUpgrades;
+                BranchInformationText0.text  = "<sprite=\"Skills\" name=\"Upgrades\">" + EvasionUpgrades;
                 BranchInformationText1.text  = "<sprite=\"Skills\" name=\"Evasion\">" + player.BaseEvasion;
                 BranchInformationText2.text  = "<sprite=\"Skills\" name=\"AvoidChance\">" + player.MaxAvoidChance + "%";
                 BranchInformationText3.text  = "<sprite=\"Skills\" name=\"Stamina\">" + (MaxStamina_1_1_Evasion + MaxStamina_1_2_Evasion + MaxStamina_1_3_Evasion + MaxStamina_1_4_Evasion);
@@ -268,12 +271,13 @@ public class Skills : MonoBehaviour
                 BranchImage1.sprite = EvasionSprite;
                 break;
             case "Universal":
-                Universal.AllUpgrades = Sorcery.CurrentSegmentUpgrades + Evasion.CurrentSegmentUpgrades + Accuracy.CurrentSegmentUpgrades;
+                Universal.AllUpgrades = SorceryUpgrades + EvasionUpgrades + AccuracyUpgrades;
+                AllUpgrades = SorceryUpgrades + EvasionUpgrades + AccuracyUpgrades;
                 BranchName.text = Language_Changer.Instance.GetText("Universal_Upgrades", "Skills");
-                BranchInformationText0.text  = "<sprite=\"Skills\" name=\"AllUpgrades\">" + Universal.AllUpgrades;
-                BranchInformationText1.text  = "<sprite=\"Skills\" name=\"UpgradesAccuracy\">" + Accuracy.CurrentSegmentUpgrades;
-                BranchInformationText2.text  = "<sprite=\"Skills\" name=\"UpgradesEvasion\">" + Evasion.CurrentSegmentUpgrades;
-                BranchInformationText3.text  = "<sprite=\"Skills\" name=\"UpgradesSorcery\">" + Sorcery.CurrentSegmentUpgrades;
+                BranchInformationText0.text  = "<sprite=\"Skills\" name=\"AllUpgrades\">" + AllUpgrades;
+                BranchInformationText1.text  = "<sprite=\"Skills\" name=\"UpgradesAccuracy\">" + AccuracyUpgrades;
+                BranchInformationText2.text  = "<sprite=\"Skills\" name=\"UpgradesEvasion\">" + EvasionUpgrades;
+                BranchInformationText3.text  = "<sprite=\"Skills\" name=\"UpgradesSorcery\">" + SorceryUpgrades;
                 BranchInformationText4.text  = "<sprite=\"Skills\" name=\"SkilledTree\">" + (game.SkilledTreeChance+1) + "%";
                 BranchInformationText5.text  = "<sprite=\"Skills\" name=\"EnchantTriggerChance\">" + player.Skills["WeaponSkillChance"] + "%";
                 BranchInformationText6.text  = "<sprite=\"Skills\" name=\"HealthRegen\">" + player.BaseHealthRegen;

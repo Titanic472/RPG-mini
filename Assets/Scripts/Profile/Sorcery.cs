@@ -10,7 +10,7 @@ public class Sorcery : SkillTreeSegment
     int SkillsUpgradeCost;
     
     void Awake(){
-        Class = "Sorcery";
+        branchName = "Sorcery";
     }
 
     public void PracticePlus_Text(){
