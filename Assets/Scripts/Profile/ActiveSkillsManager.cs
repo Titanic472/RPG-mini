@@ -337,7 +337,7 @@ public class ActiveSkillsManager : MonoBehaviour
                         DamageChance = "50";
                         break;
                     default:
-                        DamageChance = "0";
+                        DamageChance = "10";
                         break;
                 }
                 switch(SkillManager.BS_Mana){

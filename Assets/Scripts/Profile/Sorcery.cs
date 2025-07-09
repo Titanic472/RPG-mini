@@ -84,7 +84,7 @@ public class Sorcery : SkillTreeSegment
                 Format = 25;
                 break;
         }
-        GetText(ManaOverdrain_Perc, "ManaOverdrain_Perc", TextName: "Mana_Overdrain_Percercent", MaxUpgradesCount: 3, Price1: 2, Price2: 4, Price3: 5, Format1: Format, HasSuffix: false);
+        GetText(ManaOverdrain_Perc, "ManaOverdrain_Perc", TextName: "Mana_Overdrain_Percent", MaxUpgradesCount: 3, Price1: 2, Price2: 4, Price3: 5, Format1: Format, HasSuffix: false);
     }
 
     public void ManaOverdrain_Perc_Upgrade(){

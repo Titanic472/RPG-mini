@@ -159,13 +159,13 @@ MonoBehaviour:
   branchName: Sorcery
   hasSuffix: 0
   hasCheck: 1
+  isActiveSkill: 0
   previousButtonLevelToUnlock: 0
   level: 0
   maxUpgrades: 5
   upgradePrices: 0000000000000000000000000000000000000000
   allUpgradesCountToUnlockUpgrades: 0000000000000000000000000000000000000000
   textName: 
-  stringFormat: 
   invokes:
   - 
   - 
@@ -192,6 +192,15 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  stringFormat:
+  - 
+  - 
+  - 
+  - 
+  - 
+  customFormats: 00000000
+  extraCheckObject: {fileID: 0}
+  extraCheckLevel: 0
 --- !u!1 &1136903280509275051
 GameObject:
   m_ObjectHideFlags: 0

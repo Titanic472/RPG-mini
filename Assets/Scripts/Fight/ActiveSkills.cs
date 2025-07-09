@@ -291,7 +291,7 @@ public class ActiveSkills : MonoBehaviour
                             Chance = 50;
                             break;
                         default:
-                            Chance = 0;
+                            Chance = 10;
                             break;
                     }
                     if(SkillManager.BS_Ultimate){

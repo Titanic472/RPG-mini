@@ -19,7 +19,7 @@ public class SkillTreeMultiupgradeButton : SkillTreeButton
     {
         CalculateUpgradeCost();
         GetCustomFormats();
-        GetText(Object: gameObject, Name: gameObject.name, TextName: textName, MaxUpgradesCount: maxUpgrades, Price1: SkillsUpgradeCost, Format1: format1[Math.Min(maxUpgrades - 1, level)], Format2: format2[Math.Min(maxUpgrades - 1, level)], Format3: format3[Math.Min(maxUpgrades - 1, level)], StringFormat: stringFormat[Math.Min(maxUpgrades - 1, level)], HasCheck: false, HasSuffix: false);
+        GetText(Object: gameObject, Name: gameObject.name, TextName: textName, MaxUpgradesCount: maxUpgrades, Price1: SkillsUpgradeCost, Format1: format1[0], Format2: format2[0], Format3: format3[0], StringFormat: stringFormat[0], HasCheck: false, HasSuffix: false);
     }
 
     public override void UpgradeClick()
@@ -30,7 +30,7 @@ public class SkillTreeMultiupgradeButton : SkillTreeButton
         {
             if (childsConnected[i] != null)
             {
-                checkValues[i] = childsConnected[i].GetComponent<SkillTreeButton>().level;
+                checkValues[i] = childsConnected[i].GetComponent<SkillTreeButton>().previousButtonLevelToUnlock;
             }
             else checkValues[i] = -1;
         }
