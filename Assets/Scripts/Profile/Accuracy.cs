@@ -6,7 +6,7 @@ using System;
 
 public class Accuracy : SkillTreeSegment
 {
-    public GameObject AccuracyMain, BLU, BL_Cooldown, BL_Chance, BL_ReturnDamage, BrutalityStreak_Unlock, BrutalityStreak_EnergySave, BrutalityStreak_AvoidChance, BrutalityStreak_SpecialAttacksTrigger, Shield_NoStaminaUsage_5Perc, Shield_DamageBoost_3Perc, DMG_2_1, DMG_1Perc_1, HP_1Perc_1, EV_4_ACC_4_1, HP_25_1, DMG_2Perc_1, HP_2Perc_1, DMG_4_1, DMG_4_2, DMG_2Perc_2, DMG_5_1, EV_10_ACC_10_1, HP_30_1, EV_10_ACC_10_2, EV_6_ACC_6_1, DMG_5_2, DMG_5Perc_1, HP_5Perc_1, CritChance_2Perc_1, ACC_10_1, CritDamage_5Perc_1, CritChance_2Perc_2, CritChance_2Perc_3, CritDamage_5Perc_2, HP_30_2, HP_2Perc_2, CritChance_4Perc_1, HP_25_2, CritDamage_10Perc_1, ACC_10_3, CritDamage_10Perc_2, CritDamage_20Perc_1, ACC_10_4, HP_40_1, DMGCapOverdamage_Unlock, DMGCapOverdamage_10Perc_1, ACC_10_2, DMGCapOverdamage_10Perc_2, EV_10_ACC_10_3;
+    public GameObject AccuracyMain, BLU, BL_Cooldown, BL_Chance, BL_ReturnDamage, BrutalityStreak_Unlock, BrutalityStreak_EnergySave, BrutalityStreak_AvoidChance, BrutalityStreak_SpecialAttacksTrigger, Shield_NoStaminaUsage_5Perc, Shield_DamageBoost_3Perc, DMG_1_1, DMG_1Perc_1, HP_1Perc_1, EV_4_ACC_4_1, HP_25_1, DMG_2Perc_1, HP_2Perc_1, DMG_2_1, DMG_2_2, DMG_2Perc_2, DMG_3_1, EV_10_ACC_10_1, HP_30_1, EV_10_ACC_10_2, EV_6_ACC_6_1, DMG_3_2, DMG_5Perc_1, HP_5Perc_1, CritChance_2Perc_1, ACC_10_1, CritDamage_5Perc_1, CritChance_2Perc_2, CritChance_2Perc_3, CritDamage_5Perc_2, HP_30_2, HP_2Perc_2, CritChance_4Perc_1, HP_25_2, CritDamage_10Perc_1, ACC_10_3, CritDamage_10Perc_2, CritDamage_20Perc_1, ACC_10_4, HP_40_1, DMGCapOverdamage_Unlock, DMGCapOverdamage_10Perc_1, ACC_10_2, DMGCapOverdamage_10Perc_2, EV_10_ACC_10_3;
     int SkillsUpgradeCost;
     
     void Awake(){
@@ -23,7 +23,7 @@ public class Accuracy : SkillTreeSegment
     }
 
     public void AccuracyMain_Upgrade(){
-        Upgrade(Object: AccuracyMain, Name: "AccuracyMain", Price1: SkillsUpgradeCost, Invoke1:"Accuracy", MaxUpgradesCount: -1, HasSuffix: false, SetInteractable1: BLU, CheckVal1: 1, SetInteractable2: CritChance_2Perc_1, CheckVal2: 1, SetInteractable3: DMG_2_1, CheckVal3: 1, SetInteractable4: BrutalityStreak_Unlock, CheckVal4: 1);
+        Upgrade(Object: AccuracyMain, Name: "AccuracyMain", Price1: SkillsUpgradeCost, Invoke1:"Accuracy", MaxUpgradesCount: -1, HasSuffix: false, SetInteractable1: BLU, CheckVal1: 1, SetInteractable2: CritChance_2Perc_1, CheckVal2: 1, SetInteractable3: DMG_1_1, CheckVal3: 1, SetInteractable4: BrutalityStreak_Unlock, CheckVal4: 1);
     }
 
     public void BLU_CheckUpgrade(){
@@ -193,12 +193,12 @@ public class Accuracy : SkillTreeSegment
         Upgrade(Shield_DamageBoost_3Perc, "Shield_DamageBoost_3Perc", Price1: 4, Price2: 4, Price3: 4, Price4: 5, Price5: 5, HasSuffix: false, Invoke1: "Shield");
     }
 
-    public void DMG_2_1_Text(){
-        GetText(DMG_2_1, "DMG_2_1", TextName: "Additional_Damage", Price1: 1, Price2: 1, Price3: 2, Price4: 2, Price5: 2, Format1: 2, HasCheck: false);
+    public void DMG_1_1_Text(){
+        GetText(DMG_1_1, "DMG_1_1", TextName: "Additional_Damage", Price1: 1, Price2: 1, Price3: 2, Price4: 2, Price5: 2, Format1: 2, HasCheck: false);
     }
 
-    public void DMG_2_1_Upgrade(){
-        Upgrade(DMG_2_1, "DMG_2_1", Price1: 1, Price2: 1, Price3: 2, Price4: 2, Price5: 2, Invoke1: "Damage", SetInteractable1: DMG_1Perc_1, CheckVal1: 3, SetInteractable2: EV_4_ACC_4_1, CheckVal2: 2);
+    public void DMG_1_1_Upgrade(){
+        Upgrade(DMG_1_1, "DMG_1_1", Price1: 1, Price2: 1, Price3: 2, Price4: 2, Price5: 2, Invoke1: "Damage", SetInteractable1: DMG_1Perc_1, CheckVal1: 3, SetInteractable2: EV_4_ACC_4_1, CheckVal2: 2);
     }
 
     public void DMG_1Perc_1_Text(){
@@ -214,7 +214,7 @@ public class Accuracy : SkillTreeSegment
     }
 
     public void HP_1Perc_1_Upgrade(){
-        Upgrade(HP_1Perc_1, "HP_1Perc_1", Price1: 1, Price2: 1, Price3: 1, Price4: 1, Price5: 1, Invoke1: "HealthModifier", SetInteractable1: DMG_2Perc_1, CheckVal1: 3, SetInteractable2: DMG_4_1, CheckVal2: 2);
+        Upgrade(HP_1Perc_1, "HP_1Perc_1", Price1: 1, Price2: 1, Price3: 1, Price4: 1, Price5: 1, Invoke1: "HealthModifier", SetInteractable1: DMG_2Perc_1, CheckVal1: 3, SetInteractable2: DMG_2_1, CheckVal2: 2);
     }
 
     public void EV_4_ACC_4_1_Text(){
@@ -250,20 +250,20 @@ public class Accuracy : SkillTreeSegment
         if(SkillManager.HP_30_2_Accuracy>0)DMGCapOverdamage_Unlock.GetComponent<Button>().interactable = true;
     }
 
-    public void DMG_4_1_Text(){
-        GetText(DMG_4_1, "DMG_4_1", TextName: "Additional_Damage", Price1: 2, Price2: 2, Price3: 3, Price4: 3, Price5: 4, Format1: 4, HasCheck: false);
+    public void DMG_2_1_Text(){
+        GetText(DMG_2_1, "DMG_2_1", TextName: "Additional_Damage", Price1: 2, Price2: 2, Price3: 3, Price4: 3, Price5: 4, Format1: 4, HasCheck: false);
     }
 
-    public void DMG_4_1_Upgrade(){
-        Upgrade(DMG_4_1, "DMG_4_1", Price1: 2, Price2: 2, Price3: 3, Price4: 3, Price5: 4, Invoke1: "Damage", SetInteractable1: DMG_4_2, CheckVal1: 4, SetInteractable2: DMG_2Perc_2, CheckVal2: 2);
+    public void DMG_2_1_Upgrade(){
+        Upgrade(DMG_2_1, "DMG_2_1", Price1: 2, Price2: 2, Price3: 3, Price4: 3, Price5: 4, Invoke1: "Damage", SetInteractable1: DMG_2_2, CheckVal1: 4, SetInteractable2: DMG_2Perc_2, CheckVal2: 2);
     }
 
-    public void DMG_4_2_Text(){
-        GetText(DMG_4_2, "DMG_4_2", TextName: "Additional_Damage", Price1: 2, Price2: 3, Price3: 3, Price4: 3, Price5: 4, Format1: 4, HasCheck: false);
+    public void DMG_2_2_Text(){
+        GetText(DMG_2_2, "DMG_2_2", TextName: "Additional_Damage", Price1: 2, Price2: 3, Price3: 3, Price4: 3, Price5: 4, Format1: 4, HasCheck: false);
     }
 
-    public void DMG_4_2_Upgrade(){
-        Upgrade(DMG_4_2, "DMG_4_2", Price1: 2, Price2: 3, Price3: 3, Price4: 3, Price5: 4, Invoke1: "Damage", SetInteractable1: DMG_5_1, CheckVal1: 3);
+    public void DMG_2_2_Upgrade(){
+        Upgrade(DMG_2_2, "DMG_2_2", Price1: 2, Price2: 3, Price3: 3, Price4: 3, Price5: 4, Invoke1: "Damage", SetInteractable1: DMG_3_1, CheckVal1: 3);
     }
 
     public void DMG_2Perc_2_Text(){
@@ -274,12 +274,12 @@ public class Accuracy : SkillTreeSegment
         Upgrade(DMG_2Perc_2, "DMG_2Perc_2", Price1: 2, Price2: 2, Price3: 2, Price4: 2, Price5: 3, Invoke1: "DamageModifier", SetInteractable1: EV_6_ACC_6_1, CheckVal1: 2);
     }
 
-    public void DMG_5_1_Text(){
-        GetText(DMG_5_1, "DMG_5_1", TextName: "Additional_Damage", Price1: 3, Price2: 3, Price3: 4, Price4: 4, Price5: 4, Format1: 5, HasCheck: false);
+    public void DMG_3_1_Text(){
+        GetText(DMG_3_1, "DMG_3_1", TextName: "Additional_Damage", Price1: 3, Price2: 3, Price3: 4, Price4: 4, Price5: 4, Format1: 5, HasCheck: false);
     }
 
-    public void DMG_5_1_Upgrade(){
-        Upgrade(DMG_5_1, "DMG_5_1", Price1: 3, Price2: 3, Price3: 4, Price4: 4, Price5: 4, Invoke1: "Damage", SetInteractable1: EV_10_ACC_10_1, CheckVal1: 2);
+    public void DMG_3_1_Upgrade(){
+        Upgrade(DMG_3_1, "DMG_3_1", Price1: 3, Price2: 3, Price3: 4, Price4: 4, Price5: 4, Invoke1: "Damage", SetInteractable1: EV_10_ACC_10_1, CheckVal1: 2);
     }
 
     public void EV_10_ACC_10_1_Text(){
@@ -311,15 +311,15 @@ public class Accuracy : SkillTreeSegment
     }
 
     public void EV_6_ACC_6_1_Upgrade(){
-        Upgrade(EV_6_ACC_6_1, "EV_6_ACC_6_1", Price1: 3, Price2: 3, Price3: 3, Price4: 3, Price5: 3, Invoke1: "Evasion", Invoke2: "Accuracy", SetInteractable1: DMG_5_2, CheckVal1: 2);
+        Upgrade(EV_6_ACC_6_1, "EV_6_ACC_6_1", Price1: 3, Price2: 3, Price3: 3, Price4: 3, Price5: 3, Invoke1: "Evasion", Invoke2: "Accuracy", SetInteractable1: DMG_3_2, CheckVal1: 2);
     }
 
-    public void DMG_5_2_Text(){
-        GetText(DMG_5_2, "DMG_5_2", TextName: "Additional_Damage", Price1: 3, Price2: 3, Price3: 4, Price4: 4, Price5: 4, Format1: 5, HasCheck: false);
+    public void DMG_3_2_Text(){
+        GetText(DMG_3_2, "DMG_3_2", TextName: "Additional_Damage", Price1: 3, Price2: 3, Price3: 4, Price4: 4, Price5: 4, Format1: 5, HasCheck: false);
     }
 
-    public void DMG_5_2_Upgrade(){
-        Upgrade(DMG_5_2, "DMG_5_2", Price1: 3, Price2: 3, Price3: 4, Price4: 4, Price5: 4, Invoke1: "Damage", SetInteractable1: DMG_5Perc_1, CheckVal1: 4);
+    public void DMG_3_2_Upgrade(){
+        Upgrade(DMG_3_2, "DMG_3_2", Price1: 3, Price2: 3, Price3: 4, Price4: 4, Price5: 4, Invoke1: "Damage", SetInteractable1: DMG_5Perc_1, CheckVal1: 4);
     }
 
     public void DMG_5Perc_1_Text(){

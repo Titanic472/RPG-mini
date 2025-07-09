@@ -13,8 +13,10 @@ public class SkillTreeButton : SkillTreeSegment
     public string[] invokes = new string[2];
     public GameObject[] childsConnected = new GameObject[4];
     public float[] format1 = new float[5], format2 = new float[5], format3 = new float[5];//text formatter for every level
-    public string stringFormat;
-    public bool[] customFormats = new bool[3];
+    public string[] stringFormat = new string[5];
+    public bool[] customFormats = new bool[4];
+    public GameObject extraCheckObject = null;
+    public int extraCheckLevel = 0;
 
     protected void GetCustomFormats()
     {
@@ -39,7 +41,7 @@ public class SkillTreeButton : SkillTreeSegment
     public virtual void OnClick()
     {
         GetCustomFormats();
-        GetText(Object: gameObject, Name: gameObject.name, TextName: textName, MaxUpgradesCount: maxUpgrades, Price1: upgradePrices[0], Price2: upgradePrices[1], Price3: upgradePrices[2], Price4: upgradePrices[3], Price5: upgradePrices[4], Format1: format1[Math.Min(maxUpgrades - 1, level)], Format2: format2[Math.Min(maxUpgrades - 1, level)], Format3: format3[Math.Min(maxUpgrades - 1, level)], StringFormat: stringFormat, HasCheck: hasCheck, HasSuffix: hasSuffix);
+        GetText(Object: gameObject, Name: gameObject.name, TextName: textName, MaxUpgradesCount: maxUpgrades, Price1: upgradePrices[0], Price2: upgradePrices[1], Price3: upgradePrices[2], Price4: upgradePrices[3], Price5: upgradePrices[4], Format1: format1[Math.Min(maxUpgrades - 1, level)], Format2: format2[Math.Min(maxUpgrades - 1, level)], Format3: format3[Math.Min(maxUpgrades - 1, level)], StringFormat: stringFormat[Math.Min(maxUpgrades - 1, level)], HasCheck: hasCheck, HasSuffix: hasSuffix);
     }
 
     public virtual void UpgradeClick()
@@ -53,6 +55,11 @@ public class SkillTreeButton : SkillTreeSegment
             }
             else checkValues[i] = -1;
         }
+        if(extraCheckObject != null && extraCheckLevel > extraCheckObject.GetComponent<SkillTreeButton>().level)
+        {
+            checkValues[0] = 6;
+        }
+        
         Upgrade(Object: gameObject, Name: gameObject.name, Price1: upgradePrices[0], Price2: upgradePrices[1], Price3: upgradePrices[2], Price4: upgradePrices[3], Price5: upgradePrices[4], Invoke1: invokes[0], Invoke2: invokes[1], IsBool: isBool, MaxUpgradesCount: maxUpgrades, HasSuffix: hasSuffix, SetInteractable1: childsConnected[0], CheckVal1: checkValues[0], SetInteractable2: childsConnected[1], CheckVal2: checkValues[1], SetInteractable3: childsConnected[2], CheckVal3: checkValues[2], SetInteractable4: childsConnected[3], CheckVal4: checkValues[3]);
         if (isActiveSkill) SkillManager.ActiveSkillsManager.SkillsUnlockCheck();
         ++level;

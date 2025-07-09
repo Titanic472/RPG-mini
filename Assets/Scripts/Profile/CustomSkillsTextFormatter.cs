@@ -11,8 +11,16 @@ public static class CustomSkillsTextFormatter
         {
             case "SkilledTree_1Perc":
                 return Math.Min(4, Skills.Instance.SkilledTree_1Perc_Universal + 1);
+            case "Shield_MagicDef_2Perc_1":
+                return Skills.Instance.Shield_MagicDefence * 100;
+            case "Shield_MagicDef_2Perc_2":
+                return Skills.Instance.Shield_MagicDefence * 100;
+            case "Shield_DmgReturn_1Perc_1":
+                return Skills.Instance.Shield_DamageReturn * 100;
+            case "Shield_DmgReturn_1Perc_2":
+                return Skills.Instance.Shield_DamageReturn * 100;
             default:
-                return -10101010101010101;//error handler
+                return -1010101010;//error handler
         }
     }
 }
