@@ -26,7 +26,7 @@ public class Evasion : SkillTreeSegment
         Upgrade(Object: EvasionMain, Name: "EvasionMain", Price1: SkillsUpgradeCost, Invoke1:"Evasion", MaxUpgradesCount: -1, HasSuffix: false, SetInteractable1: PHU, CheckVal1: 1, SetInteractable2: StaminaRegen_1_1, CheckVal2: 1, SetInteractable3: AvoidChance_1Perc_1, CheckVal3: 1, SetInteractable4: Parry_Unlock, CheckVal4: 1);
     }
 
-        public void PHU_CheckUpgrade(){
+    public void PHU_CheckUpgrade(){
         CheckUpgradeSingle(PHU, "PHU", Lvl: Convert.ToInt32(SkillManager.PHU), CheckValLvl1: 10);
         SkillManager.ActiveSkillsManager.SkillsUnlockCheck();
     }
