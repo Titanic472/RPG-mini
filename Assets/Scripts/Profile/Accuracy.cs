@@ -6,7 +6,7 @@ using System;
 
 public class Accuracy : SkillTreeSegment
 {
-    public GameObject AccuracyMain, BLU, BL_Cooldown, BL_Chance, BL_ReturnDamage, BrutalityStreak_Unlock, BrutalityStreak_EnergySave, BrutalityStreak_AvoidChance, BrutalityStreak_SpecialAttacksTrigger, Shield_NoStaminaUsage_5Perc, Shield_DamageBoost_3Perc, DMG_1_1, DMG_1Perc_1, HP_1Perc_1, EV_4_ACC_4_1, HP_25_1, DMG_2Perc_1, HP_2Perc_1, DMG_2_1, DMG_2_2, DMG_2Perc_2, DMG_3_1, EV_10_ACC_10_1, HP_30_1, EV_10_ACC_10_2, EV_6_ACC_6_1, DMG_3_2, DMG_5Perc_1, HP_5Perc_1, CritChance_2Perc_1, ACC_10_1, CritDamage_5Perc_1, CritChance_2Perc_2, CritChance_2Perc_3, CritDamage_5Perc_2, HP_30_2, HP_2Perc_2, CritChance_4Perc_1, HP_25_2, CritDamage_10Perc_1, ACC_10_3, CritDamage_10Perc_2, CritDamage_20Perc_1, ACC_10_4, HP_40_1, DMGCapOverdamage_Unlock, DMGCapOverdamage_10Perc_1, ACC_10_2, DMGCapOverdamage_10Perc_2, EV_10_ACC_10_3;
+    public GameObject AccuracyMain, BLU, BL_Cooldown, BL_Chance, BL_ReturnDamage, BrutalityStreak_Unlock, BrutalityStreak_EnergySave, BrutalityStreak_AvoidChance, BrutalityStreak_SpecialAttacksTrigger, Shield_NoStaminaUsage_5Perc, Shield_DamageBoost_3Perc, DMG_1_1, DMG_1Perc_1, HP_1Perc_1, EV_4_ACC_4_1, HP_25_1, DMG_2Perc_1, HP_2Perc_1, DMG_2_1, DMG_2_2, DMG_2Perc_2, DMG_3_1, EV_10_ACC_10_1, HP_30_1, EV_10_ACC_10_2, EV_6_ACC_6_1, DMG_3_2, DMG_5Perc_1, HP_5Perc_1, CritChance_2Perc_1, ACC_10_1, CritDamage_3Perc_1, CritChance_2Perc_2, CritChance_2Perc_3, CritDamage_3Perc_2, HP_30_2, HP_2Perc_2, CritChance_4Perc_1, HP_25_2, CritDamage_5Perc_1, ACC_10_3, CritDamage_5Perc_2, CritDamage_10Perc_1, ACC_10_4, HP_40_1, DMGCapOverdamage_Unlock, DMGCapOverdamage_10Perc_1, ACC_10_2, DMGCapOverdamage_10Perc_2, EV_10_ACC_10_3;
     int SkillsUpgradeCost;
     
     void Awake(){
@@ -343,7 +343,7 @@ public class Accuracy : SkillTreeSegment
     }
 
     public void CritChance_2Perc_1_Upgrade(){
-        Upgrade(CritChance_2Perc_1, "CritChance_2Perc_1", Price1: 1, Price2: 1, Price3: 1, Price4: 1, Price5: 2, Invoke1: "MaxCritChance", SetInteractable1: ACC_10_1, CheckVal1: 2, SetInteractable2: CritDamage_5Perc_1, CheckVal2: 3);
+        Upgrade(CritChance_2Perc_1, "CritChance_2Perc_1", Price1: 1, Price2: 1, Price3: 1, Price4: 1, Price5: 2, Invoke1: "MaxCritChance", SetInteractable1: ACC_10_1, CheckVal1: 2, SetInteractable2: CritDamage_3Perc_1, CheckVal2: 3);
     }
 
     public void ACC_10_1_Text(){
@@ -354,12 +354,12 @@ public class Accuracy : SkillTreeSegment
         Upgrade(ACC_10_1, "ACC_10_1", Price1: 2, Price2: 2, Price3: 2, Price4: 3, Price5: 3, Invoke1: "Accuracy");
     }
 
-    public void CritDamage_5Perc_1_Text(){
-        GetText(CritDamage_5Perc_1, "CritDamage_5Perc_1", TextName: "Crit_Damage", Price1: 1, Price2: 2, Price3: 2, Price4: 2, Price5: 3, Format1: 5, Format2: (SkillManager.Crit_Damage+1)*100, HasCheck: false);
+    public void CritDamage_3Perc_1_Text(){
+        GetText(CritDamage_3Perc_1, "CritDamage_3Perc_1", TextName: "Crit_Damage", Price1: 1, Price2: 2, Price3: 2, Price4: 2, Price5: 3, Format1: 5, Format2: (SkillManager.Crit_Damage+1)*100, HasCheck: false);
     }
 
-    public void CritDamage_5Perc_1_Upgrade(){
-        Upgrade(CritDamage_5Perc_1, "CritDamage_5Perc_1", Price1: 1, Price2: 2, Price3: 2, Price4: 2, Price5: 3, Invoke1: "CritDamage", SetInteractable1: CritChance_2Perc_2, CheckVal1: 3);
+    public void CritDamage_3Perc_1_Upgrade(){
+        Upgrade(CritDamage_3Perc_1, "CritDamage_3Perc_1", Price1: 1, Price2: 2, Price3: 2, Price4: 2, Price5: 3, Invoke1: "CritDamage", SetInteractable1: CritChance_2Perc_2, CheckVal1: 3);
     }
 
     public void CritChance_2Perc_2_Text(){
@@ -367,7 +367,7 @@ public class Accuracy : SkillTreeSegment
     }
 
     public void CritChance_2Perc_2_Upgrade(){
-        Upgrade(CritChance_2Perc_2, "CritChance_2Perc_2", Price1: 1, Price2: 1, Price3: 1, Price4: 1, Price5: 2, Invoke1: "MaxCritChance", SetInteractable1: CritChance_2Perc_3, CheckVal1: 4, SetInteractable2: CritDamage_5Perc_2, CheckVal2: 2);
+        Upgrade(CritChance_2Perc_2, "CritChance_2Perc_2", Price1: 1, Price2: 1, Price3: 1, Price4: 1, Price5: 2, Invoke1: "MaxCritChance", SetInteractable1: CritChance_2Perc_3, CheckVal1: 4, SetInteractable2: CritDamage_3Perc_2, CheckVal2: 2);
     }
 
     public void CritChance_2Perc_3_Text(){
@@ -378,12 +378,12 @@ public class Accuracy : SkillTreeSegment
         Upgrade(CritChance_2Perc_3, "CritChance_2Perc_3", Price1: 1, Price2: 1, Price3: 2, Price4: 2, Price5: 2, Invoke1: "MaxCritChance", SetInteractable1: HP_2Perc_2, CheckVal1: 2);
     }
 
-    public void CritDamage_5Perc_2_Text(){
-        GetText(CritDamage_5Perc_2, "CritDamage_5Perc_2", TextName: "Crit_Damage", Price1: 1, Price2: 2, Price3: 2, Price4: 2, Price5: 3, Format1: 5, Format2: (SkillManager.Crit_Damage+1)*100, HasCheck: false);
+    public void CritDamage_3Perc_2_Text(){
+        GetText(CritDamage_3Perc_2, "CritDamage_3Perc_2", TextName: "Crit_Damage", Price1: 1, Price2: 2, Price3: 2, Price4: 2, Price5: 3, Format1: 5, Format2: (SkillManager.Crit_Damage+1)*100, HasCheck: false);
     }
 
-    public void CritDamage_5Perc_2_Upgrade(){
-        Upgrade(CritDamage_5Perc_2, "CritDamage_5Perc_2", Price1: 1, Price2: 2, Price3: 2, Price4: 2, Price5: 3, Invoke1: "CritDamage", SetInteractable1: HP_30_2, CheckVal1: 3);
+    public void CritDamage_3Perc_2_Upgrade(){
+        Upgrade(CritDamage_3Perc_2, "CritDamage_3Perc_2", Price1: 1, Price2: 2, Price3: 2, Price4: 2, Price5: 3, Invoke1: "CritDamage", SetInteractable1: HP_30_2, CheckVal1: 3);
     }
 
     public void HP_30_2_Text(){
@@ -400,7 +400,7 @@ public class Accuracy : SkillTreeSegment
     }
 
     public void HP_2Perc_2_Upgrade(){
-        Upgrade(HP_2Perc_2, "HP_2Perc_2", Price1: 1, Price2: 1, Price3: 2, Price4: 2, Price5: 2, Invoke1: "HealthModifier", SetInteractable1: CritChance_4Perc_1, CheckVal1: 4, SetInteractable2: CritDamage_10Perc_1, CheckVal2: 1);
+        Upgrade(HP_2Perc_2, "HP_2Perc_2", Price1: 1, Price2: 1, Price3: 2, Price4: 2, Price5: 2, Invoke1: "HealthModifier", SetInteractable1: CritChance_4Perc_1, CheckVal1: 4, SetInteractable2: CritDamage_5Perc_1, CheckVal2: 1);
     }
 
     public void CritChance_4Perc_1_Text(){
@@ -419,12 +419,12 @@ public class Accuracy : SkillTreeSegment
         Upgrade(HP_25_2, "HP_25_2", Price1: 2, Price2: 3, Price3: 3, Price4: 3, Price5: 4, Invoke1: "Health");
     }
 
-    public void CritDamage_10Perc_1_Text(){
-        GetText(CritDamage_10Perc_1, "CritDamage_10Perc_1", TextName: "Crit_Damage", Price1: 2, Price2: 3, Price3: 3, Price4: 3, Price5: 4, Format1: 10, Format2: (SkillManager.Crit_Damage+1)*100, HasCheck: false);
+    public void CritDamage_5Perc_1_Text(){
+        GetText(CritDamage_5Perc_1, "CritDamage_5Perc_1", TextName: "Crit_Damage", Price1: 2, Price2: 3, Price3: 3, Price4: 3, Price5: 4, Format1: 10, Format2: (SkillManager.Crit_Damage+1)*100, HasCheck: false);
     }
 
-    public void CritDamage_10Perc_1_Upgrade(){
-        Upgrade(CritDamage_10Perc_1, "CritDamage_10Perc_1", Price1: 2, Price2: 3, Price3: 3, Price4: 3, Price5: 4, Invoke1: "CritDamage", SetInteractable1: ACC_10_3, CheckVal1: 3);
+    public void CritDamage_5Perc_1_Upgrade(){
+        Upgrade(CritDamage_5Perc_1, "CritDamage_5Perc_1", Price1: 2, Price2: 3, Price3: 3, Price4: 3, Price5: 4, Invoke1: "CritDamage", SetInteractable1: ACC_10_3, CheckVal1: 3);
     }
 
     public void ACC_10_3_Text(){
@@ -432,23 +432,23 @@ public class Accuracy : SkillTreeSegment
     }
 
     public void ACC_10_3_Upgrade(){
-        Upgrade(ACC_10_3, "ACC_10_3", Price1: 2, Price2: 2, Price3: 2, Price4: 3, Price5: 3, Invoke1: "Accuracy", SetInteractable1: CritDamage_10Perc_2, CheckVal1: 4);
+        Upgrade(ACC_10_3, "ACC_10_3", Price1: 2, Price2: 2, Price3: 2, Price4: 3, Price5: 3, Invoke1: "Accuracy", SetInteractable1: CritDamage_5Perc_2, CheckVal1: 4);
     }
 
-    public void CritDamage_10Perc_2_Text(){
-        GetText(CritDamage_10Perc_2, "CritDamage_10Perc_2", TextName: "Crit_Damage", Price1: 3, Price2: 3, Price3: 4, Price4: 4, Price5: 4, Format1: 10, Format2: (SkillManager.Crit_Damage+1)*100, HasCheck: false);
+    public void CritDamage_5Perc_2_Text(){
+        GetText(CritDamage_5Perc_2, "CritDamage_5Perc_2", TextName: "Crit_Damage", Price1: 3, Price2: 3, Price3: 4, Price4: 4, Price5: 4, Format1: 10, Format2: (SkillManager.Crit_Damage+1)*100, HasCheck: false);
     }
 
-    public void CritDamage_10Perc_2_Upgrade(){
-        Upgrade(CritDamage_10Perc_2, "CritDamage_10Perc_2", Price1: 3, Price2: 3, Price3: 4, Price4: 4, Price5: 4, Invoke1: "CritDamage", SetInteractable1: HP_40_1, CheckVal1: 1, SetInteractable2: CritDamage_20Perc_1, CheckVal2: 4);
+    public void CritDamage_5Perc_2_Upgrade(){
+        Upgrade(CritDamage_5Perc_2, "CritDamage_5Perc_2", Price1: 3, Price2: 3, Price3: 4, Price4: 4, Price5: 4, Invoke1: "CritDamage", SetInteractable1: HP_40_1, CheckVal1: 1, SetInteractable2: CritDamage_10Perc_1, CheckVal2: 4);
     }
 
-    public void CritDamage_20Perc_1_Text(){
-        GetText(CritDamage_20Perc_1, "CritDamage_20Perc_1", TextName: "Crit_Damage", Price1: 4, Price2: 4, Price3: 5, Price4: 5, Price5: 6, Format1: 10, Format2: (SkillManager.Crit_Damage+1)*100, HasCheck: false);
+    public void CritDamage_10Perc_1_Text(){
+        GetText(CritDamage_10Perc_1, "CritDamage_10Perc_1", TextName: "Crit_Damage", Price1: 4, Price2: 4, Price3: 5, Price4: 5, Price5: 6, Format1: 10, Format2: (SkillManager.Crit_Damage+1)*100, HasCheck: false);
     }
 
-    public void CritDamage_20Perc_1_Upgrade(){
-        Upgrade(CritDamage_20Perc_1, "CritDamage_20Perc_1", Price1: 4, Price2: 4, Price3: 5, Price4: 5, Price5: 6, Invoke1: "CritDamage", SetInteractable1: ACC_10_4, CheckVal1: 2);
+    public void CritDamage_10Perc_1_Upgrade(){
+        Upgrade(CritDamage_10Perc_1, "CritDamage_10Perc_1", Price1: 4, Price2: 4, Price3: 5, Price4: 5, Price5: 6, Invoke1: "CritDamage", SetInteractable1: ACC_10_4, CheckVal1: 2);
     }
 
     public void ACC_10_4_Text(){

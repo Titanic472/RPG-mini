@@ -39,6 +39,34 @@ public static class CustomSkillsTextFormatter
                 return Skills.Instance.Shield_AvoidChance2Perc_1 * 2 + Skills.Instance.Shield_AvoidChance1Perc_1;
             case "Shield_AvoidChance2Perc_1":
                 return Skills.Instance.Shield_AvoidChance2Perc_1 * 2 + Skills.Instance.Shield_AvoidChance1Perc_1;
+            case "AccuracyMain":
+                return Player.Instance.BaseAccuracy;
+            case "CritChance_2Perc_1":
+                return Player.Instance.MaxCritChance;
+            case "CritChance_2Perc_2":
+                return Player.Instance.MaxCritChance;
+            case "CritChance_2Perc_3":
+                return Player.Instance.MaxCritChance;
+            case "CritChance_4Perc_1":
+                return Player.Instance.MaxCritChance;
+            case "CritDamage_3Perc_1":
+                return (Skills.Instance.Crit_Damage + 1) * 100;
+            case "CritDamage_3Perc_2":
+                return (Skills.Instance.Crit_Damage + 1) * 100;
+            case "CritDamage_5Perc_1":
+                return (Skills.Instance.Crit_Damage + 1) * 100;
+            case "CritDamage_5Perc_2":
+                return (Skills.Instance.Crit_Damage + 1) * 100;
+            case "CritDamage_10Perc_1":
+                return (Skills.Instance.Crit_Damage + 1) * 100;
+            case "DMGCapOverdamage_10Perc_1":
+                return Skills.Instance.DMGCapOverdamage * 100;
+            case "DMGCapOverdamage_10Perc_2":
+                return Skills.Instance.DMGCapOverdamage * 100;
+            case "DMGCapOverdamage_Unlock":
+                return Skills.Instance.DMGCapOverdamage * 100;
+            case "Shield_NoStaminaUsage_5Perc":
+                return Math.Min(25, Skills.Instance.Shield_NoStaminaUsage_5Perc * 5);
             default:
                 return -1010101010;//error handler
         }

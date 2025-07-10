@@ -174,7 +174,7 @@ Current chance: {0}</Instant_Shield_Description>
 	<Crit_Damage_Description>Increases critical strike damage increase by {0}%.
 Current critical strike damage: {1}%</Crit_Damage_Description>
 	<DMGCapOverdamage_Unlock>Overdamage</DMGCapOverdamage_Unlock>
-	<DMGCapOverdamage_Unlock_Description>Allows you to deal 150% of maximum allowed damage when Enemy have maximum damage cap when damage is x{0} higher than damage cap</DMGCapOverdamage_Unlock_Description>
+	<DMGCapOverdamage_Unlock_Description>Allows you to deal {1}% of maximum allowed damage when Enemy have maximum damage cap when damage is x{0} higher than damage cap</DMGCapOverdamage_Unlock_Description>
 	<More_Overdamage>More Overdamage</More_Overdamage>
 	<More_Overdamage_Description>Increases Overdamage by 10%.
 Current Overdamage percent: {0}%</More_Overdamage_Description>
