@@ -118,7 +118,8 @@ public class Mob : Entity
         else GetComponent<F_Text_Creator>().CreateText_Red(Amount +"");
         Health -= Amount;
         DamageTaken += Amount;
-        if(Health<0) Health = 0;
+        DamageTakenLastHit = Amount;
+        if (Health < 0) Health = 0;
         StartCoroutine(HealthBar.HP_update());
         ActiveSkillsAddDamage = 0;//Change to if() when Precise hit Ultimate added
         if(Health==0){
