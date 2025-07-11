@@ -46,4 +46,12 @@ Duration remainning: {0}</Id_10_Description>
 	<Id_11>Shell Shock</Id_11>
 	<Id_11_Description>Reduces Agility and Evasion by 30%.
 Duration remainning: {0}</Id_11_Description>
+	<Id_12>Deep Focus</Id_12>
+	<Id_12_Description>Slowly regenerates stamina, effect weakens after time.{2}
+Current effect power: {1}/turn.
+Duration remainning: {0}</Id_12_Description>
+	<Id_12_Additional_Description> Gives double stamina after avoid.</Id_12_Additional_Description>
+	<Id_13>Focused Mark</Id_13>
+	<Id_13_Description>After getting damage entity gives player stamina, {1} stamina per {2}% of entity's max health.
+Duration remainning: {0}</Id_13_Description>
 </texts>

@@ -505,7 +505,8 @@ public class Player : Entity
 
         Health -= Amount;
         DamageTaken += Amount;
-        if(Health<0) Health = 0;
+        DamageTakenLastHit = Amount;
+        if (Health < 0) Health = 0;
         if(ReloadHP)StartCoroutine(HealthBar.HP_update());
 
         RightHand.GetComponent<Item>().AfterReceiveDamage();

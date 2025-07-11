@@ -171,71 +171,51 @@ public class ActiveSkills : MonoBehaviour
                 if(mob.Health>0 && player.SpeedEnergy<1f) Fight.NextTurn();
                 }
                 break;
-            /*case 2:
-                string Debuff_Description = "", DoubleEffect = "";
+            case 2:
+                int EffectDuration;
+
                 switch(SkillManager.DF_EffectDuration){
                     case 1:
-                        EffectDuration = "4";
-                        Cooldown = "6";
+                        EffectDuration = 4;
+                        CooldownTime = 6;
                         break;
                     case 2:
-                        EffectDuration = "5";
-                        Cooldown = "7";
+                        EffectDuration = 5;
+                        CooldownTime = 7;
                         break;
                     case 3:
-                        EffectDuration = "6";
-                        Cooldown = "8";
+                        EffectDuration = 6;
+                        CooldownTime = 8;
                         break;
                     default:
-                        EffectDuration = "3";
-                        Cooldown = "5";
+                        EffectDuration = 3;
+                        CooldownTime = 5;
                         break;
                 }
-                if(SkillManager.DF_Debuff){
-                    string Debuff_Percent, Debuff_Stamina, Debuff_Duration;
-                    switch(SkillManager.DF_Debuff_Percent){
+
+                Fight.EffectsManager.Add(12, EffectDuration, player);
+
+                if (SkillManager.DF_Debuff)
+                {
+                    int DebuffDuration;
+                    switch (SkillManager.DF_Debuff_Duration)
+                    {
                         case 1:
-                            Debuff_Percent = "8";
+                            DebuffDuration = 5;
                             break;
                         case 2:
-                            Debuff_Percent = "5";
+                            DebuffDuration = 8;
                             break;
                         default:
-                            Debuff_Percent = "10";
+                            DebuffDuration = 3;
                             break;
                     }
-                    switch(SkillManager.DF_Debuff_Stamina){
-                        case 1:
-                            Debuff_Stamina = "0.15";
-                            break;
-                        case 2:
-                            Debuff_Stamina = "0.2";
-                            break;
-                        case 3:
-                            Debuff_Stamina = "0.25";
-                            break;
-                        default:
-                            Debuff_Stamina = "0.1";
-                            break;
-                    }
-                    switch(SkillManager.DF_Debuff_Duration){
-                        case 1:
-                            Debuff_Duration = "5";
-                            break;
-                        case 2:
-                            Debuff_Duration = "8";
-                            break;
-                        default:
-                            Debuff_Duration = "3";
-                            break;
-                    }
-                    Debuff_Description = string.Format(Language_Changer.Instance.GetText("Active_Skill_2_Description_Debuff", "ActiveSkills"), Debuff_Stamina, Debuff_Percent, Debuff_Duration);
+                    Fight.EffectsManager.Add(13, DebuffDuration, mob);
                 }
-                if(SkillManager.DF_DoubleEffect){
-                    DoubleEffect = Language_Changer.Instance.GetText("Active_Skill_2_Description_Double_Stamina", "ActiveSkills");
-                }
-                Information.text = string.Format(Language_Changer.Instance.GetText("Active_Skill_" + ID + "_Description", "ActiveSkills"), EffectDuration, DoubleEffect, Debuff_Description, Cooldown);
-                break;*/
+                Fight.ReloadEffectImages();
+                player.SpeedEnergyRemove(1);
+                if(mob.Health>0 && player.SpeedEnergy<1f) Fight.NextTurn();
+                break;
             case 3:
                 player.BlockActive = true;
                 switch(SkillManager.BL_Cooldown){
@@ -313,7 +293,7 @@ public class ActiveSkills : MonoBehaviour
                         }
                     }
                     player.SpeedEnergyRemove(1);
-                    Fight.NextTurn();
+                    if(mob.Health>0 && player.SpeedEnergy<1f) Fight.NextTurn();
                 }
                 break;
             case 7:
@@ -392,7 +372,7 @@ public class ActiveSkills : MonoBehaviour
                         Fight.ReloadEffectImages();
                     }
                     player.SpeedEnergyRemove(1);
-                    Fight.NextTurn();
+                    if(mob.Health>0 && player.SpeedEnergy<1f) Fight.NextTurn();
                 }
                 break;
             case 8:
@@ -464,7 +444,7 @@ public class ActiveSkills : MonoBehaviour
                     }
                     player.TriggerHeal(Damage);
                     player.SpeedEnergyRemove(1);
-                    Fight.NextTurn();
+                    if(mob.Health>0 && player.SpeedEnergy<1f) Fight.NextTurn();
                 }
                 break;
             default:

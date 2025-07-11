@@ -6,7 +6,7 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
     public Game game; 
-    public int BaseHealth, Health, MaxHealth, BaseHealthRegen, HealthRegen, Evasion, Accuracy, BaseEvasion, BaseAccuracy, BaseMana, Mana, MaxMana, BaseManaRegen, ManaRegen, Level, BuffsDefence, BuffsAvoidChance, MaxBuffsDamage = -1, DamageTaken, DamageTakenByBuffs, DamageBlockedByBuffs;
+    public int BaseHealth, Health, MaxHealth, BaseHealthRegen, HealthRegen, Evasion, Accuracy, BaseEvasion, BaseAccuracy, BaseMana, Mana, MaxMana, BaseManaRegen, ManaRegen, Level, BuffsDefence, BuffsAvoidChance, MaxBuffsDamage = -1, DamageTaken, DamageTakenLastHit, DamageTakenByBuffs, DamageBlockedByBuffs;
     public float BuffsDamageModifier = 1, BuffsDamageTakenModifier = 1, MagicDefence = 0f, BuffsEvasionModifier = 1f, BuffsAccuracyModifier = 1f;
     public int BuffsEvasion = 0, BuffsAccuracy = 0;
     public int[,] StatusEffects = new int[10,5];//0 - id, 1 - duration, 2 - start duration, 3 - type, 4 - type2
