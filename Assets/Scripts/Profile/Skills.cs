@@ -11,11 +11,6 @@ public class Skills : MonoBehaviour
 {
     //public Image Button1, Close, Background;
     public ActiveSkillsManager ActiveSkillsManager;
-    public Accuracy Accuracy;
-    public Evasion Evasion;
-    public Sorcery Sorcery;
-    public Universal Universal;
-    // public Shadow Shadow;
     public Camera MainCamera;
     public Player player;
     public Game game;
@@ -271,7 +266,6 @@ public class Skills : MonoBehaviour
                 BranchImage1.sprite = EvasionSprite;
                 break;
             case "Universal":
-                Universal.AllUpgrades = SorceryUpgrades + EvasionUpgrades + AccuracyUpgrades;
                 AllUpgrades = SorceryUpgrades + EvasionUpgrades + AccuracyUpgrades;
                 BranchName.text = Language_Changer.Instance.GetText("Universal_Upgrades", "Skills");
                 BranchInformationText0.text  = "<sprite=\"Skills\" name=\"AllUpgrades\">" + AllUpgrades;
