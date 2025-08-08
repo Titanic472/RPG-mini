@@ -82,9 +82,11 @@ public class InventoryManager : MonoBehaviour
     public void Item_Equip(string Slot){
         if(player.Inventory[InvokeID].GetComponent<Item>().Is2Handed == true && player.Inventory[44]!=null || player.Inventory[InvokeID].GetComponent<Item>().Id==-1) return;
 
-        switch(Slot){
+        GameObject TempSlot = null;
+        switch (Slot)
+        {
             case "Hat":
-                if(player.Hat.GetComponent<Item>().Id != -1) player.Inventory[GetFreeSlot()] = player.Hat;
+                if (player.Hat.GetComponent<Item>().Id != -1) TempSlot = player.Hat;
                 else Destroy(player.Hat);
                 player.Hat = player.Inventory[InvokeID];
                 player.Hat.transform.SetParent(HatSlot.transform);
@@ -94,7 +96,7 @@ public class InventoryManager : MonoBehaviour
                 HatSlot.GetComponent<InventorySlot_Profile>().Equipped = true;
                 break;
             case "Chestplate":
-                if(player.Chestplate.GetComponent<Item>().Id != -1) player.Inventory[GetFreeSlot()] = player.Chestplate;
+                if (player.Chestplate.GetComponent<Item>().Id != -1) TempSlot = player.Chestplate;
                 else Destroy(player.Chestplate);
                 player.Chestplate = player.Inventory[InvokeID];
                 player.Chestplate.transform.SetParent(ChestplateSlot.transform);
@@ -104,7 +106,7 @@ public class InventoryManager : MonoBehaviour
                 ChestplateSlot.GetComponent<InventorySlot_Profile>().Equipped = true;
                 break;
             case "Boots":
-                if(player.Boots.GetComponent<Item>().Id != -1) player.Inventory[GetFreeSlot()] = player.Boots;
+                if (player.Boots.GetComponent<Item>().Id != -1) TempSlot = player.Boots;
                 else Destroy(player.Boots);
                 player.Boots = player.Inventory[InvokeID];
                 player.Boots.transform.SetParent(BootsSlot.transform);
@@ -114,52 +116,61 @@ public class InventoryManager : MonoBehaviour
                 BootsSlot.GetComponent<InventorySlot_Profile>().Equipped = true;
                 break;
             case "LeftHand":
-                if(player.LeftHand.GetComponent<Item>().Id != -1) player.Inventory[GetFreeSlot()] = player.LeftHand;
+                if (player.LeftHand.GetComponent<Item>().Id != -1) TempSlot = player.LeftHand;
                 else Destroy(player.LeftHand);
                 player.LeftHand = player.Inventory[InvokeID];
                 player.LeftHand.transform.SetParent(LeftHandSlot.transform);
                 player.LeftHand.transform.position = LeftHandSlot.transform.position;
+                player.LeftHand.SetActive(true);
                 player.Inventory[InvokeID] = null;
                 LeftHandSlot.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Language_Changer.Instance.GetText("Lvl") + ": " + player.LeftHand.GetComponent<Item>().Level;
                 LeftHandSlot.GetComponent<InventorySlot_Profile>().Equipped = true;
                 break;
             case "RightHand":
-                if(player.RightHand.GetComponent<Item>().Id != -1) player.Inventory[GetFreeSlot()] = player.RightHand;
+                if (player.RightHand.GetComponent<Item>().Id != -1) TempSlot = player.RightHand;
                 else Destroy(player.RightHand);
                 player.RightHand = player.Inventory[InvokeID];
                 player.RightHand.transform.SetParent(RightHandSlot.transform);
                 player.RightHand.transform.position = RightHandSlot.transform.position;
+                player.RightHand.SetActive(true);
                 player.Inventory[InvokeID] = null;
                 RightHandSlot.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Language_Changer.Instance.GetText("Lvl") + ": " + player.RightHand.GetComponent<Item>().Level;
                 RightHandSlot.GetComponent<InventorySlot_Profile>().Equipped = true;
-                if(player.RightHand.GetComponent<Item>().Is2Handed){
+                if (player.RightHand.GetComponent<Item>().Is2Handed)
+                {
                     LeftHandSlot.SetActive(false);
                     Inventory_Reorganise();
                     Item_Unequip("LeftHand");
                 }
                 break;
             case "Trinket1":
-                if(player.Trinket1.GetComponent<Item>().Id != -1) player.Inventory[GetFreeSlot()] = player.Trinket1;
+                if (player.Trinket1.GetComponent<Item>().Id != -1) TempSlot = player.Trinket1;
                 else Destroy(player.Trinket1);
                 player.Trinket1 = player.Inventory[InvokeID];
                 player.Trinket1.transform.SetParent(Trinket1Slot.transform);
                 player.Trinket1.transform.position = Trinket1Slot.transform.position;
+                player.Trinket1.SetActive(true);
                 player.Inventory[InvokeID] = null;
                 Trinket1Slot.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Language_Changer.Instance.GetText("Lvl") + ": " + player.Trinket1.GetComponent<Item>().Level;
                 Trinket1Slot.GetComponent<InventorySlot_Profile>().Equipped = true;
                 break;
             case "Trinket2":
-                if(player.Trinket2.GetComponent<Item>().Id != -1) player.Inventory[GetFreeSlot()] = player.Trinket2;
+                if (player.Trinket2.GetComponent<Item>().Id != -1) TempSlot = player.Trinket2;
                 else Destroy(player.Trinket2);
                 player.Trinket2 = player.Inventory[InvokeID];
                 player.Trinket2.transform.SetParent(Trinket2Slot.transform);
                 player.Trinket2.transform.position = Trinket2Slot.transform.position;
+                player.Trinket2.SetActive(true);
                 player.Inventory[InvokeID] = null;
                 Trinket2Slot.transform.Find("Level_Text").GetComponent<TextMeshProUGUI>().text = Language_Changer.Instance.GetText("Lvl") + ": " + player.Trinket2.GetComponent<Item>().Level;
                 Trinket2Slot.GetComponent<InventorySlot_Profile>().Equipped = true;
                 break;
             default:
                 break;
+        }
+        if (TempSlot != null)
+        {
+            player.Inventory[InvokeID] = TempSlot;
         }
         Inventory_Reorganise();
         InformationBackground.SetActive(false);
